@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block page %}
+<div id="holder">
+  <div id="content">
+  {% block content %}
+    <p>... Content goes here ...</p>
+  {% endblock %}
+  </div> <!--END: content -->
+
+{% if page.children %}
+<div id="rhs-menu">  
+<ul>
+  {% for c in page.children %}
+    <li><a class="xitem" href="{{ c.get_absolute_url }}">{{ c.menu_title }}</a></li>
+ {% endfor %}
+</ul>
+</div> 
+{% endif %}
+  {% load news %}
+  {% get_latest_news 3 %}
+
+  <div id="news">
+    <h2><a href="/news">News</a></h2>
+    <ul>
+    {% for n in news %}
+      <li>
+        <h3>{{ n.title }}</h3>
+        <p>{{ n.summary }}</p>
+        <p class="more"><a href="{{ n.get_absolute_url }}">More...</a></p>
+      </li>
+    {% endfor %}
+    </ul>
+  </div> <!--END: news -->
+
+<!--   <div id="get-boost"> -->
+<!--     <h2 title="Get Boost"><a href="/download"><span>Get Boost</span></a></h2> -->
+<!--   </div> -->
+</div>
+{% endblock %}

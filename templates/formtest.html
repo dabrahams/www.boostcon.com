@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% if error_message %}
+        <p>{{error_message}}</p>
+{% endif %}
+<form method="POST" action="/test">
+        <input type="hidden" name="object_id" value="{{object_id}}" />
+        <table class="edit_form">
+                {{edit_form}}
+                <tr><th></th><td><input type="submit" value="Save Changes"
+/></td></tr>
+        </table>
+</form>
+{% endblock %}

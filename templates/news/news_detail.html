@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div id="breadcrumbs">
+<ul>
+  <li><a href="/">Home</a> &gt;</li>  
+  <li>News ({{ object.title }})</li>
+</ul>
+</div>
+
+<div id="document">
+<h1 style="display:inline">{{ object.get_title }}</h1> 
+<p class="intro">[{{ object.date|date:"F d, Y"}}]&nbsp;&nbsp;{{ object.summary }}</p>
+{{ object.body }}
+</div>
+
+{% endblock %}
+

@@ -1,0 +1,50 @@
+{% extends "base_with_news.html" %}
+
+{% block meta %}{{ page.meta }}{% endblock %}
+
+{% block title %}Boost Consulting - {{ page.page_title }}{% endblock %}
+
+{% block extraheader %}
+{% endblock %}
+
+{% block content %}
+
+<div id="breadcrumbs">
+<ul>
+  <li class="tree-link"><a href="/">Home</a> &gt; </li>
+  {% for b in breadcrumbs %}
+  <li class="tree-link"><a href="{{ b.get_absolute_url }}">{{ b.menu_title }}</a> &gt; </li>
+  {% endfor %}
+  <li>{{ page.menu_title }}</li>
+</ul>
+</div>
+
+<div id="document">
+<h1>{{page.title}}</h1>
+{{ body }}
+
+  {% if page.first_child %}
+  <p class="tree-link down"><a href="{{ page.first_child }}">More detail: {{ page.first_child.title }}</a></p>
+  {% endif %}
+
+<div id="nextprev" class="tree-link">
+  {%if page.parent%}
+    {%if page.prev or page.next%}
+      <p>
+    {%endif%}
+    {%if page.prev%}
+      &lt; <a href="{{ page.prev.get_absolute_url }}">{{ page.prev.menu_title }}</a>
+      {%if page.next%} | {%endif%}
+    {%endif%}
+    {%if page.next%}
+      <a href="{{ page.next.get_absolute_url }}">{{ page.next.menu_title }}</a> &gt;
+    {%endif%}
+    {%if page.prev or page.next%}
+      </p>
+    {%endif%}
+  {%endif%}
+</div>
+</div>
+
+{% endblock %}
+

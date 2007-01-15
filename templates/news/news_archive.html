@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block heading %}News Archive{% endblock %}
+
+{% block content %}
+
+<div id="breadcrumbs">
+<ul>
+  <li><a href="/">Home</a> &gt;</li>  
+  <li>News archive</li>
+</ul>
+</div>
+
+<div id="document">
+<h1>News Archive</h1>
+
+{% load news %}
+
+<h2>All News by Year:</h2> 
+<p>
+{% for y in date_list %}
+{% if forloop.counter0 %}| {% endif %}<a href="news/{{y|date:"Y"}}">{{y|date:"Y"}}</a>
+{% endfor %}
+</p>
+
+{% if latest %}
+  <h2>Most Recent Articles</h2>
+  {% for n in latest %}
+  {% ifchanged %}
+     <h3>
+        <a href="news/{{ n.date|date:"Y" }}/{{ n.date|date:"M" }}">{{ n.date|date:"F, Y"}}</a>
+     </h3>
+     <p />
+   {% endifchanged %}
+
+  <ul style="list-style: none;">
+    <li style="margin: 0 0 2em 0;">
+      <h4 style="display: inline">{{ n.title }}</h4>
+      <span style="display: inline; margin: 0 1em;">{{ n.date }}</span>
+<p>{{ n.summary }}</p>
+      {{ n.body }}
+      <hr />
+    </li>
+  </ul>
+  {% endfor %}
+{% endif %}
+</div>
+{% endblock %}
+
