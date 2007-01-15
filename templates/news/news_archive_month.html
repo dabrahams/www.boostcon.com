@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div id="breadcrumbs">
+<ul>
+  <li><a href="/">Home</a> &gt;</li>  
+  <li>News archive for {{ month|date:"F, Y" }}</li>
+</ul>
+</div>
+
+{% load news %}
+
+<div id="document">
+<h1>News Archive for {{ month|date:"F, Y" }}</h1>
+
+{% for n in object_list reversed %}
+
+<h2 style="display: inline">{{ n.get_title }}</h2>
+<span style="display: inline; margin: 0 1em;">      {{ n.date }}</span>
+<p>{{ n.summary }}
+<br /><a class="more" href="{{ n.date|date:"M/d" }}/{{ n.slug }}">more...</a></p>
+{% endfor %}
+</div>
+
+{% endblock %}
+

@@ -1,0 +1,56 @@
+{% extends "base_with_news.html" %}
+
+{% block title %}Boost Consulting{% endblock %}
+
+{% block content %}
+
+<div id="breadcrumbs">
+<ul>
+  <li>Home</li>
+</ul>
+</div>
+
+<div id="panels">
+
+<div id="panel-1" class="panel">
+<h2>Software Development</h2>
+<p />
+<p>The professionals associated with Boost Consulting are among the best in the world, with
+years of hands-on industry experience and a deep knowledge of the C++
+language. We render on- and off-site consulting services to leading
+companies worldwide.</p>
+<p class="more"><a href="services/software-development">more...</a></p>
+</div> <!--END: panel1 -->
+
+<div id="panel-2" class="panel">
+<h2>Training</h2>
+<p />
+<p>Boost Consulting brings expertise and excitement about advanced software development to your engineers, giving them both the deep insight and the inspiration to create masterful code.</p>
+<p class="more"><a href="services/training">more...</a></p>
+</div> <!--END: panel-2 -->
+
+<div id="panel-3" class="panel">
+<h2>Enterprise Support</h2>
+<p />
+<p>Boost Enterprise Edition offers guaranteed quality and predictable
+releases with a yearly service-level agreement backed by
+Boost Consulting's world-class team of experts.</p>
+<p class="more"><a href="services/enterprise">more...</a></p>
+</div> <!--END: panel-3 -->
+
+<div id="panelfix">.</div>
+</div> <!--END: panels -->
+
+{% load testimonials %}
+{% get_random_testimonial %}
+
+<div id="testimonial">
+<h2>Testimonial</h2>
+<blockquote class="epigraph last">
+{{ testimonial.text }}
+<p class="attribution">&mdash;{{ testimonial.author }}</p>
+</blockquote>
+</div> <!--END: testimonial -->
+
+{% endblock %}
+
