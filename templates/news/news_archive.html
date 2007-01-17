@@ -12,11 +12,11 @@
 </div>
 
 <div id="document">
-<h1>News Archive</h1>
+<h2>News Archive</h2>
 
 {% load news %}
 
-<h2>All News by Year:</h2> 
+<h3>All News by Year:</h3> 
 <p>
 {% for y in date_list %}
 {% if forloop.counter0 %}| {% endif %}<a href="news/{{y|date:"Y"}}">{{y|date:"Y"}}</a>
@@ -24,18 +24,18 @@
 </p>
 
 {% if latest %}
-  <h2>Most Recent Articles</h2>
+  <h3>Most Recent Articles</h3>
   {% for n in latest %}
   {% ifchanged %}
-     <h3>
+     <h4>
         <a href="news/{{ n.date|date:"Y" }}/{{ n.date|date:"M" }}">{{ n.date|date:"F, Y"}}</a>
-     </h3>
+     </h4>
      <p />
    {% endifchanged %}
 
   <ul style="list-style: none;">
     <li style="margin: 0 0 2em 0;">
-      <h4 style="display: inline">{{ n.title }}</h4>
+      <h5 style="display: inline">{{ n.title }}</h5>
       <span style="display: inline; margin: 0 1em;">{{ n.date }}</span>
 <p>{{ n.summary }}</p>
       {{ n.body }}

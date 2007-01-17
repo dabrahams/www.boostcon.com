@@ -16,6 +16,10 @@ class Home:
     page_title = 'Home'
 
 class NavigationNode(template.Node):
+    def __init__(self, maxdepth=1):
+        super(NavigationNode,self).__init__()
+        self.maxdepth = maxdepth
+        
     @classmethod
     def _menu_items(self, root, pages, depth):
         if depth == 0:
@@ -23,9 +27,12 @@ class NavigationNode(template.Node):
 
         items = []
 
-        items.append(
-            '    <li class="self"><a href="%s">%s Home</a></li>'
-            % (
+        # Check to see if we're at the top level.  We're checking str() here
+        # because we seem to be generating too many page objects.
+        if len(pages) and str(pages[0].parent()) == str(root):
+            items.append(
+                '    <li class="self"><a href="%s">%s Home</a></li>'
+                % (
                     root.get_absolute_url(),
                     root.menu_title))
 
@@ -58,14 +65,14 @@ class NavigationNode(template.Node):
 
     def render(self, ctx):
 
-        result = '<ul>\n'
+        result = '<ul id="menu">\n'
         first = 'first-'
 
         for top in [Home()] + get_pages('/'):
             children = top.children()
             if children:
                 # increase depth to create multilevel menus
-                menu_items = self._menu_items(top, children, depth=1)
+                menu_items = self._menu_items(top, children, depth=self.maxdepth)
                 parent = ' class="parent"'
             else:
                 menu_items = ''
@@ -81,7 +88,14 @@ class NavigationNode(template.Node):
         return (result + '</ul>\n').encode('utf-8')
 
 def navigation_tree(parser, token):
-    return NavigationNode()
+    try:
+        tagname,maxdepth=token.split_contents()
+    except:
+        maxdepth=1
+    else:
+        maxdepth = int(maxdepth)
+        
+    return NavigationNode(maxdepth)
 
 register.tag(navigation_tree)
 

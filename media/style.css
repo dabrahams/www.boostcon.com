@@ -1,7 +1,8 @@
+@import url("/site-media/docutils.css");
 html,body {
 	background-color: #86aac5;
 	margin: 0 auto;
-	font-family: Verdana;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
 	font-size: 10px;
 	height: 100%;
 	background-image: url(images/body-background.gif);
@@ -111,14 +112,17 @@ ul#menu {
 	list-style-type: inherit;
 	font-size: 1.1em;
 	font-weight: bold;
+    height:20px;
 	color: #32373b;
 	padding: 5px 10px 6px 27px;
-	letter-spacing: 2px;
+	/*letter-spacing: 2px;*/
+    z-index: 1;
 }
 
 ul#menu a {
 	color: #32373b;
 	text-decoration: none;
+    text-transform:lowercase;
 }
 
 ul#menu a:hover {
@@ -130,7 +134,106 @@ ul#menu li {
 	display: inline;
 	margin: 0 7px;
 	padding: 0;
+
+  float: left;
+  position: relative;
+  text-align: center;
+   width: 80px;
 }
+
+ul#menu li.parent {
+   width: 110px;
+   text-align: center;
+}
+
+ul#menu li.parent:hover {
+  background: url(bg-navigation-top.png) no-repeat;
+  display: block;
+}
+ul#menu li a.top-menu {
+  font-size: 1.09em;
+  font-weight:bold;
+  margin-right:0;
+  padding-right:0;
+  border-left:none;
+}
+
+ul#menu li:hover ul {
+  display: block;
+}
+
+ul#menu ul ul {
+	visibility:hidden; 
+}
+
+ul#menu ul *:focus { outline : none }
+
+ul#menu li ul {
+  display: none;
+  position: absolute;
+  height: auto;
+  /*top: 28px;*/
+  left: 0px;
+  line-height: 2em;
+  background: url(bg-navigation-bottom1.png) no-repeat;
+  padding-bottom: 10px;
+  width: 160px;
+  padding-top: 6px;
+}
+
+ul#menu li ul li {
+  height: auto;
+  padding: 0;
+  display: block;
+  left: -47px;
+  text-align: left;
+  width: 100%;
+  background: url(bg-navigation-bottom2.png) repeat-y; 
+}
+
+ul#menu li ul li.last {
+  background: url(bg-navigation-bottom3.png) left bottom repeat-y;
+  padding-bottom: 10px;
+}
+
+ul#menu li ul li.self a {
+  color:#EEF;
+  font-weight:bold;
+}
+
+ul#menu li ul li:hover ul {
+  display: block;
+}
+
+ul#menu li ul li.submenu:hover>ul {
+  visibility: visible;
+}
+
+
+ul#menu li ul li a {
+  padding: 0;
+  padding-left: 20px;
+  width: 128px;
+  display: block;
+  border-left: none;
+  font-weight: normal;
+  text-decoration:none;
+  /*text-transform: none;*/
+}
+
+ul#menu li ul li a:hover {
+  text-decoration:none;
+  background-color: #B3AA92;
+}
+
+ul#menu li ul li ul {
+  /*position: absolute;*/
+  top: 0px;
+  left: 100px;
+}
+
+
+/* -------------- */
 
 div#content {
 	height: 100%;
@@ -202,7 +305,11 @@ div#sidebar h4 {
 	padding: 1px 0 2px 13px;
 	font-size: 1.1em;
 	color: #4e87a6;
-	letter-spacing: 2px;
+	/*letter-spacing: 2px;*/
+}
+
+div#sidebar h5 {
+	/*letter-spacing: 2px;*/
 }
 div#sidebar div.block {
 	padding: 22px 14px 17px 13px;
@@ -212,7 +319,7 @@ div#sidebar div.block {
 	background-position: top;
 	width: 129px;
 	margin: 0 auto;
-	font-family: Verdana;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
 	font-size: 1em;
 	color: #32373b;
 }
@@ -280,4 +387,75 @@ div#footer {
 	background-image: url(images/cadesign.gif);
 	background-repeat: no-repeat;
 	background-position: 59px 10px;
+}
+
+#breadcrumbs {
+    display: none;
+}
+
+/* ---- common docutils-related stuff ----- */
+
+#content blockquote.pull-quote {
+  clear: both;
+  float: right;
+  font-size: 1.5em;
+  width: 210px;
+  font-family: Georgia;
+  margin: 0 1.5em 0 1.5em;
+  padding: 20px 0 20px 30px;
+  text-indent: 30px;
+  background: url(bg-blockquote.png) no-repeat;
+}
+
+#content blockquote.pull-quote.left {
+  float: left;
+  margin: 0 1.5em 0 0.5em;
+}
+
+#content blockquote.pull-quote.center {
+  float: none;
+  margin: 0 auto 0 auto;
+  width: 350px;
+}
+/*
+* html #content blockquote.pull-quote {
+  width: 220px; 
+}
+*/
+#content blockquote.pull-quote p {
+  font-size: 1em;
+  font-family: Georgia;
+}
+
+#content blockquote.pull-quote:after {
+  font-size: 1.5em;
+  vertical-align: top;
+  content: " \201D";
+}
+
+#content blockquote.pull-quote p.attribution {
+  font-size: 0.8em;
+  font-family: Georgia;
+}
+
+#content span.intro {
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+#content p.intro {
+  font-family: Arial, sans-serif;
+  font-size: 1.4em;
+  line-height: 1.2;
+  padding-left: 10px;
+  border-left: solid 4px #ddd;
+}
+
+#content #nextprev {
+    border-top: solid 1px #ddd;
+    clear: both;
+}
+
+#content p.prev {
+  margin: 0;
 }

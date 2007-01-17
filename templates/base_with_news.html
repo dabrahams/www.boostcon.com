@@ -1,40 +1,82 @@
 {% extends "base.html" %}
 
 {% block page %}
-<div id="holder">
-  <div id="content">
-  {% block content %}
-    <p>... Content goes here ...</p>
-  {% endblock %}
-  </div> <!--END: content -->
+  <div id="content"> 
+    <div id="sidebar"> 
+    {% block sidebar %}
 
-{% if page.children %}
-<div id="rhs-menu">  
-<ul>
-  {% for c in page.children %}
-    <li><a class="xitem" href="{{ c.get_absolute_url }}">{{ c.menu_title }}</a></li>
- {% endfor %}
-</ul>
-</div> 
-{% endif %}
-  {% load news %}
-  {% get_latest_news 3 %}
+      {% block detail %}
+      <h3>detail</h3>
+      <ul>
+        <li><a href="#">First Subpage</a></li>
+        <li><a href="#">Second Subpage</a></li>
+        <li><a href="#">Third Subpage</a></li>
+      </ul>
+      {% endblock %}
 
-  <div id="news">
-    <h2><a href="/news">News</a></h2>
-    <ul>
-    {% for n in news %}
-      <li>
-        <h3>{{ n.title }}</h3>
-        <p>{{ n.summary }}</p>
-        <p class="more"><a href="{{ n.get_absolute_url }}">More...</a></p>
-      </li>
-    {% endfor %}
-    </ul>
-  </div> <!--END: news -->
+      {% block in_sidebar %}
+      <h3>sessions</h3>
+      <ul>
+        <li><a href="sessions/mon">Monday</a></li>
+        <li><a href="sessions/tue">Tuesday</a></li>
+        <li><a href="sessions/wed">Wednesday</a></li>
+        <li><a href="sessions/thu">Thursday</a></li>
+        <li><a href="sessions/fri">Friday</a></li>
+      </ul>
+      <div class="wrapper"></div>
+      <h4>Subheading</h4>
+      Subcontent.  That's what I'm talking about.
+      {% endblock %}
 
-<!--   <div id="get-boost"> -->
-<!--     <h2 title="Get Boost"><a href="/download"><span>Get Boost</span></a></h2> -->
-<!--   </div> -->
-</div>
+      {% load news %}
+      {% get_latest_news 3 %}
+
+      <div class="wrapper"></div>
+      <div id="news">
+        <h4><a href="/news">news</a></h4>
+          {% for n in news %}
+            <div class="block{% if forloop.first %} first{%endif%}"> 
+              <h5>{{ n.title }}</h5>
+              <p>{{ n.summary }}</p>
+              <p class="more"><a href="{{ n.get_absolute_url }}">More...</a></p>
+            </div>
+          {% endfor %}
+       </div><!--END: news -->
+
+    {% endblock %}
+    </div> <!--END: sidebar -->
+
+    <div id="main"> 
+      {% block content %}
+      <h2>session information</h2>
+      <div class="node"> 
+        <h3>first day</h3>
+        <p>We emphasize libraries that work well with the C++ Standard Library. 
+          Boost libraries are intended to be widely useful, and usable across 
+          a broad spectrum of applications. The <a href="#">Boost license</a> 
+          encourages both commercial and non-commercial use.</p>
+        <p>We aim to establish <strong>"existing practice"</strong> and provide 
+          reference implementations so that Boost libraries are suitable for eventual 
+          standardization. Ten Boost libraries are already included in the C++ 
+          Standards Committee's Library <a href="#"><strong>Technical Report</strong></a> 
+          (TR1) as a step toward becoming part of a future C++ Standard. More 
+          Boost libraries are proposed for the upcoming TR2.<img class="cube" src="images/cube.gif" width="6" height="6" alt="" /></p>
+      </div>
+      <div class="node"> 
+        <h3>second day</h3>
+        <p>We emphasize libraries that work well with the C++ Standard Library. 
+          Boost libraries are intended to be widely useful, and usable across 
+          a broad spectrum of applications. The <a href="#">Boost license</a> 
+          encourages both commercial and non-commercial use.</p>
+        <p>We aim to establish <strong>"existing practice"</strong> and provide 
+          reference implementations so that Boost libraries are suitable for eventual 
+          standardization. Ten Boost libraries are already included in the C++ 
+          Standards Committee's Library <a href="#"><strong>Technical Report</strong></a> 
+          (TR1) as a step toward becoming part of a future C++ Standard. More 
+          Boost libraries are proposed for the upcoming TR2.<img class="cube" src="images/cube.gif" width="6" height="6" alt="" /></p>
+      </div>
+      {% endblock %}
+    </div> <!-- END:main -->
+  </div>
 {% endblock %}
+

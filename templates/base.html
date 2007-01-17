@@ -1,51 +1,42 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+	
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
+	<title>{% block title %}boostcon'07{% endblock %}</title>
   {% block meta %}
-  <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   {% endblock %}
-  <title>{% block title %}Boost Consulting{% endblock %}</title>
-  <meta name="keywords" content="{% block keywords %}{% endblock %}" />
-  <meta name="description" content="{% block description %}{% endblock %}" />
-  <link rel="stylesheet" type="text/css" href="/site-media/main.css" media="screen" />
+	<meta http-equiv="Content-Language" content="hu" />
+	<meta name="author" content="Zoltán 'cad' Juhász" />
+	<meta name="description" content="boost libraries conference 2007" />
+	<meta name="keywords" content="boostcon, cpp, c++" />
+	<link rel="stylesheet" href="/site-media/style.css" type="text/css" media="screen" />
 </head>
 
 <body>
-
-<div id="container">
-
-<div id="branding">
-<h1><a href="/" title="Boost Consulting">Boost Consulting</a></h1>
-<div id="slogan"></div>
-<p><a href="http://www.boost.org/more/BoostCon07.html">BoostCon 2007</a></p>
-</div> <!--END: branding -->
-
-{% load navigation %}
-<div id="navigation">
-{% navigation_tree %}
-</div>
-
-{% block extraheader %}
-{% endblock %}
-
+	
+<div id="container"> 
+  <div id="navigator"> 
+    <div class="center"> <a id="home" href="#"><span>home</span></a> <a id="contact" href="#"><span>contact</span></a> 
+    </div>
+  </div>
+  <div id="header"> 
+    <h1><span>Boostcon</span></h1>
+    {% load navigation %}
+      {% navigation_tree 3 %}
+  </div>
 {% block page %}
-<div id="holder">
-  <div id="content">
-  {% block content %}
-    <p>... Content goes here ...</p>
-  {% endblock %}
-  </div> <!--END: content -->
-</div>
+  <div id="content"> 
+    {% block content %}
+    <div id="main"> 
+      <p>Content goes here...</p>
+    </div>
+    {% endblock %}
+  </div>
 {% endblock %}
 
-<div id="footer">
-<p id="copyright">&copy; Copright Boost Consulting 2006. All Rights Reserved</p>
-<ul>
-<li><a href="#">Page design by Pollenation Internet</a></li>
-</ul>
-</div> <!--END: footer -->
+  <div id="footer"></div>
 
-</div> <!--END: container -->
-
+</div>
 </body>
 </html>
