@@ -284,12 +284,12 @@ div#sidebar ul li {
 	margin: 0px 11px 0px 0;
 }
 
-div#sidebar ul a:link {
+div#sidebar ul a {
 	text-decoration: none;
 	color: #6f7375;
 }
 
-div#sidebar ul a:link:hover {
+div#sidebar ul a:hover {
 	text-decoration: none;
 	color: #32373b;
 }
@@ -336,7 +336,7 @@ div#sidebar div.first {
 	background-position: top;
 }
 
-div#sidebar div.block a:link:hover {
+div#sidebar div.block a:hover {
 	text-decoration: underline;
 	color: #828c94;
 }
@@ -351,7 +351,7 @@ div#sidebar div.block p {
 	margin: 0;
 }
 
-div#sidebar a:link {
+div#sidebar a {
 	color: #4e87a6;
 	text-decoration: none;
 	font-size: 1em;
