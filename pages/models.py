@@ -22,7 +22,7 @@ def _load_page(path):
     parts, data = get_parts(
         open(path).read().decode('utf-8')
       , writer
-      , initial_header_level = 2)
+      , initial_header_level = 3)
 
     result = Page()
 
