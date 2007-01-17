@@ -12,17 +12,17 @@
 {% load news %}
 
 <div id="document">
-<h1>News Archive for {{ year }}</h1>
+<h2>News Archive for {{ year }}</h2>
 
 {% for n in object_list reversed %}
   {% ifchanged %}
-     <h2>
+     <h3>
         <a href="{{ n.date|date:"Y" }}/{{ n.date|date:"M" }}">{{ n.date|date:"F"}}</a>
-     </h2>
+     </h3>
      <hr /><p />
    {% endifchanged %}
 
-      <h3 style="display: inline">{{ n.get_title }}</h3>
+      <h4 style="display: inline">{{ n.get_title }}</h4>
       <span style="display: inline; margin: 0 1em;">{{ n.date }}</span>
 <p>{{ n.summary }}
 <br /><a class="more" href="{{ n.date|date:"Y/M/d" }}/{{ n.slug }}">more...</a></p>

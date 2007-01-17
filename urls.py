@@ -54,14 +54,11 @@ urlpatterns += patterns(
 )
 
 urlpatterns += patterns('django.views.generic',
-    (r'^$', 'simple.direct_to_template', {'template': 'homepage.html'}),
+# Enable this if you want a special homepage layout.                        
+#    (r'^$', 'simple.direct_to_template', {'template': 'homepage.html'}),
     (r'^admin(.*[^/])$', 'simple.redirect_to', {'url': r'admin\1/'}),
-
-#      (r'^news$', 'list_detail.object_list', {'queryset': news_set}),
-#      (r'^news/(?P<object_id>\d+)$', 'list_detail.object_detail', {'queryset':
-#                                                                    news_set}),
-                        
-    (r'^(?P<base>.*)/$', 'simple.redirect_to', {'url': r'/%(base)s'})
+    (r'^(?P<base>.*)/$', 'simple.redirect_to', {'url': r'/%(base)s'}),
+    (r'^$', 'simple.redirect_to', {'url': r'/home'}),
 )
 
 urlpatterns += patterns('',
@@ -70,11 +67,6 @@ urlpatterns += patterns('',
 
 urlpatterns += patterns(
     'boost_consulting',
-    (r'^test/(.*)$', 'formtest.views.test'),
-    (r'^test$', 'formtest.views.test', {'id': None}),
-    (r'^step1/(?P<slug>[-\w]+)$', 'formtest.views.step1'),
-    (r'^step1$', 'formtest.views.step1'),
-    (r'^step2$', 'formtest.views.step2'),
-    (r'(.*[^/])$', 'pages.views.page'),
+    (r'(.*)$', 'pages.views.page'),
     )
 

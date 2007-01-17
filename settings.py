@@ -78,9 +78,7 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'django.contrib.comments',
 
-    'boost_consulting.testimonials',
     'boost_consulting.news',
     'boost_consulting.pages',
-    'boost_consulting.formtest',
 )
 
