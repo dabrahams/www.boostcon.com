@@ -5,11 +5,11 @@
 	<title>{% block title %}boostcon'07{% endblock %}</title>
   {% block meta %}
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  {% endblock %}
-	<meta http-equiv="Content-Language" content="hu" />
-	<meta name="author" content="Zoltán 'cad' Juhász" />
-	<meta name="description" content="boost libraries conference 2007" />
 	<meta name="keywords" content="boostcon, cpp, c++" />
+	<meta name="description" content="boost libraries conference 2007" />
+  {% endblock %}
+	<meta http-equiv="Content-Language" content="en" />
+	<meta name="author" content="Zoltán 'cad' Juhász" />
 	<link rel="stylesheet" href="/site-media/style.css" type="text/css" media="screen" />
 </head>
 
@@ -17,7 +17,7 @@
 	
 <div id="container"> 
   <div id="navigator"> 
-    <div class="center"> <a id="home" href="#"><span>home</span></a> <a id="contact" href="#"><span>contact</span></a> 
+    <div class="center"> <a id="home" href="/"><span>home</span></a> <a id="contact" href="#"><span>contact</span></a> 
     </div>
   </div>
   <div id="header"> 
@@ -29,7 +29,9 @@
   <div id="content"> 
     {% block content %}
     <div id="main"> 
-      <p>Content goes here...</p>
+      <div class="node"> 
+        <p>Content goes here...</p>
+      </div>    
     </div>
     {% endblock %}
   </div>

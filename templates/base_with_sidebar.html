@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block page %}
+  <div id="content"> 
+    <div id="sidebar"> 
+    {% block sidebar %}
+    {% endblock %}
+    </div> <!--END: sidebar -->
+
+    <div id="main"> 
+      {% block content %}
+      <h2>session information</h2>
+      <div class="node"> 
+        <h3>first day</h3>
+        <p>We emphasize libraries that work well with the C++ Standard Library. 
+          Boost libraries are intended to be widely useful, and usable across 
+          a broad spectrum of applications. The <a href="#">Boost license</a> 
+          encourages both commercial and non-commercial use.</p>
+        <p>We aim to establish <strong>"existing practice"</strong> and provide 
+          reference implementations so that Boost libraries are suitable for eventual 
+          standardization. Ten Boost libraries are already included in the C++ 
+          Standards Committee's Library <a href="#"><strong>Technical Report</strong></a> 
+          (TR1) as a step toward becoming part of a future C++ Standard. More 
+          Boost libraries are proposed for the upcoming TR2.<img class="cube" src="images/cube.gif" width="6" height="6" alt="" /></p>
+      </div>
+      <div class="node"> 
+        <h3>second day</h3>
+        <p>We emphasize libraries that work well with the C++ Standard Library. 
+          Boost libraries are intended to be widely useful, and usable across 
+          a broad spectrum of applications. The <a href="#">Boost license</a> 
+          encourages both commercial and non-commercial use.</p>
+        <p>We aim to establish <strong>"existing practice"</strong> and provide 
+          reference implementations so that Boost libraries are suitable for eventual 
+          standardization. Ten Boost libraries are already included in the C++ 
+          Standards Committee's Library <a href="#"><strong>Technical Report</strong></a> 
+          (TR1) as a step toward becoming part of a future C++ Standard. More 
+          Boost libraries are proposed for the upcoming TR2.<img class="cube" src="images/cube.gif" width="6" height="6" alt="" /></p>
+      </div>
+      {% endblock %}
+    </div> <!-- END:main -->
+  </div>
+{% endblock %}
+

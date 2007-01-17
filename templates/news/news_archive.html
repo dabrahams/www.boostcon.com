@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "base_with_sidebar.html" %}
 
 {% block heading %}News Archive{% endblock %}
 
@@ -16,15 +16,18 @@
 
 {% load news %}
 
+<div class="node">
 <h3>All News by Year:</h3> 
 <p>
 {% for y in date_list %}
 {% if forloop.counter0 %}| {% endif %}<a href="news/{{y|date:"Y"}}">{{y|date:"Y"}}</a>
 {% endfor %}
 </p>
+</div>
 
 {% if latest %}
-  <h3>Most Recent Articles</h3>
+<div class="node">  
+<h3>Most Recent Articles</h3>
   {% for n in latest %}
   {% ifchanged %}
      <h4>
@@ -43,6 +46,7 @@
     </li>
   </ul>
   {% endfor %}
+</div>
 {% endif %}
 </div>
 {% endblock %}

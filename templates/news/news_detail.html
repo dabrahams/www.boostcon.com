@@ -1,6 +1,4 @@
-{% extends "base_with_news.html" %}
-
-{% block sidebar %}{% endblock %}
+{% extends "base_with_sidebar.html" %}
 
 {% block content %}
 
@@ -11,7 +9,7 @@
 </ul>
 </div>
 
-<div id="document">
+<div id="document" class="node">
 <h2 style="display:inline">{{ object.get_title }}</h1> 
 <p class="intro">[{{ object.date|date:"F d, Y"}}]&nbsp;&nbsp;{{ object.summary }}</p>
 {{ object.body }}

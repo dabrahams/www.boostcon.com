@@ -36,11 +36,13 @@ h3 {
 	font-size: 1.1em;
 	font-weight: bold;
 	letter-spacing: 1px;
-	margin: 0 0 0 22px;
-	padding: 0 0 4px 0;
 	color: #4e87a6;
 }
-a {
+h3,.node h4,.node h5,.node h6 {
+	margin: 0 0 0 22px;
+	padding: 0 0 4px 0;
+}
+a:link {
 	color: #4e87a6;
 	text-decoration: underline;
 }
@@ -125,7 +127,7 @@ ul#menu a {
     text-transform:lowercase;
 }
 
-ul#menu a:hover {
+ul#menu a:link:hover {
 	color: #828c94;
 	text-decoration: none;
 }
@@ -282,12 +284,12 @@ div#sidebar ul li {
 	margin: 0px 11px 0px 0;
 }
 
-div#sidebar ul a {
+div#sidebar ul a:link {
 	text-decoration: none;
 	color: #6f7375;
 }
 
-div#sidebar ul a:hover {
+div#sidebar ul a:link:hover {
 	text-decoration: none;
 	color: #32373b;
 }
@@ -308,15 +310,18 @@ div#sidebar h4 {
 	/*letter-spacing: 2px;*/
 }
 
-div#sidebar h5 {
-	/*letter-spacing: 2px;*/
+div#sidebar h4 a {
+   text-decoration:none;
+   color: #4e87a6;
 }
+
+div#sidebar h5 {
+	font-size:101%;
+}
+
 div#sidebar div.block {
-	padding: 22px 14px 17px 13px;
+	padding: 1px 14px 17px 13px;
 	background-color: #f5f4ef;
-	background-image: url(images/block-fade.gif);
-	background-repeat: repeat-x;
-	background-position: top;
 	width: 129px;
 	margin: 0 auto;
 	font-family: Verdana, Arial, Helvetica, sans-serif;
@@ -324,7 +329,14 @@ div#sidebar div.block {
 	color: #32373b;
 }
 
-div#sidebar div.block a:hover {
+div#sidebar div.first {
+	padding: 22px 14px 17px 13px;
+	background-image: url(images/block-fade.gif);
+	background-repeat: repeat-x;
+	background-position: top;
+}
+
+div#sidebar div.block a:link:hover {
 	text-decoration: underline;
 	color: #828c94;
 }
@@ -339,7 +351,7 @@ div#sidebar div.block p {
 	margin: 0;
 }
 
-div#sidebar a {
+div#sidebar a:link {
 	color: #4e87a6;
 	text-decoration: none;
 	font-size: 1em;
@@ -362,7 +374,7 @@ div.node {
 	background-color: #FFFFFF
 }
 
-div.node a:hover {
+div.node a:link:hover {
 	color: black;
 	text-decoration: underline;
 }
@@ -374,6 +386,7 @@ html>/**/body div.node {
 div.node p {
 	margin: 6px 0 14px 22px;
 }
+
 div.node p img.cube {
 	margin: 6px 0 0 6px;
 }
@@ -459,3 +472,7 @@ div#footer {
 #content p.prev {
   margin: 0;
 }
+
+/* to get bold-faced definition list terms */
+dl.docutils dt {
+  font-weight: bold }
