@@ -136,16 +136,12 @@ ul#menu li {
 	display: inline;
 	margin: 0 7px;
 	padding: 0;
+   width: 110px;
 
   float: left;
   position: relative;
-  text-align: center;
-   width: 80px;
-}
-
-ul#menu li.parent {
-   width: 110px;
-   text-align: center;
+  text-indent: 10px;
+/*   width: 80px;*/
 }
 
 ul#menu li.parent:hover {
@@ -179,7 +175,7 @@ ul#menu li ul {
   line-height: 2em;
   background: url(bg-navigation-bottom1.png) no-repeat;
   padding-bottom: 10px;
-  width: 160px;
+  /*width: 160px;*/
   padding-top: 6px;
 }
 
@@ -188,6 +184,7 @@ ul#menu li ul li {
   padding: 0;
   display: block;
   left: -47px;
+  text-indent: 0;
   text-align: left;
   width: 100%;
   background: url(bg-navigation-bottom2.png) repeat-y; 
