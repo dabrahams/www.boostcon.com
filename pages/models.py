@@ -20,7 +20,7 @@ def _load_page(path):
 
     writer = PageWriter()
     parts, data = get_parts(
-        open(path).read().decode('utf-8')
+        open(path).read() # .decode('utf-8')
       , writer
       , initial_header_level = 3)
 
