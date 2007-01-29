@@ -68,7 +68,12 @@ class NavigationNode(template.Node):
         result = '<ul id="menu">\n'
         first = 'first-'
 
-        for top in [Home()] + get_pages('/'):
+        # In case there's representative page for "home," synthesize one
+        top_pages = get_pages('/')
+        if top_pages[0].menu_title.lower() != 'home':
+            top_pages.insert(0, Home())
+            
+        for top in top_pages:
             children = top.children()
             if children:
                 # increase depth to create multilevel menus
