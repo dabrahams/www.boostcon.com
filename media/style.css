@@ -38,10 +38,17 @@ h3 {
 	letter-spacing: 1px;
 	color: #4e87a6;
 }
-h3,.node h4,.node h5,.node h6 {
+
+.section
+{
 	margin: 0 0 0 22px;
+}
+
+h3,.node h4,.node h5,.node h6 {
+    font-size: 110%;
 	padding: 0 0 4px 0;
 }
+
 a:link {
 	color: #4e87a6;
 	text-decoration: underline;
@@ -473,3 +480,95 @@ div#footer {
 /* to get bold-faced definition list terms */
 dl.docutils dt {
   font-weight: bold }
+
+div.node p.schedule-day {
+   background-color: #89a;
+   text-align: center;
+   font-weight: bold;
+   color: #fff;
+   margin: 0;
+   padding: 0;
+}
+
+/*=============================================================================
+    Tables, stolen from Boost's stylesheet
+=============================================================================*/
+
+    table.table
+    {
+        width: 92%;
+        margin-left: 4%;
+        margin-right: 4%;
+    }
+    
+    table.table
+    {
+        padding: 4px;
+    }
+    
+    /* Table Cells */
+    table.table tr td
+    {
+        padding: 0.5em;
+        text-align: left;
+        font-size: 9pt;
+    }
+
+    table.table tr th
+    {
+        padding: 0.5em 0.5em 0.5em 0.5em;
+        border: 1pt solid white;
+/*        font-size: 80%;*/
+    }
+
+    @media screen
+    {
+    
+    /* Tables */
+        table.table tr td
+        {
+            border: 1px solid #DCDCDC;
+        }
+    
+        table.table tr th
+        {
+            background-color: #F0F0F0;
+            border: 1px solid #DCDCDC;
+        }
+
+        pre, 
+        .screen
+        {
+            border: 1px solid #DCDCDC;
+        }
+    
+        td pre
+        td .screen
+        {
+            border: 0px
+        }
+    
+        .sidebar pre
+        {
+            border: 0px
+        }
+    
+    }
+
+    pre, 
+    .screen
+    {
+        font-size: 9pt;
+        display: block;
+        margin: 1pc 4% 0pc 4%;
+        padding: 0.5pc 0.5pc 0.5pc 0.5pc;
+    }
+
+    /* Program listings in tables don't get borders */
+    td pre, 
+    td .screen
+    {
+        margin: 0pc 0pc 0pc 0pc;
+        padding:  0pc 0pc 0pc 0pc;
+    }
+
