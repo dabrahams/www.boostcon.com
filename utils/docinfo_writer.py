@@ -77,7 +77,7 @@ class DocInfoExtractTranslator(html4css1.HTMLTranslator):
 
 def get_parts(src, writer, **kw):
     """Converts ReST src to HTML and extracts needed docinfo-fields."""
-    overrides = {'input_encoding': 'unicode',
+    overrides = {'input_encoding': 'utf-8',
                  'doctitle_xform': 1,
                  'initial_header_level': 2,
                  'toc_backlinks':'none'
