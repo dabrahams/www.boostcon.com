@@ -53,16 +53,17 @@ urlpatterns += patterns(
     'archive_index', dict(news_parameters, num_latest=4)),
 )
 
+urlpatterns += patterns(
+    'boost_consulting.conference',
+    (r'^admin/(?P<conference_name>.*)/schedule$', 'views.schedule_admin'),
+    )
+
 urlpatterns += patterns('django.views.generic',
 # Enable this if you want a special homepage layout.                        
 #    (r'^$', 'simple.direct_to_template', {'template': 'homepage.html'}),
     (r'^admin(.*[^/])$', 'simple.redirect_to', {'url': r'admin\1/'}),
     (r'^(?P<base>.*)/$', 'simple.redirect_to', {'url': r'/%(base)s'}),
     (r'^$', 'simple.redirect_to', {'url': r'/home'}),
-)
-
-urlpatterns += patterns('',
-    (r'^customers/', include('boost_consulting.customers.urls'))
 )
 
 urlpatterns += patterns(

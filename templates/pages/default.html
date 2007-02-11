@@ -23,7 +23,9 @@
 {% block content %}
 <div  class="node" id="document">
 <h2>{{page.title}}</h2>
+{% block body %}
 {{ body }}
+{% endblock %}
 </div>
 {% endblock %}
 
