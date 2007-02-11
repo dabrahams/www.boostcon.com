@@ -23,15 +23,15 @@ class tag(object):
         return x
     
     def __call__(self, **attributes):
-        result = self._copy()
         for k,v in attributes.items():
             if k.startswith('_'):
                 k = k[1:]
-        result._attributes[k] = v
-        return result
+        self._attributes[k] = v
+        return self
 
     def __iadd__(self, x):
         self._flatten_append(self._children,x)
+        return self
         
     @staticmethod
     def _flatten_append(l, x):
@@ -42,17 +42,19 @@ class tag(object):
             l.append(x)
             
     def __getitem__(self, new_children):
-        result = self._copy()
-        tag._flatten_append(result._children, new_children)
-        return result
+        tag._flatten_append(self._children, new_children)
+        return self
 
     def __str__(self):
-        return '<%s%s>%s</%s>' % (
+        return u'<%s%s>%s</%s>' % (
             self._name
-            , ''.join([' %s=%s' % kv for kv in self._attributes.items()])
-            , ''.join([str(c) for c in self._children])
+            , u''.join([u' %s=%s' % kv for kv in self._attributes.items()])
+            , u''.join([str(c) for c in self._children])
             , self._name)
-        
+
+    def __repr__(self):
+        return self.__class__.__name__ + ': ' + str(self)
+    
     def _xml(self, d):
         e = d.createElement(self._name)
         for c in self._children:

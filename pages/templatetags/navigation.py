@@ -61,14 +61,17 @@ class NavigationNode(template.Node):
                         p.menu_title,
                         next_level))
 
-        return '  <ul>\n%s</ul>\n' % ''.join(items)
+        if not items:
+            return ''
+        else:
+            return '  <ul>\n%s</ul>\n' % ''.join(items)
 
     def render(self, ctx):
 
         result = '<ul id="menu">\n'
         first = 'first-'
 
-        # In case there's representative page for "home," synthesize one
+        # In case there's no representative page for "home," synthesize one
         top_pages = get_pages('/')
         if top_pages[0].menu_title.lower() != 'home':
             top_pages.insert(0, Home())

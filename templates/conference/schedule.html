@@ -1,0 +1,28 @@
+<!-- Copyright David Abrahams 2007. Distributed under the Boost -->
+<!-- Software License, Version 1.0. (See accompanying -->
+<!-- file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt) -->
+{% extends "base.html" %}
+
+{% block title %}{{conference.name}} - {{ title }}{% endblock %}
+
+{% block content %}
+<div class="node" id="document" style="padding-bottom: 20px; margin-left: 50px">
+<h2>{{ title }}</h2>
+<p><table border="1">
+
+<thead>
+  <tr><th colspan="{{tracks|length}}">{{conference.name}}</th></tr>
+</thead>
+
+<tbody>  
+
+{% load schedule %}
+{% schedule %}
+
+</tbody>
+
+</table>
+</p>
+</div>
+{% endblock %}
+
