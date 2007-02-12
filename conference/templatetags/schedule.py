@@ -4,12 +4,13 @@
 from django import template
 from conference.models import *
 from datetime import *
+from utils.format import _12hr_time
 
 register = template.Library()
 
-
-def _12hr(t):
-    return t.strftime('%I:%M%p')
+def format_time_range(t1,t2):
+    from boost_consulting.utils.dom import tag as _
+    return (_12hr_time(t1), _.br, '-', _12hr_time(t2))
 
 class ScheduleNode(template.Node):
     def render_day(self, conference, day):
@@ -21,7 +22,7 @@ class ScheduleNode(template.Node):
 
         header = None
         
-        last_finish = None
+        prev_block = None
         day_dt = datetime(day.year, day.month, day.day)
         for block in TimeBlock.objects \
             .filter(conference = conference) \
@@ -30,27 +31,35 @@ class ScheduleNode(template.Node):
             row = _.tr
             
             if not rows:
-                header = _.th[
-                    [ _.em[ letter ] for letter in day.strftime('%A') ]
+                header = _.th(_class="weekday")[
+                    [ _.em[ letter ] for letter in day.strftime('%A') ],
+                    _.br, day.strftime('%b %d')
                     ]
                 row += header
             
-            if last_finish and last_finish != block.start: # check for break
+            if prev_block and prev_block.finish != block.start:
+                row(_class="break")
+                
                 # add its time header
-                row += _.th[ _12hr(last_finish), ' - ', _12hr(block.start) ]
+                row += _.th(_class="timespan")[ format_time_range(prev_block.finish, block.start) ]
 
                 # and an empty box across all tracks
                 row += _.td(colspan=len(tracks))[ 'break' ]
                 rows.append(row)
                 row = _.tr
-            
-            row += _.th[ block.format_time_range() ]
+
+            row += _.th(_class="timespan")[
+                # I wish I knew a less-fragile way to the timeblock admin.
+                _.a(href="/admin/conference/timeblock/%s/" % block.id)[
+                        format_time_range(block.start,block.finish)
+                        ]
+                ]
             
             for t in tracks:
                 row += _.td[ t.name ]
 
             rows.append(row)
-            last_finish = block.finish
+            prev_block = block
 
         if header:
             header(rowspan=len(rows))

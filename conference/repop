@@ -1,0 +1,13 @@
+#!/bin/sh
+cd ~/src/boostcon/site/boost_consulting
+dropdb boostcon.db
+createdb boostcon.db 
+
+python manage.py syncdb << EOF
+no
+EOF
+
+python manage.py shell --plain << EOF
+import conference.populate
+EOF
+

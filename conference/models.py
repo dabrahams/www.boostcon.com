@@ -1,5 +1,6 @@
 from django.db import models
 from datetime import *
+from utils.format import _12hr_time
 
 class Conference(models.Model):
     name = models.CharField(maxlength=100)
@@ -11,9 +12,6 @@ class Conference(models.Model):
         return self.name
     
     class Admin: pass
-
-def _12hr(t):
-    return t.strftime('%I:%M%p')
 
 class TimeBlock(models.Model):
     # name = models.CharField(maxlength=100, primary_key=True, unique_for_date='start')
@@ -32,17 +30,9 @@ class TimeBlock(models.Model):
     def finish(self):
         return self.start + timedelta(minutes=self.duration)
 
-    def format_time_range(self):
-        return _12hr(self.start) + ' - ' + _12hr(self.finish)
-    
-    def format_start_time(self):
-        return _12hr(self.start)
-    
-    def format_finish_time(self):
-        return _12hr(self.finish)
-    
     def __str__(self):
-        return self.start.strftime('%a ') + self.format_time_range()
+        return self.start.strftime('%m/%d %a ') + '%s - %s' % (
+            _12hr_time(self.start), _12hr_time(self.finish))
 
 class Track(models.Model):
     name = models.CharField(maxlength=100, primary_key=True)
@@ -55,7 +45,7 @@ class Track(models.Model):
     def __str__(self):
         return self.name
         
-class Speaker(models.Model):
+class Presenter(models.Model):
     last_name = models.CharField(maxlength=100)
     first_name = models.CharField(maxlength=100)
     email = models.EmailField()
@@ -74,8 +64,9 @@ class Speaker(models.Model):
 class Session(models.Model):
     title = models.CharField(maxlength=200)
     
-    speakers = models.ManyToManyField(Speaker, filter_interface =
-                                      models.HORIZONTAL, related_name='Sessions')
+    presenters = models.ManyToManyField(
+        Presenter, filter_interface = models.HORIZONTAL, related_name='Sessions')
+
     short_title = models.CharField(
         'Abbreviation for session continuations in schedule'
         , maxlength=50,blank=True)
@@ -86,7 +77,7 @@ class Session(models.Model):
     formats = ('Lecture','Tutorial','Keynote','Workshop', 'Experience Report', 'Panel')
     format = models.CharField(
         maxlength=32,
-        choices= tuple(zip(formats,formats)))
+        choices= tuple(zip([x.lower() for x in formats],formats)))
 
     #
     # Experience Level and Background
@@ -122,11 +113,32 @@ class Session(models.Model):
     #
     # Scheduling
     #
-    start = models.ForeignKey(TimeBlock)
-    duration = models.TimeField()
+    start = models.ForeignKey(TimeBlock,null=True)
+    duration = models.SmallIntegerField('Duration in minutes', default=90)
 
+    _presenters = None
+    
+    def __init__(self, *args, **kw):
+        
+        if 'presenter' in kw:
+            self._presenters = [kw['presenter']]
+            del kw['presenter']
+        elif 'presenters' in kw:
+            self._presenters=kw['presenters']
+            del kw['presenters']
+
+        super(Session,self).__init__(*args, **kw)
+
+    def save(self):
+        super(Session,self).save()
+        
+        if self._presenters:
+            self.presenters.add(*self._presenters)
+            del self._presenters
+            super(Session,self).save()
+        
     def __str__(self):
-        return ', '.join([s.last_name for s in self.speakers.all()]) \
+        return ', '.join([s.last_name for s in self.presenters.all()]) \
                + ': ' + (self.short_title or self.title)
 
 
@@ -140,46 +152,10 @@ class Session(models.Model):
                                         # track at a given time
             
           # ('speakers', 'start'),      # a given speaker can only start one
-                                        # session at a time
+                                        # session at a time.
+                                        # But you can't do this with ManyToMany
+                                        # fields in django.
             
             ('title',),                  # no two sessions can have the same title
             )
-    
-def populate_db():
-    #
-    # Conference
-    #
-    boostcon07 = Conference(name='boostcon07',
-                            start=date(2007,5,13),
-                            finish=date(2007,5,18))
-    
-    boostcon07.save()
 
-    #
-    # TimeBlock
-    #
-    mon = [
-        TimeBlock(start=datetime(2007,5,14,*t), conference=boostcon07)
-        
-        for t in ((9,00), (10,30), (2+12,30), (4+12,00))]
-
-    for block in mon:
-        block.save()
-        
-        for i,name in enumerate(('tue','wed','thu','fri')):
-            copy = TimeBlock(start=block.start+timedelta(i+1),conference=block.conference)
-            copy.save()
-            locals()[name] = locals().get(name,[]) + [copy]
-
-    #
-    # Track
-    #
-    user = Track(name='User',description='user track',conference=boostcon07)
-    user.save()
-    
-    dev = Track(name='Dev',description='developer track',conference=boostcon07)
-    dev.save()
-
-    
-    
-    

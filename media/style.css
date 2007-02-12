@@ -572,3 +572,14 @@ div.node p.schedule-day {
         padding:  0pc 0pc 0pc 0pc;
     }
 
+/* ---------- Schedule ------------ */
+
+.schedule th.weekday {
+   width=1.5em;
+}
+
+.schedule th.weekday em {
+   display: block;
+   font-style: normal;
+}
+
