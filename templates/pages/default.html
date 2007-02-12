@@ -20,6 +20,9 @@
 {% endblock %}
 
 {% block in_sidebar %}
+  {% if page.first_child %}
+      <div class="wrapper"></div>
+  {% endif %}
 {% endblock %}
 
 {% block content %}
