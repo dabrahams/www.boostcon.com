@@ -10,9 +10,8 @@
 <h2>{{ title }}</h2>
 <p><table border="1">
 
-{% load code %}
 <thead>
-  <tr><th colspan="{% code len(tracks)+2 %}">{{conference.name}}</th></tr>
+  <tr><th>Day</th> <th>Time</th> {% for t in tracks %}<th>{{ t.name }}</th>{% endfor %}</tr>
 </thead>
 
 <tbody>  
