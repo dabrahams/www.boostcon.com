@@ -417,6 +417,14 @@ div#sidebar_wm h4 {
 	background-color: #32373b;
 }
 
+div#sidebar_wm h4  a {
+	color: #FFFFFF;
+	text-decoration: none;
+}
+
+div#sidebar_wm h5 {
+	font-size:101%;
+}
 
 div#sidebar_wm div.block {
 	padding: 22px 14px 17px 13px;
