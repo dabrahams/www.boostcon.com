@@ -20,7 +20,6 @@
         <li><a href="sessions/thu">Thursday</a></li>
         <li><a href="sessions/fri">Friday</a></li>
       </ul>
-      <div class="wrapper"></div>
       <h4>Subheading</h4>
       Subcontent.  That's what I'm talking about.
       {% endblock %}
@@ -28,7 +27,6 @@
       {% load news %}
       {% get_latest_news 3 %}
 
-      <div class="wrapper"></div>
       <div id="news">
         <h4><a href="/news">news</a></h4>
           {% for n in news %}
