@@ -15,6 +15,8 @@ class ScheduleNode(template.Node):
         
         rows = []
 
+        header = None
+        
         last_finish = None
         day_dt = datetime(day.year, day.month, day.day)
         for block in TimeBlock.objects \
@@ -24,10 +26,10 @@ class ScheduleNode(template.Node):
             row = _.tr
             
             if not rows:
-                day_header = _.th[
+                header = _.th[
                     [ _.em[ letter ] for letter in day.strftime('%A') ]
                     ]
-                row += day_header
+                row += header
             
             if last_finish and last_finish != block.start: # check for break
                 # add its time header
@@ -45,8 +47,10 @@ class ScheduleNode(template.Node):
 
             rows.append(row)
             last_finish = block.finish
+
+        if header:
+            header(rowspan=len(rows))
             
-        day_header(rowspan=len(rows))
         return u'\n'.join(str(r) for r in rows)
             
     def render(self, ctx):
