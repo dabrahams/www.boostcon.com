@@ -12,6 +12,9 @@ class Conference(models.Model):
     
     class Admin: pass
 
+def _12hr(t):
+    return t.strftime('%I:%M%p')
+
 class TimeBlock(models.Model):
     # name = models.CharField(maxlength=100, primary_key=True, unique_for_date='start')
     start = models.DateTimeField()
@@ -28,12 +31,18 @@ class TimeBlock(models.Model):
     @property
     def finish(self):
         return self.start + timedelta(minutes=self.duration)
+
+    def format_time_range(self):
+        return _12hr(self.start) + ' - ' + _12hr(self.finish)
     
-    def format_time(self):
-        return self.start.strftime('%I:%M%p - ') + self.finish.strftime('%I:%M%p')
+    def format_start_time(self):
+        return _12hr(self.start)
+    
+    def format_finish_time(self):
+        return _12hr(self.finish)
     
     def __str__(self):
-        return self.start.strftime('%a ') + self.format_time()
+        return self.start.strftime('%a ') + self.format_time_range()
 
 class Track(models.Model):
     name = models.CharField(maxlength=100, primary_key=True)
