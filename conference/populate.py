@@ -747,25 +747,137 @@ proto = Session(
     title="Implementing Domain Specific Embedded Languages using Expression Templates and Boost.Proto", 
     short_title="proto", 
     presenter=niebler,
+    format='tutorial',
+    track=dev,
+    level=advanced,
     description=u"""
+Expression Templates are an advanced technique that C++ library
+developers use to define embedded mini-languages that target specific
+problem domains. The technique has been used to create hyper-efficient
+and easy-to-use libraries for linear algebra as well as to define C++
+parser generators with a readable syntax. But developing such a library
+involves writing an inordinate amount of unreadable and unmaintainable
+template mumbo-jumbo. Boost.Proto, a new library currently under
+development, eases the development of domain-specific embedded languages
+(DSELs). Use Proto to define the primitives of your mini-language and
+let Proto handle the operator overloading and the construction of the
+expression parse tree. Immediately evaluate the expression tree by
+passing it a function object. Or transform the expression tree by
+defining the meta-grammar of your mini-language, decorated with an
+assortment of tree transforms provided by Proto or defined by you. Then
+use the meta-grammar to give your users short and readable syntax errors
+for invalid expressions! No more mumbo-jumbo -- an expression template
+library developed with Proto is declarative and readable. Proto is a
+DSEL for defining DSELs.
+
+Proto was initially developed as a part of Boost.Xpressive. It is now
+being used in the Spirit-2 rewrite (under development) and in another
+future Boost DSEL library called Karma. Proto is the key to making these
+three DSEL libraries play well together. It will eventually be proposed
+as a stand-alone Boost library.
     """) | save
+
 asl = Session(
     title="The Adobe Source Library: An approach to writing ADL-safe, generic libraries", 
     short_title="asl", 
     presenter=marcus,
+    format='tutorial',
+    track=dev,
+    level=intermediate|advanced,
     description=u"""
+The Adobe Source Library (ASL), http://opensource.adobe.com, is an open
+source library extending boost with additional algorithms, data structures
+and a user-interface development toolkit.
+The ASL uses a set of conventions that can be used to produce
+libraries that are safe to use in the presence of the C++ '03 argument
+dependent lookup (ADL) language feature). The strategy aims to satisfy the
+following criteria:
+
+- Collision-safe:
+	
+  Functions in the ASL public API can be written to be callable as,
+  for example, adobe::foo. However such functions are guaranteed not
+  to be considered when making unqualified calls to foo, even from
+  inside namespace adobe. In other words, such functions co-exist
+  peacefully with present or future user, library, or third-party
+  defined functions that happen to also be named foo.
+	
+- Customizable:
+	
+  Function (templates) in the ASL public API can be written so as to
+  provide a "default" implementation, still callable as above and
+  meeting the collision-safe criterion, while at the same time
+  allowing the user or other parts of the library to provide custom
+  implementations for their own types, in their own namespace.
+	
+Simply declaring functions in the library's namespace adobe isn't
+collision-safe inside of the library. And the usual overloading or function
+template specialization techniques violate collision-safety and have the
+undesirable side-effect of forcing the user to define functions or
+specializations in the library's namespace.
     """) | save
+    
 bgl = Session(
     title="Generic Programming and the Boost Graph Library", 
     short_title="bgl", 
     presenter=siek,
+    format='tutorial',
+    track=user,
+    level=intermediate,
     description=u"""
+Many programming problems in diverse areas as Internet packet routing, molecular biology,
+scientific computing, and telephone network design can be solved by using graph algorithms
+and data-structures. Traditional approaches to implementing graph libraries
+fail to provide enough flexibility, making them difficult to use in the context of a particular
+application. Fortunately, Stepanov and Musser showed how flexibility can be achieved
+without sacrificing performance using Generic Programming and demonstrated this
+by implementing the Standard Template Library (STL). The Boost Graph Library (BGL) applies
+the Generic Programming methodology to the graph domain and the result is a highly
+flexible and efficient library for solving graph problems.
+
+However, if you are unfamiliar with the generic programming paradigm, the
+design of the BGL may seem odd and you may find it difficult to use.
+In this tutorial we will become familiar with generic programming and its
+underlying principles, see how these principles are applied in the BGL,
+and learn the C++ template techniques used to implement generic libraries.
+We will put the BGL to use in several programming problems and learn how
+to take full advantage of its power and flexibility.
+
+For developers interested in creating generic libraries, this tutorial will
+provide a valuable example of how to apply generic programming in
+a setting somewhat different from the classical sequence algorithms of
+the STL.
     """) | save
+
 python = Session(
     title="Implementing out-of-the-ordinary object models using Boost.Python    ", 
     short_title="python", 
     presenter=shead,
+    format='lecture',
+    track=user,
+    level=intermediate,
+    attendee_background=u'assumes some prior knowledge of Boost.Python.',
     description=u"""
+One mark of a good library is its ability to handle
+out-of-the-ordinary use cases.  After several years observing
+Boost.Python from afar, I set out in mid 2006 to see if it could
+replace a large body of home-grown Python wrapping code
+written for embedding in a 3D modeling and animation package. 
+Along the way I developed a number of simple techniques dealing
+with "real-world-messiness" that are the focus of the presentation,
+including:
+
+* Embedding Boost.Python wrappers in your executable (rather
+  than loading them into Python)
+* Mixing class-methods with non-intrusive methods (what to do
+  when your Python object needs to differ slightly from its C++
+  counterpart).
+* Wrapping C++ template classes.
+* Handling weakly-typed arguments and return-values in C++.
+* Bypassing Boost.Python to implement "special" Python methods -
+  __str__, __len__, etc.
+* Module attributes
+* And more!
     """) | save
 
     
