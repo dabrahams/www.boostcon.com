@@ -682,10 +682,11 @@ div.node p.schedule-day {
 
 /* * * * * * * * * * * * * * * * * *
  * added for schedule table design
- * 2007.02.10  -  cad
+ * 2007.02.12  -  cad
  * * * * * * * * * * * * * * * * * */
  
-div.node table {
+ 
+table.table {
 	font-size: 1em;
 	font-family: Verdana, Arial, Helvetica, sans-serif;
 	line-height:1.2em;
@@ -693,7 +694,7 @@ div.node table {
 	border-collapse: collapse;
 	margin: 6px 0 14px 22px;
 }
-div.node caption
+table.table caption
 {
 	background-color:inherit;
 	font-size:1.5em;
@@ -703,7 +704,7 @@ div.node caption
 	padding:  6px 0 25px 22px;
 }
 
-thead th
+table.table thead th
 {
 	background-color: inherit;
 	padding:  7px 7px 7px 7px;
@@ -714,7 +715,7 @@ thead th
 	color: #33393d;
 	letter-spacing: 2px;
 }
-tbody th 
+table.table tbody th 
 {
 	font-size:0.9em;
 	font-family: Verdana, Arial, Helvetica, sans-serif;
@@ -727,18 +728,18 @@ tbody th
 	border-bottom: 1px solid #e9e8e3; 
 }
 
-thead th { 
+table.table thead th { 
 	border-bottom: 2px solid  #adadad;
 	
 }
 
-thead th:first-child { 
+table.table thead th:first-child { 
 	border-bottom:none;
 	background-color: #f5f4ef;
 	border-right: 4px solid  #FFFFFF;
 }
 
-tbody td
+table.table tbody td
 {
 	font-size:1em;
 	font-family: Verdana, Arial, Helvetica, sans-serif;
@@ -751,20 +752,20 @@ tbody td
 
 
 /**** BREAK ****/
-tbody td.break {
+table.table tbody td.break {
 	font-weight: bold;
 	text-align: center;
 	border: 2px solid #ffffff;	
 } 
 
-tbody td.break:hover {
+table.table tbody td.break:hover {
 	background-color: #f5f4ef;	
 } 
 
 
 /**** USER COLORS ****/
 
-tbody td.u1 {
+table.table tbody td.u1 {
 	border-right: 2px solid #ffffff;
 	border-top: 2px solid #ffffff;
 	color: #000000;
@@ -772,25 +773,25 @@ tbody td.u1 {
 	background-color: #dae5ed;
 } 
 
-tbody td.u1 a
+table.table tbody td.u1 a
 {
 	text-decoration: none;
 	color: #000000;
 
 }
 
-tbody td.u1:hover {
+table.table tbody td.u1:hover {
 	background-color: #c2d4e2;
 } 
 
 
-tbody td.u2 {
+table.table tbody td.u2 {
 	background-color: #daeddc;
 	border-right: 2px solid #ffffff;
 	border-top: 2px solid #ffffff;
 } 
 
-tbody td.u2 a
+table.table tbody td.u2 a
 {
 	text-decoration: none;
 	color: #000000;
@@ -798,7 +799,7 @@ tbody td.u2 a
 }
 
 
-tbody td.u2:hover {
+table.table tbody td.u2:hover {
 	background-color: #c2e2c4;
 	border-right: 2px solid #ffffff;
 	border-top: 2px solid #ffffff;
@@ -808,43 +809,43 @@ tbody td.u2:hover {
 
 
 /**** DEV COLORS ****/
-tbody td.d1 {
+table.table body td.d1 {
 	background-color: #ededda;
 	border-top: 2px solid #ffffff;
 	
 } 
 
-tbody td.d1 a
+table.table tbody td.d1 a
 {
 	text-decoration: none;
 	color: #000000;
 
 }
 
-tbody td.d1:hover {
+table.table tbody td.d1:hover {
 	background-color: #e2e1c2;
 } 
 
 
 
-tbody td.d2 {
+table.table tbody td.d2 {
 	background-color: #eddada;
 	border-top: 2px solid #ffffff;
 }
 
-tbody td.d2 a
+table.table tbody td.d2 a
 {
 	text-decoration: none;
 	color: #000000;
 
 }
 
-tbody td.d2:hover {
+table.table tbody td.d2:hover {
 	background-color: #e2c2c2;
 }  
 
 
-tbody th:hover {
+table.table tbody th:hover {
 
 	background-color: #fff;
 }
@@ -869,7 +870,6 @@ tbody th:hover {
 {
 	text-decoration: underline;
 }
-
 
 
 
