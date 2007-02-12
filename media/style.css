@@ -20,22 +20,24 @@ h1 span {
 	display: none;
 }
 h2 {
-	font-size: 1.8em;
+	font-size: 1.9em;
 	font-weight: normal;
 	letter-spacing: 2px;
 	text-align: left;
 	margin: 0 0 18px 22px;
 	padding: 0 0 4px 0;
 	display: block;
-	width: 456px;
+	width: 650px;
 	background-image: url(images/ruler.gif);
 	background-repeat: repeat-x;
 	background-position: bottom left;
 }
 h3 {
-	font-size: 1.1em;
+	font-size: 1.2em;
 	font-weight: bold;
 	letter-spacing: 1px;
+	margin: 0 0 0 22px;
+	padding: 0 0 4px 0;
 	color: #4e87a6;
 }
 
@@ -45,8 +47,13 @@ h3 {
 }
 
 h3,.node h4,.node h5,.node h6 {
-    font-size: 110%;
+    font-size: 115%;
 	padding: 0 0 4px 0;
+}
+
+a {
+	color: #4e87a6;
+	text-decoration: underline;
 }
 
 a:link {
@@ -66,12 +73,12 @@ div#container {
 }
 div#navigator {
 	width: 100%;
-	height: 22px;
+	height: 21px;
 	background-color: #32373b;
 	background-image: url(images/navigator-background.gif);
 }
 div#navigator div.center {
-	width: 702px;
+	width: 950px;
 	background-color: #32373b;
 	margin: 0 auto;
 	padding: 0 2px;
@@ -110,7 +117,7 @@ div#header {
 	background-repeat: no-repeat;
 	margin: 0;
 	padding: 0;
-	width: 700px;
+	width: 950px;
 	margin: 0 auto;
 	background-color: #FFFFFF;
 }
@@ -121,7 +128,7 @@ ul#menu {
 	list-style-type: inherit;
 	font-size: 1.1em;
 	font-weight: bold;
-    height:20px;
+    height:20px; /* too big? */
 	color: #32373b;
 	padding: 5px 10px 6px 27px;
 	/*letter-spacing: 2px;*/
@@ -143,11 +150,11 @@ ul#menu li {
 	display: inline;
 	margin: 0 7px;
 	padding: 0;
-   width: 110px;
+    width: 110px;
 
-  float: left;
-  position: relative;
-  text-indent: 10px;
+    float: left;
+    position: relative;
+    text-indent: 10px;
 /*   width: 80px;*/
 }
 
@@ -238,9 +245,11 @@ ul#menu li ul li ul {
   left: 100px;
 }
 
-
 /* -------------- */
 
+/*
+ * deleted
+ *
 div#content {
 	height: 100%;
 	min-height: 100%; 
@@ -249,11 +258,24 @@ div#content {
 	margin: 0 auto;
 	clear: both;
 }
+ * 
+ * deleted
+*/
+
+div#content {
+	height: 100%;
+	min-height: 100%; 
+	width: 950px;
+	margin: 0 auto;
+	clear: both;
+	background-image: url(images/body-background.gif);
+	background-position: center;
+}
 
 div#sidebar {
 	margin: 0;
 	padding: 0;
-	width: 200px;
+	width: 250px;
 	float: left;
 	background-color: #FFFFFF;
 	background-image: url(images/sessions-background.gif);
@@ -263,7 +285,7 @@ div#sidebar {
 
 div#sidebar h3 {
 	background-color: #828c94;
-	width: 144px; 
+	width: 200px; /* 144 px */ 
 	margin: 22px auto 0 auto;
 	padding: 4px 12px 5px 0;
 	color: #FFFFFF;
@@ -275,7 +297,7 @@ div#sidebar ul {
 	list-style-type: none;
 	font-size: 1.1em;
 	font-weight: bold;
-	width: 156px;
+	width: 212px; /* 156 px */
 	margin: 10px auto 0 auto;
 	padding: 0 0 11px 0;
 	letter-spacing: 1px;
@@ -301,17 +323,17 @@ div#sidebar ul a:hover {
 div.wrapper {
 	background-image: url(images/block-wrapper.gif);
 	height: 33px;
-	width: 156px;
+	width: 212px; /* 156px */
 	margin: 0 auto;
 }
 
 div#sidebar h4 {
-	width: 143px;
+	width: 199px; /* 149px */
 	margin: 0 auto;
 	padding: 1px 0 2px 13px;
-	font-size: 1.1em;
+	font-size: 1.2em;
 	color: #4e87a6;
-	/*letter-spacing: 2px;*/
+	letter-spacing: 1px;
 }
 
 div#sidebar h4 a {
@@ -324,17 +346,24 @@ div#sidebar h5 {
 }
 
 div#sidebar div.block {
+	/* padding: 22px 14px 17px 13px; */
 	padding: 1px 14px 17px 13px;
 	background-color: #f5f4ef;
-	width: 129px;
+	/* removed to div#sidebar div.first
+	background-image: url(images/block-fade.gif);
+	background-repeat: repeat-x;
+	background-position: top;
+	*/
+	width: 182px; /* 129px */
 	margin: 0 auto;
 	font-family: Verdana, Arial, Helvetica, sans-serif;
-	font-size: 1em;
+	font-size: 1.1em;
 	color: #32373b;
 }
 
 div#sidebar div.first {
 	padding: 22px 14px 17px 13px;
+	/* added from div#sidebar div.block	*/
 	background-image: url(images/block-fade.gif);
 	background-repeat: repeat-x;
 	background-position: top;
@@ -351,7 +380,7 @@ div#sidebar div.first  {
 
 div#sidebar div.block p {
 	padding: 0 0 10px 0;
-	line-height: 11px;
+	line-height: 14px;
 	margin: 0;
 }
 
@@ -361,19 +390,78 @@ div#sidebar a {
 	font-size: 1em;
 }
 
+/* * * * * * * * * * * * * * * * * *
+ * added for menuless sidebar at
+ * 2007.02.08  -  cad
+ * * * * * * * * * * * * * * * * * */
+
+
+
+div#sidebar_wm {
+	margin: 0;
+	padding: 10px 0 0 0;
+	width: 250px; /* 200px */ 
+	float: left;
+	background-color: #FFFFFF;
+	background-repeat: no-repeat;
+	background-position: top;
+}
+
+div#sidebar_wm h4 {
+	width: 199px; /* 143px */ 
+	margin: 0 auto;
+	padding: 1px 0 2px 13px;
+	font-size: 1.1em;
+	color: #FFFFFF;
+	letter-spacing: 2px;
+	background-color: #32373b;
+}
+
+
+div#sidebar_wm div.block {
+	padding: 22px 14px 17px 13px;
+	background-color: #f5f4ef;
+	background-image: url(images/block-fade.gif);
+	background-repeat: repeat-x;
+	background-position: top;
+	width: 185px; /* 129px */ 
+	margin: 0 auto;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 1.1em;
+	color: #32373b;
+}
+
+div#sidebar_wm div.block a:hover {
+	text-decoration: underline;
+	color: #828c94;
+}
+
+div#sidebar_wm div.first  {
+	padding: 12px 14px 17px 13px;
+}
+
+div#sidebar_wm div.block p {
+	padding: 0 0 10px 0;
+	line-height: 14px;
+	margin: 0;
+}
+
+/* * *  - e n d -  * * */
+
+
 div#main {
 	margin: 18px 0 0 0;
 	padding: 0;
-	width: 500px;
+	width: 700px;
 	float: right;
 	background-color: #FFFFFF;
 }
 
 div.node {
 	clear: both;
-	font-size: 1.1em;
+	font-size: 1.2em;
 	font-weight: normal;
-	width: 434px;
+	width: 650px;
 	margin: 0 0 17px 0;
 	background-color: #FFFFFF
 }
@@ -398,12 +486,12 @@ div.node p img.cube {
 div#footer {
 	clear: both;
 	bottom: 0; /* stick to bottom */
-	width: 700px;
+	width: 950px;
 	margin: 0 auto;
 	height: 30px;
 	background-image: url(images/cadesign.gif);
 	background-repeat: no-repeat;
-	background-position: 59px 10px;
+	background-position: 83px 10px;
 }
 
 #breadcrumbs {
@@ -583,3 +671,198 @@ div.node p.schedule-day {
    font-style: normal;
 }
 
+
+/* * * * * * * * * * * * * * * * * *
+ * added for schedule table design
+ * 2007.02.10  -  cad
+ * * * * * * * * * * * * * * * * * */
+ 
+div.node table {
+	font-size: 1em;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	line-height:1.2em;
+	width:100%;
+	border-collapse: collapse;
+	margin: 6px 0 14px 22px;
+}
+div.node caption
+{
+	background-color:inherit;
+	font-size:1.5em;
+	font-weight: bold;
+	color: #4e87a6;
+	letter-spacing: 3px;
+	padding:  6px 0 25px 22px;
+}
+
+thead th
+{
+	background-color: inherit;
+	padding:  7px 7px 7px 7px;
+	text-align: center;
+	font-size:1.1em;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-weight: normal;
+	color: #33393d;
+	letter-spacing: 2px;
+}
+tbody th 
+{
+	font-size:0.9em;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-weight: normal;
+	color: #33393d;
+	text-align: left;
+	padding: 7px 0px 5px 13px;
+	background-color: #f5f4ef;
+	border-right: 4px solid  #FFFFFF;
+	border-bottom: 1px solid #e9e8e3; 
+}
+
+thead th { 
+	border-bottom: 2px solid  #adadad;
+	
+}
+
+thead th:first-child { 
+	border-bottom:none;
+	background-color: #f5f4ef;
+	border-right: 4px solid  #FFFFFF;
+}
+
+tbody td
+{
+	font-size:1em;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-weight: normal;
+	text-decoration: none;
+	text-align:left;
+	padding: 7px 5px 5px 7px;
+	line-height:1.5em;
+}
+
+
+/**** BREAK ****/
+tbody td.break {
+	font-weight: bold;
+	text-align: center;
+	border: 2px solid #ffffff;	
+} 
+
+tbody td.break:hover {
+	background-color: #f5f4ef;	
+} 
+
+
+/**** USER COLORS ****/
+
+tbody td.u1 {
+	border-right: 2px solid #ffffff;
+	border-top: 2px solid #ffffff;
+	color: #000000;
+	text-decoration: none;
+	background-color: #dae5ed;
+} 
+
+tbody td.u1 a
+{
+	text-decoration: none;
+	color: #000000;
+
+}
+
+tbody td.u1:hover {
+	background-color: #c2d4e2;
+} 
+
+
+tbody td.u2 {
+	background-color: #daeddc;
+	border-right: 2px solid #ffffff;
+	border-top: 2px solid #ffffff;
+} 
+
+tbody td.u2 a
+{
+	text-decoration: none;
+	color: #000000;
+
+}
+
+
+tbody td.u2:hover {
+	background-color: #c2e2c4;
+	border-right: 2px solid #ffffff;
+	border-top: 2px solid #ffffff;
+} 
+
+
+
+
+/**** DEV COLORS ****/
+tbody td.d1 {
+	background-color: #ededda;
+	border-top: 2px solid #ffffff;
+	
+} 
+
+tbody td.d1 a
+{
+	text-decoration: none;
+	color: #000000;
+
+}
+
+tbody td.d1:hover {
+	background-color: #e2e1c2;
+} 
+
+
+
+tbody td.d2 {
+	background-color: #eddada;
+	border-top: 2px solid #ffffff;
+}
+
+tbody td.d2 a
+{
+	text-decoration: none;
+	color: #000000;
+
+}
+
+tbody td.d2:hover {
+	background-color: #e2c2c2;
+}  
+
+
+tbody th:hover {
+
+	background-color: #fff;
+}
+
+
+
+.name
+{
+	font-family: Palatino Linotype, Verdana, Arial, Helvetica, sans-serif;
+	color: #000000;
+	font-weight: bold;
+	font-size: 1.1em;
+	text-decoration: none;
+}
+
+.name a
+{
+	text-decoration: none;
+}
+
+.name:hover
+{
+	text-decoration: underline;
+}
+
+
+
+
+/* * *  - e n d -  * * */
