@@ -3,7 +3,7 @@
 # file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
 from django import template
 from conference.models import *
-import datetime
+from datetime import *
 
 register = template.Library()
 
@@ -16,7 +16,11 @@ class ScheduleNode(template.Node):
         rows = []
 
         last_finish = None
-        for block in TimeBlock.objects.order_by('start').filter(conference = conference):
+        day_dt = datetime(day.year, day.month, day.day)
+        for block in TimeBlock.objects \
+            .filter(conference = conference) \
+            .filter(start__range=(day_dt,day_dt+timedelta(1))):
+            
             row = _.tr
             
             if not rows:
@@ -60,7 +64,7 @@ class ScheduleNode(template.Node):
             , conference.finish.toordinal()+1):
 
             result.append(self.render_day(conference,
-                                          datetime.date.fromordinal(d)))
+                                          date.fromordinal(d)))
 
         return u'\n'.join(result).encode('utf-8')
         
