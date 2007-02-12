@@ -2,7 +2,7 @@
 
 {% block page %}
   <div id="content"> 
-    <div id="sidebar"> 
+    <div id="sidebar{% block sidebar_type %}{% endblock %}"> 
     {% block sidebar %}
     {% endblock %}
     </div> <!--END: sidebar -->

@@ -6,6 +6,8 @@
 
 {% block title %}boostcon'07 - {{ page.page_title }}{% endblock %}
 
+{% block sidebar_type %}{% if not page.first_child %}_wm{% endif %}{% endblock %}
+  
 {% block detail %}
   {% if page.first_child %}
       <h3>detail</h3>
