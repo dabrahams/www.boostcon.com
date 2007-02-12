@@ -7,6 +7,10 @@ from datetime import *
 
 register = template.Library()
 
+
+def _12hr(t):
+    return t.strftime('%I:%M%p')
+
 class ScheduleNode(template.Node):
     def render_day(self, conference, day):
         from boost_consulting.utils.dom import tag as _
@@ -33,14 +37,14 @@ class ScheduleNode(template.Node):
             
             if last_finish and last_finish != block.start: # check for break
                 # add its time header
-                row += _.th[ last_finish, ' - ', block.start ]
+                row += _.th[ _12hr(last_finish), ' - ', _12hr(block.start) ]
 
                 # and an empty box across all tracks
                 row += _.td(colspan=len(tracks))[ 'break' ]
                 rows.append(row)
                 row = _.tr
             
-            row += _.th[ block.start, ' - ', block.finish ]
+            row += _.th[ block.format_time_range() ]
             
             for t in tracks:
                 row += _.td[ t.name ]
