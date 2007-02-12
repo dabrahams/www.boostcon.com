@@ -48,7 +48,7 @@ class tag(object):
     def __str__(self):
         return u'<%s%s>%s</%s>' % (
             self._name
-            , u''.join([u' %s=%s' % kv for kv in self._attributes.items()])
+            , u''.join([u' %s="%s"' % kv for kv in self._attributes.items()])
             , u''.join([str(c) for c in self._children])
             , self._name)
 

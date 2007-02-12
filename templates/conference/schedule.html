@@ -8,21 +8,23 @@
 {% block content %}
 <div class="node" id="document" style="padding-bottom: 20px; margin-left: 50px">
 <h2>{{ title }}</h2>
-<p><table border="1">
+<form  action="." method="post">
+  <table border="1" class="schedule">
 
-<thead>
-  <tr><th>Day</th> <th>Time</th> {% for t in tracks %}<th>{{ t.name }}</th>{% endfor %}</tr>
-</thead>
+    <thead>
+      <tr><th>Day</th> <th>Time</th> {% for t in tracks %}<th>{{ t.name }}</th>{% endfor %}</tr>
+    </thead>
 
-<tbody>  
+    <tbody>  
 
-{% load schedule %}
-{% schedule %}
+      {% load schedule %}
+      {% schedule %}
 
-</tbody>
+    </tbody>
 
-</table>
-</p>
+  </table>
+  <input type="submit" value="" />
+  </form>
 </div>
 {% endblock %}
 
