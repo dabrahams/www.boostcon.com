@@ -6,7 +6,7 @@
 
 from django.contrib.auth.models import User
 
-admin = User(username='admin', is_staff=True, is_active=True, is_superuser=True)
+admin = User(username='boostcon', is_staff=True, is_active=True, is_superuser=True)
 admin.set_password('crtplib')
 admin.save()
 
