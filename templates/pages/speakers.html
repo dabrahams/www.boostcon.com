@@ -1,0 +1,17 @@
+<!-- Copyright David Abrahams 2007. Distributed under the Boost -->
+<!-- Software License, Version 1.0. (See accompanying -->
+<!-- file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt) -->
+{% extends "pages/default.html" %}
+
+{% block body %}
+<div class="section">
+{% load code %}
+{% python _import_('conference.models').Presenter.objects.all(), as='presenters' %}
+{% load conference %}
+{% for p in presenters %}
+<h3><a name="presenter_{{p.id}}">{{p.full_name}}</a></h3>
+
+<p>{{p.bio|render_rst:"initial_header_level=4"}}</p>
+{% endfor %}
+</div>
+{% endblock %}

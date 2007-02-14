@@ -2,7 +2,7 @@
 # Software License, Version 1.0. (See accompanying
 # file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
 from django import template
-from conference.models import *
+from boost_consulting.conference.models import *
 from datetime import *
 from utils.format import _12hr_time
 
@@ -214,32 +214,33 @@ class PublicScheduleNode(ScheduleNode):
                             continue
                         
 
+
+                    title = current.title
                     if current.start == b:
                         session_counters[t] += 1
                         get_name = lambda p: p.full_name()
-                        title = current.title
                         suffix = ''
                     else:
                         get_name = lambda p: p.last_name
-                        title = u'...%s...' % current.short_title
+                        # title = u'...%s...' % current.short_title
                         suffix = _.em[' (continued)']
 
                     error_class = error.get(t) and ' error' or ''
                     error_msg = error.get(t,'')
-                    
+
                     cell = _.td(
                         valign="top"
                       , _class='ud'[ti%2]+str(1+session_counters[t]%2) + error_class
                         )[
-                                [ ( _.a(href="#")[
+                                [ ( _.a(href="/program/speakers#presenter_%d" % p.id)[
                                         _.span(_class="name")[get_name(p)]
                                     ], (n and [', '] or [': '])[0])
                                   for n, p in
                                   enumerate(current.presenters.order_by('-last_name',
                                                                         '-first_name'))
                                 ][::-1]
-                                
-                              , _.a(href="#")[title]
+
+                              , _.a(href="/program/sessions#session_%d" % current.id)[title]
                               , suffix
                               , error_msg
                             ]
