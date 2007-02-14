@@ -1,7 +1,14 @@
 #!/bin/sh
-cd ~/src/boostcon/site/boost_consulting
 dropdb boostcon.db
 createdb boostcon.db 
+    
+if (uname | grep -q FreeBSD); then
+    BOOSTCON_SITE_CONTEXT=beta_server
+    export BOOSTCON_SITE_CONTEXT
+    cd /usr/local/www/apache22/boostcon/src/boost_consulting;
+else 
+    cd ~/src/boostcon/site/boost_consulting;
+fi;
 
 python manage.py syncdb << EOF
 no
