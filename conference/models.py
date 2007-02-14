@@ -3,13 +3,13 @@ from datetime import *
 from utils.format import _12hr_time
 
 class Conference(models.Model):
-    name = models.CharField(maxlength=100)
+    name = models.CharField(maxlength=100, unique_for_year='start')
     # slug = models.SlugField(prepopulate_from=('name',))
     start = models.DateField('Date on which to start the schedule')
     finish = models.DateField('Date on which to end the schedule')
 
     def __str__(self):
-        return self.name
+        return '%s %s' % (self.name,self.start.year)
     
     class Admin: pass
 
@@ -44,13 +44,19 @@ class Track(models.Model):
 
     def __str__(self):
         return self.name
-        
+
+    def __hash__(self):
+        return hash(self.name)
+    
 class Presenter(models.Model):
     last_name = models.CharField(maxlength=100)
     first_name = models.CharField(maxlength=100)
     email = models.EmailField()
     bio = models.TextField()
 
+    def full_name(self):
+        return self.first_name + ' ' + self.last_name
+    
     class Meta:
         ordering = ('last_name','first_name','email')
 
@@ -141,6 +147,9 @@ class Session(models.Model):
         return ', '.join([s.last_name for s in self.presenters.all()]) \
                + ': ' + (self.short_title or self.title)
 
+    @property
+    def finish(self):
+        return self.start.start + timedelta(minutes=self.duration)
 
     class Admin:
         pass

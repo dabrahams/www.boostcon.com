@@ -756,6 +756,7 @@ table.table tbody td.break {
 	font-weight: bold;
 	text-align: center;
 	border: 2px solid #ffffff;	
+	background-color: #f5f4ef;	
 } 
 
 table.table tbody td.break:hover {
@@ -809,7 +810,7 @@ table.table tbody td.u2:hover {
 
 
 /**** DEV COLORS ****/
-table.table body td.d1 {
+table.table tbody td.d1 {
 	background-color: #ededda;
 	border-top: 2px solid #ffffff;
 	

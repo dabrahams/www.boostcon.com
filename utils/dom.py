@@ -26,10 +26,10 @@ class tag(object):
         for k,v in attributes.items():
             if k.startswith('_'):
                 k = k[1:]
-        self._attributes[k] = v
+            self._attributes[k] = v
         return self
 
-    def __iadd__(self, x):
+    def __ilshift__(self, x):
         self._flatten_append(self._children,x)
         return self
         
