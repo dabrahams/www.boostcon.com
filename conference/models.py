@@ -110,6 +110,17 @@ class Session(models.Model):
             ),
         default=beginner|intermediate|advanced)
 
+    def level_name(self):
+        result = []
+        for l in 'beginner','intermediate','advanced':
+            if getattr(self,l) & self.level:
+                result.append(l)
+                
+        if 0 < len(l) < 3:
+            return '/'.join(l)
+        else:
+            return ''
+        
     attendee_background = models.CharField(maxlength=200,blank=True)
 
     #
