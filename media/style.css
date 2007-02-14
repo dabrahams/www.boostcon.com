@@ -807,8 +807,6 @@ table.table tbody td.u2:hover {
 } 
 
 
-
-
 /**** DEV COLORS ****/
 table.table tbody td.d1 {
 	background-color: #ededda;
@@ -872,6 +870,13 @@ table.table tbody th:hover {
 	text-decoration: underline;
 }
 
+table.table tbody td.error {
+	background-color: #ff0000;
+}
+
+table.table tbody td.error:hover {
+	background-color: #ff0000;
+}
 
 
 /* * *  - e n d -  * * */
