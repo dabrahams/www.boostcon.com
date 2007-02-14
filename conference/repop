@@ -2,8 +2,8 @@
 dropdb boostcon.db
 createdb boostcon.db 
     
-if (uname | grep -q FreeBSD); then
-    BOOSTCON_SITE_CONTEXT=beta_server
+if (uname -a | grep -q ' boost-consulting.com'); then
+    BOOSTCON_SITE_CONTEXT=boostcon
     export BOOSTCON_SITE_CONTEXT
     cd /usr/local/www/apache22/boostcon/src/boost_consulting;
 else 

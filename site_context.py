@@ -1,12 +1,12 @@
 import os
 
 DEBUG = False
-if os.environ.get('BOOSTCON_SITE_CONTEXT') == 'beta_server':
+if os.environ.get('BOOSTCON_SITE_CONTEXT') == 'boostcon':
     
     # So our ReST translation code can find the source files with relative
     # paths.
     os.chdir('/usr/local/www/apache22/boostcon/src/boost_consulting/')
-    
+
     DATABASE_ENGINE = 'postgresql'
     DATABASE_NAME = 'boostcon.db'
     DATABASE_USER = 'boostcon'
