@@ -161,7 +161,6 @@ class PublicScheduleNode(ScheduleNode):
             ]
         
     def render_day_body(self, conference, d, tracks, session_counters):
-        print 'rendering',d,'session_counters=',session_counters
         from boost_consulting.utils.dom import tag as _
         body = _.tbody
 
@@ -183,14 +182,24 @@ class PublicScheduleNode(ScheduleNode):
                 row <<= _.td(_class="break", colspan=len(tracks))['Break']
                 
             elif isinstance(b, TimeBlock):
+                error = {}
+                
                 for s in sessions.filter(start=b):
-                    print 'starting', s, 'in', b
                     if s.track:
+                        existing = active.get(s.track)
+                        if existing:
+                            error[s.track] = (_.br, '*** overlapping with %s ***' % existing[0])
+
                         active[s.track] = s, s.duration
                     else:
+                        if active:
+                            error[tracks[0]] = (
+                                _.br
+                              , '*** overlapping with %s ***'
+                                % ', '.join([str(a[0]) for a in
+                                             active.values()]) )
                         active = dict([ (t,(s,s.duration)) for t in tracks ])
 
-                print 'in',b,'active=',active
                 
                 for ti,t in enumerate(tracks):
                     try:
@@ -207,7 +216,6 @@ class PublicScheduleNode(ScheduleNode):
 
                     if current.start == b:
                         session_counters[t] += 1
-                        print 'bumping session_counters for',t,'to',session_counters[t]
                         get_name = lambda p: p.full_name()
                         title = current.title
                         suffix = ''
@@ -215,8 +223,14 @@ class PublicScheduleNode(ScheduleNode):
                         get_name = lambda p: p.last_name
                         title = u'...%s...' % current.short_title
                         suffix = _.em[' (continued)']
-                        
-                    cell = _.td(valign="top", _class='ud'[ti%2]+str(1+session_counters[t]%2))[
+
+                    error_class = error.get(t) and ' error' or ''
+                    error_msg = error.get(t,'')
+                    
+                    cell = _.td(
+                        valign="top"
+                      , _class='ud'[ti%2]+str(1+session_counters[t]%2) + error_class
+                        )[
                                 [ ( _.a(href="#")[
                                         _.span(_class="name")[get_name(p)]
                                     ], (n and [', '] or [': '])[0])
@@ -224,9 +238,10 @@ class PublicScheduleNode(ScheduleNode):
                                   enumerate(current.presenters.order_by('-last_name',
                                                                         '-first_name'))
                                 ][::-1]
-#                              , len(current.presenters.all()) and ': ' or ''
+                                
                               , _.a(href="#")[title]
                               , suffix
+                              , error_msg
                             ]
                     
                     row <<= cell
@@ -237,7 +252,6 @@ class PublicScheduleNode(ScheduleNode):
                             del active[t]
                         else:
                             active[t] = current,remaining
-                        print 'done track; active=', active
                     else:
                         if remaining <= 0:
                             active = {}
@@ -245,7 +259,6 @@ class PublicScheduleNode(ScheduleNode):
                             active = dict([ (track,(current,remaining)) for track in tracks ])
                             
                         cell(colspan = len(tracks))
-                        print 'done track; active=', active
                         break
                     
         return body
