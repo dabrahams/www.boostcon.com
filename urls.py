@@ -11,7 +11,7 @@ urlpatterns = patterns('',
     # Uncomment this for admin:
     (r'^admin/', include('django.contrib.admin.urls')),
 
-    (r'^comments/', include('django.contrib.comments.urls.comments')),
+#    (r'^comments/', include('django.contrib.comments.urls.comments')),
 
     (r'^feed/(?P<url>[-\w]+)', 'django.contrib.syndication.views.feed',
      {'feed_dict': feeds}),
