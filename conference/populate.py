@@ -920,7 +920,8 @@ including:
 
 drinks = Session(    
     title="Informal Gathering, Drinks. Travelling companions welcome.", 
-    short_title="drinks", 
+    short_title="drinks",
+    format='social event',
     start=TimeBlock(start=datetime(2007,5,13,12+6,00), duration=0, conference=boostcon07) | save,
     description=u"""
 Get to know your fellow Boosters and catch up with old friends.  Bring your

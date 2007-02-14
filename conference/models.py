@@ -80,7 +80,8 @@ class Session(models.Model):
     #
     # Format
     #
-    formats = ('Lecture','Tutorial','Keynote','Workshop', 'Experience Report', 'Panel')
+    formats = ('Lecture','Tutorial','Keynote','Workshop', 'Experience Report',
+               'Panel', 'Social Event')
     format = models.CharField(
         maxlength=32,
         choices= tuple(zip([x.lower() for x in formats],formats)))
