@@ -1,36 +1,49 @@
-# Copyright David Abrahams 2007. Distributed under the Boost
-# Software License, Version 1.0. (See accompanying
-# file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
 from django import template
+
+import schedule
 
 register = template.Library()
 
-class CodeRenderer(template.Node):
-    '''A renderer for the code template tag.'''
+def _import_(module_name):
+    m = __import__(module_name,{},{},[])
+    return getattr(m, module_name.split('.')[-1])
+
+class PythonEvaluator(template.Node):
+    def __init__(self, args):
+        self.args = args
+
+    def _eval(self, value, as = None):
+        if as:
+            return as, value
+        else:
+            return None, value
     
-    def __init__(self, source_expression):
-        """Construct a CodeRenderer from an input expression
-
-        Keyword Arguments:
-        source_expression -- The Python expression, evaluated in the
-                             context of empty globals, and Django's template
-                             context as locals, that supplies the page content
-                             to be rendered.
-                             Yes, I know this violates Django's policy of
-                             keeping real Python code out of templates, but
-                             what the hell, we're programmers.
-         """
-        self.source_expression = source_expression
-        
     def render(self, ctx):
-        return str(eval(self.source_expression, {}, ctx))
+        g =  {'_self_':self}
+        g.update(globals())
+        save_as, value = eval('_self_._eval(%s)'%self.args, g, ctx)
+        if save_as:
+            ctx[save_as] = value
+            return ''
+        else:
+            return str(value)
 
-        
-def code(parser, token):
+@register.tag
+def python(parser, token):
     try:
-        tag_name, source_expression = token.split_contents()
-    except ValueError:
+        tag_name, args = token.contents.split(' ',1)
+    except ValueError, e:
         raise template.TemplateSyntaxError, "%r tag requires two arguments" % token.contents[0]
-    return CodeRenderer(source_expression)
+    return PythonEvaluator(args)
 
-register.tag(code)
+
+
+
+#         print 'evaluating', repr(self.expression)
+#         return ''
+#         x = eval(self.expression, {}, ctx)
+#         if self.save_as:
+#             ctx[self.save_as] = x
+#             return ''
+#         else:
+#             return str(x)
