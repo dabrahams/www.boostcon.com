@@ -22,7 +22,7 @@ save = Saver()
 #
 # Conference
 #
-boostcon07 = Conference(name='boostcon07',
+boostcon07 = Conference(name='boostcon',
                         start=date(2007,5,13),
                         finish=date(2007,5,18))
 
@@ -34,7 +34,7 @@ boostcon07.save()
 mon = [
     TimeBlock(start=datetime(2007,5,14,*t), conference=boostcon07)
 
-    for t in ((9,00), (10,30), (2+12,30), (4+12,00))]
+    for t in ((9,00), (11,00), (12+2,30), (12+4,30))]
 
 for block in mon:
     block.save()
@@ -43,6 +43,9 @@ for block in mon:
         copy = TimeBlock(start=block.start+timedelta(i+1),conference=block.conference)
         copy.save()
         locals()[name] = locals().get(name,[]) + [copy]
+
+fri[2].delete()
+fri[3].delete()
 
 #
 # Track
@@ -263,8 +266,11 @@ advanced = Session.advanced
 
 shotgun = Session(
     title="A Shotgun Firehose Introduction to TR1 and Boost", 
-    short_title="shotgun", 
+    short_title="Shotgun", 
     presenter=meyers,
+    track=user,
+    start=mon[0],
+    duration=4*90,
     description=u"""
 TR1 is a specification for 14 new kinds of standard library
 functionality, 13 of which are already part of the draft version
@@ -282,12 +288,15 @@ weak_ptr), unordered containers (hash tables), regular
 expressions, fixed-size arrays, and tuples.  From Boost, we'll
 cover at least non-TR1 smart pointers, static asserts, lambda,
 file system, conversions, format, and variant.
-""")
+""") | save
 
 meta = Session(
     title="Boost Metaprogramming Concepts and Frameworks", 
-    short_title="meta", 
+    short_title="Metaprogramming", 
     presenter=abrahams,
+    track=dev,
+    start=mon[2],
+    duration=2*90,
     description=u"""
 Have you ever wondered what makes the difference between "spaghetti
 code" and pure poetry?  It's abstraction.  Many of the worst code
@@ -319,6 +328,9 @@ network = Session(
     title="Network Programming with Boost", 
     short_title="network", 
     presenter=garland,
+    start=wed[0],
+    track=user,
+    duration=4*90,
     description=u"""
 This tutorial will provide an introduction to network programming with 
 Boost.  With the adoption of the Asio library, Boost finally has a library 
@@ -368,8 +380,10 @@ text = Session(
   title="Text Processing with Boost", 
   short_title="text", 
   presenter=niebler,
+  start=tue[0],
+  duration=90*2,
   format='tutorial',
-  track=user,
+  track=dev,
   level=beginner,
   description=u"""
 The abysmal support in the C and C++ standard libraries for string 
@@ -389,6 +403,8 @@ spirit2 = Session(
     title="A cookbook approach to parsing and output generation with Spirit2", 
     short_title="spirit2", 
     presenter=kaiser,
+    start=thu[1],
+    track=dev,
     description=u"""
 Spirit2 will debut on the Boost conference. It shall be a complete parsing and 
 output generation system with a symmetrical architecture that attempts to cover 
@@ -444,6 +460,8 @@ hybrid = Session(
     short_title="hybrid", 
     presenter=abrahams,
     format='tutorial',
+    start=tue[2],
+    track=dev,
     description=u"""
 Python and C++ are in many ways as different as two languages could
 be: while C++ is usually compiled to machine-code, Python is
@@ -487,6 +505,7 @@ future = Session(
     title="A Possible Future for Software Development", 
     short_title="future", 
     presenter=parent,
+    start=TimeBlock(start=datetime(2007,5,16,12+7,30), duration=120, conference=boostcon07) | save,
     format='keynote',
     description=u"""
 This talk begins with an overview of software development at Adobe
@@ -503,7 +522,9 @@ Source Libraries.
         
 agile = Session(
     title="Hands-on Agile Development Workshop with Boost", 
-    short_title="agile", 
+    short_title="agile",
+    start=thu[0],
+    duration=90*4,
     presenter=henney,
     format='workshop',
     description=u"""
@@ -536,15 +557,17 @@ practices and principles drawn from agile approaches such as Extreme
 Programming, Scrum and Lean Software Development, with guidance and
 feedback both during and in between iterations.
 """,
-    duration=4*90,
     track=user,
     level=beginner|intermediate
     ) | save
 
 rvalue = Session(
     title="An Introduction to the Rvalue Reference in C++0X", 
-    short_title="rvalue", 
+    short_title="rvalue",
+    duration=2*90,
     presenter=hinnant,
+    start=wed[2],
+    track=dev,
     format='tutorial',
     description=u"""
 Rvalue reference is tiny addition to the C++ language which will have a
@@ -590,6 +613,9 @@ con_intro = Session(
     title="An Introduction to Concepts in C++0x", 
     short_title="con-intro", 
     presenter=gregor,
+    start=wed[0],
+    track=dev,
+    duration=2*90,
     format='tutorial',
     description=u"""
 Concepts are a major addition to C++0x that make templates more
@@ -616,7 +642,8 @@ we will explore some of the more advanced features of concepts.
 
 con_lib = Session(
     title="Evolving a C++ Library to C++0x Concepts", 
-    short_title="con-lib", 
+    short_title="con-lib",
+    start=thu[2],
     presenter=gregor,
     format='tutorial',
     track=dev,
@@ -646,8 +673,9 @@ summer = Session(
     title="Boost and Google Summer of Code", 
     short_title="summer", 
     presenter=garland,
-    format='experience report',
+    start=fri[0],
     track=user,
+    format='experience report',
     description=u"""
 Google Summer of Code (SOC) is a program by Google to encourage students to 
 develop open source code while providing a chance to be employed.  In 2006 
@@ -674,6 +702,8 @@ future = Session(
     title="Future of Boost", 
     short_title="future", 
     presenter=garland,
+    start=fri[1],
+    track=dev,
     format='panel',
     description=u"""
 Boost has a small group of moderators that keep the mailing list running 
@@ -690,8 +720,11 @@ ask or propose absolutely anything about the direction of the Boost community.
 For example, why we don't adopt a particular policy, tool, or idea.
     """) | save
 
-henney = Session(
-    title="Value-Based Programming", 
+value = Session(
+    title="Value-Based Programming",
+    start=tue[0],
+    track=user,
+    duration=4*90,
     short_title="value-based", 
     presenters=(garland,henney),
     format='tutorial',
@@ -748,6 +781,7 @@ proto = Session(
     short_title="proto", 
     presenter=niebler,
     format='tutorial',
+    start=thu[0],
     track=dev,
     level=advanced,
     description=u"""
@@ -779,8 +813,9 @@ as a stand-alone Boost library.
 
 asl = Session(
     title="The Adobe Source Library: An approach to writing ADL-safe, generic libraries", 
-    short_title="asl", 
+    short_title="ASL", 
     presenter=marcus,
+    start=thu[3],
     format='tutorial',
     track=dev,
     level=intermediate|advanced,
@@ -822,7 +857,9 @@ bgl = Session(
     short_title="bgl", 
     presenter=siek,
     format='tutorial',
-    track=user,
+    start=mon[0],
+    duration=2*90,
+    track=dev,
     level=intermediate,
     description=u"""
 Many programming problems in diverse areas as Internet packet routing, molecular biology,
@@ -854,7 +891,8 @@ python = Session(
     short_title="python", 
     presenter=shead,
     format='lecture',
-    track=user,
+    start=tue[3],
+    track=dev,
     level=intermediate,
     attendee_background=u'assumes some prior knowledge of Boost.Python.',
     description=u"""
@@ -880,7 +918,14 @@ including:
 * And more!
     """) | save
 
-    
+drinks = Session(    
+    title="Informal Gathering, Drinks. Travelling companions welcome.", 
+    short_title="drinks", 
+    start=TimeBlock(start=datetime(2007,5,13,12+6,00), duration=0, conference=boostcon07) | save,
+    description=u"""
+Get to know your fellow Boosters and catch up with old friends.  Bring your
+families and companions.
+    """) | save
     
 for s in Session.objects.all():
     print s

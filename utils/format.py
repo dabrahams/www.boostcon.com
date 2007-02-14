@@ -3,4 +3,6 @@
 # file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
 
 def _12hr_time(t):
-    return t.strftime(str(t.hour%12) + ':%M%p')
+    return t.strftime(
+        # str(t.hour%12) +
+        '%I:%M%p')
