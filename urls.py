@@ -61,7 +61,8 @@ urlpatterns += patterns(
 urlpatterns += patterns('django.views.generic',
 # Enable this if you want a special homepage layout.                        
 #    (r'^$', 'simple.direct_to_template', {'template': 'homepage.html'}),
-    (r'^admin(.*[^/])$', 'simple.redirect_to', {'url': r'admin\1/'}),
+#    (r'^admin$', 'simple.redirect_to', {'url': r'/admin/'}),
+    (r'^admin(?P<base>(/[^/]+)*)$', 'simple.redirect_to', {'url': r'/admin%(base)s/'}),
     (r'^(?P<base>.*)/$', 'simple.redirect_to', {'url': r'/%(base)s'}),
     (r'^$', 'simple.redirect_to', {'url': r'/home'}),
 )
