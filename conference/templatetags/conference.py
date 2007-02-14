@@ -5,24 +5,6 @@ from django import template
 
 register = template.Library()
 
-from boost_consulting.conference.models import Presenter
-
-class Presenters(template.Node):
-    '''A renderer for the code template tag.'''
-    
-    def render(self, ctx):
-        ctx['presenters'] = Presenter.objects.all()
-        return ''
-
-def presenters(parser, token):
-    try:
-        tag_name = token.split_contents()
-    except ValueError, e:
-        raise template.TemplateSyntaxError, "%r tag takes no arguments" % token.contents[0]
-    return Presenters()
-
-register.tag(presenters)
-
 @register.filter
 def render_rst(rst,args):
     from utils.restructuredtext import html_parts
