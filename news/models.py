@@ -28,10 +28,13 @@ class News(models.Model):
         verbose_name_plural = 'news'
         ordering = ['-date']
 
-    class Admin:
-        date_hierarchy = 'date'
-        list_display = ('title', 'date')
-        ordering = ('-date',)
+    # Don't allow admin; it's misleading since we're actually reading from
+    # files.
+    
+    # class Admin:
+    #    date_hierarchy = 'date'
+    #    list_display = ('title', 'date')
+    #    ordering = ('-date',)
 
     def __str__(self):
         return self.summary
