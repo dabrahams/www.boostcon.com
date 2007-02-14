@@ -25,7 +25,8 @@ class TimeBlock(models.Model):
     
     class Admin:
         save_as = True
-
+        list_filter = ('conference',)
+        
     @property
     def finish(self):
         return self.start + timedelta(minutes=self.duration)
@@ -71,10 +72,15 @@ class Session(models.Model):
     title = models.CharField(maxlength=200)
     
     presenters = models.ManyToManyField(
-        Presenter, filter_interface = models.HORIZONTAL, related_name='Sessions')
+        Presenter
+      , verbose_name = 'Presenters (should only be left blank for social events)'
+      , filter_interface = models.HORIZONTAL
+      , related_name='sessions'
+      , blank=True
+        )
 
     short_title = models.CharField(
-        'Abbreviation for session continuations in schedule'
+        'Abbreviation for session continuations in schedule and admin interface'
         , maxlength=50,blank=True)
     
     #
@@ -120,7 +126,7 @@ class Session(models.Model):
     #
     # Scheduling
     #
-    start = models.ForeignKey(TimeBlock,null=True)
+    start = models.ForeignKey(TimeBlock, verbose_name = 'Starting Session Block', null=True)
     duration = models.SmallIntegerField('Duration in minutes', default=90)
 
     _presenters = None
