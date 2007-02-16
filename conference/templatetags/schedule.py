@@ -151,7 +151,7 @@ class PublicScheduleNode(ScheduleNode):
                             _.th(
                                 scope="col", width="%s%%" % (86 / len(tracks))
                             )[
-                               _.strong[t.name], ' track'
+                               _.strong[t.name]
                             ]
                             for t in tracks
                         ]

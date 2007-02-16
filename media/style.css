@@ -47,11 +47,14 @@ div.node#document
 }
 
 #document img.align-right {
-  margin: 0 0 10px 10px;
+  margin-top: 10px;
+  margin-left: 10px;
 }
 
 #document img.align-left {
-  margin: 0 10px 10px 0;
+  margin-bottom: 10px;
+  margin-right: 10px;
+  margin-left: 22px;
 }
 
 

@@ -24,9 +24,7 @@ save = Saver()
 #
 boostcon07 = Conference(name='boostcon',
                         start=date(2007,5,13),
-                        finish=date(2007,5,18))
-
-boostcon07.save()
+                        finish=date(2007,5,18)) | save
 
 #
 # TimeBlock
@@ -50,9 +48,9 @@ fri[3].delete()
 #
 # Track
 #
-user = Track(name='User',description='user track',conference=boostcon07) | save
+user = Track(name='track I',description='was the user track',conference=boostcon07) | save
 
-dev = Track(name='Dev',description='developer track',conference=boostcon07) | save
+dev = Track(name='track II',description='was the developer track',conference=boostcon07) | save
 
 #
 # Presenter
@@ -85,6 +83,22 @@ developing C++ libraries, teaching about C++ and Boost, and
 nurturing the Boost community ever since.
 """) | save
 
+de_guzman = Presenter(
+    first_name = 'Joel',
+    last_name = 'de Guzman',
+    email = 'joel@boost-consulting.com',
+    bio = u"""
+Joel de Guzman is the author of the Boost Spirit Parser Library, the
+Boost Fusion Library and the Phoenix Functional-C++ library. He is a
+highly experienced software architect and engineer with over 18 years of
+professional experience, with specialization and expertise in generic
+C++ cross platform libraries and frameworks. Joel is a consultant at
+Boost Consulting since 2002 and has provided support and development
+services focused on the Boost libraries. His interests include Parser
+Generators, Scripting language interpreters and compilers, Domain
+Specific Embedded Languages, 2D graphics and GUI frameworks.
+""") | save
+    
 garland = Presenter(
   first_name = 'Jeff',
   last_name = 'Garland',
@@ -213,7 +227,15 @@ kaiser = Presenter(
   last_name='Kaiser',
   email='HartmutKaiser@t-online.de',
   bio=u"""
-.. Warning:: We didn't get a bio for Hartmut!
+After 15+ interesting years that Hartmut spent working in industrial
+software development, he still tremendously enjoys working with modern
+software development technologies and techniques. His preferred field of
+interest is the software development in the area of object-oriented and
+component-based programming in C++ and its application in complex contexts,
+such as grid and distributed computing, spatial information systems,
+internet based applications, and parser technologies. He enjoys using and
+learning about modern C++ programming techniques, such as template based
+generic and meta-programming and preprocessor based meta-programming.
 """) | save
 
 parent = Presenter(
@@ -402,7 +424,7 @@ discover some hidden gems in Boost for dealing with Unicode.
 spirit2 = Session(
     title="A cookbook approach to parsing and output generation with Spirit2", 
     short_title="spirit2", 
-    presenter=kaiser,
+    presenters=(kaiser,de_guzman),
     start=thu[1],
     track=dev,
     description=u"""
