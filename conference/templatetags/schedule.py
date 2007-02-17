@@ -50,7 +50,7 @@ class ScheduleNode(template.Node):
         result = []
 
         tracks = Track.objects.filter(conference = conference).order_by('name')
-        session_counters = dict([(t,0) for t in tracks])
+        session_counters = dict([(t,0) for t in tracks] + [(None,0)])
         
         for d in iterate_days(conference.start, conference.finish):
             result.append(str(self.render_day(
@@ -213,39 +213,51 @@ class PublicScheduleNode(ScheduleNode):
                         else:
                             continue
                         
-
                     if current.start == b:
-                        prefix = _.a(name="session_%d" % current.id)
+                        link_target = _.a(name="session_%d" % current.id)
                         title = current.title
-                        session_counters[t] += 1
+                        session_counters[current.track] += 1
                         get_name = lambda p: p.full_name()
-                        suffix = ''
+                        continued = ''
                     else:
-                        prefix = ''
+                        link_target = ''
                         title = current.short_title
                         get_name = lambda p: p.last_name
                         # title = u'...%s...' % current.short_title
-                        suffix = _.em[' (continued)']
+                        continued = _.em[' (continued)']
 
-                    error_class = error.get(t) and ' error' or ''
+                    cell_class = current.track and 'ud'[ti%2] or 'notrack'
+                    cell_class += str(1+session_counters[current.track]%2)
+                    if error.get(t):
+                        cell_class += ' error'
+
                     error_msg = error.get(t,'')
 
-                    
-                    cell = _.td(
-                        valign="top"
-                      , _class='ud'[ti%2]+str(1+session_counters[t]%2) + error_class
-                        )[
-                                prefix
-                              , [ ( _.a(href="/program/speakers#presenter_%d" % p.id)[
-                                        _.span(_class="name")[get_name(p)]
-                                    ], (n and [', '] or [': '])[0])
-                                  for n, p in
-                                  enumerate(current.presenters.order_by('-last_name',
+                    cell = _.td(valign="top", _class=cell_class)[
+                                link_target
+
+                                # A sequence of presenter name, comma
+                                # pairs... except we make the first one a
+                                # colon.  Then we reverse them to put the colon
+                                # at the end
+                              , [
+                                    (
+                                      _.a(href="/program/speakers#presenter_%d" % p.id)[
+                                         _.span(_class="name")[get_name(p)]
+                                      ]
+                                    , (n and [', '] or [': '])[0]
+                                   )
+
+                                   # Read the names in reverse alphabetical
+                                   # order so they come out right in the end.
+                                   for n, p in
+                                   enumerate(current.presenters.order_by('-last_name',
                                                                         '-first_name'))
-                                ][::-1]
+                                ][::-1] # reverse
 
                               , _.a(href="/program/sessions#session_%d"% current.id)[title]
-                              , suffix
+
+                              , continued
                               , error_msg
                             ]
                     
