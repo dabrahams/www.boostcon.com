@@ -48,9 +48,9 @@ fri[3].delete()
 #
 # Track
 #
-user = Track(name='track I',description='was the user track',conference=boostcon07) | save
+user = Track(name='Track I',description='was the user track',conference=boostcon07) | save
 
-dev = Track(name='track II',description='was the developer track',conference=boostcon07) | save
+dev = Track(name='Track II',description='was the developer track',conference=boostcon07) | save
 
 #
 # Presenter
