@@ -49,7 +49,7 @@ class ScheduleNode(template.Node):
     def render_schedule(self, ctx, conference):
         result = []
 
-        tracks = Track.objects.filter(conference = conference)
+        tracks = Track.objects.filter(conference = conference).order_by('name')
         session_counters = dict([(t,0) for t in tracks])
         
         for d in iterate_days(conference.start, conference.finish):
