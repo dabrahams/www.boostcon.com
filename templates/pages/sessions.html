@@ -6,7 +6,7 @@
 {% python _import_('conference.models').Session.objects.all(), as='sessions' %}
 {% load conference %}
 {% for s in sessions %}
-<h3><a name="session_{{s.id}}" href="/program/schedule#session_{{s.id}}">{{s.title}}</a></h3>
+<h3><a name="session_{{s.id}}" href="/program#session_{{s.id}}">{{s.title}}</a></h3>
 
 <table class="docutils field-list" rules="none" frame="void">
 <col class="field-name"/>
