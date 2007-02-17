@@ -33,7 +33,7 @@ h2 {
 	background-position: bottom left;
 }
 h3 {
-	font-size: 1.2em;
+	font-size: 1.3em;
 	font-weight: bold;
 	letter-spacing: 1px;
 	margin: 0 0 0 22px;
@@ -41,22 +41,20 @@ h3 {
 	color: #4e87a6;
 }
 
+h3 a {
+	text-decoration: none;
+}
+
 .node
 {
 	margin: 0 0 0 22px;
 }
 
-#document img.align-right {
-  margin-top: 10px;
-  margin-left: 10px;
-}
 
-#document img.align-left {
-  margin-bottom: 10px;
-  margin-right: 10px;
-  margin-left: 22px;
+.section
+{
+	margin: 0 0 0 22px;
 }
-
 
 h3,.node h4,.node h5,.node h6 {
     font-size: 115%;
@@ -134,6 +132,7 @@ div#header {
 	background-color: #FFFFFF;
 }
 
+
 ul#menu {
 	margin: 0;
 	background-color: #f5f4ef;
@@ -154,7 +153,7 @@ ul#menu a {
 }
 
 ul#menu a:link:hover {
-	color: #828c94;
+	color: #474d51;
 	text-decoration: none;
 }
 
@@ -196,13 +195,15 @@ ul#menu li ul {
   display: none;
   position: absolute;
   height: auto;
-  /*top: 28px;*/
-  left: 0px;
+/*  top: 0px;*/
+  left: -10px;
   line-height: 2em;
-  background: url(bg-navigation-bottom1.png) no-repeat;
-  padding-bottom: 10px;
-  /*width: 160px;*/
-  padding-top: 6px;
+/*  background: url(bg-navigation-bottom1.png) no-repeat;*/
+  padding-bottom: 5px;
+  width: 160px;
+  padding-top: 13px;
+/*  border-top: 15px solid #000000;*/
+ /* margin-top: 15px;*/
 }
 
 ul#menu li ul li {
@@ -222,7 +223,7 @@ ul#menu li ul li.last {
 }
 
 ul#menu li ul li.self a {
-  color:#EEF;
+  color:#000000;
   font-weight:bold;
 }
 
@@ -248,7 +249,8 @@ ul#menu li ul li a {
 
 ul#menu li ul li a:hover {
   text-decoration:none;
-  background-color: #B3AA92;
+  width: 136px;
+  background-color: #ffffff;
 }
 
 ul#menu li ul li ul {
@@ -256,6 +258,7 @@ ul#menu li ul li ul {
   top: 0px;
   left: 100px;
 }
+
 
 /* -------------- */
 
@@ -466,6 +469,12 @@ div#sidebar_wm div.block p {
 	margin: 0;
 }
 
+div#sidebar_wm a {
+	color: #4e87a6;
+	text-decoration: none;
+	font-size: 1em;
+}
+
 /* * *  - e n d -  * * */
 
 
@@ -598,90 +607,8 @@ div.node p.schedule-day {
    padding: 0;
 }
 
-/*=============================================================================
-    Tables, stolen from Boost's stylesheet
-=============================================================================*/
-
-    table.table
-    {
-        width: 92%;
-        margin-left: 4%;
-        margin-right: 4%;
-    }
-    
-    table.table
-    {
-        padding: 4px;
-    }
-    
-    /* Table Cells */
-    table.table tr td
-    {
-        padding: 0.5em;
-        text-align: left;
-        font-size: 9pt;
-    }
-
-    table.table tr th
-    {
-        padding: 0.5em 0.5em 0.5em 0.5em;
-        border: 1pt solid white;
-/*        font-size: 80%;*/
-    }
-
-    @media screen
-    {
-    
-    /* Tables */
-        table.table tr td
-        {
-            border: 1px solid #DCDCDC;
-        }
-    
-        table.table tr th
-        {
-            background-color: #F0F0F0;
-            border: 1px solid #DCDCDC;
-        }
-
-        pre, 
-        .screen
-        {
-            border: 1px solid #DCDCDC;
-        }
-    
-        td pre
-        td .screen
-        {
-            border: 0px
-        }
-    
-        .sidebar pre
-        {
-            border: 0px
-        }
-    
-    }
-
-    pre, 
-    .screen
-    {
-        font-size: 9pt;
-        display: block;
-        margin: 1pc 4% 0pc 4%;
-        padding: 0.5pc 0.5pc 0.5pc 0.5pc;
-    }
-
-    /* Program listings in tables don't get borders */
-    td pre, 
-    td .screen
-    {
-        margin: 0pc 0pc 0pc 0pc;
-        padding:  0pc 0pc 0pc 0pc;
-    }
-
 /* ---------- Schedule ------------ */
-
+/* TEMPORARY DISABLED
 .schedule th.weekday {
    width=1.5em;
 }
@@ -690,7 +617,7 @@ div.node p.schedule-day {
    display: block;
    font-style: normal;
 }
-
+*/
 
 /* * * * * * * * * * * * * * * * * *
  * added for schedule table design
@@ -698,7 +625,7 @@ div.node p.schedule-day {
  * * * * * * * * * * * * * * * * * */
  
  
-table.table {
+table.schedule {
 	font-size: 1em;
 	font-family: Verdana, Arial, Helvetica, sans-serif;
 	line-height:1.2em;
@@ -706,7 +633,7 @@ table.table {
 	border-collapse: collapse;
 	margin: 6px 0 14px 22px;
 }
-table.table caption
+table.schedule caption
 {
 	background-color:inherit;
 	font-size:1.5em;
@@ -716,7 +643,7 @@ table.table caption
 	padding:  6px 0 25px 22px;
 }
 
-table.table thead th
+table.schedule thead th
 {
 	background-color: inherit;
 	padding:  7px 7px 7px 7px;
@@ -727,7 +654,7 @@ table.table thead th
 	color: #33393d;
 	letter-spacing: 2px;
 }
-table.table tbody th 
+table.schedule tbody th 
 {
 	font-size:0.9em;
 	font-family: Verdana, Arial, Helvetica, sans-serif;
@@ -740,18 +667,18 @@ table.table tbody th
 	border-bottom: 1px solid #e9e8e3; 
 }
 
-table.table thead th { 
+table.schedule thead th { 
 	border-bottom: 2px solid  #adadad;
 	
 }
 
-table.table thead th:first-child { 
+table.schedule thead th:first-child { 
 	border-bottom:none;
 	background-color: #f5f4ef;
 	border-right: 4px solid  #FFFFFF;
 }
 
-table.table tbody td
+table.schedule tbody td
 {
 	font-size:1em;
 	font-family: Verdana, Arial, Helvetica, sans-serif;
@@ -762,23 +689,54 @@ table.table tbody td
 	line-height:1.5em;
 }
 
+/**** NO TRACKS ****/
+table.schedule tbody td.notrack1 {
+	font-weight: normal;
+	text-align: center;
+	background-color: #fffeb2;	
+	border: 2px solid #ffffff;
+} 
+
+
+table.schedule tbody td.notrack1 a
+{
+	text-decoration: none;
+	color: #000000;
+}
+
+table.schedule tbody td.notrack2 {
+	font-weight: normal;
+	text-align: center;
+	background-color: #ffcccc;	
+	border: 2px solid #ffffff;
+} 
+
+
+table.schedule tbody td.notrack2 a
+{
+	text-decoration: none;
+	color: #000000;
+}
+
+
+
 
 /**** BREAK ****/
-table.table tbody td.break {
+table.schedule tbody td.break {
 	font-weight: bold;
 	text-align: center;
 	border: 2px solid #ffffff;	
-	background-color: #f5f4ef;	
 } 
 
-table.table tbody td.break:hover {
+/*** DISABLED
+table.schedule tbody td.break:hover {
 	background-color: #f5f4ef;	
 } 
-
+*/
 
 /**** USER COLORS ****/
 
-table.table tbody td.u1 {
+table.schedule tbody td.u1 {
 	border-right: 2px solid #ffffff;
 	border-top: 2px solid #ffffff;
 	color: #000000;
@@ -786,79 +744,91 @@ table.table tbody td.u1 {
 	background-color: #dae5ed;
 } 
 
-table.table tbody td.u1 a
+
+table.schedule tbody td.u1 a
 {
 	text-decoration: none;
 	color: #000000;
-
 }
 
-table.table tbody td.u1:hover {
+/*** DISABLED ***
+table.schedule tbody td.u1:hover {
 	background-color: #c2d4e2;
-} 
+} */
 
 
-table.table tbody td.u2 {
+table.schedule tbody td.u2 {
 	background-color: #daeddc;
 	border-right: 2px solid #ffffff;
 	border-top: 2px solid #ffffff;
 } 
 
-table.table tbody td.u2 a
+table.schedule tbody td.u2 a
 {
 	text-decoration: none;
 	color: #000000;
-
 }
 
-
-table.table tbody td.u2:hover {
+/*** DISABLED ***
+table.schedule tbody td.u2:hover {
 	background-color: #c2e2c4;
 	border-right: 2px solid #ffffff;
 	border-top: 2px solid #ffffff;
-} 
+} */
+
+
 
 
 /**** DEV COLORS ****/
-table.table tbody td.d1 {
+table.schedule tbody td.d1 {
 	background-color: #ededda;
 	border-top: 2px solid #ffffff;
 	
 } 
 
-table.table tbody td.d1 a
+table.schedule tbody td.d1 a
 {
 	text-decoration: none;
 	color: #000000;
 
 }
 
-table.table tbody td.d1:hover {
+/*** DISABLED ***
+table.schedule tbody td.d1:hover {
 	background-color: #e2e1c2;
-} 
+} */
 
 
 
-table.table tbody td.d2 {
+table.schedule tbody td.d2 {
 	background-color: #eddada;
 	border-top: 2px solid #ffffff;
 }
 
-table.table tbody td.d2 a
+table.schedule tbody td.d2 a
 {
 	text-decoration: none;
 	color: #000000;
 
 }
 
-table.table tbody td.d2:hover {
+/*** DISABLED ***
+table.schedule tbody td.d2:hover {
 	background-color: #e2c2c2;
-}  
+}  */
 
-
-table.table tbody th:hover {
+/* DISABLED ***
+table.schedule tbody th:hover {
 
 	background-color: #fff;
+}
+*/
+table.schedule tbody td.error {
+	background-color: #ff0000;
+}
+
+table.schedule tbody td.error:hover {
+	background-color: #ff0000;
 }
 
 
@@ -882,13 +852,6 @@ table.table tbody th:hover {
 	text-decoration: underline;
 }
 
-table.table tbody td.error {
-	background-color: #ff0000;
-}
-
-table.table tbody td.error:hover {
-	background-color: #ff0000;
-}
 
 
 /* * *  - e n d -  * * */
