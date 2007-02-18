@@ -133,7 +133,7 @@ class PublicScheduleNode(ScheduleNode):
         from boost_consulting.utils.dom import tag as _
         
         return _.table(
-            _class="table",
+            _class="schedule",
             summary="%s Schedule for %s" % (conference, d.strftime('%A, %B %d'))
             )[
                 _.caption[ d.strftime('%A, %B %d') ]
