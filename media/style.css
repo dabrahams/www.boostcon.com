@@ -1,4 +1,5 @@
-@import url("/site-media/docutils.css");
+/* @import url("/site-media/docutils.css"); */
+@import url("docutils.css");
 html,body {
 	background-color: #86aac5;
 	margin: 0 auto;
@@ -36,53 +37,38 @@ h3 {
 	font-size: 1.2em;
 	font-weight: bold;
 	letter-spacing: 1px;
-	margin: 0 0 0 10px;
-	padding: 20px 0 10px 0;
+	padding: 20px 0 10px 11px;
 	color: #4e87a6;
 	text-decoration: none;
+	margin: 0 0 0 0;
 }
 
 h3 a {
 	font-size: 1.2em;
 	font-weight: bold;
 	letter-spacing: 1px;
-	margin: 0 0 0 10px;
 	color: #4e87a6;
 	text-decoration: none;
+	padding: 20px 0 10px 11px;
+	margin: 0 0 0 0;
 }
 
-.node
-{
-	margin: 0 0 0 22px;
-}
-
-
-.section
-{
-	margin: 0 0 0 12px;
-}
-
-.node h5,.node h6 {
-    font-size: 115%;
-	padding: 0 0 4px 0;
-}
-
-.node h4 {
+h4 {
    font-size: 1.1em;
 	font-weight: bold;
 	color: #000000;
 	text-decoration: none;
-	margin: 0 0 0 12px;
-	padding: 30px 0 20px 0;
+	padding: 30px 0 20px 11px;
+	margin: 0 0 0 0;
 }
 
-.node h4 a {
+h4 a {
    font-size: 1.1em;
 	font-weight: bold;
 	color: #000000;
 	text-decoration: none;
-	margin: 0 0 0 12px;
-	padding: 30px 0 20px 0;
+	padding: 30px 0 20px 11px;
+	margin: 0 0 0 0;
 }
 
 
@@ -665,7 +651,7 @@ table.schedule caption
 	font-weight: bold;
 	color: #4e87a6;
 	letter-spacing: 3px;
-	padding:  75px 0 25px 22px;
+	padding:  75px 0px 25px 22px;
 }
 
 table.schedule thead th
