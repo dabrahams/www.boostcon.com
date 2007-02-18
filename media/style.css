@@ -33,15 +33,21 @@ h2 {
 	background-position: bottom left;
 }
 h3 {
-	font-size: 1.3em;
+	font-size: 1.2em;
 	font-weight: bold;
 	letter-spacing: 1px;
-	margin: 0 0 0 22px;
-	padding: 0 0 4px 0;
+	margin: 0 0 0 10px;
+	padding: 20px 0 10px 0;
 	color: #4e87a6;
+	text-decoration: none;
 }
 
 h3 a {
+	font-size: 1.2em;
+	font-weight: bold;
+	letter-spacing: 1px;
+	margin: 0 0 0 10px;
+	color: #4e87a6;
 	text-decoration: none;
 }
 
@@ -53,13 +59,32 @@ h3 a {
 
 .section
 {
-	margin: 0 0 0 22px;
+	margin: 0 0 0 12px;
 }
 
-h3,.node h4,.node h5,.node h6 {
+.node h5,.node h6 {
     font-size: 115%;
 	padding: 0 0 4px 0;
 }
+
+.node h4 {
+   font-size: 1.1em;
+	font-weight: bold;
+	color: #000000;
+	text-decoration: none;
+	margin: 0 0 0 12px;
+	padding: 30px 0 20px 0;
+}
+
+.node h4 a {
+   font-size: 1.1em;
+	font-weight: bold;
+	color: #000000;
+	text-decoration: none;
+	margin: 0 0 0 12px;
+	padding: 30px 0 20px 0;
+}
+
 
 a {
 	color: #4e87a6;
