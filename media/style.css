@@ -1,5 +1,23 @@
 /* @import url("/site-media/docutils.css"); */
 @import url("docutils.css");
+
+/* Some help for formatting pictures inserted via docutils */
+
+#document img.align-right {
+  margin-top: 10px;
+  margin-left: 10px;
+}
+
+#document img.align-left {
+  margin-bottom: 10px;
+  margin-right: 10px;
+  margin-left: 22px;
+}
+
+#document div.figure-right { float: right; clear: right; }
+#document div.figure-left { float: left; clear: left; }
+
+
 html,body {
 	background-color: #86aac5;
 	margin: 0 auto;
@@ -261,7 +279,7 @@ ul#menu li ul li a {
 ul#menu li ul li a:hover {
   text-decoration:none;
   width: 136px;
-  background-color: #ffffff;
+  background-color: #BBC0C1;
 }
 
 ul#menu li ul li ul {
@@ -455,9 +473,6 @@ div#sidebar_wm h5 {
 div#sidebar_wm div.block {
 	padding: 22px 14px 17px 13px;
 	background-color: #f5f4ef;
-	background-image: url(images/block-fade.gif);
-	background-repeat: repeat-x;
-	background-position: top;
 	width: 185px; /* 129px */ 
 	margin: 0 auto;
 	font-family: Verdana, Arial, Helvetica, sans-serif;
@@ -471,6 +486,9 @@ div#sidebar_wm div.block a:hover {
 }
 
 div#sidebar_wm div.first  {
+	background-image: url(images/block-fade.gif);
+	background-repeat: repeat-x;
+	background-position: top;
 	padding: 12px 14px 17px 13px;
 }
 
