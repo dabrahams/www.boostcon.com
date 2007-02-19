@@ -104,12 +104,14 @@ div.footer, div.header {
 div.line-block {
   display: block ;
   margin-top: 1em ;
-  margin-bottom: 1em }
+  margin-bottom: 1em;
+  margin-left: 22px; }
 
 div.line-block div.line-block {
   margin-top: 0 ;
   margin-bottom: 0 ;
-  margin-left: 1.5em }
+  /* margin-left: 1.5em; */
+  margin-left: 22px; }
 
 div.sidebar {
   margin-left: 1em ;
