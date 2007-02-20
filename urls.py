@@ -64,7 +64,9 @@ urlpatterns += patterns('django.views.generic',
 #    (r'^admin$', 'simple.redirect_to', {'url': r'/admin/'}),
     (r'^admin(?P<base>(/[^/]+)*)$', 'simple.redirect_to', {'url': r'/admin%(base)s/'}),
     (r'^(?P<base>.*)/$', 'simple.redirect_to', {'url': r'/%(base)s'}),
+                        
     (r'^$', 'simple.redirect_to', {'url': r'/home'}),
+    (r'^program/schedule$', 'simple.redirect_to', {'url': r'/program#schedule'}),
 )
 
 urlpatterns += patterns(
