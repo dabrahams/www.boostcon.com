@@ -1,6 +1,7 @@
 from django.db import models
 from datetime import *
 from utils.format import _12hr_time
+from django.template.defaultfilters import slugify
 
 class Conference(models.Model):
     name = models.CharField(maxlength=100, unique_for_year='start')
@@ -67,6 +68,9 @@ class Presenter(models.Model):
 
     def __str__(self):
         return self.first_name + ' ' + self.last_name
+
+    def get_absolute_url(self):
+        return '/program/speakers#%s' % slugify(str(self))
     
 class Session(models.Model):
     title = models.CharField(maxlength=200)
@@ -82,6 +86,9 @@ class Session(models.Model):
     short_title = models.CharField(
         'Abbreviation for session continuations in schedule and admin interface'
         , maxlength=50,blank=True)
+
+    schedule_note = models.CharField(
+        'Note to appear on schedule page', maxlength=200, blank=True)
     
     #
     # Format
@@ -165,6 +172,12 @@ class Session(models.Model):
         return ', '.join([s.last_name for s in self.presenters.all()]) \
                + ': ' + (self.short_title or self.title)
 
+    def get_absolute_url(self):
+        return '/program/sessions#%s' % self.slug()
+
+    def slug(self):
+        return slugify(str(self))
+        
     @property
     def finish(self):
         return self.start.start + timedelta(minutes=self.duration)

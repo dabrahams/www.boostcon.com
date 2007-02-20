@@ -58,69 +58,6 @@ class ScheduleNode(template.Node):
 
         return u'\n'.join(result).encode('utf-8')
 
-class PrivateScheduleNode(ScheduleNode):
-    def render_day(self, conference, day, tracks, session_counters):
-        from boost_consulting.utils.dom import tag as _
-
-        rows = []
-
-        header = None
-        
-        for ts in time_segments(conference,day):
-            row = _.tr
-            
-            if not rows:
-                header = _.th(_class="weekday")[
-                    [ _.em[ letter ] for letter in day.strftime('%A') ],
-                    _.br, day.strftime('%b %d')
-                    ]
-                row <<= header
-
-            range = format_time_range(ts.finish, ts.start)
-            
-            if isinstance(ts, Break):
-                row(_class="break")
-                
-                # add its time header
-                row <<= _.th(_class="timespan")[ range ]
-
-                # and an empty box across all tracks
-                row <<= _.td(colspan=len(tracks))[ 'break' ]
-                
-            else:
-                row <<= _.th(_class="timespan")[
-                    # I wish I knew a less-fragile way to the timeblock admin.
-                    _.a(href="/admin/conference/timeblock/%s/" % ts.id)[range]
-                    ]
-
-                row <<= [ _.td[ t.name ] for t in tracks ]
-
-            rows.append(row)
-
-        if header:
-            header(rowspan=len(rows))
-            
-        return u'\n'.join(str(r) for r in rows)
-            
-    def render(self, ctx):
-        return self.render_schedule(ctx, ctx['conference'])
-        
-def schedule(parser, token):
-    return PrivateScheduleNode()
-
-# Not used.
-class NoneIsAllDict(dict):
-    def __getitem__(self, k):
-        try:
-            return super(NoneIsAllDict,self).__getitem__(k)
-        except:
-            kk, v = self.iteritems()
-            if k is None:
-                return v
-            elif kk is None:
-                return
-            
-
 class PublicScheduleNode(ScheduleNode):
     def __init__(self, conference):
         super(PublicScheduleNode,self).__init__()
@@ -214,8 +151,11 @@ class PublicScheduleNode(ScheduleNode):
                             continue
                         
                     if current.start == b:
-                        link_target = _.a(name="session_%d" % current.id)
-                        title = current.title
+                        link_target = _.a(name=current.slug())
+                        if current.schedule_note:
+                            title = current.title, ' ', current.schedule_note
+                        else:
+                            title = current.title
                         session_counters[current.track] += 1
                         get_name = lambda p: p.full_name()
                         continued = ''
@@ -242,7 +182,7 @@ class PublicScheduleNode(ScheduleNode):
                                 # at the end
                               , [
                                     (
-                                      _.a(href="/program/speakers#presenter_%d" % p.id)[
+                                      _.a(href=p.get_absolute_url())[
                                          _.span(_class="name")[get_name(p)]
                                       ]
                                     , (n and [', '] or [': '])[0]
@@ -255,7 +195,7 @@ class PublicScheduleNode(ScheduleNode):
                                                                         '-first_name'))
                                 ][::-1] # reverse
 
-                              , _.a(href="/program/sessions#session_%d"% current.id)[title]
+                              , _.a(href=current.get_absolute_url())[title]
 
                               , continued
                               , error_msg
@@ -287,5 +227,4 @@ def public_schedule(parser, token):
         raise template.TemplateSyntaxError, "%r tag requires three arguments" % token.split_contents()[0]
     return PublicScheduleNode(Conference.objects.get(name=conference_name,start__year=int(year)))
 
-register.tag(schedule)
 register.tag(public_schedule)

@@ -6,7 +6,7 @@
 {% python _import_('conference.models').Session.objects.all(), as='sessions' %}
 {% load conference %}
 {% for s in sessions %}
-<h3><a name="session_{{s.id}}" href="/program#session_{{s.id}}">{{s.title}}</a></h3>
+<h3><a name="{{s.slug}}" href="/program#{{s.slug}}">{{s.title}}</a></h3>
 
 <table class="docutils field-list" rules="none" frame="void">
 <col class="field-name"/>
@@ -15,7 +15,7 @@
 {% if s.presenters.all %}
 <tr class="field">
 <th class="field-name">Speaker{% python len(s.presenters.all()) > 1 and 's' or '' %}:</th>
-<td class="field-body">{% python ', '.join([u'<a href="/program/speakers#presenter_%d">%s</a>' % (p.id, p.full_name()) for p in s.presenters.all()]) %}</td>
+<td class="field-body">{% python ', '.join([u'<a href="%s">%s</a>' % (p.get_absolute_url(), p.full_name()) for p in s.presenters.all()]) %}</td>
 </tr>
 
 <tr class="field"><th class="field-name">Format:</th><td class="field-body">{{s.format}}</td></tr>
