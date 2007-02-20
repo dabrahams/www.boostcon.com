@@ -288,7 +288,7 @@ advanced = Session.advanced
 
 shotgun = Session(
     title="A Shotgun Firehose Introduction to TR1 and Boost", 
-    short_title="Shotgun", 
+    short_title="Firehose Intro", 
     presenter=meyers,
     track=user,
     start=mon[0],
@@ -305,11 +305,13 @@ information in the time available (that's the firehose part), and
 it tries to include insights difficult or impossible to glean
 from the usual library documentation.
 
-From TR1, we'll discuss at least smart pointers (shared_ptr and
-weak_ptr), unordered containers (hash tables), regular
-expressions, fixed-size arrays, and tuples.  From Boost, we'll
-cover at least non-TR1 smart pointers, static asserts, lambda,
-file system, conversions, format, and variant.
+From TR1, we'll discuss smart pointers (shared_ptr and weak_ptr), unordered
+containers (hash tables), regular expressions, generalized function pointers and
+binders, tuples, and fixed-size arrays. From Boost, we'll cover non-TR1 smart
+pointers, static asserts, lambda, file system, conversions, format, and variant.
+For a detailed topic outline, consult `the description at Scott's web site`__.
+
+__ http://www.aristeia.com/TR1andBoost_frames.html
 """) | save
 
 meta = Session(
@@ -348,7 +350,7 @@ some new material will also be covered.
 
 network = Session(
     title="Network Programming with Boost", 
-    short_title="network", 
+    short_title="Network Programming", 
     presenter=garland,
     start=wed[0],
     track=user,
@@ -400,7 +402,7 @@ Tutorial Objectives
 
 text = Session(
   title="Text Processing with Boost", 
-  short_title="text", 
+  short_title="Text Processing", 
   presenter=niebler,
   start=tue[0],
   duration=90*2,
@@ -423,7 +425,7 @@ discover some hidden gems in Boost for dealing with Unicode.
 
 spirit2 = Session(
     title="A cookbook approach to parsing and output generation with Spirit2", 
-    short_title="spirit2", 
+    short_title="Spirit2", 
     presenters=(kaiser,de_guzman),
     start=thu[1],
     track=dev,
@@ -479,7 +481,7 @@ performance comparisons.
 
 hybrid = Session(
     title="Hybrid Development with Boost.Python (and More!)",
-    short_title="hybrid", 
+    short_title="Hybrid", 
     presenter=abrahams,
     format='tutorial',
     start=tue[2],
@@ -525,7 +527,7 @@ backends for each supported dynamic language.
         
 future = Session(
     title="A Possible Future for Software Development", 
-    short_title="future", 
+    short_title="Future", 
     presenter=parent,
     start=TimeBlock(start=datetime(2007,5,16,12+7,30), duration=120, conference=boostcon07) | save,
     format='keynote',
@@ -544,7 +546,7 @@ Source Libraries.
         
 agile = Session(
     title="Hands-on Agile Development Workshop with Boost", 
-    short_title="agile",
+    short_title="Agile",
     start=thu[0],
     duration=90*4,
     presenter=henney,
@@ -585,7 +587,7 @@ feedback both during and in between iterations.
 
 rvalue = Session(
     title="An Introduction to the Rvalue Reference in C++0X", 
-    short_title="rvalue",
+    short_title="Rvalue Reference",
     duration=2*90,
     presenter=hinnant,
     start=wed[2],
@@ -633,7 +635,7 @@ may well find your own innovative uses of this new tool.
 
 con_intro = Session(
     title="An Introduction to Concepts in C++0x", 
-    short_title="con-intro", 
+    short_title="Concepts Intro", 
     presenter=gregor,
     start=wed[0],
     track=dev,
@@ -664,7 +666,7 @@ we will explore some of the more advanced features of concepts.
 
 con_lib = Session(
     title="Evolving a C++ Library to C++0x Concepts", 
-    short_title="con-lib",
+    short_title="Evolving to Concepts",
     start=thu[2],
     presenter=gregor,
     format='tutorial',
@@ -693,7 +695,7 @@ breaking existing user code.
 
 summer = Session(
     title="Boost and Google Summer of Code", 
-    short_title="summer", 
+    short_title="Summer of Code", 
     presenter=garland,
     start=fri[0],
     track=user,
@@ -722,7 +724,7 @@ beyond.
 
 future = Session(
     title="Future of Boost", 
-    short_title="future", 
+    short_title="Future of Boost", 
     presenter=garland,
     start=fri[1],
     track=dev,
@@ -747,7 +749,7 @@ value = Session(
     start=tue[0],
     track=user,
     duration=4*90,
-    short_title="value-based", 
+    short_title="Value-Based", 
     presenters=(garland,henney),
     format='tutorial',
     level=beginner|intermediate,
@@ -800,7 +802,7 @@ that should be developed to support building of value types)
 
 proto = Session(
     title="Implementing Domain Specific Embedded Languages using Expression Templates and Boost.Proto", 
-    short_title="proto", 
+    short_title="Proto", 
     presenter=niebler,
     format='tutorial',
     start=thu[0],
@@ -876,7 +878,7 @@ specializations in the library's namespace.
     
 bgl = Session(
     title="Generic Programming and the Boost Graph Library", 
-    short_title="bgl", 
+    short_title="BGL", 
     presenter=siek,
     format='tutorial',
     start=mon[0],
@@ -910,7 +912,7 @@ the STL.
 
 python = Session(
     title="Implementing out-of-the-ordinary object models using Boost.Python    ", 
-    short_title="python", 
+    short_title="Python object models", 
     presenter=shead,
     format='lecture',
     start=tue[3],
@@ -941,8 +943,9 @@ including:
     """) | save
 
 drinks = Session(    
-    title="Informal Gathering, Drinks. Travelling companions welcome.", 
-    short_title="drinks",
+    title="Informal Gathering; Drinks.",
+    schedule_note="Travelling companions welcome.",
+    short_title="Drinks",
     format='social event',
     start=TimeBlock(start=datetime(2007,5,13,12+6,00), duration=0, conference=boostcon07) | save,
     description=u"""
