@@ -61,7 +61,7 @@ h3 {
 	margin: 0 0 0 0;
 }
 
-h3 a {
+h3 a, h3 a:link, h3 a:hover, h3 a:visited, h3 a:active {
 	font-size: 1.2em;
 	font-weight: bold;
 	letter-spacing: 1px;
@@ -70,6 +70,7 @@ h3 a {
 	padding: 20px 0 10px 11px;
 	margin: 0 0 0 0;
 }
+
 
 h4 {
    font-size: 1.1em;
@@ -524,8 +525,9 @@ div.node {
 	background-color: #FFFFFF
 }
 
-div.node a:link:hover {
-	color: black;
+
+div.node a:hover {
+	color: #000000;
 	text-decoration: underline;
 }
 
@@ -654,7 +656,8 @@ div.node p.schedule-day {
  * * * * * * * * * * * * * * * * * */
  
  
-table.schedule {
+table.schedule
+{
 	font-size: 1em;
 	font-family: Verdana, Arial, Helvetica, sans-serif;
 	line-height:1.2em;
@@ -662,6 +665,8 @@ table.schedule {
 	border-collapse: collapse;
 	margin: 6px 0 14px 22px;
 }
+
+
 table.schedule caption
 {
 	background-color:inherit;
