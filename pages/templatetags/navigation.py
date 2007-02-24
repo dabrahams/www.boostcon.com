@@ -23,81 +23,87 @@ class NavigationNode(template.Node):
         super(NavigationNode,self).__init__()
         self.maxdepth = maxdepth
         
-    @classmethod
     def _menu_items(self, root, pages, depth):
-        if depth == 0:
-            return ''
+        if depth >= self.maxdepth:
+            return []
 
         items = []
 
+        indent = (depth*4+2)*' '
+        
         # Check to see if we're at the top level.  We're checking str() here
         # because we seem to be generating too many page objects.
         if len(pages) and str(pages[0].parent()) == str(root):
             items.append(
-                '    <li class="self"><a href="%s">%s Home</a></li>'
-                % (
-                    root.get_absolute_url(),
-                    root.menu_title))
+                indent
+                + '<li><a href="%s" class="self">%s Home</a></li>'
+                % (root.get_absolute_url(),root.menu_title))
 
+        link_attributes = ' class="drop"'
+        
         for i in range(len(pages)):
             p = pages[i]
-            c = depth > 1 and p.children()
 
-            classes = []
+            next_level = self._menu_items(root, p.children(),depth+1)
 
-            if c:
-                classes.append('submenu')
+            items.append(indent+'<li>')
             
-            if i == len(pages) - 1:
-                classes.append('last')
-
-            if depth > 1:
-                next_level = self._menu_items(root, p.children(),depth-1)
-            else:
-                next_level = ''
+            url = p.get_absolute_url()
+            menu_title = p.menu_title
 
             items.append(
-                '    <li %s><a href="%s">%s</a>\n%s</li>'
-                % (
-                        len(classes) and ('class="' + ' '.join(classes) + '"') or '',
-                        p.get_absolute_url(),
-                        p.menu_title,
-                        next_level))
+                indent+ (next_level and self.open_parent or self.open_leaf) % locals()
+                )
+            
+            items += next_level
+            
+            if next_level:
+                items.append(indent+ self.close_parent)
 
+            items.append(indent+ '</li>')
+            
         if not items:
-            return ''
+            return []
         else:
-            return '  <ul>\n%s</ul>\n' % ''.join(items)
+            indent = indent[:-2]
+            return [indent+'<ul>'] + items + [indent+'</ul>']
 
+    open_parent = '''<a%(link_attributes)s href="%(url)s">%(menu_title)s<!--[if IE 7]><!--></a><!--<![endif]-->
+<!--[if lte IE 6]><table><tr><td><![endif]-->'''
+    close_parent = '''<!--[if lte IE 6]></td></tr></table></a><![endif]-->'''
+    open_leaf = '''<a href="%(url)s">%(menu_title)s</a>'''
+
+        
     def render(self, ctx):
 
-        result = '<ul id="menu">\n'
-        first = 'first-'
+        result = ['<ul>']
+        link_attributes = ''
 
         # In case there's no representative page for "home," synthesize one
         top_pages = get_pages('/')
         if top_pages[0].menu_title.lower() != 'home':
-            print 'inserting Home; top_pages=', top_pages
             top_pages.insert(0, Home())
             
         for top in top_pages:
             children = top.children()
             if children:
-                # increase depth to create multilevel menus
-                menu_items = self._menu_items(top, children, depth=self.maxdepth)
-                parent = ' class="parent"'
+                # to create multilevel menus, increase depth 
+                menu_items = self._menu_items(
+                    top, children, depth=0)
             else:
-                menu_items = ''
-                parent = ''
+                menu_items = []
 
-            result += '<li%s>' % parent
+            url = top.get_absolute_url()
+            menu_title = top.menu_title
+            
+            result += ['<li>', self.open_parent % locals()]       \
+                      + menu_items                              \
+                      + [ self.close_parent, '</li>']
 
-            result += '<a class="top-menu" href="%s">%s</a>\n' % (top.get_absolute_url(), top.menu_title)
-            result += menu_items
-            result += '</li>'
+        result += ['</ul>']
 
         # Unicode error if we don't encode here.  
-        return (result + '</ul>\n').encode('utf-8')
+        return ('\n'.join(result)).encode('utf-8')
 
 def navigation_tree(parser, token):
     try:

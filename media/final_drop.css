@@ -1,0 +1,202 @@
+/* ================================================================ 
+This copyright notice must be untouched at all times.
+
+The original version of this stylesheet and the associated (x)html
+is available at http://www.cssplay.co.uk/menus/final_drop.html
+Copyright (c) 2005-2007 Stu Nicholls. All rights reserved.
+This stylesheet and the assocaited (x)html may be modified in any 
+way to fit your requirements.
+=================================================================== */
+
+.menu 
+{
+   font-family:  Verdana, Arial, Helvetica, sans-serif;
+   width: 925px;
+   font-size:1.1em;
+   background: #f5f4ef;
+   padding: 0px 0px 0px 25px;
+   height: 25px;
+   position:relative;
+   z-index:100;
+}
+
+
+/* remove all the bullets, borders and padding from the default list styling */
+.menu ul 
+{
+   padding:0;
+   margin:0;
+   list-style-type:none;
+}
+
+
+.menu ul ul 
+{
+   width:150px;
+}
+
+/* float the list to make it horizontal and a relative positon 
+ * so that you can control the dropdown menu positon 
+ */
+.menu li {
+   float:left;
+   width:150px;
+   position:relative;
+}
+
+/* style the links for the top level */
+.menu a, .menu a:visited 
+{
+   display:block;
+   font-size: 1.0em;
+   text-decoration:none; 
+   text-transform:lowercase;
+   font-weight: bold;
+   color: #32373b; 
+   width:139px; 
+   height:25px; 
+   border: 0; 
+   background: #f5f4ef; 
+   padding-left:10px; 
+   line-height: 25px;
+}
+
+/* a hack so that IE5.5 faulty box model is corrected */
+* html .menu a, * html .menu a:visited 
+{
+   width:150px;
+   w\idth:139px;
+}
+
+/* style the second level background */
+.menu ul ul a.drop, .menu ul ul a.drop:visited 
+{
+   font-weight: normal;
+   background:#e2dfd2 url(images/dropdown.gif) bottom right no-repeat;
+   color: #32373b;
+}
+
+
+/* style the second level hover */
+.menu ul ul a.drop:hover
+{
+   font-weight: normal;
+   background:#d0ccb9 url(images/dropdown.gif) bottom right no-repeat;
+   color: #000000;
+}
+
+.menu ul ul :hover > a.drop 
+{
+   font-weight: normal;
+   background:#d0ccb9 url(images/dropdown.gif) bottom right no-repeat;
+   color: #000000;
+}
+
+/* style the third level background */
+.menu ul ul ul a, .menu ul ul ul a:visited 
+{
+   font-weight: normal;
+   background:#e2dfd2;
+   color: #32373b;
+}
+
+/* style the third level hover */
+.menu ul ul ul a:hover 
+{
+   font-weight: normal;
+   background:#d0ccb9; 
+   color: #000000;  
+}
+
+
+
+/* hide the sub levels and give them a positon absolute so that they take up no room */
+.menu ul ul 
+{
+   visibility:hidden;
+   position:absolute;
+   height:0;
+   top:25px;
+   left:0; 
+   width:150px;
+   border-top: 2px solid #ffffff;
+}
+/* another hack for IE5.5 */
+* html .menu ul ul 
+{
+   border-top: 2px solid #ffffff;
+   top:25px;
+   t\op:25px;
+}
+
+/* position the third level flyout menu */
+.menu ul ul ul
+{
+   left:150px; 
+   top: -2px;
+   width:150px;
+}
+/* position the third level flyout menu for a left flyout */
+.menu ul ul ul.left 
+{
+   left:-150px;
+}
+
+/* style the table so that it takes no ppart in the layout - required for IE to work */
+.menu table {position:absolute; top:0; left:0;}
+
+/* style the second level links */
+.menu ul ul a, .menu ul ul a:visited 
+{
+   background:#e2dfd2; 
+   color:#32373b; 
+   height:auto; 
+   line-height:2.2em; 
+   padding: 0px 10px; 
+   width:129px;
+   font-weight: normal;
+
+   
+/* yet another hack for IE5.5 */
+}
+
+
+* html .menu ul ul a
+{
+   width:150px;
+   w\idth:129px;
+}
+
+
+/* style the top level hover */
+.menu a:hover, .menu ul ul a:hover{
+color:#000000; 
+background:#d0ccb9;
+}
+.menu :hover > a, .menu ul ul :hover > a {
+color:#000000; 
+background:#d0ccb9;
+}
+
+/* make the second level visible when hover on first level list OR link */
+.menu ul li:hover ul,
+.menu ul a:hover ul{
+visibility:visible; 
+}
+/* keep the third level hidden when you hover on first level list OR link */
+.menu ul :hover ul ul{
+visibility:hidden;
+}
+
+/* make the third level visible when you hover over second level list OR link */
+.menu ul :hover ul :hover ul{ 
+visibility:visible;
+}
+
+.menu ul ul a.self
+{
+   font-size: 90%;
+   font-weight: bold;
+}
+
+.menu ul ul *:focus { outline : none }
