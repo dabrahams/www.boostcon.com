@@ -10,7 +10,8 @@
   {% endblock %}
 	<meta http-equiv="Content-Language" content="en" />
 	<meta name="author" content="Zoltán 'cad' Juhász" />
-	<link rel="stylesheet" href="/site-media/style.css" type="text/css" />
+	<link rel="stylesheet" type="text/css" href="/site-media/style.css" />
+	<link rel="stylesheet" type="text/css" href="/site-media/final_drop.css" />
   {% block more_style %}
   {% endblock %}
 </head>
@@ -24,9 +25,10 @@
   </div>
   <div id="header"> 
     <h1><span>Boostcon</span></h1>
+<div class="menu">
     {% load navigation %}
       {% navigation_tree 3 %}
-  </div>
+</div>  </div>
 {% block page %}
   <div id="content"> 
     {% block content %}
