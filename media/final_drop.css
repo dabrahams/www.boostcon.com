@@ -196,8 +196,7 @@ visibility:visible;
 .menu ul ul a.self
 {
    /* font-size: 90%; */
-   /* font-weight: bold; */
-   display: none;
+   font-weight: bold;
 }
 
 .menu ul ul *:focus { outline : none }
