@@ -11,7 +11,7 @@ way to fit your requirements.
 .menu 
 {
    font-family:  Verdana, Arial, Helvetica, sans-serif;
-   width: 925px;
+   /* width: 925px; */
    font-size:1.1em;
    background: #f5f4ef;
    padding: 0px 0px 0px 25px;
@@ -32,7 +32,7 @@ way to fit your requirements.
 
 .menu ul ul 
 {
-   width:150px;
+   width:12em;
 }
 
 /* float the list to make it horizontal and a relative positon 
@@ -40,7 +40,7 @@ way to fit your requirements.
  */
 .menu li {
    float:left;
-   width:150px;
+   width:12em;
    position:relative;
 }
 
@@ -53,19 +53,19 @@ way to fit your requirements.
    text-transform:lowercase;
    font-weight: bold;
    color: #32373b; 
-   width:139px; 
+   /* width:139px; */ 
    height:25px; 
    border: 0; 
    background: #f5f4ef; 
-   padding-left:10px; 
+   padding-left:0.5em; 
    line-height: 25px;
 }
 
 /* a hack so that IE5.5 faulty box model is corrected */
 * html .menu a, * html .menu a:visited 
 {
-   width:150px;
-   w\idth:139px;
+   width:11em;
+   w\idth:11em;
 }
 
 /* style the second level background */
@@ -118,7 +118,7 @@ way to fit your requirements.
    height:0;
    top:25px;
    left:0; 
-   width:150px;
+   width:12em;
    border-top: 2px solid #ffffff;
 }
 /* another hack for IE5.5 */
@@ -132,14 +132,14 @@ way to fit your requirements.
 /* position the third level flyout menu */
 .menu ul ul ul
 {
-   left:150px; 
+   left:12em; 
    top: -2px;
-   width:150px;
+   width:12em;
 }
 /* position the third level flyout menu for a left flyout */
 .menu ul ul ul.left 
 {
-   left:-150px;
+   left:-12em;
 }
 
 /* style the table so that it takes no ppart in the layout - required for IE to work */
@@ -152,8 +152,8 @@ way to fit your requirements.
    color:#32373b; 
    height:auto; 
    line-height:2.2em; 
-   padding: 0px 10px; 
-   width:129px;
+   padding: 0px 0.5em; 
+   width:11em;
    font-weight: normal;
 
    
@@ -163,8 +163,8 @@ way to fit your requirements.
 
 * html .menu ul ul a
 {
-   width:150px;
-   w\idth:129px;
+   width:11em;
+   w\idth:11em;
 }
 
 
@@ -195,8 +195,9 @@ visibility:visible;
 
 .menu ul ul a.self
 {
-   font-size: 90%;
-   font-weight: bold;
+   /* font-size: 90%; */
+   /* font-weight: bold; */
+   display: none;
 }
 
 .menu ul ul *:focus { outline : none }

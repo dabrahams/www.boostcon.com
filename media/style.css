@@ -3,14 +3,16 @@
 /* Some help for formatting pictures inserted via docutils */
 
 #document img.align-right {
-  margin-top: 10px;
-  margin-left: 10px;
+	float: right;
+	margin: 10px 0px 10px 10px;
+	padding: 5px;
+	border: 1px solid #86aac5;
 }
 
 #document img.align-left {
-  margin-bottom: 10px;
-  margin-right: 10px;
-  margin-left: 22px;
+	float: left;
+	margin: 0px 10px 10px 22px;
+	border: 1px solid #86aac5;
 }
 
 #document div.figure-right { float: right; clear: right; }
@@ -25,7 +27,9 @@ html,body {
 	height: 100%;
 	background-image: url(images/body-background.gif);
 	background-repeat: repeat-y;
-	background-position: center;
+	background-position: right;
+	/* enough to fit 5 menus @ 12em each, and to account for the borders */
+	min-width: 80em;
 }
 h1 {
 	background-image: url(images/logo.gif);
@@ -45,7 +49,7 @@ h2 {
 	margin: 0 0 18px 22px;
 	padding: 0 0 4px 0;
 	display: block;
-	width: 650px;
+	/* width: 650px; */
 	background-image: url(images/ruler.gif);
 	background-repeat: repeat-x;
 	background-position: bottom left;
@@ -64,8 +68,8 @@ h3 a, h3 a:link, h3 a:hover, h3 a:visited, h3 a:active {
 	font-size: 1.2em;
 	font-weight: bold;
 	letter-spacing: 1px;
-	color: #4e87a6;
-	text-decoration: none;
+	color: #4e87a6 !important;
+	text-decoration: none !important;
 	padding: 20px 0 10px 11px;
 	margin: 0 0 0 0;
 }
@@ -100,15 +104,17 @@ a:link {
 	text-decoration: underline;
 }
 div#container {
-	position: relative; /* needed for footer positioning*/
+	/* position: relative; */ /* needed for footer positioning*/
 	height: auto !important; /* real browsers */
 	height: 100%; /* IE6: treaded as min-height*/
 	min-height: 100%; /* real browsers */
 	width: 100%;
 	clear: both;
 	background-image: url(images/container-background.gif);
-	background-position: center;
+	background-position: left;
 	background-repeat: repeat-y;
+	/* enough to fit 5 menus @ 12em each, and to account for the borders */
+	min-width: 80em;
 }
 div#navigator {
 	width: 100%;
@@ -117,9 +123,11 @@ div#navigator {
 	background-image: url(images/navigator-background.gif);
 }
 div#navigator div.center {
-	width: 950px;
+	/* width: 950px; */
+	/* margin: 0 auto; */
+	margin: 0em 36px 0em 36px;
+	
 	background-color: #32373b;
-	margin: 0 auto;
 	padding: 0 2px;
 	height: 22px;
 	background-image: url(images/navigator-bottom.gif);
@@ -151,24 +159,28 @@ a#home span {
 }
 
 div#header {
+	/* width: 950px; */
+	/* margin: 0 auto; */
+	margin: 0em 36px 0em 36px;
+	
 	background-image: url(images/header-background.gif);
 	background-position: top right;
 	background-repeat: no-repeat;
-	margin: 0;
+	/* margin: 0; */
 	padding: 0;
-	width: 950px;
-	margin: 0 auto;
 	background-color: #FFFFFF;
 }
 
 div#content {
+	/* width: 950px; */
+	/* margin: 0 auto; */
+	margin: 0em 36px 0em 36px;
+	
 	height: 100%;
 	min-height: 100%; 
-	width: 950px;
-	margin: 0 auto;
 	clear: both;
-	background-image: url(images/body-background.gif);
-	background-position: center;
+	/* background-image: url(images/body-background.gif);
+	background-position: center; */
 }
 
 div#sidebar {
@@ -297,14 +309,17 @@ div#sidebar a {
 
 
 div#sidebar_wm {
-	margin: 0;
-	padding: 10px 0 0 0;
+	margin: 0px;
+	padding: 0px;
 	width: 250px; /* 200px */ 
 	float: left;
-	background-color: #FFFFFF;
+	clear: left;
+	/* background-color: #FFFFFF;
 	background-repeat: no-repeat;
 	background-position: top;
-}
+ */
+ border-top: 10px solid #FFFFFF;
+ }
 
 div#sidebar_wm h4 {
 	width: 199px; /* 143px */ 
@@ -327,7 +342,7 @@ div#sidebar_wm h5 {
 
 div#sidebar_wm div.block {
 	padding: 22px 14px 17px 13px;
-	background-color: #f5f4ef;
+	/* background-color: #f5f4ef; */
 	width: 185px; /* 129px */ 
 	margin: 0 auto;
 	font-family: Verdana, Arial, Helvetica, sans-serif;
@@ -363,20 +378,23 @@ div#sidebar_wm a {
 
 
 div#main {
-	margin: 18px 0 0 0;
+	/* margin: 18px 0 0 0; */
 	padding: 0;
-	width: 700px;
-	float: right;
+	/* width: 700px; */
+	/* float: right; */
+	/* float: left; */
+	margin: 18px 25px 0px 268px;
 	background-color: #FFFFFF;
 }
 
 div.node {
-	clear: both;
+	/* clear: both; */
 	font-size: 1.2em;
 	font-weight: normal;
-	width: 650px;
-	margin: 0 0 17px 0;
-	background-color: #FFFFFF
+	/* width: 650px; */
+	margin: 0 17px 17px 0;
+	background-color: #FFFFFF;
+	/* position: relative; */
 }
 
 
@@ -398,10 +416,12 @@ div.node p img.cube {
 }
 
 div#footer {
+	/* width: 950px; */
+	/* margin: 0 auto; */
+	margin: 0em 36px 0em 36px;
+	
 	clear: both;
 	bottom: 0; /* stick to bottom */
-	width: 950px;
-	margin: 0 auto;
 	height: 30px;
 	background-image: url(images/cadesign.gif);
 	background-repeat: no-repeat;
