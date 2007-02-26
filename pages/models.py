@@ -97,7 +97,8 @@ def get_pages(root_url):
         pages.append(page)
 
     pages.sort(lambda x,y: cmp((x.order,x.title), (y.order,y.title)))
-
+    pages = tuple(pages) # make it immutable for the cache
+    
     # Setup prev/next links for all siblings.
     prev = None
     for p in pages:
