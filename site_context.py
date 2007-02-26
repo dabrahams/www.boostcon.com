@@ -1,4 +1,5 @@
 import sys
+import os
 DEBUG = False
 
 # For some reason checking uname is not enough to identify the server running on
