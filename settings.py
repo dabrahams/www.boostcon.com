@@ -54,7 +54,7 @@ TEMPLATE_LOADERS = (
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
-    'utils.context_processors.media_url.media_url',
+    'utils.context_processors.media_url',
     
     # These are Django's defaults.  Too bad there's no way to just add to the
     # defaults without repeating them.

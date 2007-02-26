@@ -1,6 +1,7 @@
 from docutils import core, io
 from docutils.writers import html4css1
 from docutils import nodes
+from settings import MEDIA_URL
 
 class DocInfoExtractWriter(html4css1.Writer):
     """HTML writer that extracts docinfo fields. docinfo_fields 
@@ -32,6 +33,13 @@ class DocInfoExtractTranslator(html4css1.HTMLTranslator):
         self.result = {}
         self.in_interested_field = False
 
+    def starttag(self, node, tagname, suffix='\n', empty=0, **attributes):
+        for a in 'href', 'src':
+            href = attributes.get(a)
+            if href and href.startswith('/site-media/'):
+                attributes[a] = href.replace('/site-media', MEDIA_URL, 1)
+        return html4css1.HTMLTranslator.starttag(self, node, tagname, suffix, empty, **attributes)
+    
     def visit_field(self, node):
         if self.in_docinfo:
             name = node[0].astext()
