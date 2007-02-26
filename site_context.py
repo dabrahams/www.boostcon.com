@@ -18,6 +18,11 @@ if uname[1] == 'boost-consulting.com':
     DATABASE_PASSWORD = 'crtplib'
     MEDIA_URL = 'http://www.boostcon.com:8081/site-media'
     serve_media = False
+
+    # URL prefix for admin media -- CSS, JavaScript and images. Make sure to use a
+    # trailing slash.
+    # Examples: "http://foo.com/media/", "/media/".
+    ADMIN_MEDIA_PREFIX = 'http://boostcon.com:8081/admin-media'
     
     #
     # Add an elif cases here to support your environment
@@ -30,3 +35,9 @@ else: # default settings work for my local development server
     MEDIA_URL = '/site-media'
     serve_media = True
     DEBUG = True
+
+    # URL prefix for admin media -- CSS, JavaScript and images. Make sure to use a
+    # trailing slash.
+    # Examples: "http://foo.com/media/", "/media/".
+    ADMIN_MEDIA_PREFIX = '/media/'
+    
