@@ -5,11 +5,13 @@
 #document img.align-right {
 	float: right;
 	margin: 10px 0px 10px 10px;
+  clear: none;
 }
 
 #document img.align-left {
 	float: left;
 	margin: 0px 10px 10px 22px;
+  clear: none;
 }
 
 #document div.figure-right { float: right; clear: right; }
