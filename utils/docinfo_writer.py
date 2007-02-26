@@ -1,7 +1,7 @@
 from docutils import core, io
 from docutils.writers import html4css1
 from docutils import nodes
-from settings import MEDIA_URL
+from boost_consulting.settings import MEDIA_URL
 
 class DocInfoExtractWriter(html4css1.Writer):
     """HTML writer that extracts docinfo fields. docinfo_fields 
