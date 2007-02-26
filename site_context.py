@@ -1,7 +1,12 @@
 import os
 
 DEBUG = False
-if os.environ.get('BOOSTCON_SITE_CONTEXT') == 'boostcon':
+try:
+    uname = os.uname()
+except AttributeError:
+    uname = 5 * (None,)
+    
+if uname[1] == 'boost-consulting.com':
     
     # So our ReST translation code can find the source files with relative
     # paths.
