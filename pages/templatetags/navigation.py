@@ -11,9 +11,6 @@ class Home:
     def get_absolute_url(self):
         return '/'
 
-    # Not sure why this is needed, but somehow an instance of Home class is
-    # getting mixed up with real pages.
-    url = '/'
     title = 'Home'
     menu_title = 'Home'
     page_title = 'Home'
@@ -82,7 +79,7 @@ class NavigationNode(template.Node):
         # In case there's no representative page for "home," synthesize one
         top_pages = get_pages('/')
         if top_pages[0].menu_title.lower() != 'home':
-            top_pages.insert(0, Home())
+            top_pages = (Home(),) + top_pages
             
         for top in top_pages:
             children = top.children()
