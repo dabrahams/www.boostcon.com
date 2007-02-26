@@ -1,13 +1,10 @@
-import os
-
+import sys
 DEBUG = False
-try:
-    uname = os.uname()
-except AttributeError:
-    uname = 5 * (None,)
-    
-if uname[1] == 'boost-consulting.com':
-    
+
+# For some reason checking uname is not enough to identify the server running on
+# boost-consulting.com.  It occasionally falls through and decides that I'm on
+# my local development server.
+if 'runserver' not in sys.argv:
     # So our ReST translation code can find the source files with relative
     # paths.
     os.chdir('/usr/local/www/apache22/boostcon/src/boost_consulting/')
