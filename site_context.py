@@ -11,7 +11,7 @@ if os.environ.get('BOOSTCON_SITE_CONTEXT') == 'boostcon':
     DATABASE_NAME = 'boostcon.db'
     DATABASE_USER = 'boostcon'
     DATABASE_PASSWORD = 'xxx'
-
+    MEDIA_URL = 'http://www.boostcon.com:8081/site-media'
     serve_media = False
     
     #
@@ -22,6 +22,6 @@ else: # default settings work for my local development server
     DATABASE_NAME = 'boostcon.db'
     DATABASE_USER = ''
     DATABASE_PASSWORD = 'xxx'
-
+    MEDIA_URL = '/site-media'
     serve_media = True
     DEBUG = True

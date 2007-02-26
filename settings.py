@@ -36,11 +36,7 @@ USE_I18N = True
 
 # Absolute path to the directory that holds media.
 # Example: "/home/media/media.lawrence.com/"
-MEDIA_ROOT = ''
-
-# URL that handles the media served from MEDIA_ROOT.
-# Example: "http://media.lawrence.com"
-MEDIA_URL = ''
+MEDIA_ROOT = 'media'
 
 # URL prefix for admin media -- CSS, JavaScript and images. Make sure to use a
 # trailing slash.
@@ -57,6 +53,16 @@ TEMPLATE_LOADERS = (
 #     'django.template.loaders.eggs.load_template_source',
 )
 
+TEMPLATE_CONTEXT_PROCESSORS = (
+    'utils.context_processors.media_url.media_url',
+    
+    # These are Django's defaults.  Too bad there's no way to just add to the
+    # defaults without repeating them.
+    "django.core.context_processors.auth",
+    "django.core.context_processors.debug",
+    "django.core.context_processors.i18n")
+
+    
 MIDDLEWARE_CLASSES = (
 #    'django.middleware.cache.CacheMiddleware',
     'django.middleware.common.CommonMiddleware',
