@@ -38,11 +38,6 @@ USE_I18N = True
 # Example: "/home/media/media.lawrence.com/"
 MEDIA_ROOT = 'media'
 
-# URL prefix for admin media -- CSS, JavaScript and images. Make sure to use a
-# trailing slash.
-# Examples: "http://foo.com/media/", "/media/".
-ADMIN_MEDIA_PREFIX = '/media/'
-
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = 'gh59=sq@9vj*9dc#n6oflm1^z-_llra(go&hy!n=zy+q8kwq4a'
 
