@@ -503,6 +503,13 @@ div#footer {
 dl.docutils dt {
   font-weight: bold }
 
+dl.docutils dd {
+  margin-left: 44px }
+
+dl.docutils dd p {
+  margin-left: 0 }
+
+
 div.node p.schedule-day {
    background-color: #89a;
    text-align: center;
