@@ -10,7 +10,7 @@
 
 #document img.align-left {
 	float: left;
-	margin: 0px 10px 10px 22px;
+	margin: 0px 10px 10px 0px;
   clear: none;
 }
 
@@ -45,9 +45,9 @@ h2 {
 	font-weight: normal;
 	letter-spacing: 2px;
 	text-align: left;
-	margin: 0 0 18px 22px;
+	margin: 0 0 18px 0px;
 	padding: 0 0 4px 0;
-	display: block;
+	display: block !important;
 	/* width: 650px; */
 	background-image: url(images/ruler.gif);
 	background-repeat: repeat-x;
@@ -57,7 +57,7 @@ h3 {
 	font-size: 1.2em;
 	font-weight: bold;
 	letter-spacing: 1px;
-	padding: 20px 0 10px 11px;
+	padding: 20px 0 10px 0px;
 	color: #4e87a6;
 	text-decoration: none;
 	margin: 0 0 0 0;
@@ -392,7 +392,7 @@ div.node {
 	font-size: 1.2em;
 	font-weight: normal;
 	/* width: 650px; */
-	margin: 0 22px 22px 0 !important;
+	margin: 0 22px 22px 22px !important;
 	background-color: #FFFFFF;
 	/* position: relative; */
 }
@@ -408,7 +408,7 @@ html>/**/body div.node {
 	margin: 0 0 29px 0;
 }
 div.node p {
-	margin: 6px 0 14px 22px;
+	margin: 6px 0 14px 0px;
 }
 
 div.node p img.cube {
@@ -544,7 +544,7 @@ table.schedule
 	line-height:1.2em;
 	width:95%;
 	border-collapse: collapse;
-	margin: 6px 0px 14px 22px;
+	margin: 6px 0px 14px 0px;
 }
 
 
@@ -555,7 +555,7 @@ table.schedule caption
 	font-weight: bold;
 	color: #4e87a6;
 	letter-spacing: 3px;
-	padding:  75px 0px 25px 22px;
+	padding:  75px 0px 25px 0px;
 }
 
 table.schedule thead th
