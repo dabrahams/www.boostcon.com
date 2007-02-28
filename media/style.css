@@ -69,7 +69,7 @@ h3 a, h3 a:link, h3 a:hover, h3 a:visited, h3 a:active {
 	letter-spacing: 1px;
 	color: #4e87a6 !important;
 	text-decoration: none !important;
-	padding: 20px 0 10px 11px;
+	padding: 20px 0 10px 0px;
 	margin: 0 0 0 0;
 }
 
@@ -79,7 +79,7 @@ h4 {
 	font-weight: bold;
 	color: #000000;
 	text-decoration: none;
-	padding: 30px 0 20px 11px;
+	padding: 30px 0 20px 0px;
 	margin: 0 0 0 0;
 }
 
@@ -88,7 +88,7 @@ h4 a {
 	font-weight: bold;
 	color: #000000;
 	text-decoration: none;
-	padding: 30px 0 20px 11px;
+	padding: 30px 0 20px 0px;
 	margin: 0 0 0 0;
 }
 
