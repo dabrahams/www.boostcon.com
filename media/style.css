@@ -68,11 +68,13 @@ h3 a, h3 a:link, h3 a:hover, h3 a:visited, h3 a:active {
 	font-weight: bold;
 	letter-spacing: 1px;
 	color: #4e87a6 !important;
-	text-decoration: none !important;
 	padding: 20px 0 10px 0px;
 	margin: 0 0 0 0;
 }
 
+a[id], a[id], a[id], a[id] {
+	text-decoration: none !important;
+}
 
 h4 {
    font-size: 1.1em;
