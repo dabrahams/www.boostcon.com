@@ -14,13 +14,15 @@ if 'runserver' not in sys.argv:
     DATABASE_NAME = 'boostcon.db'
     DATABASE_USER = 'boostcon'
     DATABASE_PASSWORD = 'crtplib'
-    MEDIA_URL = 'http://www.boostcon.com:8081/site-media'
+    MEDIA_URL = '/site-media'
+    # MEDIA_URL = 'http://www.boostcon.com:8081/site-media'
     serve_media = False
 
     # URL prefix for admin media -- CSS, JavaScript and images. Make sure to use a
     # trailing slash.
     # Examples: "http://foo.com/media/", "/media/".
-    ADMIN_MEDIA_PREFIX = 'http://boostcon.com:8081/admin-media/'
+    ADMIN_MEDIA_PREFIX = '/admin-media/'
+    # ADMIN_MEDIA_PREFIX = 'http://boostcon.com:8081/admin-media/'
     
     #
     # Add an elif cases here to support your environment
