@@ -67,6 +67,8 @@ urlpatterns += patterns('django.views.generic',
                         
     (r'^$', 'simple.redirect_to', {'url': r'/home'}),
     (r'^program/schedule$', 'simple.redirect_to', {'url': r'/program#schedule'}),
+    (r'^about/shops/eu$', 'simple.redirect_to', {'url': r'http://boostcon.spreadshirt.net'}),
+    (r'^about/shops/usa$', 'simple.redirect_to', {'url': r'http://boostcon.spreadshirt.com'}),
 )
 
 urlpatterns += patterns(

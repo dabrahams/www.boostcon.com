@@ -94,11 +94,13 @@ class News(models.Model):
             item,created = News.objects.get_or_create(slug=slug, date=date,
                 defaults={'summary': summary, 'body': body, 'title': title})
 
-            item.summary = summary
-            item.body = body
-            item.title = title
+#             item.summary = summary
+#             item.body = body
+#             item.title = title
 
             item.save()
+            print 'item=', item.get_absolute_url()
+            print 'n=', len(News.objects.all())
 
         cache.set('news_mod_time', mod_time)
 
