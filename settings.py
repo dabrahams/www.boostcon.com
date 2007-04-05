@@ -72,7 +72,8 @@ APPEND_SLASH = False
 TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates".
     # Always use forward slashes, even on Windows.
-    'templates'
+    'templates',
+    os.path.join(os.path.dirname(__file__), 'templates')
 )
 
 INSTALLED_APPS = (
