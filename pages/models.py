@@ -55,7 +55,7 @@ def _load_page(path):
 
     return result
 
-content_root = 'content/pages'
+content_root = os.path.join(os.path.dirname(__file__), '../content/pages')
 
 def get_pages(root_url):
     """Get all pages rooted at 'root_url'.
