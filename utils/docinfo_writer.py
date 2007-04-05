@@ -2,6 +2,7 @@ from docutils import core, io
 from docutils.writers import html4css1
 from docutils import nodes
 from boost_consulting.settings import MEDIA_URL
+import os
 
 class DocInfoExtractWriter(html4css1.Writer):
     """HTML writer that extracts docinfo fields. docinfo_fields 
@@ -91,6 +92,10 @@ def get_parts(src, writer, **kw):
                  'toc_backlinks':'none'
                  }
     overrides.update(kw)
+
+    # Hack. Change to the correct directory for includes to work.
+    os.chdir(os.path.dirname(os.path.dirname(__file__)))
+
     parts = core.publish_parts(
         source=src, writer=writer, settings_overrides=overrides)
     return (parts, writer.result)
