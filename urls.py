@@ -15,6 +15,8 @@ urlpatterns = patterns('',
 
     (r'^feed/(?P<url>[-\w]+)', 'django.contrib.syndication.views.feed',
      {'feed_dict': feeds}),
+
+    (r'^photos/', include('stockphoto.urls')),
 )
 
 if serve_media:
@@ -61,14 +63,22 @@ urlpatterns += patterns(
 urlpatterns += patterns('django.views.generic',
 # Enable this if you want a special homepage layout.                        
 #    (r'^$', 'simple.direct_to_template', {'template': 'homepage.html'}),
-#    (r'^admin$', 'simple.redirect_to', {'url': r'/admin/'}),
+
+    # admin and stockphoto both use a trailing-slash URL scheme, so we need to
+    # make sure they always have one.                    
     (r'^admin(?P<base>(/[^/]+)*)$', 'simple.redirect_to', {'url': r'/admin%(base)s/'}),
+    (r'^photos(?P<base>(/[^/]+)*)$', 'simple.redirect_to', {'url': r'/photos%(base)s/'}),
     (r'^(?P<base>.*)/$', 'simple.redirect_to', {'url': r'/%(base)s'}),
                         
     (r'^$', 'simple.redirect_to', {'url': r'/home'}),
     (r'^program/schedule$', 'simple.redirect_to', {'url': r'/program#schedule'}),
     (r'^about/shops/eu$', 'simple.redirect_to', {'url': r'http://boostcon.spreadshirt.net'}),
     (r'^about/shops/usa$', 'simple.redirect_to', {'url': r'http://boostcon.spreadshirt.com'}),
+)
+
+urlpatterns += patterns('',
+    (r'^accounts/login/?$', 'django.contrib.auth.views.login'),
+    (r'^accounts/logout/?$', 'django.contrib.auth.views.logout'),
 )
 
 urlpatterns += patterns(
