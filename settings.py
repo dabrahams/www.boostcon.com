@@ -50,7 +50,7 @@ TEMPLATE_LOADERS = (
 
 TEMPLATE_CONTEXT_PROCESSORS = (
     'utils.context_processors.media_url',
-    
+
     # These are Django's defaults.  Too bad there's no way to just add to the
     # defaults without repeating them.
     "django.core.context_processors.auth",
@@ -76,17 +76,22 @@ TEMPLATE_DIRS = (
     os.path.join(os.path.dirname(__file__), 'templates')
 )
 
+STOCKPHOTO_URL = '/photos'
+
 INSTALLED_APPS = (
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.sites',
     'django.contrib.admin',
+    'django.contrib.markup',
 #    'django.contrib.comments',
 
     'boost_consulting.news',
     'boost_consulting.pages',
 #    'boost_consulting.program',
     'boost_consulting.conference',
+
+    'stockphoto'
 )
 
