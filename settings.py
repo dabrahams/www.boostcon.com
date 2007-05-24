@@ -95,3 +95,8 @@ INSTALLED_APPS = (
     'stockphoto'
 )
 
+AUTHENTICATION_BACKENDS = (
+    'boost_consulting.htpasswd.HtPasswdBackend',
+)
+
+HTPASSWD='/usr/local/etc/boostcon/trac-passwd'
