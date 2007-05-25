@@ -16,7 +16,7 @@ urlpatterns = patterns('',
     (r'^feed/(?P<url>[-\w]+)', 'django.contrib.syndication.views.feed',
      {'feed_dict': feeds}),
 
-    (r'^photos/', include('stockphoto.urls')),
+    (r'^community/photos/', include('stockphoto.urls')),
 )
 
 if serve_media:
@@ -67,11 +67,12 @@ urlpatterns += patterns('django.views.generic',
     # admin and stockphoto both use a trailing-slash URL scheme, so we need to
     # make sure they always have one.                    
     (r'^admin(?P<base>(/[^/]+)*)$', 'simple.redirect_to', {'url': r'/admin%(base)s/'}),
-    (r'^photos(?P<base>(/[^/]+)*)$', 'simple.redirect_to', {'url': r'/photos%(base)s/'}),
+    (r'^community/photos(?P<base>(/[^/]+)*)$', 'simple.redirect_to', {'url': r'/community/photos%(base)s/'}),
     (r'^(?P<base>.*)/$', 'simple.redirect_to', {'url': r'/%(base)s'}),
                         
     (r'^$', 'simple.redirect_to', {'url': r'/home'}),
     (r'^program/schedule$', 'simple.redirect_to', {'url': r'/program#schedule'}),
+    (r'^community/wiki$', 'simple.redirect_to', {'url': r'/traq'}),
     (r'^about/shops/eu$', 'simple.redirect_to', {'url': r'http://boostcon.spreadshirt.net'}),
     (r'^about/shops/usa$', 'simple.redirect_to', {'url': r'http://boostcon.spreadshirt.com'}),
 )
