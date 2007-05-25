@@ -75,8 +75,8 @@ urlpatterns += patterns('django.views.generic',
     (r'^community/wiki$', 'simple.redirect_to', {'url': r'/traq'}),
                         
     # keep the old redirects from about/shops in case people have linked there.
-    (r'^(about|community)/shops/eu$', 'simple.redirect_to', {'url': r'http://boostcon.spreadshirt.net'}),
-    (r'^(about|community)/shops/usa$', 'simple.redirect_to', {'url': r'http://boostcon.spreadshirt.com'}),
+    (r'^(?:about|community)/shops/eu$', 'simple.redirect_to', {'url': r'http://boostcon.spreadshirt.net'}),
+    (r'^(?:about|community)/shops/usa$', 'simple.redirect_to', {'url': r'http://boostcon.spreadshirt.com'}),
 )
 
 urlpatterns += patterns('',
