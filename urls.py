@@ -24,9 +24,11 @@ if settings.serve_media:
     # For some reason I haven't yet discovered, the media/ URL seems to be
     # reserved for media used by django's admin module, so we use site-media
     urlpatterns += patterns(
-        '',
-        (r'^site-media/(?P<path>.*)$',
-         'django.views.static.serve', {'document_root': 'media/'}))
+        'django.views.static',
+
+        (r'^site-media/(?P<path>.*)$', 'serve', {'document_root': 'media/'}),
+        (r'^var/sphene/(?P<path>.*)$', 'serve', {'document_root': 'media/var/sphene/'}),
+        )
 
 # Generic views
 
