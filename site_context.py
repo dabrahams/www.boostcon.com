@@ -1,11 +1,13 @@
 import sys
 import os
-DEBUG = False
+DEBUG = True
+
+onserver = 'boost-consulting.com' in os.popen('uname -a').read()
 
 # For some reason checking uname is not enough to identify the server running on
 # boost-consulting.com.  It occasionally falls through and decides that I'm on
 # my local development server.
-if 'manage.py' not in sys.argv or 'runfcgi' in sys.argv:
+if onserver:
     # So our ReST translation code can find the source files with relative
     # paths.
 
@@ -14,14 +16,12 @@ if 'manage.py' not in sys.argv or 'runfcgi' in sys.argv:
     DATABASE_USER = 'boostcon'
     DATABASE_PASSWORD = 'xxx'
     MEDIA_URL = '/site-media'
-    # MEDIA_URL = 'http://www.boostcon.com:8081/site-media'
-    serve_media = False
 
-    # URL prefix for admin media -- CSS, JavaScript and images. Make sure to use a
-    # trailing slash.
-    # Examples: "http://foo.com/media/", "/media/".
-    ADMIN_MEDIA_PREFIX = '/admin-media/'
-    # ADMIN_MEDIA_PREFIX = 'http://boostcon.com:8081/admin-media/'
+    serve_media = 'runserver' in sys.argv
+    if serve_media:
+        ADMIN_MEDIA_PREFIX = '/media/'
+    else:
+        ADMIN_MEDIA_PREFIX = '/admin-media/'
     
     #
     # Add an elif cases here to support your environment
