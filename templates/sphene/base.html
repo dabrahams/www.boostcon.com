@@ -1,5 +1,10 @@
 {% extends "base_with_news.html" %}
 
+{% load sphboard_extras %}
+{% block title %}
+BoostCon - {% if group and group.longname %}{{ group.longname }}{% else %}Community{% endif %}{% if sph.subtitle %} | {{ sph.subtitle }}{% endif %}
+{% endblock %}
+
 {% block detail %}
 {% endblock %}
 
