@@ -118,7 +118,7 @@ MIDDLEWARE_CLASSES += (
 ROOT_URLCONF = 'boost_consulting.urls'
 
 INSTALLED_APPS += (
-    'djaptcha',
+#    'djaptcha',
     'sphene.community',
     'sphene.sphboard',
     'sphene.sphwiki',
