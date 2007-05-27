@@ -5,10 +5,9 @@ DEBUG = False
 # For some reason checking uname is not enough to identify the server running on
 # boost-consulting.com.  It occasionally falls through and decides that I'm on
 # my local development server.
-if 'manage.py' not in sys.argv:
+if 'manage.py' not in sys.argv or 'runfcgi' in sys.argv:
     # So our ReST translation code can find the source files with relative
     # paths.
-    os.chdir('/usr/local/www/apache22/boostcon/src/boost_consulting/')
 
     DATABASE_ENGINE = 'postgresql'
     DATABASE_NAME = 'boostcon.db'

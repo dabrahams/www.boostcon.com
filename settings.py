@@ -1,5 +1,8 @@
 # Django settings for boost_consulting project.
 
+import os
+ROOT_PATH = os.path.dirname(os.path.abspath(__file__))
+
 ADMINS = (
     ('Dave Abrahams', 'dave@boost-consulting.com'),
     # ('Your Name', 'your_email@domain.com'),
@@ -66,7 +69,6 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.doc.XViewMiddleware',
 )
 
-ROOT_URLCONF = 'boost_consulting.urls'
 APPEND_SLASH = False
 
 TEMPLATE_DIRS = (
@@ -76,7 +78,7 @@ TEMPLATE_DIRS = (
     os.path.join(os.path.dirname(__file__), 'templates')
 )
 
-STOCKPHOTO_URL = '/photos'
+STOCKPHOTO_URL = '/community/photos'
 
 INSTALLED_APPS = (
     'django.contrib.auth',
@@ -85,18 +87,49 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.admin',
     'django.contrib.markup',
-#    'django.contrib.comments',
 
     'boost_consulting.news',
     'boost_consulting.pages',
-#    'boost_consulting.program',
     'boost_consulting.conference',
 
-    'stockphoto'
+    'stockphoto',
+    
 )
 
-AUTHENTICATION_BACKENDS = (
-    'boost_consulting.htpasswd.HtPasswdBackend',
+#
+# SCT settings
+#
+SPH_SETTINGS = { 'wiki_rss_url' : '/feeds/community/wiki/',
+                 }
+
+LIB_PATH = os.path.join(ROOT_PATH, 'communitytools', 'sphenecoll')
+sys.path.append(LIB_PATH)
+
+TEMPLATE_DIRS += (    os.path.join(LIB_PATH, 'templates'),)
+TEMPLATE_CONTEXT_PROCESSORS += (    'sphene.community.context_processors.navigation',)
+
+MIDDLEWARE_CLASSES += (
+    'sphene.community.middleware.ThreadLocals',
+    'sphene.community.middleware.GroupMiddleware',
+    'sphene.community.middleware.MultiHostMiddleware',
+    'sphene.community.middleware.PermissionDeniedMiddleware',
 )
 
-HTPASSWD='/usr/local/etc/boostcon/trac-passwd'
+ROOT_URLCONF = 'boost_consulting.urls'
+
+INSTALLED_APPS += (
+    'djaptcha',
+    'sphene.community',
+    'sphene.sphboard',
+    'sphene.sphwiki',
+    'django.contrib.humanize',
+)    
+
+SPH_HOST_MIDDLEWARE_URLCONF_MAP = {
+    '.*': { 'urlconf': 'boost_consulting.urls',
+                        'params': { 'groupName': 'boostcon' }
+                        },
+}
+
+FONT_PATH = '/usr/share/fonts/truetype/ttf-bitstream-vera/VeraBd.ttf'
+FONT_SIZE = 16

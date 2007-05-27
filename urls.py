@@ -1,7 +1,7 @@
 from django.conf.urls.defaults import *
 from news.models import News
 from news.feeds import NewsFeed
-from boost_consulting.settings import serve_media
+from boost_consulting import settings
 
 feeds = {
     'news': NewsFeed
@@ -11,15 +11,13 @@ urlpatterns = patterns('',
     # Uncomment this for admin:
     (r'^admin/', include('django.contrib.admin.urls')),
 
-#    (r'^comments/', include('django.contrib.comments.urls.comments')),
-
     (r'^feed/(?P<url>[-\w]+)', 'django.contrib.syndication.views.feed',
      {'feed_dict': feeds}),
 
     (r'^community/photos/', include('stockphoto.urls')),
 )
 
-if serve_media:
+if settings.serve_media:
     # Debug only - http://www.djangoproject.com/documentation/static_files/
     # explains why we shouldn't serve media from django in a release server.
     #              
@@ -57,27 +55,49 @@ urlpatterns += patterns(
 
 urlpatterns += patterns(
     'boost_consulting.conference',
-    (r'^admin/(?P<conference_name>.*)/schedule$', 'views.schedule_admin'),
+    (r'^admin/conference/(?P<conference_name>.*)/schedule$', 'views.schedule_admin'),
     )
+
+defaultdict = { 'groupName': 'boostcon' }
+
+urlpatterns += patterns('',
+    (r'^community/forums/', include('sphene.sphboard.urls'), defaultdict),
+    (r'^community/wiki/', include('sphene.sphwiki.urls'), defaultdict),
+
+    # Only for development
+    (r'^static/sphene/(.*)$', 'django.views.static.serve', {'document_root': settings.ROOT_PATH + '/communitytools/static/sphene' }),
+
+#    (r'^admin/', include('django.contrib.admin.urls')),
+)
+
+def add_trailing_slash(url_prefix):
+    return (
+        '^' + url_prefix + '(?P<base>(/[^/]+)*)$',
+        'simple.redirect_to',
+        {'url': '/' + url_prefix + '%(base)s/'},
+        )
 
 urlpatterns += patterns('django.views.generic',
 # Enable this if you want a special homepage layout.                        
 #    (r'^$', 'simple.direct_to_template', {'template': 'homepage.html'}),
 
-    # admin and stockphoto both use a trailing-slash URL scheme, so we need to
+    # admin, stockphoto, and Sphene both use a trailing-slash URL scheme, so we need to
     # make sure they always have one.                    
-    (r'^admin(?P<base>(/[^/]+)*)$', 'simple.redirect_to', {'url': r'/admin%(base)s/'}),
-    (r'^community/photos(?P<base>(/[^/]+)*)$', 'simple.redirect_to', {'url': r'/community/photos%(base)s/'}),
+    add_trailing_slash('admin'),
+    add_trailing_slash('community/photos'),
+    add_trailing_slash('community/wiki'),
+    add_trailing_slash('community/forums'),
+                        
     (r'^(?P<base>.*)/$', 'simple.redirect_to', {'url': r'/%(base)s'}),
                         
     (r'^$', 'simple.redirect_to', {'url': r'/home'}),
     (r'^program/schedule$', 'simple.redirect_to', {'url': r'/program#schedule'}),
-    (r'^community/wiki$', 'simple.redirect_to', {'url': r'/traq'}),
                         
     # keep the old redirects from about/shops in case people have linked there.
     (r'^(?:about|community)/shops/eu$', 'simple.redirect_to', {'url': r'http://boostcon.spreadshirt.net'}),
     (r'^(?:about|community)/shops/usa$', 'simple.redirect_to', {'url': r'http://boostcon.spreadshirt.com'}),
 )
+
 
 urlpatterns += patterns('',
     (r'^accounts/login/?$', 'django.contrib.auth.views.login'),
