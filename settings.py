@@ -100,7 +100,9 @@ INSTALLED_APPS = (
 # SCT settings
 #
 SPH_SETTINGS = { 'wiki_rss_url' : '/feeds/community/wiki/',
-                 'django096compatibility': True
+                 'django096compatibility': True,
+                 'markdown_top_heading_level' : 2,
+                 'markdown_number_headings' : False,
                  }
 
 LIB_PATH = os.path.join(ROOT_PATH, 'communitytools', 'sphenecoll')
