@@ -1,0 +1,43 @@
+Sphene Community Tools (SCT) - http://sct.sphene.net
+Copyright (C) by Herbert Poul (herbert.poul@gmail.com)
+
+
+Sphene Community Tools are django applications designed to be easily
+pluggable into any django project.
+
+
+## Directories
+
+- sphenecoll/	Collection of django application (the base source for SCT).
+- static/	Static media files which contain images and css.
+
+## Requirements
+
+- [Django](http://www.djangoproject.com) - I'm using the latest version from 
+  the subversion trunk.
+- Python >= 2.4
+- [PyCrypto](http://sf.net/projects/pycrypto) - (e.g. debian package python-crypto)
+
+## Installation
+
+### Apply Patches
+
+As of 2007-05-13 no patches are needed any more. The customization of
+the permalink function is now included in sphene.community.sphutils.
+
+- permalink_with_additional_function_arg.diff - see <http://code.djangoproject.com/ticket/3530>
+
+
+### Python library path
+
+You need to add libs/ and sphenecoll/ to your python include path and
+static/ needs to be served from your django installation.
+(static/sphene/ is enough)
+
+
+## Examples
+
+The examples/ directory (currently) contains one example project.
+Please see the README file in it's directory (examples/simpleproject)
+for more information.
+
