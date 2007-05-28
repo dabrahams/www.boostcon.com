@@ -27,7 +27,10 @@ if settings.serve_media:
         'django.views.static',
 
         (r'^site-media/(?P<path>.*)$', 'serve', {'document_root': 'media/'}),
-        (r'^var/sphene/(?P<path>.*)$', 'serve', {'document_root': 'media/var/sphene/'}),
+        (r'^var/sphene/(?P<path>.*)$', 'serve', {'document_root':
+                                                 'media/var/sphene/'}),
+        # Only for development
+        (r'^static/sphene/(.*)$', 'serve', {'document_root': settings.ROOT_PATH + '/communitytools/static/sphene' }),
         )
 
 # Generic views
@@ -63,13 +66,13 @@ urlpatterns += patterns(
 defaultdict = { 'groupName': 'boostcon' }
 
 urlpatterns += patterns('',
+    # redirect so that the BoostCon link, which surely appears all over the
+    # wiki, will just lead back to the home page.
+    (r'^community/wiki/show/BoostCon/?$',
+     'django.views.generic.simple.redirect_to', {'url': r'/'}),
+
     (r'^community/forums/', include('sphene.sphboard.urls'), defaultdict),
     (r'^community/wiki/', include('sphene.sphwiki.urls'), defaultdict),
-
-    # Only for development
-    (r'^static/sphene/(.*)$', 'django.views.static.serve', {'document_root': settings.ROOT_PATH + '/communitytools/static/sphene' }),
-
-#    (r'^admin/', include('django.contrib.admin.urls')),
 )
 
 def add_trailing_slash(url_prefix):
@@ -83,12 +86,14 @@ urlpatterns += patterns('django.views.generic',
 # Enable this if you want a special homepage layout.                        
 #    (r'^$', 'simple.direct_to_template', {'template': 'homepage.html'}),
 
+                        
     # admin, stockphoto, and Sphene both use a trailing-slash URL scheme, so we need to
     # make sure they always have one.                    
     add_trailing_slash('admin'),
     add_trailing_slash('community/photos'),
     add_trailing_slash('community/wiki'),
     add_trailing_slash('community/forums'),
+
                         
     (r'^(?P<base>.*)/$', 'simple.redirect_to', {'url': r'/%(base)s'}),
                         
