@@ -1,6 +1,6 @@
 {% extends "stockphoto/base.html" %}
 {% load markup %}
-{% block title %} BoostCon photos: 
+{% block title %} stockphoto photos: 
 {% if object %}
 {{ object.title }}
 {% endif %}
@@ -13,7 +13,7 @@
 </p>
 
 
-<h2>{{ object.title }}</h2>
+<h1>{{ object.title }}</h1>
 
 {% if object.photo_set.count %}
 
