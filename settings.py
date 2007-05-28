@@ -103,8 +103,8 @@ INSTALLED_APPS = (
 #
 SPH_SETTINGS = { 'wiki_rss_url' : '/feeds/community/wiki/',
                  'django096compatibility': True,
-                 'markdown_top_heading_level' : 2,
-                 'markdown_number_headings' : False,
+                 'markdown_top_heading_level' : 3,
+                 'markdown_number_headings' : True,
                  }
 
 LIB_PATH = os.path.join(ROOT_PATH, 'communitytools', 'sphenecoll')
