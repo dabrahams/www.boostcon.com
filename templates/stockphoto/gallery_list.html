@@ -44,7 +44,7 @@
 </p>
 {% else %}
 <p>
-  <a href="/accounts/login/?next={{ request.path }}">
+  <a href="/accounts/login/?next={{ request.path|urlencode }}">
     Login</a> to create a new gallery.
 </p>
 {% endif %}

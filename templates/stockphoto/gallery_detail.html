@@ -49,7 +49,7 @@ show up.</p>
 </p>
 {% else %}
 <p>
-  <a href="/accounts/login/?next={{ request.path }}">
+  <a href="/accounts/login/?next={{ request.path|urlencode }}">
     Login</a> to add or edit photos
 </p>
 {% endif %}

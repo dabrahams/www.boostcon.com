@@ -123,6 +123,15 @@ div#navigator {
 	background-color: #32373b;
 	background-image: url(images/navigator-background.gif);
 }
+
+div.center {
+    color: #FFFFFF;
+    line-height: 190%;
+}
+div.center>a {
+	color: #FFFFFF;
+}
+
 div#navigator div.center {
 	/* width: 950px; */
 	/* margin: 0 auto; */
