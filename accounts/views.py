@@ -11,6 +11,7 @@ from django.template import loader, Context
 from django.core.mail import send_mail
 from django.contrib.auth import authenticate,login
 from accounts.models import Participant
+from sphene.community.models import Group as Community, GroupMember as CommunityMember
 
 from sphene.contrib.libs.common.utils.misc import cryptString, decryptString
 
@@ -109,6 +110,10 @@ def register_hash(request, hashcode, group = None):
                 m = attr_extract_re.match(s)
                 setattr(participant, m.group(1), eval(m.group(2)))
             participant.save()
+
+            # This should really be sent in the hash, but we have to fix it
+            # quick; the invitations have all been sent!
+            CommunityMember(user = user, group = Community.objects.get(name__exact='boostcon')).save()
             
             user = authenticate( username = formdata['username'], password =
                                  formdata['password'] )
