@@ -21,6 +21,14 @@
 <div id="container"> 
   <div id="navigator"> 
     <div class="center"> <a id="home" href="/"><span>home</span></a> <a id="contact" href="/about/contact"><span>contact</span></a> 
+
+{% if user.is_authenticated %}
+logged in as <em>{{ user.username|escape }}</em> | <a href="/accounts/logout?next={{ request.path|urlencode }}">log out</a>
+{% else %}
+<a href="/accounts/login?next={{ request.path|urlencode }}">log in / register</a>
+{% endif %}&nbsp;
+
+
     </div>
   </div>
   <div id="header"> 

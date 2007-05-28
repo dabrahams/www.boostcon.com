@@ -75,6 +75,12 @@ urlpatterns += patterns('',
     (r'^community/wiki/', include('sphene.sphwiki.urls'), defaultdict),
 )
 
+urlpatterns += patterns('django.contrib.auth.views',
+    (r'^accounts/login/?$', 'login'),
+    (r'^accounts/logout/?$', 'logout'),
+)
+
+
 def add_trailing_slash(url_prefix):
     return (
         '^' + url_prefix + '(?P<base>(/[^/]+)*)$',
@@ -105,11 +111,6 @@ urlpatterns += patterns('django.views.generic',
     (r'^(?:about|community)/shops/usa$', 'simple.redirect_to', {'url': r'http://boostcon.spreadshirt.com'}),
 )
 
-
-urlpatterns += patterns('',
-    (r'^accounts/login/?$', 'django.contrib.auth.views.login'),
-    (r'^accounts/logout/?$', 'django.contrib.auth.views.logout'),
-)
 
 urlpatterns += patterns(
     'boost_consulting',
