@@ -17,9 +17,9 @@ from datetime import datetime
 from tempfile import NamedTemporaryFile, mkdtemp
 import Image
 try:
-	from cStringIO import StringIO
+    from cStringIO import StringIO
 except ImportError:
-	from StringIO import StringIO
+    from StringIO import StringIO
 
 # Handling settings here
 try:
@@ -42,9 +42,9 @@ class ImportManipulator(forms.Manipulator):
             forms.DateField(field_name="date"),
         )
     def valid_zipfile(self, field_data, all_data):
-    	zip_file = StringIO(field_data['content'])
-	zip = zipfile.ZipFile(zip_file)
-	return not zip.testzip()
+        zip_file = StringIO(field_data['content'])
+        zip = zipfile.ZipFile(zip_file)
+        return not zip.testzip()
 
 
 
@@ -81,36 +81,43 @@ def import_photos(request, thegallery):
         errors = manipulator.get_validation_errors(new_data)
         if not errors:
             # So now everything is okay
-	    f = StringIO(new_data['zipfile']['content']) # the zip"file"
-	    zip = zipfile.ZipFile(f)
+            f = StringIO(new_data['zipfile']['content']) # the zip"file"
+            zip = zipfile.ZipFile(f)
             manipulator.do_html2python(new_data)
             date = new_data['date']
             if not date:
                 date = datetime.date(datetime.now())
 
-	    destdir= os.path.join(settings.MEDIA_ROOT, STOCKPHOTO_BASE,
-                                  datetime.strftime(datetime.now(), 
-				  "%Y/%m/%d/"))
-	    if not os.path.isdir(destdir):
-	        os.makedirs(destdir, 0775)
-            for filename in zip.namelist():
-                photopath = os.path.join(destdir, os.path.basename(filename))
-                data = zip.read(filename)
+            # The path from the media root to the directory where we're
+            # unzipping the photos.
+            path_to_destdir= os.path.join(
+                STOCKPHOTO_BASE, datetime.strftime(datetime.now(), "%Y/%m/%d/"))
+
+            # Create that directory
+            destdir = os.path.join(settings.MEDIA_ROOT, path_to_destdir)
+            if not os.path.isdir(destdir):
+                os.makedirs(destdir, 0775)
+                
+            for sourcepath in zip.namelist():
+                data = zip.read(sourcepath)
+
+                # Skip over anything that doesn't turn out to be an image
                 file_data = StringIO(data)
                 try:
                     Image.open(file_data)
                 except:
-                    # don't save and process non Image files
                     continue
-                photo = file(photopath, "wb")
+
+                # Extract the image
+                filename = os.path.basename(sourcepath)
+                photo = file(os.path.join(destdir, filename), "wb")
                 photo.write(data)
 
-                # Create the object
-                if photopath.startswith(os.path.sep):
-                    photopath = photopath[len(settings.MEDIA_ROOT):]
-                photo = Photo(image=photopath, date=date,
+                # Create the database object
+                photo = Photo(image=os.path.join(path_to_destdir,filename),
+                              date=date,
                               photographer=new_data['photographer'],
-                              title = os.path.basename(filename),
+                              title = os.path.basename(sourcepath),
                               gallery_id = thegallery)
                 # Save it -- the thumbnails etc. get created.
                 photo.save()
@@ -122,11 +129,11 @@ def import_photos(request, thegallery):
             return response
     else:
         errors = new_data = {}
+        
     form = forms.FormWrapper(manipulator, new_data, errors)
     return render_to_response('stockphoto/import_form.html',
-			      dict(form=form, gallery=gallery),
+                              dict(form=form, gallery=gallery),
                               context_instance = RequestContext(request))
-	# request, 
 
 @login_required
 def export(request, thegallery):
