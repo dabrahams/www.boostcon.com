@@ -93,6 +93,7 @@ INSTALLED_APPS = (
     'boost_consulting.news',
     'boost_consulting.pages',
     'boost_consulting.conference',
+    'boost_consulting.accounts',
 
     'stockphoto',
     

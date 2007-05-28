@@ -75,10 +75,23 @@ urlpatterns += patterns('',
     (r'^community/wiki/', include('sphene.sphwiki.urls'), defaultdict),
 )
 
-urlpatterns += patterns('django.contrib.auth.views',
-    (r'^accounts/login/?$', 'login'),
-    (r'^accounts/logout/?$', 'logout'),
-)
+urlpatterns += patterns('',
+                        
+    (r'^accounts/login/?$', 'django.contrib.auth.views.login'),
+    (r'^accounts/logout/?$', 'django.contrib.auth.views.logout'),
+    (r'^accounts/register/(?P<hashcode>[a-zA-Z/\+0-9=]+)/$',
+     'boost_consulting.accounts.views.register_hash', defaultdict),
+                        )
+
+
+
+
+# This would allow anyone at all to register.  We're not quite ready for that
+# yet.
+#
+# urlpatterns += patterns('',
+#     (r'^accounts/register/?$', 'sphene.community.views.register'),
+# )
 
 
 def add_trailing_slash(url_prefix):
