@@ -1,6 +1,6 @@
 import sys
 import os
-DEBUG = True
+DEBUG = False
 
 onserver = 'boost-consulting.com' in os.popen('uname -a').read()
 
