@@ -15,7 +15,7 @@ making the inaugural BoostCon such a great experience.
 
 [2007-05-29 Update]: See the new `community portal`__ to see
 photos_ from the event and find out what people are posting about
-the conference in the forums_ and on the wiki_.
+their experiences in the forums_ and on the wiki_.
 
 __ /community
 
