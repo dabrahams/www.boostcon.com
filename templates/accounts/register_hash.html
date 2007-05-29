@@ -1,0 +1,139 @@
+{% extends "sphene/community/register_hash.html" %}
+
+{% block stillmorestyle %}
+<style type="text/css">
+
+    #inner {
+        padding-left: 5px;
+    }
+
+    form {
+        float: left;
+    }
+
+    form#login {
+        width: 220px;
+        margin-right: 25px;
+    }
+
+    form#register {
+        width: 220px;
+        margin-left: 25px;
+    }
+
+    form input {
+        padding: 0.2em;
+        font-weight: normal;
+    }
+
+    label input {
+        border: 1px inset #CCCCCC;
+        color: #333333;
+    }
+
+    form input.button {
+        border: 1px outset #CCCCCC;
+        background-color: #EEEEEE;
+        margin: 10px 0 0 5px;
+        color: #333333;
+        font-size: 120%;
+    }
+
+    #field-login-username, 
+    #field-login-password {
+        width: 210px;
+        padding: 5px;
+    }
+
+    #field-login-username input, 
+    #field-login-password input {
+        width: 205px;
+    }
+
+    #field-username,
+    #field-first-name,
+    #field-last-name,
+    #field-email, 
+    #field-password,
+    #field-password2 {
+        width: 210px;
+        padding: 5px;
+    }
+
+    #field-username input,
+    #field-first-name input,
+    #field-last-name input,
+    #field-email input, 
+    #field-password input,
+    #field-password2 input {
+        width: 205px;
+    }
+
+    #field-username, #field-login-username {
+        margin-top: 10px;
+    }
+
+    label, input {
+        display: block;
+    }
+
+    fieldset {
+        border: none;
+        border-top: solid 1px #d0d0d0;
+        clear: left;
+        margin: 1em 0;
+        padding: 0;
+    }
+
+    legend {
+        font-size: 120%;
+        font-weight: bold;
+        padding-right: 10px;
+    }
+
+    label.required {
+        font-weight: bold;
+    }
+
+    label.errors {
+        background-color: #ffff99;
+    }
+
+    div.errors {
+    }
+
+    ul.errorlist {
+        margin: 10px 0;
+        padding: 10px 5px;
+        background-color: #ffff99;
+        text-align: center;
+
+        list-style: none;
+        display: inline;
+        margin: 0;
+        padding: 0;
+    }
+
+    ul.errorlist li {
+        display: inline;
+    }
+
+    label span {
+        font-weight: normal;
+    }
+
+    p#or {
+        float: left;
+        width: 48px;
+        text-align: center;
+        padding: 0;
+        margin: 0;
+        margin-top: 2em;
+        font-size: 160%;
+        font-weight: bold;
+        color: #505050;
+        border-bottom: solid 2px #c0c0c0;
+    }
+
+</style>
+{% endblock %}
