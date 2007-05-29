@@ -52,7 +52,7 @@
   </a>
   <div>
     <h2 class="phototitle">{{ object.title }}</h2>
-    <p class="photodesc"> {{ object.desc|markdown}} </p>
+    <div class="photodesc"> {{ object.desc|markdown}} </div>
     {% if object.photographer %}
     <p class="photographer">Photo by {{ object.photographer }}.</p>
     {% endif %}
@@ -61,7 +61,7 @@
     {% endif %}
     {% if object.extra %}
     <h3 class="photoextra">More information</h3>
-    <p class="photoextra">{{ object.extra|markdown }}</p>
+    <div class="photoextra">{{ object.extra|markdown }}</div>
     {% endif %}
   </div>
 </div>
