@@ -127,9 +127,11 @@ div#navigator {
 div.center {
     color: #FFFFFF;
     line-height: 190%;
+    font-weight: bold;
 }
 div.center>a {
 	color: #FFFFFF;
+    font-weight: bold;
 }
 
 div#navigator div.center {
