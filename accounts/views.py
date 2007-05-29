@@ -69,6 +69,12 @@ class RegisterForm(forms.Form):
     repassword = forms.CharField( label = 'Verify Password', widget = forms.PasswordInput )
 
     def clean(self):
+        if not self.cleaned_data.get('username'):
+            raise forms.ValidationError("Username required.")
+        if not self.cleaned_data.get('password'):
+            raise forms.ValidationError("Password required.")
+        if self.cleaned_data.get('password') != self.cleaned_data.get('repassword'):
+            raise forms.ValidationError("Passwords do not match.")
         if self.cleaned_data['password'] != self.cleaned_data['repassword']:
             raise forms.ValidationError("Passwords do not match.")
         if User.objects.filter( username__exact = self.cleaned_data['username'] ).count() != 0:
@@ -85,11 +91,10 @@ attr_extract_re = re.compile(r'([a-zA-Z_][a-zA-Z0-9_]*)=(.*)')
 
 def register_hash(request, hashcode, group = None):
     new_user_settings = decryptString( settings.SECRET_KEY, hashcode )
-    print 'new_user_settings=', new_user_settings
+    
     m = email_extract_re.match(new_user_settings)
     if m:
         email_address = eval(m.group(1))
-        print 'matched email:', email_address
     else:
         email_address = ''
 
@@ -126,7 +131,7 @@ def register_hash(request, hashcode, group = None):
         form = RegisterForm( )
         form.fields['email_address'].initial = email_address
         
-    return render_to_response( 'sphene/community/register_hash.html',
+    return render_to_response( 'accounts/register_hash.html',
                                { 'form': form },
                                context_instance = RequestContext(request) )
 
