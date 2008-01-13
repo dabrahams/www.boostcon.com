@@ -128,6 +128,7 @@ INSTALLED_APPS += (
     'sphene.community',
     'sphene.sphboard',
     'sphene.sphwiki',
+    'boost_consulting.communitytools_support',
     'django.contrib.humanize',
 )    
 
