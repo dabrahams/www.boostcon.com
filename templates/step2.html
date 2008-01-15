@@ -1,0 +1,124 @@
+{% extends "base.html" %}
+
+{% block extrahead %}
+<style type="text/css">
+
+    #inner {
+        padding-left: 5px;
+        float: left
+    }
+
+    form {
+        width: 25em;
+    }
+
+    form div.notice {
+        float: right;
+    background-color:#FFFFE1;
+    border:1px solid #666666;
+    color:#666666;
+    height:auto;
+    margin:0pt 0pt 10px 10px;
+    padding:5px;
+    width:25em;  }
+
+    form input {
+        padding: 0.2em;
+    }
+
+    form input.button {
+        border: 1px outset #CCCCCC;
+        background-color: #EEEEEE;
+        float: right;
+        margin-top: 1em;
+        font-size: 120%;
+    }
+
+    .edit_form {
+        border-collapse: collapse;
+    }
+
+    .edit_form td, .edit_form th {
+        border-bottom: solid 1px #cccccc;
+        padding: 0.5em;
+    }
+
+    .edit_form td.input {
+        width: 1em;
+    }
+
+    .edit_form td.option {
+        width: 17em;
+    }
+
+    .edit_form td.price {
+        width: 7em;
+        text-align: right;
+    }
+
+    th {
+        text-align: left;
+        vertical-align: bottom;
+    }
+
+    th.price {
+        text-align: right;
+    }
+
+    #content p.error {
+        margin: 10px 0;
+        padding: 10px;
+        margin-left: 2px;
+        background-color: #ffff99;
+        font-size: 130%;
+        text-align: center;
+    }
+
+</style>
+{% endblock %}
+
+{% block content %}
+
+<div id="inner">
+<h1>Please select your preferred method of shipping</h1>
+
+<form method="post" action="/checkout-2">
+<div>
+    <input type="hidden" name="object_id" value="{{object_id}}" />
+    {% if error %}
+    <p class="error">{{ error }}</p>
+    {% endif %}
+    <table class="edit_form">
+        <tr>
+          <th></th>
+          <th class="option">Shipping method</th>
+          <th class="transit">Estimated transit time</th>
+          <th class="price">Price</th>
+        </tr>
+        {% for i in choices %}
+        <tr>
+          <td class="input">
+            <input type="radio" name="shipping" value="{{forloop.counter0}}" />
+          </td>
+          <td class="option">{{i.0}}</td>
+          <td class="transit">
+          {% if i.2 %}
+            {{i.2}}&nbsp;day{{ i.2|pluralize }}
+          {% else %}
+            -
+          {% endif %}</td>
+          <td class="price">USD&nbsp;{{i.1}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <div class="notice">This button will direct you to PayPal for secure payment processing, where you have the option to pay by Visa, Mastercard, American Express, Discover, eCheck, or PayPal.<input class="button" type="submit" name="checkout" value="Continue to checkout" /></div>
+    <div class="notice">If you need to pay by check, print a copy of this form and follow the directions shown there.<input class="button" type="submit" name="orderform" value="Download PDF of Order" /></div>
+</div>
+
+</form>
+</div>
+
+
+
+{% endblock %}
+

@@ -2,12 +2,12 @@ Sponsors
 ========
 
 We are indebted to the following companies and institutions
-for their support of BoostCon 2007:
+for their support of BoostCon 2008:
 
-* `Adobe Systems`__
+* `Google, Inc.`__
 * `Boost Consulting, Inc.`__
 
-__ http://www.adobe.com
+__ http://www.google.com
 __ http://www.boost-consulting.com
 
 A very special “thank you” goes to `Indiana University Open Systems

@@ -1,0 +1,294 @@
+{% extends "base.html" %}
+
+{% block extrahead %}
+<script src="/site-media/js/jquery-1.1.js" type="text/javascript"></script>
+<script src="/site-media/js/interface.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+<!--
+
+jQuery.fn.Highlight = function(speed, color, callback, easing) {
+    return this.queue(
+        'interfaceColorFX',
+        function()
+        {
+            easing = typeof callback == 'string' ? callback : easing||null;
+            callback = typeof callback == 'function' ? callback : null;
+            var oldColor = jQuery(this).css('backgroundColor');
+
+            jQuery(this).animateColor(
+                speed,
+                {'backgroundColor':[color, oldColor]},
+                function() {
+                    jQuery.dequeue(this, 'interfaceColorFX');
+                    jQuery(this).css('backgroundColor',oldColor);
+                    if (callback)
+                        callback.apply(this);
+                    },
+                    easing
+            );
+        }
+    );
+};
+
+function country_changed() {
+
+    var field = $('#field-state');
+
+    switch ($('#id_country').val())
+    {
+        case 'US':
+            if (field.css('display') == 'none') {
+                field
+                    .show()
+                    .css('background-color', '#ffffff')
+                    .Highlight(1200, '#ffff99');
+            }
+            break;
+        default:
+            jQuery.dequeue(field, 'interfaceColorFX');
+            field.hide();
+    }
+}
+
+$(function() {
+    $('#id_country').change(country_changed);
+    country_changed();
+
+    if ($('label.errors').length > 0)
+    {
+        $('label.errors').eq(0).children('input').get(0).focus();
+    }
+    else
+    {
+        $('#id_first_name').get(0).focus();
+    }
+
+});
+
+// -->
+</script>
+
+<style type="text/css">
+
+    #inner {
+        padding-left: 5px;
+    }
+
+    form {
+        width: 25em;
+    }
+
+    form input {
+        padding: 0.2em;
+    }
+
+    form input {
+        border: 1px inset #CCCCCC;
+        color: #333333;
+    }
+
+    form input.button {
+        border: 1px outset #CCCCCC;
+        background-color: #EEEEEE;
+        float: right;
+        margin-top: 1em;
+        color: #333333;
+    }
+
+    form select {
+        padding: 0.2em;
+        border: 1px inset #CCCCCC;
+        color: #333333;
+        width: 100%;
+    }
+
+    form label {
+    }
+
+    .edit_form ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    /* -----------------------------------------*/
+
+    #contact-form {
+        width: 400px;
+    }
+    
+    #contact-form label {
+        display: block;
+    }
+
+    #field-first-name, #field-last-name,  #field-address1,
+    #field-address2, #field-country, #field-city, #field-state, #field-zip, #field-phone {
+        float: left;
+        width: 190px;
+        padding: 5px;
+    }
+
+    #field-first-name input, #field-last-name input,  #field-address1 input,
+    #field-address2 input, #field-country input, #field-city input, #field-state input, #field-zip input, #field-phone input {
+        float: left;
+        width: 180px;
+    }
+
+    #contact-form input, #contact-form select {
+        display: block;
+        font-weight: normal;
+    }
+
+    #field-address1, #field-address2 {
+        width: 390px;
+    }
+
+    #field-address1 input, #field-address2 input {
+        width: 380px;
+    }
+
+    #field-first-name, #field-country, #field-address1, #field-address2 {
+        clear: left;
+    }
+
+    #field-country {
+        width: 110px;
+    }
+
+    #field-country select {
+        width: 100px;
+    }
+
+    #field-city {
+        width: 100px;
+    }
+
+    #field-city input {
+        width: 90px;
+    }
+
+    #field-state {
+        width: 87px;
+    }
+
+     #field-state input {
+        width: 80px;
+    }
+
+    #field-zip {
+        width: 60px;
+    }
+
+     #field-zip input {
+        width: 50px;
+    }
+
+    #contact-form label.required {
+        font-weight: bold;
+    }
+
+    #contact-form input.submit {
+        clear: both;
+        width: auto;
+    }
+
+    fieldset {
+        border: none;
+        border-top: solid 1px #b0b0b0;
+        clear: left;
+        margin: 1em 0;
+        padding: 10px 0 0 0;
+    }
+
+    legend {
+        font-size: 120%;
+        font-weight: bold;
+        padding-right: 10px;
+    }
+
+    div#non-field-errors {
+        margin: 10px 0;
+        padding: 5px;
+        margin-left: 2px;
+        background-color: #ffff99;
+        font-size: 130%;
+        text-align: center;
+    }
+
+    div#non-field-errors p {
+        margin: 10px 0;
+    }
+
+    label.errors {
+        background-color: #ffff99;
+    }
+
+    label span {
+        font-weight: normal;
+    }
+
+</style>
+
+{% endblock %}
+
+{% block content %}
+
+<div id="inner">
+
+<h1>Please enter your shipping address</h1>
+<p><strong>Bold</strong> fields are required</p>
+
+<form method="post" action="/checkout-1" id="contact-form">
+    <fieldset>
+        <legend>Delivery Information</legend>
+        {% if form.non_field_errors %}
+        <div id="non-field-errors">
+            <p>{{form.non_field_errors}}</p>
+        </div>
+        {% endif %}
+        <label id="field-first-name" class="required {% if form.first_name.errors %}errors{% endif %}">
+            First Name <span>{{ form.first_name.errors.as_text }}</span>
+            {{form.first_name}}
+        </label>
+        <label id="field-last-name" class="required {% if form.last_name.errors %}errors{% endif %}">
+            Last Name <span>{{ form.last_name.errors.as_text }}</span>
+            {{form.last_name}}
+        </label>
+        <label id="field-country" class="required {% if form.country.errors %}errors{% endif %}">
+            Country  <span>{{ form.country.errors.as_text }}</span>
+            {{form.country}}
+        </label>
+        <label id="field-address1" class="required {% if form.address1.errors %}errors{% endif %}">
+            Home Address <span>{{ form.address1.errors.as_text }}</span>
+            {{form.address1}}
+        </label>
+        <label id="field-address2" {% if form.address2.errors %}class="errors"{% endif %}>
+            Home Address second line <span>{{ form.address2.errors.as_text }}</span>
+            {{form.address2}}
+        </label>
+        <label id="field-city" class="required {% if form.city.errors %}errors{% endif %}">
+            City <span>{{ form.city.errors.as_text }}</span>
+            {{form.city}}
+        </label>
+        <label id="field-state" class="{% if form.state.errors %}class="errors"{% endif %}">
+            State <span>{{ form.state.errors.as_text }}</span>
+            {{form.state}}
+        </label>
+        <label id="field-zip" class="required {% if form.zip.errors %}errors{% endif %}">
+            Zip Code <span>{{ form.zip.errors.as_text }}</span>
+            {{form.zip}}
+        </label>
+        <label id="field-phone" class="required {% if form.phone.errors %}errors{% endif %}">
+            Telephone <span>{{ form.phone.errors.as_text }}</span>
+            {{form.phone}}
+        </label>
+    </fieldset>
+
+    <input type="submit" class="button submit" value="Continue to shipping selection"/>
+</form>
+
+</div>
+
+{% endblock %}
+

@@ -94,6 +94,8 @@ INSTALLED_APPS = (
     'boost_consulting.pages',
     'boost_consulting.conference',
     'boost_consulting.accounts',
+    'boost_consulting.ecommerce',
+    'boost_consulting.shipping',
 
     'stockphoto',
     

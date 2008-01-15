@@ -79,19 +79,17 @@ urlpatterns += patterns('',
                         
     (r'^accounts/login/?$', 'django.contrib.auth.views.login'),
     (r'^accounts/logout/?$', 'django.contrib.auth.views.logout'),
-    (r'^accounts/register/(?P<hashcode>[a-zA-Z/\+0-9=]+)/$',
+    (r'^accounts/create/(?P<hashcode>[a-zA-Z/\+0-9=]+)/$',
      'boost_consulting.accounts.views.register_hash', defaultdict),
                         )
 
 
 
 
-# This would allow anyone at all to register.  We're not quite ready for that
-# yet.
-#
-# urlpatterns += patterns('',
-#     (r'^accounts/register/?$', 'sphene.community.views.register'),
-# )
+# This allows anyone at all to register.  
+urlpatterns += patterns('',
+     (r'^accounts/create/?$', 'sphene.community.views.register'),
+)
 
 
 def add_trailing_slash(url_prefix):
@@ -127,6 +125,12 @@ urlpatterns += patterns('django.views.generic',
 
 urlpatterns += patterns(
     'boost_consulting',
+
+    # Uncomment these to enable ecommerce
+    (r'^buy/(?P<slug>[-\w]+)$', 'ecommerce.views.step1'),
+    (r'^checkout-1$', 'ecommerce.views.step1'),
+    (r'^checkout-2$', 'ecommerce.views.step2'),
+
     (r'(.*)$', 'pages.views.page'),
     )
 

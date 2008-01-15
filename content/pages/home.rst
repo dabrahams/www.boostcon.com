@@ -4,7 +4,7 @@ BoostCon'07
 :menu-title: home
 :order: -100
 
-May 14-18 2007 - Aspen, Colorado
+May 4-9 2007 - Aspen, Colorado
 --------------------------------
 
 .. image:: /site-media/colorado_bells_sept22_2.jpg
