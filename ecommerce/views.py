@@ -189,7 +189,7 @@ def step2(request):
         
         order.save()
 
-        url = 'https://www.paypal.com/xclick/business=dave@boost-consulting.com&quantity=1&no_shipping=2&return=http://www.boost-consulting.com/order-complete&cancel_return=http://www.boost-consulting.com/order-canceled&currency_code=USD&no_shipping=1&image_url=http://boost-consulting.com/site-media/paypal-logo.gif'
+        url = 'https://www.paypal.com/xclick/business=dave@conservancy-boost@softwarefreedom.org&quantity=1&no_shipping=2&return=http://www.boostcon.com/enrollment-complete&cancel_return=http://www.boost-consulting.com/order-canceled&currency_code=USD&no_shipping=1&image_url=http://boost-consulting.com/site-media/paypal-logo.gif'
         url += '&item_name=%s+(%s)' \
             % (urllib.quote_plus(product.name), urllib.quote_plus(selected_shipping[0]))
         url += '&invoice=%d' % order.id
