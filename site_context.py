@@ -12,7 +12,7 @@ if onserver:
     # paths.
 
     DATABASE_ENGINE = 'postgresql_psycopg2'
-    DATABASE_NAME = 'boostcon.db'
+    DATABASE_NAME = 'boostcon_beta.db'
     DATABASE_USER = 'boostcon'
     DATABASE_PASSWORD = 'crtplib'
     MEDIA_URL = '/site-media'
