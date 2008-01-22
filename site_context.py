@@ -10,7 +10,7 @@ onserver = 'boost-consulting.com' in os.popen('uname -a').read()
 if onserver:
     # So our ReST translation code can find the source files with relative
     # paths.
-
+    
     DATABASE_ENGINE = 'postgresql_psycopg2'
     DATABASE_NAME = 'boostcon_beta.db'
     DATABASE_USER = 'boostcon'
