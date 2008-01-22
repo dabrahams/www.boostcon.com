@@ -82,7 +82,7 @@ urlpatterns += patterns('boost_consulting',
     (r'^accounts/create/?$', 'accounts.views.register_or_login', {'login':False,
                                                                   'groupName':'boostcon'}),
     (r'^accounts/logout/?$', 'accounts.views.logout'),
-    (r'^accounts/create/(?P<hashcode>[a-zA-Z/\+0-9=]+)/$',
+    (r'^accounts/create/(?P<hashcode>[a-zA-Z/\+0-9=]+)$',
      'accounts.views.register_hash', defaultdict),
                         )
 

@@ -34,6 +34,12 @@ class Step1Form(forms.Form):
     country = forms.ChoiceField(choices=country_choices)
     phone = forms.CharField(max_length=50)
 
+    def clean_state(self):
+        state = self.clean_data.get('state')
+        if not state and self.data.get('country') == 'US':
+            raise forms.ValidationError(u'State is required for US addresses')
+        return state
+    
 step1_fields = Step1Form.base_fields.keys()
 
 def step1(request, slug = None):

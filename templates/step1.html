@@ -255,7 +255,7 @@ $(function() {
             City <span>{{ form.city.errors.as_text }}</span>
             {{form.city}}
         </label>
-        <label id="field-state" class="{% if form.state.errors %}class="errors"{% endif %}">
+        <label id="field-state" class="{% if form.state.errors %}errors{% endif %}">
             State <span>{{ form.state.errors.as_text }}</span>
             {{form.state}}
         </label>
