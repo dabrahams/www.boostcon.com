@@ -7,6 +7,10 @@ from django.shortcuts import render_to_response, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.template import RequestContext
 from models import *
+
+from sphene.contrib.libs.common.utils.misc import cryptString, decryptString
+from django.conf import settings
+
 import urllib
 
 import boost_consulting.shipping as shipping
@@ -145,6 +149,13 @@ def step1(request, slug = None):
         RequestContext(request, {'form': form, 'has_errors': has_errors,
                                  'product': product}))
 
+def order_complete(request, status, hashcode):
+    order_id = int(decryptString( settings.SECRET_KEY, hashcode ))
+    order = Order.objects.get(id=order_id)
+    order.state = status == 'complete' and 'S' or 'D'
+    order.save()
+    return HttpResponseRedirect(request.path.endswith('/') and '..' or '.')
+
 def create_and_send_order(request, shipping_method='None', shipping_rate=0):
     customer = Customer.objects.get(id=request.session['customer'])
     destination = ShippingDestination.objects.get(id=request.session['shipping-destination'])
@@ -170,7 +181,16 @@ def create_and_send_order(request, shipping_method='None', shipping_rate=0):
 
     order.save()
 
-    url = 'https://www.paypal.com/xclick/business=conservancy-boost@softwarefreedom.org&quantity=1&no_shipping=2&return=http://www.boostcon.com/registration-complete&cancel_return=http://www.boostcon.com/registration-canceled&currency_code=USD&no_shipping=1&image_url=http://boostcon.com/site-media/images/logo-small.gif'
+    order_hash = cryptString(settings.SECRET_KEY, str(order.id))
+    
+    server_name = request.META['SERVER_NAME']
+    server_port = request.META['SERVER_PORT']
+    if not server_port or server_port == '80':
+        host = 'http://'+server_name
+    else:
+        host = 'http://'+server_name+':'+server_port
+
+    url = 'https://www.paypal.com/xclick/business=conservancy-boost@softwarefreedom.org&quantity=1&no_shipping=2&return=%(host)s/registration-complete/%(order_hash)s&cancel_return=%(host)s/registration-canceled%(order_hash)s&currency_code=USD&no_shipping=1&image_url=http://boostcon.com/site-media/images/logo-small.gif' % locals()
     url += '&item_name=%s' \
         % urllib.quote_plus('%s (%s)' % (product.name, product.description))
     url += '&invoice=%d' % order.id

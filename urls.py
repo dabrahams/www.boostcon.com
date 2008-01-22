@@ -130,6 +130,10 @@ urlpatterns += patterns(
     (r'^checkout-1$', 'ecommerce.views.step1'),
     (r'^checkout-2$', 'ecommerce.views.step2'),
 
+    (r'^registration-(?P<status>complete|canceled)/(?P<hashcode>[a-zA-Z0-9=]+)$',
+     'ecommerce.views.order_complete'),
+                        
+
     (r'(.*)$', 'pages.views.page'),
     )
 
