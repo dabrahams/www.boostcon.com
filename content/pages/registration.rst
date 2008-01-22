@@ -21,7 +21,7 @@ How to Register
   pay by credit card or via PayPal.  A user account is
   required to perform the payment steps.
 
-  __ https://www.confmanager.com/main.cfm?cid=851&nid=6575
+  __ /register/boostcon08
 
 .. :Phone: 1.800.933.9330 and ask to speak with the Conference
     Registrar. 
