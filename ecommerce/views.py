@@ -170,9 +170,9 @@ def create_and_send_order(request, shipping_method='None', shipping_rate=0):
 
     order.save()
 
-    url = 'https://www.paypal.com/xclick/business=conservancy-boost@softwarefreedom.org&quantity=1&no_shipping=2&return=http://www.boostcon.com/enrollment-complete&cancel_return=http://www.boost-consulting.com/order-canceled&currency_code=USD&no_shipping=1&image_url=http://boost-consulting.com/site-media/paypal-logo.gif'
-    url += '&item_name=%s+(%s)' \
-        % (urllib.quote_plus(product.name), urllib.quote_plus(shipping_method))
+    url = 'https://www.paypal.com/xclick/business=conservancy-boost@softwarefreedom.org&quantity=1&no_shipping=2&return=http://www.boostcon.com/registration-complete&cancel_return=http://www.boostcon.com/registration-canceled&currency_code=USD&no_shipping=1&image_url=http://boostcon.com/site-media/images/logo-small.gif'
+    url += '&item_name=%s' \
+        % urllib.quote_plus('%s (%s)' % (product.name, product.description))
     url += '&invoice=%d' % order.id
     url += '&amount=%.2f' % product.price
     url += '&shipping=%.2f' % float(shipping_rate)

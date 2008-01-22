@@ -109,6 +109,8 @@ urlpatterns += patterns('django.views.generic',
     add_trailing_slash('community/forums'),
 
                         
+    (r'^registration-(?P<status>complete|canceled)$', 'simple.direct_to_template', {'template': 'order-status.html'}),
+
     (r'^(?P<base>.*)/$', 'simple.redirect_to', {'url': r'/%(base)s'}),
                         
     (r'^$', 'simple.redirect_to', {'url': r'/home'}),

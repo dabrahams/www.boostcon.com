@@ -110,7 +110,6 @@ def register_or_login(request, login=False, group=None):
                 
                 email_address = regdata['email']
                 
-                #group = Community.objects.get(name__exact=groupName)
                 subject = 'Email verification required for site %s' % group.get_name()
 
                 validationcode = cryptString(settings.SECRET_KEY, urlencode(regdata))
