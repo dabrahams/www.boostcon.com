@@ -2,18 +2,20 @@
 Travel
 ======
 
-.. Note:: The Aspen/Pitkin County airport, Sardy Field, will be
-   closed in May 2007 for runway improvements.
-
-   We recommend that participants who plan to fly book their
-   reservation into either Denver (DEN) or Eagle (EGE) airports.
-   See below for more details.
+.. Note:: Unlike last year, the Aspen/Pitkin County airport, Sardy
+   Field, will be **open** for direct flights directly into Aspen.
+   However, these flights fill up quickly so we recommend you book
+   early.
 
 Ground Transportation
 =====================
 
-Airport to Aspen and Return
----------------------------
+Participants who book flights into either Denver (DEN) or Eagle
+(EGE) airports will need to travel about 4 hours by ground.  See
+below for more details.
+
+Denver or Eagle Airport to Aspen and Return
+-------------------------------------------
 
 :Shuttle: `Colorado Mountain Express`__ (CME)
 :Reservations: 1-800-525-6363.  (Advance reservations essential.

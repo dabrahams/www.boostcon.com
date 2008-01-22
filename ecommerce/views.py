@@ -10,6 +10,7 @@ from models import *
 
 from sphene.contrib.libs.common.utils.misc import cryptString, decryptString
 from django.conf import settings
+from boost_consulting.utils.host import hostname
 
 import urllib
 
@@ -182,15 +183,9 @@ def create_and_send_order(request, shipping_method='None', shipping_rate=0):
     order.save()
 
     order_hash = cryptString(settings.SECRET_KEY, str(order.id))
-    
-    server_name = request.META['SERVER_NAME']
-    server_port = request.META['SERVER_PORT']
-    if not server_port or server_port == '80':
-        host = 'http://'+server_name
-    else:
-        host = 'http://'+server_name+':'+server_port
+    host = hostname(request)
 
-    url = 'https://www.paypal.com/xclick/business=conservancy-boost@softwarefreedom.org&quantity=1&no_shipping=2&return=%(host)s/registration-complete/%(order_hash)s&cancel_return=%(host)s/registration-canceled%(order_hash)s&currency_code=USD&no_shipping=1&image_url=http://boostcon.com/site-media/images/logo-small.gif' % locals()
+    url = 'https://www.paypal.com/xclick/business=conservancy-boost@softwarefreedom.org&quantity=1&no_shipping=2&return=http://%(host)s/registration-complete/%(order_hash)s&cancel_return=http://%(host)s/registration-canceled%(order_hash)s&currency_code=USD&no_shipping=1&image_url=http://boostcon.com/site-media/images/logo-small.gif' % locals()
     url += '&item_name=%s' \
         % urllib.quote_plus('%s (%s)' % (product.name, product.description))
     url += '&invoice=%d' % order.id

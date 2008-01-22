@@ -49,7 +49,7 @@ reservations desk at reservations@aspenmeadows.com, or
 1-800-452-4240, but don't forget to inform the reservation staff that
 you are participating in Boost 2007 to get the conference rate.
 
-__ /site-media/boostcon-07-hotel-reservation.doc
+__ /site-media/boostcon-08-hotel-reservation.pdf
 
 Details
 -------
