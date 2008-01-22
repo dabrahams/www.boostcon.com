@@ -40,6 +40,7 @@ class Product(models.Model):
     slug = models.SlugField(prepopulate_from=('name',))
     description = models.CharField(maxlength=500)
     price = models.FloatField(max_digits=5, decimal_places=2)
+    shippable = models.BooleanField()
 
     class Admin:
         pass

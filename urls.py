@@ -75,21 +75,18 @@ urlpatterns += patterns('',
     (r'^community/wiki/', include('sphene.sphwiki.urls'), defaultdict),
 )
 
-urlpatterns += patterns('',
+urlpatterns += patterns('boost_consulting',
                         
-    (r'^accounts/login/?$', 'django.contrib.auth.views.login'),
-    (r'^accounts/logout/?$', 'django.contrib.auth.views.logout'),
+    (r'^accounts/login_or_create/?$', 'accounts.views.register_or_login', {'login':False}),
+    (r'^accounts/login/?$', 'accounts.views.register_or_login', {'login':True}),
+    (r'^accounts/create/?$', 'accounts.views.register_or_login', {'login':False,
+                                                                  'groupName':'boostcon'}),
+    (r'^accounts/logout/?$', 'accounts.views.logout'),
     (r'^accounts/create/(?P<hashcode>[a-zA-Z/\+0-9=]+)/$',
-     'boost_consulting.accounts.views.register_hash', defaultdict),
+     'accounts.views.register_hash', defaultdict),
                         )
 
 
-
-
-# This allows anyone at all to register.  
-urlpatterns += patterns('',
-     (r'^accounts/create/?$', 'sphene.community.views.register'),
-)
 
 
 def add_trailing_slash(url_prefix):
@@ -104,7 +101,7 @@ urlpatterns += patterns('django.views.generic',
 #    (r'^$', 'simple.direct_to_template', {'template': 'homepage.html'}),
 
                         
-    # admin, stockphoto, and Sphene both use a trailing-slash URL scheme, so we need to
+    # admin, stockphoto, and Sphene all use a trailing-slash URL scheme, so we need to
     # make sure they always have one.                    
     add_trailing_slash('admin'),
     add_trailing_slash('community/photos'),
@@ -127,7 +124,7 @@ urlpatterns += patterns(
     'boost_consulting',
 
     # Uncomment these to enable ecommerce
-    (r'^buy/(?P<slug>[-\w]+)$', 'ecommerce.views.step1'),
+    (r'^register/(?P<slug>[-\w]+)$', 'ecommerce.views.step1'),
     (r'^checkout-1$', 'ecommerce.views.step1'),
     (r'^checkout-2$', 'ecommerce.views.step2'),
 

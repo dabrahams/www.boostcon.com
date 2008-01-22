@@ -34,7 +34,7 @@ step1_fields = Step1Form.base_fields.keys()
 def step1(request, slug = None):
 
     if not request.user.is_authenticated():
-        return HttpResponseRedirect('/login?next=%s' % request.path)
+        return HttpResponseRedirect('/accounts/login?next=%s' % request.path)
 
     has_errors = False
 
@@ -46,6 +46,8 @@ def step1(request, slug = None):
         # Re-fill and validate the form
         form = Step1Form(request.POST)
         has_errors = not form.is_valid()
+        product = get_object_or_404(Product, id=request.session['product'])
+        
     else:
         # We are arriving in the form from elsewhere
         product = get_object_or_404(Product, slug=slug)
@@ -100,25 +102,26 @@ def step1(request, slug = None):
         ground_rate = fedex_rate(carrier = 'FDXG')
 
         try:
-            rates = express_rate.getResponse(returnAllResults=True) + \
+            if product.shippable:
+                rates = express_rate.getResponse(returnAllResults=True) + \
                     ground_rate.getResponse(returnAllResults=True)
 
-            if data['country'] == 'US':
-                rates.append(('Priority mail', 5.25, None))
+                if data['country'] == 'US':
+                    rates.append(('Priority mail', 5.25, None))
 
-            request.session['shipping-options'] = rates
+                    request.session['shipping-options'] = rates
 
-            destination,created = ShippingDestination.objects.get_or_create(
+            destination,destination_created = ShippingDestination.objects.get_or_create(
                 ** dict((f,data[f]) for f in step1_fields)
                 )
 
-            if created:
+            if destination_created:
                 destination.save()
 
-            customer, created = Customer.objects.get_or_create(
+            customer, customer_created = Customer.objects.get_or_create(
                 user = request.user, defaults = {'destination': destination})
 
-            if not created:
+            if not customer_created:
                 # Save the customer's last shipping destination
                 customer.destination = destination
                 customer.save()
@@ -133,13 +136,63 @@ def step1(request, slug = None):
             return render_to_response('step1.html', 
                 RequestContext(request, {'form': form, 'has_errors': True}))
 
-        return HttpResponseRedirect('/checkout-2')
+        if product.shippable:
+            return HttpResponseRedirect('/checkout-2')
+        else:
+            return create_and_send_order(request)
 
     return render_to_response('step1.html', 
-        RequestContext(request, {'form': form, 'has_errors': has_errors}))
+        RequestContext(request, {'form': form, 'has_errors': has_errors,
+                                 'product': product}))
 
+def create_and_send_order(request, shipping_method='None', shipping_rate=0):
+    customer = Customer.objects.get(id=request.session['customer'])
+    destination = ShippingDestination.objects.get(id=request.session['shipping-destination'])
+
+    product = get_object_or_404(Product, id=request.session['product'])
+
+    # Should we delete? Back button doesn't work very well if we do.
+    #del request.session['customer']
+    #del request.session['shipping-destination']
+    #del request.session['shipping-options']
+    #del request.session['product']
+
+    order = Order(
+        customer = customer
+      , product = product
+      , destination = destination
+      , shipping = shipping_method
+      , shipping_rate = shipping_rate
+    )
+
+    if 'orderform' in request.POST:
+        return order_pdf(order)
+
+    order.save()
+
+    url = 'https://www.paypal.com/xclick/business=conservancy-boost@softwarefreedom.org&quantity=1&no_shipping=2&return=http://www.boostcon.com/enrollment-complete&cancel_return=http://www.boost-consulting.com/order-canceled&currency_code=USD&no_shipping=1&image_url=http://boost-consulting.com/site-media/paypal-logo.gif'
+    url += '&item_name=%s+(%s)' \
+        % (urllib.quote_plus(product.name), urllib.quote_plus(shipping_method))
+    url += '&invoice=%d' % order.id
+    url += '&amount=%.2f' % product.price
+    url += '&shipping=%.2f' % float(shipping_rate)
+    url += '&first_name=%s' % urllib.quote_plus(destination.first_name)
+    url += '&last_name=%s' % urllib.quote_plus(destination.last_name)
+    url += '&address1=%s' % urllib.quote_plus(destination.address1)
+    url += '&address2=%s' % urllib.quote_plus(destination.address2)
+    url += '&state=%s' % urllib.quote_plus(destination.state)
+    url += '&zip=%s' % urllib.quote_plus(destination.zip)
+    url += '&city=%s' % urllib.quote_plus(destination.city)
+    url += '&night_phone_a=%s' % urllib.quote_plus(destination.phone)
+    url += '&country=%s' % urllib.quote_plus(destination.country)
+    url += '&email=%s' % urllib.quote_plus(request.user.email)
+
+    print 'sending URL:', url
+    return HttpResponseRedirect(url)
+    
 def step2(request):
-    if not 'shipping-options' in request.session:
+    shippable = get_object_or_404(Product, id=request.session['product']).shippable
+    if not shippable or not 'shipping-options' in request.session:
         return HttpResponseRedirect('/checkout-1')
 
     if not request.user.is_authenticated():
@@ -148,67 +201,31 @@ def step2(request):
     if request.POST:
         if not 'shipping' in request.POST:
             return render_to_response('step2.html', 
-                RequestContext(request,{
-                    'choices': request.session['shipping-options'],
-                    'error': 'Select a shipping method'
-                }))
+                  RequestContext(request,{
+                      'choices': request.session['shipping-options'],
+                      'error': 'Select a shipping method'
+                  }))
 
         shipping_options = request.session['shipping-options']
 
-        selected_shipping = int(request.POST['shipping'])
-        if selected_shipping < 0 or selected_shipping >= len(shipping_options):
+        shipping_option_index = int(request.POST['shipping'])
+        if shipping_option_index < 0 or shipping_option_index >= len(shipping_options):
             return render_to_response('step2.html', 
                 RequestContext(request,{
                     'choices': request.session['shipping-options'],
                     'error': 'Select a shipping method'
                 }))
 
-        selected_shipping = shipping_options[selected_shipping]
+        selected_shipping = shipping_options[shipping_option_index]
 
-        customer = Customer.objects.get(id=request.session['customer'])
-        destination = ShippingDestination.objects.get(id=request.session['shipping-destination'])
-
-        product = get_object_or_404(Product, id=request.session['product'])
-
-        # Should we delete? Back button doesn't work very well if we do.
-        #del request.session['customer']
-        #del request.session['shipping-destination']
-        #del request.session['shipping-options']
-        #del request.session['product']
-
-        order = Order(
-            customer = customer
-          , product = product
-          , destination = destination
-          , shipping = selected_shipping[0]
-          , shipping_rate = float(selected_shipping[1])
-        )
-
-        if 'orderform' in request.POST:
-            return order_pdf(order)
+        return create_and_send_order(
+            request,
+            shipping_method=selected_shipping[0],
+            shipping_rate=selected_shipping[1]
+            )
         
-        order.save()
-
-        url = 'https://www.paypal.com/xclick/business=dave@conservancy-boost@softwarefreedom.org&quantity=1&no_shipping=2&return=http://www.boostcon.com/enrollment-complete&cancel_return=http://www.boost-consulting.com/order-canceled&currency_code=USD&no_shipping=1&image_url=http://boost-consulting.com/site-media/paypal-logo.gif'
-        url += '&item_name=%s+(%s)' \
-            % (urllib.quote_plus(product.name), urllib.quote_plus(selected_shipping[0]))
-        url += '&invoice=%d' % order.id
-        url += '&amount=%.2f' % product.price
-        url += '&shipping=%.2f' % float(selected_shipping[1])
-        url += '&first_name=%s' % urllib.quote_plus(destination.first_name)
-        url += '&last_name=%s' % urllib.quote_plus(destination.last_name)
-        url += '&address1=%s' % urllib.quote_plus(destination.address1)
-        url += '&address2=%s' % urllib.quote_plus(destination.address2)
-        url += '&state=%s' % urllib.quote_plus(destination.state)
-        url += '&zip=%s' % urllib.quote_plus(destination.zip)
-        url += '&city=%s' % urllib.quote_plus(destination.city)
-        url += '&night_phone_a=%s' % urllib.quote_plus(destination.phone)
-        url += '&country=%s' % urllib.quote_plus(destination.country)
-        url += '&email=%s' % urllib.quote_plus(request.user.email)
-
-        return HttpResponseRedirect(url)
-
-    return render_to_response('step2.html', 
+    return render_to_response(
+        'step2.html', 
         RequestContext(request,{'choices': request.session['shipping-options']}))
 
 
@@ -337,7 +354,7 @@ def order_pdf(order):
         canvas.restoreState()
 
     Story = [
-        Image('media/logo.gif'), Spacer(1,0.25*inch),
+        Image('media/images/logo.gif'), Spacer(1,0.25*inch),
         Paragraph('Order Form', ParagraphStyle('title', style,
                                                         fontSize=20, alignment=TA_CENTER)),
         Spacer(1,1*inch)]
@@ -366,3 +383,6 @@ def order_pdf(order):
     buffer.close()
     response.write(pdf)
     return response
+
+
+

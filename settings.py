@@ -53,6 +53,7 @@ TEMPLATE_LOADERS = (
 
 TEMPLATE_CONTEXT_PROCESSORS = (
     'utils.context_processors.media_url',
+    'boost_consulting.accounts.context_processors.account_messages',
 
     # These are Django's defaults.  Too bad there's no way to just add to the
     # defaults without repeating them.

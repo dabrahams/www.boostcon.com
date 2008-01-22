@@ -22,6 +22,15 @@
   <script src="/site-media/js/interface.js" type="text/javascript"></script>
   {% endif %}
   {% endblock %}
+
+  {% if account_message %}
+  <script type="text/javascript">
+    $(function() {
+        $('div.center span.message').Pulsate(1000,3)
+    });
+  </script>
+  {% endif %}
+
 </head>
 
 <body>
@@ -30,11 +39,16 @@
   <div id="navigator"> 
     <div class="center"> <a id="home" href="/"><span>home</span></a> <a id="contact" href="/about/contact"><span>contact</span></a> 
 
+<p>{% if account_message %}
+<span class="message">{{ account_message }}</span>&nbsp;&nbsp;
+{% endif %}
+<span>
 {% if user.is_authenticated %}
 logged in as <em>{{ user.username|escape }}</em> | <a href="/accounts/logout?next={{ request.path|urlencode }}">log out</a>
 {% else %}
 <a href="/accounts/login?next={{ request.path|urlencode }}">log in / create account</a>
 {% endif %}&nbsp;
+</span></p>
 
 
     </div>

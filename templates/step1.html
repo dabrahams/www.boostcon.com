@@ -71,28 +71,12 @@ $(function() {
 
 <style type="text/css">
 
-    #inner {
-        padding-left: 5px;
-    }
-
-    form {
-        width: 25em;
-    }
-
-    form input {
-        padding: 0.2em;
-    }
-
     form input {
         border: 1px inset #CCCCCC;
         color: #333333;
     }
 
     form input.button {
-        border: 1px outset #CCCCCC;
-        background-color: #EEEEEE;
-        float: right;
-        margin-top: 1em;
         color: #333333;
     }
 
@@ -236,7 +220,7 @@ $(function() {
 
 <div id="inner">
 
-<h2>Please enter your shipping address</h2>
+<h2>Please enter your {%if product.shippable %}shipping {% endif %}address</h2>
 <p><strong>Bold</strong> fields are required</p>
 
 <form method="post" action="/checkout-1" id="contact-form">
@@ -284,8 +268,12 @@ $(function() {
             {{form.phone}}
         </label>
     </fieldset>
-
+    {%if product.shippable %}
     <input type="submit" class="button submit" value="Continue to shipping selection"/>
+    {% else %}
+    {% load checkout %}
+    {% checkout %}
+    {% endif %}
 </form>
 
 </div>
