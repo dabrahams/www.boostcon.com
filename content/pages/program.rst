@@ -4,6 +4,8 @@ Program
 
 :template-name: pages/schedule.html
 
+.. include:: content/pages/program/under-construction.inc
+
 In the spirit of Boost, we have tried to encourage sessions that
 are participatory and/or collaborative in nature, and set up a
 relaxed schedule so that there's plenty of time for interaction.
