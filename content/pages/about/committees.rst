@@ -28,13 +28,6 @@ participation of:
   __ http://www.crystalclearsoftware.com
 
 * Joel de Guzman, `Boost Consulting, Inc.`_
-* Kevlin Henney, `Curbralan Limited`__
-
-  __ http://curbralan.com/
-
-* `Scott Meyers`__
-
-  __ http://www.aristeia.com
 
 * Eric Niebler, `Boost Consulting, Inc.`_
 
@@ -65,25 +58,59 @@ Program Committee
 The following people are also members of the program committee,
 which is responsible for accepting and scheduling sessions:
 
-* `Beman Dawes`__ (chairman)
-
-  __ http://www.boost.org/people/beman_dawes.html
-
-* David Abrahams, `Boost Consulting, Inc.`_
-
-* Jeff Garland, `CrystalClear Software`__
+* Jeff Garland, `CrystalClear Software`__ (chairman)
 
   __ http://www.crystalclearsoftware.com
 
+* Oleg Borissov
+
+* Marshall Clow
+
+* Jerry Coffin
+
+* Greg Colvin
+
+* `Beman Dawes`__
+
+  __ http://www.boost.org/people/beman_dawes.html
+
+* Fabio Fracassi
+
 * Joel de Guzman, `Boost Consulting, Inc.`_
-* Kevlin Henney, `Curbralan Limited`__
 
-  __ http://curbralan.com/
+* Danny Havenith
 
-* `Scott Meyers`__
+* Pete Isensee, Microsoft_
 
-  __ http://www.aristeia.com
+* Dave Jenkins
+
+* Harmut Kaiser
+
+* Nevin Liber
+
+* Bob Kuehne
+
+* Zach Laine
+
+* Dan Marsden
 
 * Eric Niebler, `Boost Consulting, Inc.`_
 
+* Gennadiy Rozental
+
+* Timothy St. Clair
+
+* Tim Shead, `Sandia National Labs`_
+
+* Troy Straszheim, `Sandia National Labs`_
+
+* Christian Strømsdørfer
+
+* Tony Van Eerd, Adobe_
+
+* Vic Wagner
+
+.. _Sandia National Labs: http://sandia.gov
+.. _Adobe: http://adobe.com
+.. _Microsoft: http://microsoft.com
 
