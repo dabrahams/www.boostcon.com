@@ -7,15 +7,11 @@ Community
 
 :order: 900
 
-Early feedback indicates BoostCon'07 was indeed a smashing success!
-Many attendees wanted a way to collaborate, discuss their future
-plans, and share pictures from the event.  Of course, it would have
-been nice to put together this part of the site *before* the
-conference, but at least it will stand us in good stead for
-BoostCon'08.  Check out the submenu entries on the left for
-community resources.
+This area of the site provides a way to collaborate, discuss future
+plans, and share pictures from the event.  Check out the submenu
+entries on the left for community resources.
 
-BoostCon attendees who followed the directions in their
+BoostCon 2007 attendees who followed the directions in their
 registration invitation for this site can find updated slides `on
 the wiki`__.
 

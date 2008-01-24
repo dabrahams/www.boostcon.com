@@ -31,11 +31,22 @@ Why the long lunch break?
   of the day, rather than being stuck inside a darkend room with an
   LCD projector.
 
+.. _small block:
+
+Why is the reserved room block at Aspen Meadows so small?  
+  In order to reserve any rooms, we had to agree to cover the
+  entire cost of any reserved rooms we were unable to fill.  Boost
+  simply doesn't have enough money “in the bank” to guarantee any
+  more rooms than we have, and we were unable to find anyone who
+  was willing to assume liability for more rooms.  As we collect
+  registration fees we may be able to negotiate for an enlarged
+  reserved room block.
+
 Other conferences I've been to were much bigger.  Why is this one so small__?
   It all comes down to budget and atmosphere.  In BoostCon's first
-  year, it was especially important to minimize the risk of
+  years, it is especially important to minimize the risk of
   failure, and as a non-profit conference without big corporate
-  backers, that meant keeping a tight rein on expenses.  The `Aspen
+  backers, that means keeping a tight rein on expenses.  The `Aspen
   Center for Physics`__ was made available to us as a conference
   facility at an exceptionally attractive rate.  While its size is
   limited, that is also part of its charm.  The Physics

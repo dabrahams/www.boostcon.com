@@ -10,9 +10,10 @@ Travel
 Ground Transportation
 =====================
 
-Participants who book flights into either Denver (DEN) or Eagle
-(EGE) airports will need to travel about 4 hours by ground.  See
-below for more details.
+The Aspen Meadows resort runs a free shuttle for its guests to and
+from Aspen Airport.  Participants who book flights into either
+Denver (DEN) or Eagle (EGE) airports will need to travel about 4
+hours by ground.  See below for more details.
 
 Denver or Eagle Airport to Aspen and Return
 -------------------------------------------
