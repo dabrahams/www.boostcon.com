@@ -1,15 +1,15 @@
 Contact
 =======
 
-Conference organizers:
+Conference organizers: organizers@boostcon.com
 
-via email: `boostcon-plan AT lists.boost-consulting.com`__
+Program committee: program@boostcon.com
 
-__ mailto:boostcon-plan-AT-lists.boost-consulting.com
-
-Conference Registration: online__, or by phone at +1.800.933.9330
+Conference Registration: online__
 
 __ /registration
+
+Conference Registrar: registrar@boostcon.com
 
 Hotel Reservations at the `Aspen Meadows Resort`__ +1.800.452.4240
 

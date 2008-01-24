@@ -7,11 +7,18 @@ Call for Sessions
 
 :order: 10
 
-The second annual Boost conference will take place in Aspen, Colorado, May 5-9. BoostCon is the main face-to-face event for all things Boost, from generic-programming techniques to Boost community, from using Boost libraries to writing Boost libraries, from deployment considerations to promoting the use of Boost more widely, from TR1 to TR2. Given the range and interests of last year's participants, the event again promises to be intense and in depth. We invite you to propose a session.
-
-See the BoostCon home page at www.boostcon.com for more information.
-
 .. contents:: Index
+
+Timeline
+--------
+
+**Proposals due** As soon as possible. Proposals will be accepted
+on a first-come-first-served basis. 
+
+**Proposals acceptances sent** As soon as accepted.
+
+**Session materials due** April 15, 2008. The session material go
+on the BoostCon CD handed out to attendees. 
 
 Session formats
 ---------------
@@ -19,17 +26,22 @@ Session formats
 **Presentations** focus on a practitioner’s ideas and experience
 with anything relevant to Boost and Boost users.
 
-**Panels** feature three or four people presenting their ideas and experiences relating to Boost's relevant, controversial, emerging, or unresolved issues. Panels may be conducted in several ways, such as comparative, analytic, or historic.
+**Panels** feature three or four people presenting their ideas and
+experiences relating to Boost's relevant, controversial, emerging,
+or unresolved issues. Panels may be conducted in several ways, such
+as comparative, analytic, or historic.
 
 **Tutorials** are formally prepared sessions at which instructors
 teach conference participants specific Boost-relevant skills.
 
 **Workshops** provide an active arena for advancements in
-Boost-relevent topics. Workshops provide the opportunity for experienced
+Boost-relevant topics. Workshops provide the opportunity for experienced
 practitioners to develop new ideas about a topic of common interest
 and experience.
 
-**Author's Corner Presentations** focus on tips on usage and design.  In addition, we're looking to uncover the hidden design gems hidden in boost libraries -- see below for more.
+**Author's Corner Presentations** focus on tips on usage and
+design.  In addition, we're looking to uncover the hidden design
+gems hidden in boost libraries -- see below for more.
 
 Other formats may also be of interest. Don't hold back a proposal
 just because it doesn't fit into a pigeonhole.
@@ -69,7 +81,7 @@ following:
 * Other topics likely to be of great interest to Boost users and developers
 
 Interactive and collaborative sessions are encouraged, as this is
-the nature of both the online Boost community and the style of
+the nature of both the on-line Boost community and the style of
 learning and participation that has proven most successful at such
 events. Sessions can be tutorial based, with an emphasis on
 interaction and participant involvement, or workshop based, whether
@@ -96,7 +108,12 @@ Based on user feedback from last year, we'd like to encourage Boost library auth
 Submitting a proposal
 ---------------------
 
-Standard Sessions are 90 minutes. You may submit a proposal for fractions or multiples of 90-minutes. Fractional proposals will be grouped into 90 minute sessions covering related topics. Longer sessions, such as tutorials and classes, will be assigned 90 minute, three hour (i.e. half day), or six hour (i.e. full day) time slots.
+Standard Sessions are 90 minutes. You may submit a proposal for
+fractions or multiples of 90-minutes. Fractional proposals will be
+grouped into 90 minute sessions covering related topics. Longer
+sessions, such as tutorials and classes, will be assigned 90
+minute, three hour (i.e. half day), or six hour (i.e. full day)
+time slots. 
 
 Please include:
 
@@ -115,22 +132,23 @@ Please include:
 * A biography, suitable for the conference web site
 * Your contact information (will not be made public)
 
-Please submit via email to ''conference at boost-consulting.com'', with a subject that begins "BoostCon proposal"
 
-Timeline
---------
+Please submit via email to |program|__,
+with a subject that begins “BoostCon Proposal:”
 
-**Proposals due** As soon as possible. Proposals will be accepted on a first-come-first-served basis.
+.. |program| replace::  boostcon-program *AT* lists.boostcon.com
 
-**Proposals acceptances sent** As soon as accepted.
+__ mailto:boostcon-program-AT-lists.boostcon.com.
 
-**Session materials due** April 15, 2008. The session material go on the !BoostCon CD handed out to attendees.
+Financial Details
+-----------------
 
-Other arrangements
-------------------
+Like Boost itself, BoostCon is strictly non-profit. Conference
+organizers are not paid for their time. Any surplus money will be
+rolled over into the succeeding year BoostCon budget. 
 
-Like Boost itself, BoostCon is strictly non-profit. Conference organizers are not paid for their time. Any surplus money will be rolled over into the succeeding year BoostCon budget.
-
-BoostCon provides free admission for all 90 minute and longer session presenters. This year we also hope to have enough revenue to pay presenters of longer sessions a small honorarium.
+BoostCon provides free admission for all 90 minute and longer
+session presenters. This year we also hope to have enough revenue
+to pay presenters of longer sessions a small honorarium. 
 
 

@@ -62,27 +62,6 @@ Who profits from my registration fee?
   If there is any money left over when the conference is over, it
   will be rolled into a fund to pay for BoostCon'08.
 
-What happened to the original plan with two tracks of 3 days each, overlapping on Wednesday?
-   It proved impractical for a variety of reasons, among them:
-
-   * Many (most) sessions don't fall neatly into the
-     library-user/library-developer track distinction.  We see this as
-     a good thing, as it means we have more material that's of broad
-     interest.
-
-   * It made the hotel reservation pattern very difficult; we were
-     afraid many people would be shut out of rooms at the conference
-     hotel and also that the hotel would not be able sell the entire
-     reserved room block, which could cost the (non-profit) conference
-     a lot of money, as we had to agree to be liable for unsold room
-     nights.
-
-   In the end we think the current program offers more to our
-   attendees than would otherwise have been possible, and because
-   all constituencies will be together all week, it will be far
-   better for community-building.
-
-
 __ /about
 
 .. |more| replace:: *more...*
