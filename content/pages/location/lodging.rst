@@ -51,7 +51,7 @@ Please fill out `this form`__ and send it to the Aspen Meadows
 reservations desk at reservations@aspenmeadows.com, or
 1-970-544-7810 (fax).  You can also phone the hotel directly at
 1-800-452-4240, but don't forget to inform the reservation staff that
-you are participating in Boost 2007 to get the conference rate.
+you are participating in BoostCon 2008 to get the conference rate.
 
 __ /site-media/boostcon-08-hotel-reservation.doc
 
