@@ -14,6 +14,14 @@ includes:
 
 **On or after April 1, the conference registration fee will be $699**
 
+.. Note:: We request that you register **as soon as possible**.
+   Early collection of registration fees will allow us more
+   flexibility to plan a great conference, and may allow us to
+   increase the `size of the reserved room block`__ at Aspen
+   Meadows.
+
+   __ /about/faq#small-block
+
 How to Register
 ---------------
 
