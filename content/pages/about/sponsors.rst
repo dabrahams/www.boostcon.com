@@ -5,10 +5,12 @@ We are indebted to the following companies and institutions
 for their support of BoostCon 2008:
 
 * `Google, Inc.`__
+
 .. * `Boost Consulting, Inc.`__
 
 __ http://www.google.com
-.. __ http://www.boost-consulting.com
+
+.. .. __ http://www.boost-consulting.com
 
 A very special “thank you” goes to our nonprofit umbrella
 organization, `The Software Freedom Conservancy`__, which provided
