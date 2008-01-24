@@ -7,12 +7,12 @@ from django.shortcuts import render_to_response, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.template import RequestContext
 from models import *
+import paypal
+import google_checkout
 
 from sphene.contrib.libs.common.utils.misc import cryptString, decryptString
 from django.conf import settings
 from boost_consulting.utils.host import hostname
-
-import urllib
 
 import boost_consulting.shipping as shipping
 
@@ -49,6 +49,8 @@ def step1(request, slug = None):
 
     has_errors = False
 
+    print '*****', request.POST
+    
     if 'zip' in request.POST:
         # POST will only contain values like 'zip' if this request is a button
         # press starting at the step1 screen (and not arriving there from
@@ -145,7 +147,7 @@ def step1(request, slug = None):
         except Exception, err:
             form.errors['__all__'] = str(err)
             return render_to_response('step1.html', 
-                RequestContext(request, {'form': form, 'has_errors': True}))
+                RequestContext(request, {'form': form, 'has_errors': True, 'google_merchant_id':609132488541913}))
 
         if product.shippable:
             return HttpResponseRedirect('/checkout-2')
@@ -154,7 +156,7 @@ def step1(request, slug = None):
 
     return render_to_response('step1.html', 
         RequestContext(request, {'form': form, 'has_errors': has_errors,
-                                 'product': product}))
+                                 'product': product, 'google_merchant_id':609132488541913}))
 
 def order_complete(request, status, hashcode):
     order_id = int(decryptString( settings.SECRET_KEY, hashcode ))
@@ -190,25 +192,16 @@ def create_and_send_order(request, shipping_method='None', shipping_rate=0):
 
     order_hash = cryptString(settings.SECRET_KEY, str(order.id))
     host = hostname(request)
+    completion_url = 'http://%(host)s/registration-complete/%(order_hash)s' % locals()
+    cancel_url = 'http://%(host)s/registration-canceled/%(order_hash)s' % locals()
 
-    url = 'https://www.paypal.com/xclick/business=conservancy-boost@softwarefreedom.org&quantity=1&no_shipping=2&return=http://%(host)s/registration-complete/%(order_hash)s&cancel_return=http://%(host)s/registration-canceled%(order_hash)s&currency_code=USD&no_shipping=1&image_url=http://boostcon.com/site-media/images/logo-small.gif' % locals()
-    url += '&item_name=%s' \
-        % urllib.quote_plus('%s (%s)' % (product.name, product.description))
-    url += '&invoice=%d' % order.id
-    url += '&amount=%.2f' % product.price
-    url += '&shipping=%.2f' % float(shipping_rate)
-    url += '&first_name=%s' % urllib.quote_plus(destination.first_name)
-    url += '&last_name=%s' % urllib.quote_plus(destination.last_name)
-    url += '&address1=%s' % urllib.quote_plus(destination.address1)
-    url += '&address2=%s' % urllib.quote_plus(destination.address2)
-    url += '&state=%s' % urllib.quote_plus(destination.state)
-    url += '&zip=%s' % urllib.quote_plus(destination.zip)
-    url += '&city=%s' % urllib.quote_plus(destination.city)
-    url += '&night_phone_a=%s' % urllib.quote_plus(destination.phone)
-    url += '&country=%s' % urllib.quote_plus(destination.country)
-    url += '&email=%s' % urllib.quote_plus(request.user.email)
+    print '***** POST:', request.POST
+    if 'google.x' in request.POST:
+        url = google_checkout.checkout_url(request, order)
 
-    print 'sending URL:', url
+    elif 'paypal.x' in request.POST:
+        url = paypal.checkout_url(request, order)
+    
     return HttpResponseRedirect(url)
     
 def step2(request):

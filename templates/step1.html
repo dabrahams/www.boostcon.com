@@ -272,7 +272,7 @@ $(function() {
     <input type="submit" class="button submit" value="Continue to shipping selection"/>
     {% else %}
     {% load checkout %}
-    {% checkout %}
+    {% checkout product.price request %}
     {% endif %}
 </form>
 

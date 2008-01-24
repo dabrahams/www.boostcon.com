@@ -11,9 +11,9 @@ class metatag(object.__class__):
 class tag(object):
     __metaclass__ = metatag
     
-    def __init__(self, name):
+    def __init__(self, name, **attributes):
         self._name = name
-        self._attributes = {}
+        self._attributes = attributes
         self._children = []
 
     def _copy(self):
@@ -46,11 +46,7 @@ class tag(object):
         return self
 
     def __str__(self):
-        return u'<%s%s>%s</%s>' % (
-            self._name
-            , u''.join([u' %s="%s"' % kv for kv in self._attributes.items()])
-            , u''.join([str(c) for c in self._children])
-            , self._name)
+        return self._xml(minidom.Document()).toprettyxml()
 
     def __repr__(self):
         return self.__class__.__name__ + ': ' + str(self)
@@ -69,7 +65,7 @@ class tag(object):
     
 def xml_document(t):
     d = minidom.Document()
-    d.documentElement = t._xml(d)
+    d.appendChild(t._xml(d))
     return d
 
 if __name__ == '__main__':
@@ -86,4 +82,6 @@ if __name__ == '__main__':
                 _.AccountNumber[ 33 ]
               , _.MeterNumber[ 44 ]
               , _.CarrierCode[ 'FDXG' ]
-            ])
+            ]).toprettyxml()
+
+    print xml_document(_('checkout-shopping-cart', xmlns="http://checkout.google.com/schema/2")).toprettyxml()

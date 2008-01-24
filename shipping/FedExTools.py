@@ -340,9 +340,6 @@ class FedExTools:
                                          # would be FDXG
             ]
         
-        self.accessxml = xml_document(self.request_header)
-        
-        # self.requestxml = minidom.Document()
         self.responsexml = minidom.Document()
         
 
@@ -350,7 +347,7 @@ class FedExTools:
         """Processes the request by sending it to the FedEx server. Stores
         a minidom.Document object containing the result of the query in
         the object's responsexml property."""
-        req_xml = '%s%s' % (self.requestxml.toxml(), self.requestxml.documentElement.toxml())
+        req_xml = self.requestxml.toxml()
             
         # Connect to FedEx server via SSL
         hcon = httplib.HTTPSConnection(DOMAIN)
@@ -417,20 +414,20 @@ class FedExSubscriptionRequest(FedExTools):
     def BuildXml(self,):
         ''' Builds the XML object to be sent to Fedex. Stored in self.requestxml'''
         self.requestxml = minidom.Document()
-        self.requestxml.documentElement = self.requestxml.createElement('FDXSubscriptionRequest')
+        self.requestxml.appendChild(self.requestxml.createElement('FDXSubscriptionRequest'))
         self.requestxml.documentElement.setAttribute("xmlns:api",APIURL)
         self.requestxml.documentElement.setAttribute("xmlns:xsi",XSIURL)
         self.requestxml.documentElement.setAttribute("xsi:noNamespaceSchemaLocation",SUBSCRIBE_NNSLOC)
 
         element = minidom.Document()
-        element.documentElement = element.createElement('RequestHeader')
+        element.appendChild(element.createElement('RequestHeader'))
         element.documentElement.appendChild(
             element.createElement('AccountNumber')).appendChild(
             element.createTextNode(self.account))
 
         self.requestxml.documentElement.appendChild(element.documentElement)
         
-        element.documentElement = element.createElement('Contact')
+        element.appendChild(element.createElement('Contact'))
         if self.person:
             element.documentElement.appendChild(
                 element.createElement('PersonName')).appendChild(
@@ -446,7 +443,7 @@ class FedExSubscriptionRequest(FedExTools):
         
         self.requestxml.documentElement.appendChild(element.documentElement)
 
-        element.documentElement = element.createElement('Address')
+        element.appendChild(element.createElement('Address'))
         element.documentElement.appendChild(
             element.createElement('Line1')).appendChild(
             element.createTextNode(self.address1))
