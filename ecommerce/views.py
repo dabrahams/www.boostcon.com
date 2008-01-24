@@ -49,8 +49,6 @@ def step1(request, slug = None):
 
     has_errors = False
 
-    print '*****', request.POST
-    
     if 'zip' in request.POST:
         # POST will only contain values like 'zip' if this request is a button
         # press starting at the step1 screen (and not arriving there from
@@ -195,7 +193,6 @@ def create_and_send_order(request, shipping_method='None', shipping_rate=0):
     completion_url = 'http://%(host)s/registration-complete/%(order_hash)s' % locals()
     cancel_url = 'http://%(host)s/registration-canceled/%(order_hash)s' % locals()
 
-    print '***** POST:', request.POST
     if 'google.x' in request.POST:
         url = google_checkout.checkout_url(request, order)
 

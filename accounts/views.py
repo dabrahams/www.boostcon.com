@@ -216,7 +216,7 @@ def register_hash(request, hashcode, group = None):
 
         return HttpResponseRedirect(next)
     else:
-        print '******* reg_form:', reg_form
+        raise Http404
         
     return render_to_response( 'login_or_register.html',
                                { 'form': reg_form },

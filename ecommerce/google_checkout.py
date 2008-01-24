@@ -7,14 +7,21 @@ from boost_consulting.utils.dom import tag as _, xml_document
 from xml.dom import minidom
 from base64 import b64encode, b64decode
 
+# Sandbox ID and key
+MERCHANT_ID =  674749040905264
+MERCHANT_KEY = 'OzjvzinyiBiq9SWPp0-lTg'
+
 API_URL = '/api/checkout/v2/merchantCheckout/Merchant/'
 if settings.DEBUG:
     DOMAIN = 'sandbox.google.com'
-    MERCHANT_ID = 609132488541913
-    MERCHANT_KEY = 'aRanDomLoOkingColleCtioNoFcHarACterS'
     API_URL = '/checkout'+API_URL
 else:
     DOMAIN = 'checkout.google.com'
+    try:
+        from boost_consulting.secure.google_checkout import MERCHANT_ID, MERCHANT_KEY
+    except:
+        pass
+
 
 def checkout_url(request, order):
 
@@ -22,10 +29,12 @@ def checkout_url(request, order):
         _('checkout-shopping-cart', xmlns="http://checkout.google.com/schema/2")[
         _('shopping-cart')[
             _.items[
-                _('item-name')[order.product.name],
-                _('item-description')[order.product.description],
-                _('unit-price', currency='USD')[order.product.price],
-                _.quantity[1]
+                _.item[
+                    _('item-name')[order.product.name],
+                    _('item-description')[order.product.description],
+                    _('unit-price', currency='USD')[order.product.price],
+                    _.quantity[1]
+                ]
             ]
         ],
         # Shipping information would go here
@@ -43,6 +52,5 @@ def checkout_url(request, order):
     hcon.send(req_xml)
 
     response = minidom.parseString(hcon.getresponse().read())
-    print '******** google said:', response.toprettyxml()
     return response.documentElement.getElementsByTagName('redirect-url')[0].firstChild.nodeValue
 

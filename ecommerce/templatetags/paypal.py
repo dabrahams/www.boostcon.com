@@ -8,7 +8,6 @@ class PayPalFee(template.Node):
         self.price = price
 
     def render(self, ctx):
-        print '*** ctx=', ctx
         actual_price = float(resolve_variable(self.price, ctx))
         return '%.2f'% (total_charge(actual_price) - actual_price)
 
