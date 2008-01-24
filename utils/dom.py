@@ -60,7 +60,7 @@ class tag(object):
                 cc = e.ownerDocument.createTextNode(str(c))
             e.appendChild(cc)
         for k,v in self._attributes.items():
-            e.setAttribute(k,v)
+            e.setAttribute(k,unicode(v))
         return e
     
 def xml_document(t):
