@@ -9,7 +9,7 @@ Call for Sessions
 
 The second annual Boost conference will take place in Aspen, Colorado, May 5-9. BoostCon is the main face-to-face event for all things Boost, from generic-programming techniques to Boost community, from using Boost libraries to writing Boost libraries, from deployment considerations to promoting the use of Boost more widely, from TR1 to TR2. Given the range and interests of last year's participants, the event again promises to be intense and in depth. We invite you to propose a session.
 
-See the [http://www.boostcon.com BoostCon home page at www.boostcon.com] for more information.
+See the BoostCon home page at www.boostcon.com for more information.
 
 .. contents:: Index
 
