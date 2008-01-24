@@ -19,8 +19,6 @@ if onserver:
 
     serve_media = 'runserver' in sys.argv
     if serve_media:
-        ADMIN_MEDIA_PREFIX = '/media/'
-    else:
         ADMIN_MEDIA_PREFIX = '/admin-media/'
     
     #
