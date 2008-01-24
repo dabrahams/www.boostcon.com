@@ -83,13 +83,15 @@ Based on user feedback from last year, we'd like to encourage Boost library auth
 
 * Library Purpose / Motivations
 * Library Genesis & History
-   * why you developed it
-   * when it was accepted
-   * how it has evolved
-*  Library Concepts
-*  Library Usage Overviews and Tips
-*  Library Design Decisions / Design Gems
-*  Question / Answer
+
+  * why you developed it
+  * when it was accepted
+  * how it has evolved
+  
+* Library Concepts
+* Library Usage Overviews and Tips
+* Library Design Decisions / Design Gems
+* Question / Answer
  
 Submitting a proposal
 ---------------------
