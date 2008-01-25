@@ -60,7 +60,8 @@ urlpatterns += patterns(
 
 urlpatterns += patterns(
     'boost_consulting.conference',
-    (r'^admin/conference/(?P<conference_name>.*)/schedule$', 'views.schedule_admin'),
+    (r'^admin/conference/(?P<conference_name>.*)/schedule$',
+     'views.schedule_admin')
     )
 
 defaultdict = { 'groupName': 'boostcon' }
