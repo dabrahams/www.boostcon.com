@@ -5,7 +5,7 @@
 <p><b>Note:</b> Click the title of any session to visit its start time in
 the <a href="schedule">conference schedule</a>.</p>
 {% load code %}
-{% python _import_('conference.models').Session.objects.all(), as='sessions' %}
+{% python _import_('conference.models').Session.objects.filter(start__start__year=2008), as='sessions' %}
 {% load conference %}
 {% for s in sessions %}
 <h3><a name="{{s.slug}}" href="/program#{{s.slug}}">{{s.title}}</a></h3>
