@@ -1,6 +1,6 @@
 {% extends "pages/default.html" %}
 
-{% block body %}
+{% block postfix %}
 <div class="section">
 {% load code %}
 {% python _import_('conference.models').Presenter.objects.all(), as='presenters' %}
