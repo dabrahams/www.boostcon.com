@@ -1,17 +1,17 @@
-BoostCon'07
+BoostCon'08
 ===========
 
 :menu-title: home
 :order: -100
 
-May 14-18 2007 - Aspen, Colorado
+May 4-9 2008 - Aspen, Colorado
 --------------------------------
 
 .. image:: /site-media/colorado_bells_sept22_2.jpg
    :align: right
 
 Promising to be **the** main face-to-face event for all things
-Boost_, *BoostCon'07* opens the door to your C++ future.  From using
+Boost_, *BoostCon'08* opens the door to your C++ future.  From using
 the Boost libraries to writing and maintaining them, from
 evangelizing to deploying Boost within your organization, from
 infrastructure and process to vision and mission, and from TR1 to

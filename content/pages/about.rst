@@ -2,7 +2,7 @@
 .. Software License, Version 1.0. (See accompanying
 .. file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
 
-About BoostCon'07
+About BoostCon'08
 =================
 
 :menu-title: About
@@ -11,7 +11,7 @@ Why a Boost Conference?
 -----------------------
 
 Since its inception in 1998, Boost_ has been growing steadily in
-size, scope, and popularity.  Today, Boost's `70+ libraries`__ are
+size, scope, and popularity.  Today, Boost's `75+ libraries`__ are
 part of numerous `commercial applications`__, are packaged with
 every major Linux distribution, and are used as a `must-pass
 testbed`__ for every serious C++ compiler.  By the spring of 2006,
@@ -53,9 +53,9 @@ face-to-face contact when building a strong and vibrant community.
 Size
 ----
 
-Initial conference capacity is just 140 registrants, so we
+Initial conference capacity is less than 100 registrants, so we
 recommend securing your place early.  Contingency plans are in
 place that may allow expansion if demand runs high, but it’s
-important to us that the initial conference stay small enough to
-assure you a quality experience.  Registrants past the initial 140
-will be waitlisted.
+important to us that the first few conferences stay small enough to
+assure you a quality experience.  Registrants past the initial
+quota will be waitlisted.

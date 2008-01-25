@@ -129,9 +129,16 @@ div.center {
     line-height: 190%;
     font-weight: bold;
 }
+div.center a {
+    color: #FFFFFF;
+}
 div.center>a {
 	color: #FFFFFF;
     font-weight: bold;
+}
+
+div.center span.message {
+    color: #ffff99;
 }
 
 div#navigator div.center {
@@ -780,90 +787,93 @@ table.schedule tbody td.error:hover {
 	text-decoration: underline;
 }
 
-
-
 /* * *  - e n d -  * * */
-
-
 
 /*============================================================================= 
     Tables, stolen from Boost's stylesheet 
 =============================================================================*/ 
- 
-    table.table 
-    { 
-        width: 92%; 
-        margin-left: 4%; 
-        margin-right: 4%; 
-    } 
-     
-    table.table 
-    { 
-        padding: 4px; 
-    } 
-     
-    /* Table Cells */ 
-    table.table tr td 
-    { 
-        padding: 0.5em; 
-        text-align: left; 
-        font-size: 9pt; 
-    } 
- 
-    table.table tr th 
-    { 
-        padding: 0.5em 0.5em 0.5em 0.5em; 
-        border: 1pt solid white; 
-/*        font-size: 80%;*/ 
-    } 
- 
-    @media screen 
-    { 
-     
-    /* Tables */ 
-        table.table tr td 
-        { 
-            border: 1px solid #DCDCDC; 
-        } 
-     
-        table.table tr th 
-        { 
-            background-color: #F0F0F0; 
-            border: 1px solid #DCDCDC; 
-        } 
- 
-        pre,  
-        .screen 
-        { 
-            border: 1px solid #DCDCDC; 
-        } 
-     
-        td pre 
-        td .screen 
-        { 
-            border: 0px 
-        } 
-     
-        .sidebar pre 
-        { 
-            border: 0px 
-        } 
-     
-    } 
- 
-    pre,  
-    .screen 
-    { 
-        font-size: 9pt; 
-        display: block; 
-        margin: 1pc 4% 0pc 4%; 
-        padding: 0.5pc 0.5pc 0.5pc 0.5pc; 
-    } 
- 
-    /* Program listings in tables don't get borders */ 
-    td pre,  
-    td .screen 
-    { 
-        margin: 0pc 0pc 0pc 0pc; 
-        padding:  0pc 0pc 0pc 0pc; 
-    } 
+
+/* The only clue docutils gives us that tables are logically tables,
+   and not, e.g., footnotes, is that they have border="1".  Therefore
+   we're keying off of that.  We used to manually patch docutils to
+   add a "table" class to all logical tables, but that proved much too
+   fragile.
+*/
+
+    table[border="1"]
+    {
+        width: 92%;
+        margin-left: 4%;
+        margin-right: 4%;
+    }
+    
+    table[border="1"]
+    {
+        padding: 4px;
+    }
+    
+    /* Table Cells */
+    table[border="1"] tr td
+    {
+        padding: 0.5em;
+        text-align: left;
+        font-size: 9pt;
+    }
+
+    table[border="1"] tr th
+    {
+        padding: 0.5em 0.5em 0.5em 0.5em;
+        border: 1pt solid white;
+        font-size: 80%;
+    }
+
+    @media screen
+    {
+    
+    /* Tables */
+        table[border="1"] tr td
+        {
+            border: 1px solid #DCDCDC;
+        }
+    
+        table[border="1"] tr th
+        {
+            background-color: #F0F0F0;
+            border: 1px solid #DCDCDC;
+        }
+
+        pre, 
+        .screen
+        {
+            border: 1px solid #DCDCDC;
+        }
+    
+        td pre
+        td .screen
+        {
+            border: 0px
+        }
+    
+        .sidebar pre
+        {
+            border: 0px
+        }
+    
+    }
+
+    pre, 
+    .screen
+    {
+        font-size: 9pt;
+        display: block;
+        margin: 1pc 4% 0pc 4%;
+        padding: 0.5pc 0.5pc 0.5pc 0.5pc;
+    }
+
+    /* Program listings in tables don't get borders */
+    td pre, 
+    td .screen
+    {
+        margin: 0pc 0pc 0pc 0pc;
+        padding:  0pc 0pc 0pc 0pc;
+    }

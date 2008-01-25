@@ -10,7 +10,7 @@ onserver = 'boost-consulting.com' in os.popen('uname -a').read()
 if onserver:
     # So our ReST translation code can find the source files with relative
     # paths.
-
+    
     DATABASE_ENGINE = 'postgresql_psycopg2'
     DATABASE_NAME = 'boostcon.db'
     DATABASE_USER = 'boostcon'
@@ -19,12 +19,10 @@ if onserver:
 
     serve_media = 'runserver' in sys.argv
     if serve_media:
-        ADMIN_MEDIA_PREFIX = '/media/'
-    else:
         ADMIN_MEDIA_PREFIX = '/admin-media/'
     
     #
-    # Add an elif cases here to support your environment
+    # Add an elif case here to support your environment
     #
 else: # default settings work for my local development server
     DATABASE_ENGINE = 'postgresql_psycopg2'

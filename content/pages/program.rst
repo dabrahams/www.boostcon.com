@@ -15,6 +15,8 @@ small, informal groups.
 Schedule
 --------
 
+.. include:: content/pages/program/under-construction.inc
+
 **Note:** Click the title of any session to visit its description in
 the `session list`__.
 

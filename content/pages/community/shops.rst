@@ -12,8 +12,8 @@ substantial cost of establishing the shops himself, Zoltan has
 graciously agreed to share half of any profits with the fund for
 future editions of BoostCon.
 
-U.S. residents can use the `USA shop`__; all others should use the `EU
-shop`__.
+U.S. residents can use the `USA shop`__; all others should use the
+`EU shop`__.
 
 __ shops/usa
 __ shops/eu

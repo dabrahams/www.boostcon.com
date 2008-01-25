@@ -10,7 +10,7 @@ Frequently Asked Questions
 
 Why Aspen?
   It's an understandable question: when some people think of Aspen,
-  the see a glitzy skiing and shopping playground for the rich.
+  they see a glitzy skiing and shopping playground for the rich.
   But this town has another side that's in many ways stronger and
   more fundamental: a tradition of fostering intellectual and
   artistic collaboration.  Every year the `Aspen Institute`_, `Music
@@ -31,11 +31,22 @@ Why the long lunch break?
   of the day, rather than being stuck inside a darkend room with an
   LCD projector.
 
+.. _small block:
+
+Why is the reserved room block at Aspen Meadows so small?  
+  In order to reserve any rooms, we had to agree to cover the
+  entire cost of any reserved rooms we were unable to fill.  Boost
+  simply doesn't have enough money “in the bank” to guarantee any
+  more rooms than we have, and we were unable to find anyone who
+  was willing to assume liability for more rooms.  As we collect
+  registration fees we may be able to negotiate for an enlarged
+  reserved room block.
+
 Other conferences I've been to were much bigger.  Why is this one so small__?
   It all comes down to budget and atmosphere.  In BoostCon's first
-  year, it was especially important to minimize the risk of
+  years, it is especially important to minimize the risk of
   failure, and as a non-profit conference without big corporate
-  backers, that meant keeping a tight rein on expenses.  The `Aspen
+  backers, that means keeping a tight rein on expenses.  The `Aspen
   Center for Physics`__ was made available to us as a conference
   facility at an exceptionally attractive rate.  While its size is
   limited, that is also part of its charm.  The Physics
@@ -61,27 +72,6 @@ Who profits from my registration fee?
   equipment, and professional `conference planning services`__.  
   If there is any money left over when the conference is over, it
   will be rolled into a fund to pay for BoostCon'08.
-
-What happened to the original plan with two tracks of 3 days each, overlapping on Wednesday?
-   It proved impractical for a variety of reasons, among them:
-
-   * Many (most) sessions don't fall neatly into the
-     library-user/library-developer track distinction.  We see this as
-     a good thing, as it means we have more material that's of broad
-     interest.
-
-   * It made the hotel reservation pattern very difficult; we were
-     afraid many people would be shut out of rooms at the conference
-     hotel and also that the hotel would not be able sell the entire
-     reserved room block, which could cost the (non-profit) conference
-     a lot of money, as we had to agree to be liable for unsold room
-     nights.
-
-   In the end we think the current program offers more to our
-   attendees than would otherwise have been possible, and because
-   all constituencies will be together all week, it will be far
-   better for community-building.
-
 
 __ /about
 

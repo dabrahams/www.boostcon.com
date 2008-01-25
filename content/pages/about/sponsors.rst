@@ -2,16 +2,23 @@ Sponsors
 ========
 
 We are indebted to the following companies and institutions
-for their support of BoostCon 2007:
+for their support of BoostCon 2008:
 
-* `Adobe Systems`__
-* `Boost Consulting, Inc.`__
+* `Google, Inc.`__
 
-__ http://www.adobe.com
-__ http://www.boost-consulting.com
+.. * `Boost Consulting, Inc.`__
 
-A very special “thank you” goes to `Indiana University Open Systems
-Lab`__, which provided the financial and legal guarantees without
-which this conference could not have happened.
+__ http://www.google.com
 
-__ http://osl.iu.edu
+.. .. __ http://www.boost-consulting.com
+
+A very special “thank you” goes to our nonprofit umbrella
+organization, `The Software Freedom Conservancy`__, which provided
+the administrative support and legal nonprofit status without which
+this conference would not have been possible.
+
+__ http://conservancy.softwarefreedom.org
+
+Organizations interested in sponsoring BoostCon 2008 or future
+conferences should contact the sponsorship coordinartor at:
+sponsorship@boostcon.com.

@@ -1,0 +1,27 @@
+{% extends "sphene/sphboard/base.html" %}
+
+{% block extrahead %}
+<style>
+.notice {
+        float: left;
+        background-color:#FFFFE1;
+        border:1px dashed #666666;
+        color:#666666;
+        height:auto;
+        margin:0pt 0pt 10px 10px;
+        padding:5px;
+        width:25em;  
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+
+<div id="inner">
+<h2>Verification Email Sent</h2>
+  A validation URL required to continue registration has been sent to <b>{{ email }}</b>.<br/>
+  It should arrive within the next few minutes.  When you get the message, please click the URL in the message body.<br/>
+<p class="notice">If you are registering on behalf of someone else, you may have to ask him or her to forward the validation URL email to you.</p>
+</div>
+
+{% endblock %}

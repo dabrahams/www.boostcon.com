@@ -60,7 +60,8 @@ urlpatterns += patterns(
 
 urlpatterns += patterns(
     'boost_consulting.conference',
-    (r'^admin/conference/(?P<conference_name>.*)/schedule$', 'views.schedule_admin'),
+    (r'^admin/conference/(?P<conference_name>.*)/schedule$',
+     'views.schedule_admin')
     )
 
 defaultdict = { 'groupName': 'boostcon' }
@@ -75,23 +76,18 @@ urlpatterns += patterns('',
     (r'^community/wiki/', include('sphene.sphwiki.urls'), defaultdict),
 )
 
-urlpatterns += patterns('',
+urlpatterns += patterns('boost_consulting',
                         
-    (r'^accounts/login/?$', 'django.contrib.auth.views.login'),
-    (r'^accounts/logout/?$', 'django.contrib.auth.views.logout'),
-    (r'^accounts/register/(?P<hashcode>[a-zA-Z/\+0-9=]+)/$',
-     'boost_consulting.accounts.views.register_hash', defaultdict),
+    (r'^accounts/login_or_create/?$', 'accounts.views.register_or_login', {'login':False}),
+    (r'^accounts/login/?$', 'accounts.views.register_or_login', {'login':True}),
+    (r'^accounts/create/?$', 'accounts.views.register_or_login', {'login':False,
+                                                                  'groupName':'boostcon'}),
+    (r'^accounts/logout/?$', 'accounts.views.logout'),
+    (r'^accounts/create/(?P<hashcode>[a-zA-Z/\+0-9=]+)$',
+     'accounts.views.register_hash', defaultdict),
                         )
 
 
-
-
-# This would allow anyone at all to register.  We're not quite ready for that
-# yet.
-#
-# urlpatterns += patterns('',
-#     (r'^accounts/register/?$', 'sphene.community.views.register'),
-# )
 
 
 def add_trailing_slash(url_prefix):
@@ -106,7 +102,7 @@ urlpatterns += patterns('django.views.generic',
 #    (r'^$', 'simple.direct_to_template', {'template': 'homepage.html'}),
 
                         
-    # admin, stockphoto, and Sphene both use a trailing-slash URL scheme, so we need to
+    # admin, stockphoto, and Sphene all use a trailing-slash URL scheme, so we need to
     # make sure they always have one.                    
     add_trailing_slash('admin'),
     add_trailing_slash('community/photos'),
@@ -114,6 +110,8 @@ urlpatterns += patterns('django.views.generic',
     add_trailing_slash('community/forums'),
 
                         
+    (r'^registration-(?P<status>complete|canceled)$', 'simple.direct_to_template', {'template': 'order-status.html'}),
+
     (r'^(?P<base>.*)/$', 'simple.redirect_to', {'url': r'/%(base)s'}),
                         
     (r'^$', 'simple.redirect_to', {'url': r'/home'}),
@@ -127,6 +125,16 @@ urlpatterns += patterns('django.views.generic',
 
 urlpatterns += patterns(
     'boost_consulting',
+
+    # Uncomment these to enable ecommerce
+    (r'^register/(?P<slug>[-\w]+)$', 'ecommerce.views.step1'),
+    (r'^checkout-1$', 'ecommerce.views.step1'),
+    (r'^checkout-2$', 'ecommerce.views.step2'),
+
+    (r'^registration-(?P<status>complete|canceled)/(?P<hashcode>[a-zA-Z0-9=]+)$',
+     'ecommerce.views.order_complete'),
+                        
+
     (r'(.*)$', 'pages.views.page'),
     )
 
