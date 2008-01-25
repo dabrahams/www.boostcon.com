@@ -26,5 +26,9 @@ premises:
   http://aspenmeadowsresort.dolce.com/property/prop_fnb_overview.php
   for a sample menu.
 
+.. admonition:: Please Note
+
+   Availability of these dining options at Aspen Meadows will be
+   based upon occupany levels.
 
 .. include:: content/pages/location/dining.inc

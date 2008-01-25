@@ -68,7 +68,9 @@ class PublicScheduleNode(ScheduleNode):
 
     def render_day(self, conference, d, tracks, session_counters):
         from boost_consulting.utils.dom import tag as _
-        
+
+        tracks = tracks or [Track('')]
+            
         return _.table(
             _class="schedule",
             summary="%s Schedule for %s" % (conference, d.strftime('%A, %B %d'))
@@ -100,6 +102,7 @@ class PublicScheduleNode(ScheduleNode):
     def render_day_body(self, conference, d, tracks, session_counters):
         from boost_consulting.utils.dom import tag as _
         body = _.tbody
+        tracks = tracks or [Track('')]
 
         # Keeps track of active sessions in each track
         active = {}

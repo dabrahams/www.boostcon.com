@@ -1,9 +1,9 @@
 {% extends "pages/default.html" %}
 
-{% block body %}
+{% block postfix %}
 <div class="section">
 {% load code %}
-{% python _import_('conference.models').Presenter.objects.all(), as='presenters' %}
+{% python _import_('conference.models').Presenter.objects.filter(sessions__start__start__year=2008), as='presenters' %}
 {% load conference %}
 {% for p in presenters %}
 <h3><a name="{{p.full_name|slugify}}">{{p.full_name}}</a></h3>

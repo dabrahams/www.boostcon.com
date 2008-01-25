@@ -1,7 +1,7 @@
 Location
 ========
 
-The first Boost conference will be held in Aspen, one of Colorado’s
+The 2008 Boost conference will be held in Aspen, one of Colorado’s
 most beautiful year-round resort areas.  Founded as a mining camp
 in the Colorado Silver Boom and named because of the abundance of
 aspen trees in the area, the city emerged as a skiing mecca
@@ -20,9 +20,9 @@ __ http://www.aspenchamber.org/
 Local Time Zone
 ---------------
 
-At the time of BoostCon 2007, Aspen will be on Mountain Daylight
-Time, the same as Denver.  Daylight Savings Time starts Monday,
-March 11, 2007 at 3:00 a.m.
+At the time of BoostCon 2008, Aspen will be on Mountain Daylight
+Time, the same as Denver.  Daylight Savings Time starts Sunday
+March 9, 2008 at 2:00 a.m.
 
 
 Weather

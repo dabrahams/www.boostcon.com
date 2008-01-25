@@ -32,24 +32,28 @@ __ /location/around-town#getting-around
 Reservations
 ------------
 
-We are holding a block of guest rooms at the Aspen Meadows.  
-We request that you make your reservation **by April 9, 2007**.
-Full payment, including tax, is required at the time you make
-your reservation.  All reservations must be guaranteed with a
-credit card.
+We are holding a `very small`__ block of guest rooms at the Aspen
+Meadows.  We request that you make your reservation **as soon as
+possible**.  Those who wait will either not get a room, or pay a
+higher rate than necessary.  Full payment, including tax, is
+required at the time you make your reservation.  All reservations
+must be guaranteed with a credit card.
+
+__ /about/faq#small-block
 
 .. admonition::  BoostCon Rates at Aspen Meadows
 
-  * $155 - $165 + 9.6% tax (single occupancy)
-  * $85 - $95 + 9.6% tax/person (double occupancy)
+  155 per night, plus tax at 9.6%  (single/double occupancy).
+
+  :Note: A resort fee of $12 per night will be added to each night's reservation
 
 Please fill out `this form`__ and send it to the Aspen Meadows
 reservations desk at reservations@aspenmeadows.com, or
 1-970-544-7810 (fax).  You can also phone the hotel directly at
 1-800-452-4240, but don't forget to inform the reservation staff that
-you are participating in Boost 2007 to get the conference rate.
+you are participating in BoostCon 2008 to get the conference rate.
 
-__ /site-media/boostcon-07-hotel-reservation.doc
+__ /site-media/boostcon-08-hotel-reservation.doc
 
 Details
 -------

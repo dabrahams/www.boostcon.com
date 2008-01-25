@@ -2,18 +2,41 @@
 Travel
 ======
 
-.. Note:: The Aspen/Pitkin County airport, Sardy Field, will be
-   closed in May 2007 for runway improvements.
+Flights
+=======
 
-   We recommend that participants who plan to fly book their
-   reservation into either Denver (DEN) or Eagle (EGE) airports.
-   See below for more details.
+.. Note:: This year the Aspen/Pitkin County airport (ASE), (also
+   known as Sardy Field), will be **open** for flights directly
+   into Aspen.  However, these flights fill up quickly so we
+   recommend you book early.
+
+Flying into Aspen/Pitkin County airport (ASE)
+---------------------------------------------
+
+The easiest way to get to Aspen is to book a flight directly into
+Aspen/Pitkin County airport.  Aspen is a compact town, and the
+Aspen Meadows resort runs a free shuttle for its guests, so if you
+fly all the way to Aspen, you shouldn't need a car at all.  You can
+fly to Aspen through Salt Lake City on Delta or through Denver on
+United.
+
+Flying into Denver (DEN) or Eagle (EGE)
+---------------------------------------
+
+Some people decide to fly to one of the larger regional airports
+and travel about 4 hours on the road.  The scenery in the area is
+beautiful, and the drive is very pleasant.  You may find this
+alternative to be more economical.
 
 Ground Transportation
 =====================
 
-Airport to Aspen and Return
----------------------------
+Participants flying into Denver or Eagle Colorado will want to
+arrange further transportation in order to reach Aspen.  The most
+common options are detailed below.
+
+Denver or Eagle Airport to Aspen and Return
+-------------------------------------------
 
 :Shuttle: `Colorado Mountain Express`__ (CME)
 :Reservations: 1-800-525-6363.  (Advance reservations essential.
@@ -37,7 +60,6 @@ Airport pick up and drop off location:
 	arrive by 11 am and 2 pm respectively.  If there is sufficient
 	demand to warrant adding additional departures, they will be
 	happy to add more service.
-
 :Eagle:	Outside main door to terminal.  
 
    Departures are flight-specific.  Please have your flight

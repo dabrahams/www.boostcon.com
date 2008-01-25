@@ -4,13 +4,14 @@
 from django.dispatch import dispatcher
 from django.db.models import signals, get_apps, get_models
 from sphene.community import models
+from boost_consulting.utils.host import hostname
 
 def init_data(app, created_models, verbosity, **kwargs):
     from sphene.community.models import Group, Navigation
     if Group in created_models:
         group = Group( name = 'boostcon',
                        longname = 'Boost Conference Group',
-                       baseurl = 'boostcon.com', )
+                       baseurl = hostname(), )
         group.save()
 
         if Navigation in created_models:

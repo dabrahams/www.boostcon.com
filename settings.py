@@ -10,6 +10,11 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
+# URL prefix for admin media -- CSS, JavaScript and images. Make sure to use a
+# trailing slash.
+# Examples: "http://foo.com/media/", "/media/".
+ADMIN_MEDIA_PREFIX = '/media/'
+
 #
 # prepare settings that depend on where the project is being run.
 #
@@ -53,6 +58,7 @@ TEMPLATE_LOADERS = (
 
 TEMPLATE_CONTEXT_PROCESSORS = (
     'utils.context_processors.media_url',
+    'boost_consulting.accounts.context_processors.account_messages',
 
     # These are Django's defaults.  Too bad there's no way to just add to the
     # defaults without repeating them.
@@ -94,6 +100,8 @@ INSTALLED_APPS = (
     'boost_consulting.pages',
     'boost_consulting.conference',
     'boost_consulting.accounts',
+    'boost_consulting.ecommerce',
+    'boost_consulting.shipping',
 
     'stockphoto',
     
