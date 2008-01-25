@@ -10,7 +10,7 @@ Frequently Asked Questions
 
 Why Aspen?
   It's an understandable question: when some people think of Aspen,
-  the see a glitzy skiing and shopping playground for the rich.
+  they see a glitzy skiing and shopping playground for the rich.
   But this town has another side that's in many ways stronger and
   more fundamental: a tradition of fostering intellectual and
   artistic collaboration.  Every year the `Aspen Institute`_, `Music
