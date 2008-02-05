@@ -133,12 +133,8 @@ Please include:
 * Your contact information (will not be made public)
 
 
-Please submit via email to |program|__,
+Please submit via email to program@boostcon.com,
 with a subject that begins “BoostCon Proposal:”
-
-.. |program| replace::  boostcon-program *AT* lists.boostcon.com
-
-__ mailto:boostcon-program-AT-lists.boostcon.com.
 
 Financial Details
 -----------------
