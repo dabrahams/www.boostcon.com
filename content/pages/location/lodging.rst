@@ -53,6 +53,24 @@ reservations desk at reservations@aspenmeadows.com, or
 1-800-452-4240, but don't forget to inform the reservation staff that
 you are participating in BoostCon 2008 to get the conference rate.
 
+.. admonition:: Important
+
+   If you call the Aspen Meadows outside their regular business
+   hours, your call will automatically be forwarded to the Dolce
+   International corporate call center.  For reasons too
+   complicated to explain here, the corporate call center may
+   report that the BoostCon room block is sold out.  **Do Not
+   Panic**.  As of this writing, the Meadows continues to make
+   rooms available to us at the conference rate.  However, that
+   condition may not continue forever, so
+
+   a) make your reservation ASAP
+
+   b) if you have trouble reaching a reservation agent on the Meadows
+      property by phone, please fill out and fax (or email) the
+      reservations form directly to the Meadows using the contact
+      information above
+
 __ /site-media/boostcon-08-hotel-reservation.doc
 
 Details
