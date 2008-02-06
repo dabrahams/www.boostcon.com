@@ -3,9 +3,11 @@ from django.shortcuts import get_object_or_404
 from django.http import HttpResponse, Http404
 from models import *
 
-def page(request, url):
+def page(request, **context):
     """This is basically the same thing as contrib/flatpages."""
 
+    url = context['url']
+    
     # Normalize URL to the format used in the database.
     if not url.startswith('/'):
         url = '/' + url
@@ -29,12 +31,21 @@ def page(request, url):
 
     breadcrumbs.reverse()
 
-    c = RequestContext(request, {
+    context_data = {
         'page': page,
         'body': page.content,
-        'breadcrumbs': breadcrumbs
-    })
+        'breadcrumbs': breadcrumbs,
+        # for compatibility with simple.direct_to_template, we can't pass this
+        # stuff at the top level :(
+        'params': context.copy() 
+    }
+    
+    return HttpResponse(t.render(RequestContext(request, context_data)))
 
-    return HttpResponse(t.render(c))
 
-
+def previous_program(request, url):
+    import os
+    u = url
+    if u.endswith('/'):
+        u = u[:-1]
+    return page(request, url)

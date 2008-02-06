@@ -1,42 +1,6 @@
 {% extends "pages/default.html" %}
 
 {% block postfix %}
-<div class="section">
-<p><b>Note:</b> Click the title of any session to visit its start time in
-the <a href="schedule">conference schedule</a>.</p>
-{% load code %}
-{% python _import_('conference.models').Session.objects.filter(start__start__year=2008), as='sessions' %}
-{% load conference %}
-{% for s in sessions %}
-<h3><a name="{{s.slug}}" href="/program#{{s.slug}}">{{s.title}}</a></h3>
-
-<table class="docutils field-list" rules="none" frame="void">
-<col class="field-name"/>
-<col class="field-body"/>
-
-{% if s.presenters.all %}
-<tr class="field">
-<th class="field-name">Speaker{% python len(s.presenters.all()) > 1 and 's' or '' %}:</th>
-<td class="field-body">{% python ', '.join([u'<a href="%s">%s</a>' % (p.get_absolute_url(), p.full_name()) for p in s.presenters.all()]) %}</td>
-</tr>
-{% endif %}
-
-<tr class="field"><th class="field-name">Format:</th><td class="field-body">{{s.format}}</td></tr>
-
-{% if s.level_name %}
-<tr class="field"><th class="field-name">Level:</th><td class="field-body">{{s.level_name}}</td></tr>
-{% endif %}
-
-{% if s.attendee_background %}
-<tr class="field"><th class="field-name">Attendee Background:</th><td class="field-body">{{s.attendee_background}}</td></tr>
-{% endif %}
-
-{% if s.track %}
-<tr class="field"><th class="field-name">Track:</th><td class="field-body">{{s.track.name}}</td></tr>{% endif %}
-
-</table>
-
-<p>{{s.description|render_rst:"initial_header_level=4"}}</p>
-{% endfor %}
-</div>
+{% load sessions %}
+{% sessions %}
 {% endblock %}

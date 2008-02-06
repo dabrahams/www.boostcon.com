@@ -1,14 +1,6 @@
 {% extends "pages/default.html" %}
 
 {% block postfix %}
-<div class="section">
-{% load code %}
-{% python _import_('conference.models').Presenter.objects.filter(sessions__start__start__year=2008), as='presenters' %}
-{% load conference %}
-{% for p in presenters %}
-<h3><a name="{{p.full_name|slugify}}">{{p.full_name}}</a></h3>
-
-<p>{{p.bio|render_rst:"initial_header_level=4"}}</p>
-{% endfor %}
-</div>
+{% load presenters %}
+{% presenters %}
 {% endblock %}
