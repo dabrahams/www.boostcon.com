@@ -2,6 +2,7 @@ from utils.cache import eternal_cache as cache
 from boost_consulting.utils.docinfo_writer import *
 import os
 import stat
+import re
 
 class PageWriter(DocInfoExtractWriter):
     docinfo_fields = ('template-name', 'order', 'keywords', 'menu-title', 'page-title')
@@ -15,17 +16,24 @@ def _normalize_url(url):
         url = '/' + url
     return url
 
-def _load_page(path):
-    """Load data for a single page from rst-file in 'path'."""
+generators = []
 
-    writer = PageWriter()
-    parts, data = get_parts(
-        open(path).read() # .decode('utf-8')
-      , writer
-      , initial_header_level = 3)
+def _load_page(path, url):
+    """Load data for a single page from rst-file in 'path'."""
+    return build_page(
+        url = url,
+        *get_parts(
+            open(path).read(),
+            PageWriter(),
+            initial_header_level = 3)
+        )
+
+def build_page(parts, data, url):
+    """Generate an instance of the page model from the given parts and data."""
 
     result = Page()
-
+    result.url = url
+    
     result.meta = parts['meta'].encode('utf-8')
     
     # Extract basic docinfo fields
@@ -75,13 +83,20 @@ def get_pages(root_url):
 
     if pages and mod_time == cache.get('mod_time_for_' + path):
         return pages
-
+    
     try:
         files = os.listdir(path)
     except:
         files = []
 
     pages = []
+
+    timeout = None
+    for pattern,g in generators:
+        if re.match(pattern, root_url[1:]):
+            pages += g(root_url)
+            timeout = 2*60
+            break
 
     # Load all pages from filesystem.
     for f in files:
@@ -92,8 +107,7 @@ def get_pages(root_url):
             continue
 
         url = _normalize_url(os.path.join(root_url,name))
-        page = _load_page(os.path.join(path, f));
-        page.url = url
+        page = _load_page(os.path.join(path, f), url);
         pages.append(page)
 
     pages.sort(lambda x,y: cmp((x.order,x.title), (y.order,y.title)))
@@ -105,9 +119,12 @@ def get_pages(root_url):
         if prev: prev.next = p
         p.prev = prev
         prev = p
+        # the template may access the DB, so better not persist too long        
+        if p.template_name:
+            timeout = 2*60
 
-    cache.set('mod_time_for_' + path, mod_time)
-    cache.set('pages_for_' + root_url, pages)
+    cache.set('mod_time_for_' + path, mod_time, timeout=timeout)
+    cache.set('pages_for_' + root_url, pages, timeout=timeout)
 
     return pages
 
@@ -170,7 +187,8 @@ class Page(object):
         return self.url
 
     def children(self):
-        return get_pages(self.url)
+        c = get_pages(self.url)
+        return c
 
     def parent(self):
         dir = os.path.dirname(self.url)

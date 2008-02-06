@@ -2,6 +2,7 @@
 # Software License, Version 1.0. (See accompanying
 # file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
 from django import template
+from django.template import resolve_variable
 from boost_consulting.conference.models import *
 from datetime import *
 from utils.format import _12hr_time
@@ -46,34 +47,55 @@ def time_segments(conference, day):
         yield block
 
 class ScheduleNode(template.Node):
-    def render_schedule(self, ctx, conference):
+    def render_schedule(self, values):
         result = []
 
-        tracks = Track.objects.filter(conference = conference).order_by('name')
+        tracks = Track.objects.filter(conference = values.conference).order_by('name')
         session_counters = dict([(t,0) for t in tracks] + [(None,0)])
         
-        for d in iterate_days(conference.start, conference.finish):
+        for d in iterate_days(values.conference.start, values.conference.finish):
             result.append(str(self.render_day(
-                conference,d,tracks,session_counters)))
+                values,d,tracks,session_counters)))
 
         return u'\n'.join(result).encode('utf-8')
 
+        
 class PublicScheduleNode(ScheduleNode):
-    def __init__(self, conference):
+    def __init__(self, conference_name='params.conference', year='params.year', presenter_base='params.presenter_base', session_base='params.session_base'):
         super(PublicScheduleNode,self).__init__()
-        self.conference = conference
+        self.conference_name = conference_name
+        self.year = year
+        self.presenter_base = presenter_base
+        self.session_base = session_base
 
     def render(self, ctx):
-        return self.render_schedule(ctx, self.conference)
+        class Values(object):
+            def __init__(self,**kw):
+                self.__dict__.update(kw)
 
-    def render_day(self, conference, d, tracks, session_counters):
+        try:
+            v = Values(
+            conference = Conference.objects.get(
+                name=resolve_variable(self.conference_name,ctx),
+                start__year=int(resolve_variable(self.year,ctx))),
+            presenter_base = resolve_variable(self.presenter_base,ctx) + '#',
+            session_base = resolve_variable(self.session_base,ctx) + '#',
+            )
+        except:
+            import pprint
+            pprint.pprint(ctx)
+            raise
+        
+        return self.render_schedule(v)
+
+    def render_day(self, values, d, tracks, session_counters):
         from boost_consulting.utils.dom import tag as _
 
         tracks = tracks or [Track('')]
             
         return _.table(
             _class="schedule",
-            summary="%s Schedule for %s" % (conference, d.strftime('%A, %B %d'))
+            summary="%s Schedule for %s" % (values.conference, d.strftime('%A, %B %d'))
             )[
                 _.caption[ d.strftime('%A, %B %d') ]
 
@@ -96,10 +118,12 @@ class PublicScheduleNode(ScheduleNode):
                         ]
                     ]
                 ] # </THEAD>
-              , self.render_day_body(conference, d, tracks, session_counters)
+              , self.render_day_body(values, d, tracks, session_counters)
             ]
         
-    def render_day_body(self, conference, d, tracks, session_counters):
+    def render_day_body(
+        self, values, d, tracks, session_counters
+        ):
         from boost_consulting.utils.dom import tag as _
         body = _.tbody
         tracks = tracks or [Track('')]
@@ -110,7 +134,7 @@ class PublicScheduleNode(ScheduleNode):
         sessions = Session.objects \
                    .filter(start__start__gte=day_to_datetime(d))
 
-        for b in time_segments(conference,d):
+        for b in time_segments(values.conference,d):
 
             row = _.tr[
                 _.th(scope="row")[ format_time_range(b.start,b.finish) ]
@@ -154,7 +178,7 @@ class PublicScheduleNode(ScheduleNode):
                             continue
                         
                     if current.start == b:
-                        link_target = _.a(name=current.slug())
+                        link_target = _.a(name=current.slug()+'+schedule')
                         if current.schedule_note:
                             title = current.title, ' ', current.schedule_note
                         else:
@@ -185,7 +209,8 @@ class PublicScheduleNode(ScheduleNode):
                                 # at the end
                               , [
                                     (
-                                      _.a(href=p.get_absolute_url())[
+                                      _.a(href=values.presenter_base+p.slug())
+                                      [
                                          _.span(_class="name")[get_name(p)]
                                       ]
                                     , (n and [', '] or [': '])[0]
@@ -198,7 +223,7 @@ class PublicScheduleNode(ScheduleNode):
                                                                         '-first_name'))
                                 ][::-1] # reverse
 
-                              , _.a(href=current.get_absolute_url())[title]
+                              , _.a(href=values.session_base+current.slug())[title]
 
                               , continued
                               , error_msg
@@ -224,10 +249,14 @@ class PublicScheduleNode(ScheduleNode):
         return body
         
 def public_schedule(parser, token):
-    try:
-        tag_name, conference_name,year = token.split_contents()
-    except ValueError:
-        raise template.TemplateSyntaxError, "%r tag requires three arguments" % token.split_contents()[0]
-    return PublicScheduleNode(Conference.objects.get(name=conference_name,start__year=int(year)))
+    args = token.split_contents()[1:]
+    if len(args) > 4:
+        raise template.TemplateSyntaxError, (
+            "%r tag requires no more than four arguments" % token.split_contents()[0])
+
+    return PublicScheduleNode(
+        **dict(zip(('conference_name','year','presenter_base','session_base'),args)))
+        
+
 
 register.tag(public_schedule)

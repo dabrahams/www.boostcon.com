@@ -70,7 +70,10 @@ class Presenter(models.Model):
         return self.first_name + ' ' + self.last_name
 
     def get_absolute_url(self):
-        return '/program/speakers#%s' % slugify(str(self))
+        return '/program/speakers#%s' % self.slug()
+
+    def slug(self):
+        return slugify(str(self))
     
 class Session(models.Model):
     title = models.CharField(maxlength=200)

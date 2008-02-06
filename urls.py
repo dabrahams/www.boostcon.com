@@ -120,6 +120,17 @@ urlpatterns += patterns('django.views.generic',
     # keep the old redirects from about/shops in case people have linked there.
     (r'^(?:about|community)/shops/eu$', 'simple.redirect_to', {'url': r'http://boostcon.spreadshirt.net'}),
     (r'^(?:about|community)/shops/usa$', 'simple.redirect_to', {'url': r'http://boostcon.spreadshirt.com'}),
+
+    (r'^(?P<url>program/previous/(?P<year>.*))$',
+     'simple.direct_to_template',
+     {'template':'conference/previous_program.html',
+      'conference':'boostcon',
+      'presenter_base':'',
+      'session_base':'',
+      'schedule_base':'',
+      }
+     ),
+
 )
 
 
@@ -134,7 +145,19 @@ urlpatterns += patterns(
     (r'^registration-(?P<status>complete|canceled)/(?P<hashcode>[a-zA-Z0-9=]+)$',
      'ecommerce.views.order_complete'),
                         
-
-    (r'(.*)$', 'pages.views.page'),
+    (r'(?P<url>.*)$', 'pages.views.page',
+     {'conference':'boostcon',
+      'presenter_base':'/program/speakers',
+      'session_base':'/program/sessions',
+      'schedule_base':'/program',
+      'year':2008
+      }
+     ),
     )
 
+from pages.models import build_page, generators as page_generators
+from conference import previous_years
+
+page_generators += [
+    (r'^program/previous$', previous_years.generate)
+    ]
