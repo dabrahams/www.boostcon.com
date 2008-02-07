@@ -1,14 +1,16 @@
 {% extends "pages/default.html" %}
 
+{% block moretitle %} - Previous Programs - {{params.year}}{% endblock %}
 {% block body %}
+<h2>{{params.conference}} {{params.year}} Program</h2>
+<div class="node">
+<h3 id="schedule">Schedule</h3>
 <p>
 <strong>Note:</strong>
 Click the title of any session to visit its description in the
 <a class="reference external" href="#sessions">session list</a>
 .
 </p>
-<div class="node">
-<h3 id="schedule">Schedule</h3>
 {% load schedule %}
 {% public_schedule %}
 </div>

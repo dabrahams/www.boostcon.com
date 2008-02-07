@@ -6,7 +6,8 @@ Previous Years
 ==============
 
 :order: 1000
+:template-name: pages/previous.html
 
 To get an idea of what to expect at BoostCon, you might want to
-browse some previous years' programs (listed in the sidebar).
+browse some previous years' programs:
 
