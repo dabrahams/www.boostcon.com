@@ -121,7 +121,7 @@ urlpatterns += patterns('django.views.generic',
     (r'^(?:about|community)/shops/eu$', 'simple.redirect_to', {'url': r'http://boostcon.spreadshirt.net'}),
     (r'^(?:about|community)/shops/usa$', 'simple.redirect_to', {'url': r'http://boostcon.spreadshirt.com'}),
 
-    (r'^(?P<url>program/previous/(?P<year>.*))$',
+    (r'^(?P<url>program/previous/(?P<year>[0-9]{4}))$',
      'simple.direct_to_template',
      {'template':'conference/previous_program.html',
       'conference':'boostcon',
