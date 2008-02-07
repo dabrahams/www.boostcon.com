@@ -84,7 +84,7 @@ which is responsible for accepting and scheduling sessions:
 
 * Dave Jenkins
 
-* Harmut Kaiser
+* Hartmut Kaiser
 
 * Nevin Liber
 
