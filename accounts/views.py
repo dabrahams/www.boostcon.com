@@ -122,7 +122,7 @@ def register_or_login(request, login=False, group=None):
                     'group': group,
                     }
 
-                send_mail( subject, t.render(RequestContext(request, c)), None, [email_address] )
+                send_mail( subject, t.render(RequestContext(request, c)), 'noreply@boostcon.com', [email_address] )
                 return render_to_response( 'accounts/register_emailsent.html',
                                            { 'email': email_address },
                                            context_instance = RequestContext(request) )
@@ -168,7 +168,7 @@ def register(request, group = None):
                 'validationcode': validationcode,
                 'group': group,
                 }
-            send_mail( subject, t.render(RequestContext(request, c)), None, [email_address] )
+            send_mail( subject, t.render(RequestContext(request, c)), 'noreply@boostcon.com', [email_address] )
             return render_to_response( 'sphene/community/register_emailsent.html',
                                        { 'email': email_address,
                                          },
