@@ -8,7 +8,7 @@ from django.db.models import Q
 from django.shortcuts import render_to_response
 from django.template.context import RequestContext
 from django.template import loader, Context
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.core.mail import send_mail
 from django.contrib.auth import authenticate,login as auth_login, logout as auth_logout
 from accounts.models import Participant
