@@ -22,6 +22,13 @@ else:
     except:
         pass
 
+def total_charge(amount_received):
+    """Compute the amount we have to charge in order to receive a certain amount
+    from Google Checkout after their fees."""
+    # google checkout fees are 0.02 * charge + 0.20
+    # amount_received = total_charge - (total_charge * 0.02 + 0.20)
+    # amount_received = (1.0 - .02) * total_charge - 0.20
+    return (float(amount_received) + 0.20) / (1.0 - 0.02)
 
 def checkout_url(request, order):
 
@@ -32,7 +39,7 @@ def checkout_url(request, order):
                 _.item[
                     _('item-name')[order.product.name],
                     _('item-description')[order.product.description],
-                    _('unit-price', currency='USD')[order.product.price],
+                    _('unit-price', currency='USD')[total_charge(order.product.price)],
                     _.quantity[1]
                 ]
             ]
