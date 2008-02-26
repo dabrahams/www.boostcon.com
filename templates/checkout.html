@@ -1,10 +1,11 @@
 {% if 1 %}
+{% load google_checkout %}
 <div class="notice">This button will direct you to Google Checkout for
 secure payment
 processing.  A <a href="https://www.google.com/accounts/NewAccount"
 target="_blank">Google Checkout account</a> is mandatory, but
-free of charge.  Because Google does not charge a processing fee to
-501c(3) nonprofits, there are <strong>no additional charges.</strong>.
+free of charge.  Note: you will be charged an <strong>additional Google Checkout
+processing fee of ${% google_checkout_fee price %}</strong>.
 <input type="image"
 src="https://checkout.google.com/buttons/checkout.gif?merchant_id={{google_merchant_id}}&w=180&h=46&style=trans&variant=text&loc=en_US"
 align="top" style="margin-right:7px;border:0px" name="google"/>
@@ -18,10 +19,10 @@ payment processing.  No PayPal account is required.  To pay by credit
 card, simply click the “continue” link near the credit card logos on
 the next page.  Note: you will be charged an <strong>additional PayPal
 processing fee of ${% paypal_fee price %}</strong>.
+
 <input type="image"
-src="https://www.paypalobjects.com/WEBSCR-495-20080117-1/en_US/i/btn/btn_xpressCheckout.gif"
-align="top" style="margin-right:7px;border:0px" name="paypal"/>
-</div>
+src="https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif"
+align="top" style="margin-right:7px;border:0px" name="paypal"/></div>
 {% endif %}
 
 {% if 0 %}

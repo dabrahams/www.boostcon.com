@@ -7,9 +7,9 @@ from boost_consulting.ecommerce import return_urls
 def total_charge(amount_received):
     """Compute the amount we have to charge in order to receive a certain amount
     from PayPal after their fees.  Mostly useful for donations."""
-    # paypal fees are 0.29 * charge + 0.30
-    # amount_received = total_charge - (total_charge * 0.29 + 0.30)
-    # actual_price = (1.0 - .029) * total_charge - 0.30
+    # paypal fees are 0.029 * charge + 0.30
+    # amount_received = total_charge - (total_charge * 0.029 + 0.30)
+    # amount_received = (1.0 - 0.029) * total_charge - 0.30
     return (float(amount_received) + 0.30) / (1.0 - .029)
    
 def checkout_url(request, order):
