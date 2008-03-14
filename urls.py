@@ -82,6 +82,12 @@ urlpatterns += patterns('boost_consulting',
     (r'^accounts/login/?$', 'accounts.views.register_or_login', {'login':True}),
     (r'^accounts/create/?$', 'accounts.views.register_or_login', {'login':False,
                                                                   'groupName':'boostcon'}),
+    (r'^accounts/reset-password/?$', 'accounts.views.reset_password',
+     defaultdict
+     ),
+    (r'^accounts/reset-password/(?P<hashcode>[a-zA-Z/\+0-9=]+)$',
+     'accounts.views.reset_hash', defaultdict),
+                        
     (r'^accounts/logout/?$', 'accounts.views.logout'),
     (r'^accounts/create/(?P<hashcode>[a-zA-Z/\+0-9=]+)$',
      'accounts.views.register_hash', defaultdict),

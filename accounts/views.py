@@ -39,29 +39,18 @@ class LoginForm(forms.Form):
 
         return self.clean_data
 
-class RegistrationForm(forms.Form):
-    username = forms.CharField(max_length=20, min_length=2)
-    first_name = forms.CharField(max_length=40, min_length=2)
-    last_name = forms.CharField(max_length=40, min_length=2)
+class PasswordResetRequestForm(forms.Form):
     email = forms.EmailField()
-    password = forms.CharField(widget=forms.PasswordInput)
-    password2 = forms.CharField(widget=forms.PasswordInput)
-
-    def clean_username(self):
-        username = self.clean_data.get('username')
-        if len(username) < 3:
-            raise forms.ValidationError(u'Username has to be at least three characters long')
-        try:
-            user = User.objects.get(username=username)
-        except Exception,e:
-            return username
-        raise forms.ValidationError(u'Username is already taken')
 
     def clean_email(self):
         email = self.clean_data.get('email')
-        if User.objects.filter(email=email).count():
-            raise forms.ValidationError(u'This email address is already in use')
+        if User.objects.filter(email=email).count() == 0:
+            raise forms.ValidationError(u'No user is registered with that email address')
         return email
+
+class PasswordForm(forms.Form):
+    password = forms.CharField(widget=forms.PasswordInput)
+    password2 = forms.CharField(widget=forms.PasswordInput)
 
     def clean_password(self):
         password = self.clean_data.get('password')
@@ -80,6 +69,78 @@ class RegistrationForm(forms.Form):
         self.password_mismatch = False
         return self.clean_data
 
+class PasswordResetForm(PasswordForm):
+    pass
+
+class RegistrationForm(PasswordForm):
+    username = forms.CharField(max_length=20, min_length=2)
+    first_name = forms.CharField(max_length=40, min_length=2)
+    last_name = forms.CharField(max_length=40, min_length=2)
+    email = forms.EmailField()
+
+    def clean_username(self):
+        username = self.clean_data.get('username')
+        if len(username) < 3:
+            raise forms.ValidationError(u'Username has to be at least three characters long')
+        try:
+            user = User.objects.get(username=username)
+        except Exception,e:
+            return username
+        raise forms.ValidationError(u'Username is already taken')
+
+    def clean_email(self):
+        email = self.clean_data.get('email')
+        if User.objects.filter(email=email).count():
+            raise forms.ValidationError(u'This email address is already in use')
+        return email
+
+def reset_hash(request, hashcode, group = None):
+    email_address = decryptString( settings.SECRET_KEY, hashcode )
+    
+    # Validate the email address
+    password_form = PasswordResetRequestForm( { 'email':email_address } )
+
+    if password_form.is_valid():
+        user = User.objects.filter(email=email)[0]
+    else:
+        raise Http404
+        
+    return render_to_response( 'new_password.html',
+                               { 'form': password_form },
+                               context_instance = RequestContext(request) )
+
+def reset_password(request, group=None):
+    if request.POST:
+        password_reset_form = PasswordResetRequestForm(request.POST)
+        if password_reset_form.is_valid():
+            email_address = password_reset_form.cleaned_data['email']
+            validationcode = cryptString(settings.SECRET_KEY,email_address)
+            
+            t = loader.get_template('accounts/reset_password_email.txt')
+            c = {
+            'email': email_address,
+            'baseurl': group.baseurl,
+            'validationcode': validationcode,
+            'group': group,
+            }
+
+            subject = 'Password reset key for ' + group.name
+            send_mail( subject, t.render(RequestContext(request, c)),
+                       'noreply@boostcon.com', [email_address],
+                       auth_user='david.abrahams', auth_password='andb4ack' )
+            return render_to_response( 'accounts/password_resetsent.html',
+                                   { 'email': email_address,
+                                     'password_reset_form': password_reset_form
+                                     },
+                                           context_instance =
+                                   RequestContext(request) )
+    else:
+        password_reset_form = PasswordResetRequestForm()
+
+    return render_to_response( 'accounts/reset_password.html',
+                               { 'password_reset_form': password_reset_form },
+                               context_instance = RequestContext(request) )
+        
 def register_or_login(request, login=False, group=None):
 
     next = request.REQUEST.get('next', '/')
