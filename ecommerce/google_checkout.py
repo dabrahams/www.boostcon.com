@@ -38,7 +38,10 @@ def checkout_url(request, order):
             _.items[
                 _.item[
                     _.item_name[order.product.name],
-                    _.item_description[order.product.description],
+                    _.item_description[
+                        order.product.description
+                        + ' [BoostCon Order ID: %d]' % order.id
+                        ],
                     _.unit_price(currency='USD')[total_charge(order.product.price)],
                     _.quantity[1]
                 ]
