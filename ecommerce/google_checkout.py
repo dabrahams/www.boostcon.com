@@ -3,7 +3,7 @@
 # file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
 from django.conf import settings
 import httplib
-from boost_consulting.utils.dom import tag as _, xml_document
+from boost_consulting.utils.dom import dashtag as _, xml_document
 from xml.dom import minidom
 from base64 import b64encode, b64decode
 
@@ -33,20 +33,29 @@ def total_charge(amount_received):
 def checkout_url(request, order):
 
     cart = xml_document(
-        _('checkout-shopping-cart', xmlns="http://checkout.google.com/schema/2")[
-        _('shopping-cart')[
+        _.checkout_shopping_cart(xmlns="http://checkout.google.com/schema/2")[
+        _.shopping_cart[
             _.items[
                 _.item[
-                    _('item-name')[order.product.name],
-                    _('item-description')[order.product.description],
-                    _('unit-price', currency='USD')[total_charge(order.product.price)],
+                    _.item_name[order.product.name],
+                    _.item_description[
+                        order.product.description
+                        + ' [BoostCon Order ID: %d]' % order.id
+                        ],
+                    _.unit_price(currency='USD')[total_charge(order.product.price)],
                     _.quantity[1]
+                ]
+            ],
+            _.merchant_private_data[
+                _.order_id[order.id],
+                _.customer_id[order.customer.id],
+                _.comment[ order.comment ]
                 ]
             ]
         ],
         # Shipping information would go here
 #        _('merchant-checkout-flow-support')[]
-        ])
+        )
 
     req_xml = cart.toxml()
     hcon = httplib.HTTPSConnection(DOMAIN)

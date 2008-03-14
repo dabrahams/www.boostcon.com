@@ -62,11 +62,20 @@ class tag(object):
         for k,v in self._attributes.items():
             e.setAttribute(k,unicode(v))
         return e
+
+class dashmetatag(metatag):
+    def __getattr__(self, name):
+        return tag(name.replace('_','-'))
+    
+class dashtag(tag):
+    __metaclass__ = dashmetatag
+    
     
 def xml_document(t):
     d = minidom.Document()
     d.appendChild(t._xml(d))
     return d
+
 
 if __name__ == '__main__':
     
@@ -85,3 +94,6 @@ if __name__ == '__main__':
             ]).toprettyxml()
 
     print xml_document(_('checkout-shopping-cart', xmlns="http://checkout.google.com/schema/2")).toprettyxml()
+
+    print xml_document(dashtag.checkout_shopping_cart(xmlns="http://checkout.google.com/schema/2")).toprettyxml()
+    
