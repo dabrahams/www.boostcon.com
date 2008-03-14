@@ -18,7 +18,9 @@ Aspen/Pitkin County airport.  Aspen is a compact town, and the
 Aspen Meadows resort runs a free shuttle for its guests, so if you
 fly all the way to Aspen, you shouldn't need a car at all.  You can
 fly to Aspen through Salt Lake City on Delta or through Denver on
-United.
+United.  **Update:** Frontier Airlines is now flying into Aspen as
+of April 26th, five times daily with a new 70 passenger Q-400
+airplane.
 
 Flying into Denver (DEN) or Eagle (EGE)
 ---------------------------------------
