@@ -3,7 +3,7 @@
 {% python _import_('conference.models').Session.objects.filter(start__start__year=params['year'], start__conference__name=params['conference']), as='sessions' %}
 {% load conference %}
 {% for s in sessions %}
-<h3><a name="{{s.slug}}" href="{{params.schedule_base}}#{{s.slug}}+schedule">{{s.title}}</a></h3>
+<h3><a name="{{s.slug}}" id="{{s.slug}}" href="{{params.schedule_base}}#schedule.{{s.slug}}">{{s.title}}</a></h3>
 
 <table class="docutils field-list" rules="none" frame="void">
 <col class="field-name"/>
@@ -31,6 +31,6 @@
 
 </table>
 
-<p>{{s.description|render_rst:"initial_header_level=4"}}</p>
+{{s.description|render_rst:"initial_header_level=4"}}
 {% endfor %}
 </div>
