@@ -178,7 +178,7 @@ class PublicScheduleNode(ScheduleNode):
                             continue
                         
                     if current.start == b:
-                        link_target = _.a(name=current.slug()+'+schedule')
+                        link_target = _.a(id='schedule.'+current.slug())
                         if current.schedule_note:
                             title = current.title, ' ', current.schedule_note
                         else:
