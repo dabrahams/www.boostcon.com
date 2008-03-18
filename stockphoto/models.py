@@ -1,3 +1,29 @@
+"""
+models.py --- models used by stockphoto
+
+This file is a part of stockphoto, a simple photogallery app for
+    Django sites.
+
+Copyright (C) 2006 Jason F. McBrayer <jmcbray-django@carcosa.net>
+Copyright (C) 2006 William McVey <wamcvey@gmail.com>
+
+This program is free software; you can redistribute it and/or
+modify it under the terms of the GNU General Public License
+as published by the Free Software Foundation; either version 2
+of the License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
+02110-1301, USA.
+
+"""
+
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 import django.contrib.auth.models as auth
@@ -30,7 +56,7 @@ if ADMIN_URL[-1] == '/':
 
 # Create your models here.
 class Gallery(models.Model):
-    title = models.CharField(_("title"), maxlength=80)
+    title = models.CharField(_("title"), max_length=80)
     slug = models.SlugField(prepopulate_from=("title",))
     date = models.DateField(_("publication date"), auto_now_add=True)
     created = models.ForeignKey(auth.User,
@@ -51,12 +77,14 @@ class Gallery(models.Model):
 
     class Meta:
         get_latest_by = 'date'
-
+        verbose_name_plural = _("galleries")
     class Admin:
         ordering = ['date']
 
-    def __str__(self):
+    def __unicode__(self):
         return self.title
+    def __str__(self):
+        return self.__unicode__().encode('utf8', 'replace')
     def get_absolute_url(self):
         return "%s/%d/" % (STOCKPHOTO_URL, self.id)
     def get_admin_url(self):
@@ -78,10 +106,10 @@ class Photo(models.Model):
     # import os, os.path, Image
     image = models.ImageField(_("Photograph"),
                             upload_to= STOCKPHOTO_BASE + "/%Y/%m/%d/")
-    title = models.CharField(_("title"), maxlength=80)
+    title = models.CharField(_("title"), max_length=80)
     desc = models.TextField(_("description"), blank=True)
     gallery = models.ForeignKey(Gallery)
-    photographer = models.CharField(_("photographer"), maxlength=80,
+    photographer = models.CharField(_("photographer"), max_length=80,
                                   blank=True)
     date = models.DateField(_("date photographed"), blank=True, null=True)
     extra = models.TextField(_("any extra information about the photo"),
@@ -92,8 +120,10 @@ class Photo(models.Model):
     class Admin:
         ordering = ['date']
 
-    def __str__(self):
+    def __unicode__(self):
         return self.title
+    def __str__(self):
+        return self.__unicode__().encode('utf8', 'replace')
 
     def delete_thumbnails(self):
         """Remove thumbnail and display-sized images when deleting.
@@ -133,6 +163,9 @@ class Photo(models.Model):
         """URL to the thumbnail
         """
         photobase = self.image[len(STOCKPHOTO_BASE)+1:]
+        # for windows -- to avoid urls with '\' in them
+        if os.sep != '/':
+            photobase = photobase.replace(os.sep, '/')
         if settings.MEDIA_URL.endswith('/'):
             return settings.MEDIA_URL + STOCKPHOTO_BASE + \
                 "/cache/thumbs/" + photobase
@@ -147,6 +180,9 @@ class Photo(models.Model):
 
     def dispurl(self):
         photobase = self.image[len(STOCKPHOTO_BASE)+1:]
+        # for windows -- to avoid urls with '\' in them
+        if os.sep != '/':
+            photobase = photobase.replace(os.sep, '/')
         if settings.MEDIA_URL.endswith('/'):
             return settings.MEDIA_URL + STOCKPHOTO_BASE + "/cache/" \
                 + photobase
@@ -154,12 +190,12 @@ class Photo(models.Model):
             "/cache/" + photobase            
 
     def fullpath(self):
-        if self.image.startswith(os.path.sep):
+        if self.image.startswith('/'):
             return self.image
         return os.path.join(settings.MEDIA_ROOT, self.image)
 
     def fullurl(self):
-        if self.image.startswith(os.path.sep):
+        if self.image.startswith('/'):    
             # Shouldn't happen anymore
             return (settings.MEDIA_URL +
                     self.image[len(settings.MEDIA_ROOT):])
@@ -211,22 +247,10 @@ class Photo(models.Model):
             os.makedirs(disp_dir, 0775)
 
         # Make a copy of the image, scaled, if needed.
-        maxwidth = self.gallery.display_width
-        maxheight = self.gallery.display_height
-        width, height = im.size
-        if (width > maxwidth) and width > height:
-            scale = float(maxwidth)/width
-            width = int(width * scale)
-            height = int(height * scale)
-            newim = im.resize( (width, height), Image.ANTIALIAS )
-        elif (height > maxheight) and height >= width:
-            scale = float(maxheight)/height
-            width = int(width * scale)
-            height = int(height * scale)
-            newim = im.resize( (width, height), Image.ANTIALIAS )
-        else:
-            newim = im
-        newim.save(disp_path, format)
+        im.thumbnail((self.gallery.display_width,
+                      self.gallery.display_height),
+                     Image.ANTIALIAS)
+        im.save(disp_path, format)
 
     def create_thumb(self):
         im = Image.open( self.fullpath() )
@@ -238,22 +262,10 @@ class Photo(models.Model):
             os.makedirs(thumb_dir, 0775)
 
         # Make a copy of the image, scaled, if needed.
-        maxwidth = self.gallery.thumbnail_width
-        maxheight = self.gallery.thumbnail_height
-        width, height = im.size
-        if (width > maxwidth) and (width > height):
-            scale = float(maxwidth)/width
-            width = int(width * scale)
-            height = int(height * scale)
-            newim = im.resize( (width, height), Image.ANTIALIAS )
-        elif (height > maxheight):
-            scale = float(maxheight)/height
-            width = int(width * scale)
-            height = int(height * scale)
-            newim = im.resize( (width, height), Image.ANTIALIAS )
-        else:
-            newim = im
-        newim.save(thumb_path, format)
+        im.thumbnail((self.gallery.thumbnail_width,
+                      self.gallery.thumbnail_height),
+                     Image.ANTIALIAS)
+        im.save(thumb_path, format)
 
     def build_display_images(self):
         """Make thumbnail and display-sized images after saving.

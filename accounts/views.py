@@ -24,11 +24,11 @@ class LoginForm(forms.Form):
     password = forms.CharField(widget=forms.PasswordInput)
 
     def clean(self):
-        username = self.clean_data.get('username')
-        password = self.clean_data.get('password')
+        username = self.cleaned_data.get('username')
+        password = self.cleaned_data.get('password')
 
         if not (username and password):
-            return self.clean_data
+            return self.cleaned_data
 
         try:
             user = User.objects.get(username=username)
@@ -37,7 +37,7 @@ class LoginForm(forms.Form):
         except:
             raise forms.ValidationError(u'Invalid username or password')
 
-        return self.clean_data
+        return self.cleaned_data
 
 class RegistrationForm(forms.Form):
     username = forms.CharField(max_length=20, min_length=2)
@@ -48,7 +48,7 @@ class RegistrationForm(forms.Form):
     password2 = forms.CharField(widget=forms.PasswordInput)
 
     def clean_username(self):
-        username = self.clean_data.get('username')
+        username = self.cleaned_data.get('username')
         if len(username) < 3:
             raise forms.ValidationError(u'Username has to be at least three characters long')
         try:
@@ -58,27 +58,27 @@ class RegistrationForm(forms.Form):
         raise forms.ValidationError(u'Username is already taken')
 
     def clean_email(self):
-        email = self.clean_data.get('email')
+        email = self.cleaned_data.get('email')
         if User.objects.filter(email=email).count():
             raise forms.ValidationError(u'This email address is already in use')
         return email
 
     def clean_password(self):
-        password = self.clean_data.get('password')
+        password = self.cleaned_data.get('password')
         if len(password) < 6:
             raise forms.ValidationError(u'Password has to be at least six characters long')
         return password
 
     def clean(self):
-        password = self.clean_data.get('password')
-        password2 = self.clean_data.get('password2')
+        password = self.cleaned_data.get('password')
+        password2 = self.cleaned_data.get('password2')
 
         if (password and password2) and (password != password2):
             self.password_mismatch = True
             raise forms.ValidationError(u'Passwords did not match')
 
         self.password_mismatch = False
-        return self.clean_data
+        return self.cleaned_data
 
 def register_or_login(request, login=False, group=None):
 
@@ -91,8 +91,8 @@ def register_or_login(request, login=False, group=None):
 
             if login_form.is_valid():
                 user = authenticate(
-                    username=login_form.clean_data['username']
-                  , password=login_form.clean_data['password']
+                    username=login_form.cleaned_data['username']
+                  , password=login_form.cleaned_data['password']
                 )
                 auth_login(request, user)
 

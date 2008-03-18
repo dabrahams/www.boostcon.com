@@ -14,9 +14,9 @@ class NewsWriter(DocInfoExtractWriter):
     docinfo_fields = ('date', 'summary')
 
 class News(models.Model):
-    title = models.CharField(maxlength=100)
-    slug = models.SlugField(maxlength=50)
-    summary = models.CharField(maxlength=300)
+    title = models.CharField(max_length=100)
+    slug = models.SlugField(max_length=50)
+    summary = models.CharField(max_length=300)
     body = models.TextField()
     date = models.DateField()
 

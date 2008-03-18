@@ -39,16 +39,24 @@
   <div id="navigator"> 
     <div class="center"> <a id="home" href="/"><span>home</span></a> <a id="contact" href="/about/contact"><span>contact</span></a> 
 
-<p>{% if account_message %}
-<span class="message">{{ account_message }}</span>&nbsp;&nbsp;
-{% endif %}
-<span>
-{% if user.is_authenticated %}
-logged in as <em>{{ user.username|escape }}</em> | <a href="/accounts/logout?next={{ request.path|urlencode }}">log out</a>
-{% else %}
-<a href="/accounts/login?next={{ request.path|urlencode }}">log in / create account</a>
-{% endif %}&nbsp;
-</span></p>
+
+<p>  
+  {% if account_message %}
+  <span class="message">
+    {{ account_message }}
+  </span>
+  {% endif %}
+
+  <span>
+  {% if user.is_authenticated %}
+    logged in as <em>{{ user.username|escape }}</em>
+   | <a href="/settings/profile/edit?next={{ request.path|urlencode }}">settings</a>
+   | <a href="/accounts/logout?next={{ request.path|urlencode }}">log out</a>
+  {% else %}
+    <a href="/accounts/login?next={{ request.path|urlencode }}">log in / create account</a>
+  {% endif %}
+  </span>
+</p>
 
 
     </div>

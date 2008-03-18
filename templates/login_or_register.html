@@ -167,7 +167,7 @@ $(function() {
 <div id="inner">
 
 {% if user.is_authenticated %}
-<h1>You are already logged in!</h1>
+<h2>You are already logged in!</h2>
 <p>Logging in to a different account will log you out.</p>
 {% endif %}
 
@@ -187,6 +187,8 @@ $(function() {
             Password <span>{{ login_form.password.errors.as_text }}</span> 
             {{login_form.password}}
         </label>
+        <label><a href="/settings/accounts/forgot">forgot your password?</a></label>
+
         <input type="hidden" name="next" value="{{next}}" />
         <input class="button" type="submit" value="Login" class="submit" />
     </fieldset>
