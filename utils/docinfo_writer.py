@@ -1,8 +1,25 @@
 from docutils import core, io
-from docutils.writers import html4css1
+
+# Attempt to account for relative path differences to stylesheets and
+# templates on installed system.  ***This is a HACK***.
+#
+# Because the paths of the cwd and the default stylesheet and template.txt on
+# our live server have something in common, Python calculates a relative path
+# between them (see html4css1.Writer's class-level initializations).  It's not
+# clear why this should cause those stylesheets not to be found, but in fact it
+# does.  Perhaps the cwd gets changed later, I don't know.  On my development
+# system we have no path elements in common and thus we end up with an absolute
+# path, and the stylesheet and template are always found.
+import os
+_save_cwd = os.getcwd()
+os.chdir('/')
+try:
+    from docutils.writers import html4css1
+finally:
+    os.chdir(_save_cwd)
+    
 from docutils import nodes
 from boost_consulting.settings import MEDIA_URL
-import os
 from docutils.transforms import Transform
 import re
 
@@ -147,7 +164,7 @@ def get_parts(src, writer, **kw):
     overrides.update(kw)
 
     # Hack. Change to the correct directory for includes to work.
-    os.chdir(os.path.dirname(os.path.dirname(__file__)))
+    # os.chdir(os.path.dirname(os.path.dirname(__file__)))
 
     parts = core.publish_parts(
         source=src, writer=writer, settings_overrides=overrides)
