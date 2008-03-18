@@ -3,6 +3,36 @@ from docutils.writers import html4css1
 from docutils import nodes
 from boost_consulting.settings import MEDIA_URL
 import os
+from docutils.transforms import Transform
+import re
+
+class LinkTitlesTransform(Transform):
+    default_priority = 461
+
+    title_re = re.compile(r'^(.*)\(([^)]+)\)$')
+
+    def apply(self):
+        doc = self.document
+        for ref in doc.traverse(nodes.reference):
+            open = ref.next_node(descend=0, siblings=1)
+            if not open: continue
+            if not isinstance(open, nodes.Text) or \
+                    open.astext().strip() != '(': 
+                continue
+            title = open.next_node(descend=0, siblings=1)
+            if not title: continue
+            if not isinstance(title, nodes.title_reference):
+                continue
+            close = title.next_node(descend=0, siblings=1)
+            if not close: continue
+            if not isinstance(close, nodes.Text) or \
+                    close.astext()[0] != ')': 
+                continue
+
+            ref['title'] = title.astext()
+            ref.parent.remove(open)
+            ref.parent.remove(title)
+            ref.parent.replace(close, nodes.Text(close.data[1:], close.data[1:]))
 
 class DocInfoExtractWriter(html4css1.Writer):
     """HTML writer that extracts docinfo fields. docinfo_fields 
@@ -11,6 +41,9 @@ class DocInfoExtractWriter(html4css1.Writer):
     def __init__(self):
         html4css1.Writer.__init__(self)
         self.translator_class = DocInfoExtractTranslator
+
+    def get_transforms(self):
+        return html4css1.Writer.get_transforms(self) + [LinkTitlesTransform]
 
     def translate(self):
         self.result = {}
@@ -83,6 +116,26 @@ class DocInfoExtractTranslator(html4css1.HTMLTranslator):
                 self.result['author'] = node[0].astext()
                 raise nodes.SkipNode
         return html4css1.HTMLTranslator.visit_author(self, node)
+
+    # adds href title
+    def visit_reference_xxxx(self, node):
+        if node.has_key('refuri'):
+            href = node['refuri']
+            if ( self.settings.cloak_email_addresses
+                 and href.startswith('mailto:')):
+                href = self.cloak_mailto(href)
+                self.in_mailto = 1
+        else:
+            assert node.has_key('refid'), \
+                   'References must have "refuri" or "refid" attribute.'
+            href = '#' + node['refid']
+        atts = {'href': href, 'class': 'reference'}
+        if not isinstance(node.parent, nodes.TextElement):
+            assert len(node) == 1 and isinstance(node[0], nodes.image)
+            atts['class'] += ' image-reference'
+        if node.hasattr('title'):
+            atts['title'] = node['title']
+        self.body.append(self.starttag(node, 'a', '', **atts))
 
 def get_parts(src, writer, **kw):
     """Converts ReST src to HTML and extracts needed docinfo-fields."""
