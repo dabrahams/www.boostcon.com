@@ -29,7 +29,7 @@ Aspen is a compact town, and the conference venue and hotel are
 within walking distance of downtown shops and restaurants.
 
 
-.. figure:: http://mt0.google.com/mt?n=404&v=w2.43&x=3330&y=6250&zoom=3
+.. figure:: http://mt2.google.com/mt?n=404&v=w2.69&x=832&y=1562&zoom=5
    :target: http://maps.google.com/maps?near=845+Meadows+Rd,+Aspen,+CO+81611+(Aspen+Meadows)+%4039.199830,-106.831126&q=aspen+center+for+physics&f=l&hl=en&dq=aspen+meadows+loc:+700+W+Gillespie+St,+Aspen,+CO+81611+(Aspen+Center+for+Physics)+%4039.197380,-106.828020&ie=UTF8&z=14&ll=39.19983,-106.831126&spn=0.05381,0.076218&om=1
    :alt: Click for a map of Aspen showing the hotel and meeting site
    :figwidth: 256
