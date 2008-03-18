@@ -135,7 +135,7 @@ class DocInfoExtractTranslator(html4css1.HTMLTranslator):
         return html4css1.HTMLTranslator.visit_author(self, node)
 
     # adds href title
-    def visit_reference_xxxx(self, node):
+    def visit_reference(self, node):
         if node.has_key('refuri'):
             href = node['refuri']
             if ( self.settings.cloak_email_addresses
