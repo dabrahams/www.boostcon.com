@@ -11,7 +11,7 @@
 {% ifchanged %}
 <h3><a name="{{p.full_name|slugify}}">{{p.full_name}}</a></h3>
 
-{{p.bio|render_rst:"initial_header_level=4"}}
+{{p.bio|render_rst:"initial_header_level=4"|safe}}
 {% endifchanged %}
 {% endfor %}
 </div>

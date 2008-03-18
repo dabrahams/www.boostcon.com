@@ -38,10 +38,10 @@
 
   <ul style="list-style: none;">
     <li style="margin: 0 0 2em 0;">
-      <h5 style="display: inline">{{ n.title }}</h5>
+      <h5 style="display: inline">{{ n.title|safe }}</h5>
       <span style="display: inline; margin: 0 1em;">{{ n.date }}</span>
-<p>{{ n.summary }}</p>
-      {{ n.body }}
+<p>{{ n.summary|safe }}</p>
+      {{ n.body|safe }}
       <hr />
     </li>
   </ul>

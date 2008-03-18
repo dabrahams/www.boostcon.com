@@ -35,7 +35,7 @@ class Step1Form(forms.Form):
     phone = forms.CharField(max_length=50)
 
     def clean_state(self):
-        state = self.clean_data.get('state')
+        state = self.cleaned_data.get('state')
         if not state and self.data.get('country') == 'US':
             raise forms.ValidationError(u'State is required for US addresses')
         return state
@@ -90,7 +90,7 @@ def step1(request, slug = None):
         request.session['product'] = product.id
 
     if request.POST and form.is_valid():
-        data = form.clean_data
+        data = form.cleaned_data
 
         # Compute rates for fedex ground and fedex express
         def fedex_rate(carrier, **kw):

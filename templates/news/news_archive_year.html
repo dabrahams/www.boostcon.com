@@ -22,9 +22,9 @@
      <hr /><p />
    {% endifchanged %}
 
-      <h4 style="display: inline">{{ n.get_title }}</h4>
+      <h4 style="display: inline">{{ n.get_title|safe }}</h4>
       <span style="display: inline; margin: 0 1em;">{{ n.date }}</span>
-<p>{{ n.summary }}
+<p>{{ n.summary|safe }}
 <br /><a class="more" href="{{ n.date|date:"Y/M/d" }}/{{ n.slug }}">more...</a></p>
 {% endfor %}
 </div>

@@ -72,6 +72,7 @@ urlpatterns += patterns('',
     (r'^community/wiki/show/BoostCon/?$',
      'django.views.generic.simple.redirect_to', {'url': r'/'}),
 
+    (r'^settings/', include('sphene.community.urls'), defaultdict),
     (r'^community/forums/', include('sphene.sphboard.urls'), defaultdict),
     (r'^community/wiki/', include('sphene.sphwiki.urls'), defaultdict),
 )
@@ -92,9 +93,9 @@ urlpatterns += patterns('boost_consulting',
 
 def add_trailing_slash(url_prefix):
     return (
-        '^' + url_prefix + '(?P<base>(/[^/]+)*)$',
+        '^' + url_prefix + '(?P<base>(/[^?]*[^/?])?)(?P<args>([?].*)?)$',
         'simple.redirect_to',
-        {'url': '/' + url_prefix + '%(base)s/'},
+        {'url': '/' + url_prefix + '%(base)s/%(args)s'},
         )
 
 urlpatterns += patterns('django.views.generic',
@@ -108,6 +109,7 @@ urlpatterns += patterns('django.views.generic',
     add_trailing_slash('community/photos'),
     add_trailing_slash('community/wiki'),
     add_trailing_slash('community/forums'),
+    add_trailing_slash('settings'),
 
                         
     (r'^registration-(?P<status>complete|canceled)$', 'simple.direct_to_template', {'template': 'order-status.html'}),

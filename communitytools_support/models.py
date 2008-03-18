@@ -1,3 +1,10 @@
+from sphene.community.management import do_changelog
+from django.db.models import signals
+from django.dispatch import dispatcher
+from sphene.sphboard import models
+dispatcher.connect(do_changelog, sender=models, signal=signals.post_syncdb)
+
+
 # Lifted directly from Herbert Poul's Sphene Community Tools (SCT); I only
 # changed 'example' to 'boostcon' and 'Example Group' to 'Boost Conference
 # Group.' This file is licensed under the same terms as SCT.
@@ -7,7 +14,7 @@ from sphene.community import models
 from boost_consulting.utils.host import hostname
 
 def init_data(app, created_models, verbosity, **kwargs):
-    from sphene.community.models import Group, Navigation
+    from sphene.community.models import Group, Navigation, CommunityUserProfileField
     if Group in created_models:
         group = Group( name = 'boostcon',
                        longname = 'Boost Conference Group',
@@ -33,8 +40,21 @@ def init_data(app, created_models, verbosity, **kwargs):
                               )
             nav.save()
 
+    if CommunityUserProfileField in created_models:
+        CommunityUserProfileField( name = 'ICQ UIN',
+                                   regex = '\d+',
+                                   sortorder = 100, ).save()
+        CommunityUserProfileField( name = 'Jabber Id',
+                                   regex = '.+@.+',
+                                   sortorder = 200, ).save()
+        CommunityUserProfileField( name = 'Website URL',
+                                   regex = 'http://.*',
+                                   sortorder = 300,
+                                   renderstring = '<a href="%(value)s">%(value)s</a>', ).save()
+        
 
 from django.db import backend, connection, transaction
+from sphene.community.models import PermissionFlag, Role, Group
 from sphene.community.models import ApplicationChangelog
 from datetime import datetime
 
@@ -43,6 +63,7 @@ def do_changelog(app, created_models, verbosity, **kwargs):
     if app_models == None: return
 
     sql = ()
+    invokes = ()
     for clazz in app_models:
         changelog = getattr(clazz, 'changelog', None)
         if not changelog: continue
@@ -74,18 +95,31 @@ def do_changelog(app, created_models, verbosity, **kwargs):
 
         for change in changelog:
             date, changetype, stmt = change
-            if version != None and version > date:
+            if version != None and version >= date:
                 # This change was already applied ...
                 continue
             
             if changetype == 'alter':
-                sqlstmt = 'ALTER TABLE %s %s' % (backend.quote_name(clazz._meta.db_table), stmt)
+                sqlstmt = 'ALTER TABLE %s %s' % (connection.ops.quote_name(clazz._meta.db_table), stmt)
                 sql += (sqlstmt,)
                 print "%s: SQL Statement: %s" % (date, sqlstmt)
             elif changetype == 'update':
-                sqlstmt = 'UPDATE %s %s' % (backend.quote_name(clazz._meta.db_table), stmt)
+                sqlstmt = 'UPDATE %s %s' % (connection.ops.quote_name(clazz._meta.db_table), stmt)
                 sql += (sqlstmt,)
                 print "%s: SQL Statement: %s" % (date, sqlstmt)
+            elif changetype == 'sqltable':
+                sqlstmt = stmt % { 'tablename': connection.ops.quote_name(clazz._meta.db_table), }
+                sql += (sqlstmt,)
+                print "%s: SQL Statement: %s" % (date, sqlstmt)
+            elif changetype == 'sql':
+                sqlstmt = stmt
+                sql += (sqlstmt,)
+                print "%s: SQL Statement: %s" % (date, sqlstmt)
+            elif changetype == 'comment':
+                print "%s: !!! Important Comment: %s" % (date, stmt)
+            elif changetype == 'invoke':
+                print "%s: Invoke function %s" % (date, stmt.__name__)
+                invokes += (stmt,)
             else:
                 print "Unknown changetype: %s - %s" % (changetype, str(change))
 
@@ -100,10 +134,68 @@ def do_changelog(app, created_models, verbosity, **kwargs):
             curs = connection.cursor()
             for sqlstmt in sql:
                 curs.execute( sqlstmt )
+
+            for invoke in invokes:
+                print "Invoking %s ..." % invoke.__name__
+                invoke()
             transaction.commit_unless_managed()
         else:
             print "Not updating database. You have to do this by hand !"
 
-dispatcher.connect(init_data, sender=models, signal=signals.post_syncdb)
-dispatcher.connect(do_changelog, signal=signals.post_syncdb)
+# dispatcher.connect(init_data, sender=models, signal=signals.post_syncdb)
+# dispatcher.connect(do_changelog, signal=signals.post_syncdb)
 
+
+def create_permission_flags(app, created_models, verbosity):
+    """
+    Creates permission flags by looking at the Meta class of all models.
+
+    These Meta classes can have a 'sph_permission_flags' attribute containing
+    a dictionary with 'flagname': 'some verbose userfriendly description.'
+
+    Permission flags are not necessarily bound to a given model. It just needs
+    to be assigned to one so it can be found, but it can be used in any
+    context.
+    """
+    
+    for myapp in get_apps():
+        app_models = get_models(myapp)
+        if not app_models:
+            continue
+        
+        for klass in app_models:
+            if hasattr(klass, 'sph_permission_flags'):
+                sph_permission_flags = klass.sph_permission_flags
+                
+                # permission flags can either be a dictionary with keys beeing
+                # flag names, values beeing the description
+                # or lists in the form: ( ( 'flagname', 'description' ), ... )
+                if isinstance(sph_permission_flags, dict):
+                    sph_permission_flags = sph_permission_flags.iteritems()
+                
+                for (flag, description) in sph_permission_flags:
+                    flag, created = PermissionFlag.objects.get_or_create(name = flag)
+                    if created and verbosity >= 2:
+                        print "Added sph permission flag '%s'" % flag.name
+
+    if Role in created_models:
+        # Create a 'Group Admin' role for all groups.
+        rolename = 'Group Admin'
+        permissionflag = PermissionFlag.objects.get(name = 'group_administrator')
+        groups = Group.objects.all()
+        for group in groups:
+            role, created = Role.objects.get_or_create( name = rolename, group = group )
+            if not created:
+                continue
+            
+            role.save()
+            role.permission_flags.add(permissionflag)
+            role.save()
+
+            if verbosity >= 2:
+                print "Created new role '%s' for group '%s' and assigned permission '%s'" % (rolename, group.name, permissionflag.name)
+
+            
+
+
+# dispatcher.connect(create_permission_flags ,signal=signals.post_syncdb)

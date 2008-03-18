@@ -4,7 +4,7 @@ from utils.format import _12hr_time
 from django.template.defaultfilters import slugify
 
 class Conference(models.Model):
-    name = models.CharField(maxlength=100, unique_for_year='start')
+    name = models.CharField(max_length=100, unique_for_year='start')
     # slug = models.SlugField(prepopulate_from=('name',))
     start = models.DateField('Date on which to start the schedule')
     finish = models.DateField('Date on which to end the schedule')
@@ -15,7 +15,7 @@ class Conference(models.Model):
     class Admin: pass
 
 class TimeBlock(models.Model):
-    # name = models.CharField(maxlength=100, primary_key=True, unique_for_date='start')
+    # name = models.CharField(max_length=100, primary_key=True, unique_for_date='start')
     start = models.DateTimeField()
     duration = models.SmallIntegerField('Duration in minutes', default=90)
     conference = models.ForeignKey(Conference)
@@ -37,7 +37,7 @@ class TimeBlock(models.Model):
             _12hr_time(self.start), _12hr_time(self.finish))
 
 class Track(models.Model):
-    name = models.CharField(maxlength=100, primary_key=True)
+    name = models.CharField(max_length=100, primary_key=True)
     description = models.TextField()
     conference = models.ForeignKey(Conference)
     
@@ -51,8 +51,8 @@ class Track(models.Model):
         return hash(self.name)
     
 class Presenter(models.Model):
-    last_name = models.CharField(maxlength=100)
-    first_name = models.CharField(maxlength=100)
+    last_name = models.CharField(max_length=100)
+    first_name = models.CharField(max_length=100)
     email = models.EmailField()
     bio = models.TextField()
 
@@ -76,7 +76,7 @@ class Presenter(models.Model):
         return slugify(str(self))
     
 class Session(models.Model):
-    title = models.CharField(maxlength=200)
+    title = models.CharField(max_length=200)
     
     presenters = models.ManyToManyField(
         Presenter
@@ -88,10 +88,10 @@ class Session(models.Model):
 
     short_title = models.CharField(
         'Abbreviation for session continuations in schedule and admin interface'
-        , maxlength=50,blank=True)
+        , max_length=50,blank=True)
 
     schedule_note = models.CharField(
-        'Note to appear on schedule page', maxlength=200, blank=True)
+        'Note to appear on schedule page', max_length=200, blank=True)
     
     #
     # Format
@@ -99,7 +99,7 @@ class Session(models.Model):
     formats = ('Lecture','Tutorial','Keynote','Workshop', 'Experience Report',
                'Panel', 'Social Event')
     format = models.CharField(
-        maxlength=32,
+        max_length=32,
         choices= tuple(zip([x.lower() for x in formats],formats)))
 
     #
@@ -131,7 +131,7 @@ class Session(models.Model):
         else:
             return ''
         
-    attendee_background = models.CharField(maxlength=200,blank=True)
+    attendee_background = models.CharField(max_length=200,blank=True)
 
     #
     # Content

@@ -228,44 +228,44 @@ $(function() {
         {%if product.shippable %}<legend>Delivery Information</legend>{% endif %}
         {% if form.non_field_errors %}
         <div id="non-field-errors">
-            <p>{{form.non_field_errors}}</p>
+            <p>{{form.non_field_errors|safe}}</p>
         </div>
         {% endif %}
         <label id="field-first-name" class="required {% if form.first_name.errors %}errors{% endif %}">
-            First Name <span>{{ form.first_name.errors.as_text }}</span>
-            {{form.first_name}}
+            First Name <span>{{ form.first_name.errors.as_text|safe }}</span>
+            {{form.first_name|safe}}
         </label>
         <label id="field-last-name" class="required {% if form.last_name.errors %}errors{% endif %}">
-            Last Name <span>{{ form.last_name.errors.as_text }}</span>
-            {{form.last_name}}
+            Last Name <span>{{ form.last_name.errors.as_text|safe }}</span>
+            {{form.last_name|safe}}
         </label>
         <label id="field-country" class="required {% if form.country.errors %}errors{% endif %}">
-            Country  <span>{{ form.country.errors.as_text }}</span>
-            {{form.country}}
+            Country  <span>{{ form.country.errors.as_text|safe }}</span>
+            {{form.country|safe}}
         </label>
         <label id="field-address1" class="required {% if form.address1.errors %}errors{% endif %}">
-            Home Address <span>{{ form.address1.errors.as_text }}</span>
-            {{form.address1}}
+            Home Address <span>{{ form.address1.errors.as_text|safe }}</span>
+            {{form.address1|safe}}
         </label>
         <label id="field-address2" {% if form.address2.errors %}class="errors"{% endif %}>
-            Home Address second line <span>{{ form.address2.errors.as_text }}</span>
-            {{form.address2}}
+            Home Address second line <span>{{ form.address2.errors.as_text|safe }}</span>
+            {{form.address2|safe}}
         </label>
         <label id="field-city" class="required {% if form.city.errors %}errors{% endif %}">
-            City <span>{{ form.city.errors.as_text }}</span>
-            {{form.city}}
+            City <span>{{ form.city.errors.as_text|safe }}</span>
+            {{form.city|safe}}
         </label>
-        <label id="field-state" class="{% if form.state.errors %}errors{% endif %}">
-            State <span>{{ form.state.errors.as_text }}</span>
-            {{form.state}}
+        <label id="field-state" class="{% if form.state.errors %}class="errors"{% endif %}">
+            State <span>{{ form.state.errors.as_text|safe }}</span>
+            {{form.state|safe}}
         </label>
         <label id="field-zip" class="required {% if form.zip.errors %}errors{% endif %}">
-            Zip Code <span>{{ form.zip.errors.as_text }}</span>
-            {{form.zip}}
+            Zip Code <span>{{ form.zip.errors.as_text|safe }}</span>
+            {{form.zip|safe}}
         </label>
         <label id="field-phone" class="required {% if form.phone.errors %}errors{% endif %}">
-            Telephone <span>{{ form.phone.errors.as_text }}</span>
-            {{form.phone}}
+            Telephone <span>{{ form.phone.errors.as_text|safe }}</span>
+            {{form.phone|safe}}
         </label>
     </fieldset>
     {%if product.shippable %}

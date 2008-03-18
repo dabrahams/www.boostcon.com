@@ -4,15 +4,15 @@ from django.contrib.auth.models import User
 import datetime
 
 class ShippingDestination(models.Model):
-    first_name = models.CharField(maxlength=100)
-    last_name = models.CharField(maxlength=100)
-    address1 = models.CharField(maxlength=100)
-    address2 = models.CharField(maxlength=100, blank=True)
-    city = models.CharField(maxlength=100)
-    state = models.CharField(maxlength=100, blank=True)
-    zip = models.CharField(maxlength=100)
-    country = models.CharField(maxlength=100)
-    phone = models.CharField(maxlength=50)
+    first_name = models.CharField(max_length=100)
+    last_name = models.CharField(max_length=100)
+    address1 = models.CharField(max_length=100)
+    address2 = models.CharField(max_length=100, blank=True)
+    city = models.CharField(max_length=100)
+    state = models.CharField(max_length=100, blank=True)
+    zip = models.CharField(max_length=100)
+    country = models.CharField(max_length=100)
+    phone = models.CharField(max_length=50)
 
     class Admin:
         pass
@@ -36,10 +36,10 @@ class Customer(models.Model):
         return self.user.username
 
 class Product(models.Model):
-    name = models.CharField(maxlength=100)
+    name = models.CharField(max_length=100)
     slug = models.SlugField(prepopulate_from=('name',))
-    description = models.CharField(maxlength=500)
-    price = models.FloatField(max_digits=5, decimal_places=2)
+    description = models.CharField(max_length=500)
+    price = models.DecimalField(max_digits=5, decimal_places=2)
     shippable = models.BooleanField()
 
     class Admin:
@@ -54,10 +54,10 @@ class Order(models.Model):
     customer = models.ForeignKey(Customer)
     product = models.ForeignKey(Product)
     destination = models.ForeignKey(ShippingDestination)
-    shipping = models.CharField(maxlength=100)
-    shipping_rate = models.FloatField(max_digits=5, decimal_places=2)
+    shipping = models.CharField(max_length=100)
+    shipping_rate = models.DecimalField(max_digits=5, decimal_places=2)
     time = models.DateTimeField(auto_now_add=True)
-    state = models.CharField(maxlength=1, choices=order_states, default='P')
+    state = models.CharField(max_length=1, choices=order_states, default='P')
     comment = models.TextField(blank=True)
 
     # More default overrides for PDF generation.

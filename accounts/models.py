@@ -5,13 +5,13 @@ from django.contrib.auth.models import User
 class Participant(models.Model):
     user = models.ForeignKey(User, unique=True)
     
-    address1 = models.CharField(maxlength=100)
-    address2 = models.CharField(maxlength=100)
-    jurisdiction = models.CharField(maxlength=100)
-    zip = models.CharField(maxlength=100)
-    country = models.CharField(maxlength=100)
-    affiliation = models.CharField(maxlength=100)
-    title = models.CharField(maxlength=100)
+    address1 = models.CharField(max_length=100)
+    address2 = models.CharField(max_length=100)
+    jurisdiction = models.CharField(max_length=100)
+    zip = models.CharField(max_length=100)
+    country = models.CharField(max_length=100)
+    affiliation = models.CharField(max_length=100)
+    title = models.CharField(max_length=100)
     phone = models.PhoneNumberField()
     fax = models.PhoneNumberField()
 

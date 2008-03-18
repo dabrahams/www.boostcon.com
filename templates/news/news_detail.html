@@ -5,14 +5,14 @@
 <div id="breadcrumbs">
 <ul>
   <li><a href="/">Home</a> &gt;</li>  
-  <li>News ({{ object.title }})</li>
+  <li>News ({{ object.title|safe }})</li>
 </ul>
 </div>
 
 <div id="document" class="node">
-<h2 style="display:inline">{{ object.get_title }}</h1> 
-<p class="intro">[{{ object.date|date:"F d, Y"}}]&nbsp;&nbsp;{{ object.summary }}</p>
-{{ object.body }}
+<h2 style="display:inline">{{ object.get_title|safe }}</h1> 
+<p class="intro">[{{ object.date|date:"F d, Y"}}]&nbsp;&nbsp;{{ object.summary|safe }}</p>
+{{ object.body|safe }}
 </div>
 
 {% endblock %}

@@ -60,7 +60,7 @@
 <div>
     <input type="hidden" name="object_id" value="{{object_id}}" />
     {% if error %}
-    <p class="error">{{ error }}</p>
+    <p class="error">{{ error|safe }}</p>
     {% endif %}
     <table class="edit_form">
         <tr>

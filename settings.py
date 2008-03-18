@@ -1,6 +1,7 @@
 # Django settings for boost_consulting project.
 
 import os
+
 ROOT_PATH = os.path.dirname(os.path.abspath(__file__))
 
 ADMINS = (
@@ -111,9 +112,11 @@ INSTALLED_APPS = (
 # SCT settings
 #
 SPH_SETTINGS = { 'wiki_rss_url' : '/feeds/community/wiki/',
-                 'django096compatibility': True,
+                 # 'django096compatibility': True,
+                 'workaround_select_related_bug' : True,
                  'markdown_top_heading_level' : 3,
                  'markdown_number_headings' : True,
+                 'community_email_sender' : 'noreply@boostcon.com'
                  }
 
 LIB_PATH = os.path.join(ROOT_PATH, 'communitytools', 'sphenecoll')

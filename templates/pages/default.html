@@ -1,10 +1,10 @@
 {% extends "base_with_news.html" %}
 
 {% block meta %}
-{{ page.meta }}
+{{ page.meta|safe }}
 {% endblock %}
 
-{% block moretitle %} - {{ page.page_title }}{% endblock %}
+{% block moretitle %} - {{ page.page_title|safe }}{% endblock %}
 
 {% block sidebar_type %}{% if not page.first_child %}_wm{% endif %}{% endblock %}
   
@@ -13,7 +13,7 @@
       <h3>detail</h3>
       <ul>
         {% for c in page.children %}
-        <li><a href="{{ c.get_absolute_url }}">{{ c.menu_title }}</a></li>
+        <li><a href="{{ c.get_absolute_url }}">{{ c.menu_title|safe }}</a></li>
         {% endfor %}
       </ul>
   {% endif %}
@@ -29,9 +29,9 @@
 {% block preface %}
 {% endblock %}
 <div  class="node" id="document">
-<h2>{{page.title}}</h2>
+<h2>{{page.title|safe}}</h2>
 {% block body %}
-{{ body }}
+{{ body|safe }}
 {% endblock %}
 {% block postfix %}
 {% endblock %}
