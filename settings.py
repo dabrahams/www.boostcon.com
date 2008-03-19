@@ -16,6 +16,8 @@ MANAGERS = ADMINS
 # Examples: "http://foo.com/media/", "/media/".
 ADMIN_MEDIA_PREFIX = '/media/'
 
+MEDIA_URL = '/site-media/'
+
 #
 # prepare settings that depend on where the project is being run.
 #
@@ -64,6 +66,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     # These are Django's defaults.  Too bad there's no way to just add to the
     # defaults without repeating them.
     "django.core.context_processors.auth",
+    "django.core.context_processors.media",
     "django.core.context_processors.debug",
     'django.core.context_processors.request',
     "django.core.context_processors.i18n",

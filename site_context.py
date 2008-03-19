@@ -15,7 +15,6 @@ if onserver:
     DATABASE_NAME = 'boostcon.db'
     DATABASE_USER = 'boostcon'
     DATABASE_PASSWORD = 'crtplib'
-    MEDIA_URL = '/site-media'
 
     serve_media = 'runserver' in sys.argv
     if serve_media:
@@ -29,7 +28,6 @@ else: # default settings work for my local development server
     DATABASE_NAME = 'boostcon.db'
     DATABASE_USER = ''
     DATABASE_PASSWORD = ''
-    MEDIA_URL = '/site-media'
     serve_media = True
     DEBUG = True
     EMAIL_HOST='smtp.rcn.com'
