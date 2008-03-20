@@ -9,7 +9,7 @@ from django.shortcuts import render_to_response
 from django.template.context import RequestContext
 from django.template import loader, Context
 from django.http import HttpResponse, HttpResponseRedirect, Http404
-from django.core.mail import send_mail
+from django.core.mail import EmailMultiAlternatives
 from django.contrib.auth import authenticate,login as auth_login, logout as auth_logout
 from accounts.models import Participant
 from sphene.community.models import Group as Community, GroupMember as CommunityMember
@@ -114,15 +114,26 @@ def register_or_login(request, login=False, group=None):
 
                 validationcode = cryptString(settings.SECRET_KEY, urlencode(regdata))
 
-                t = loader.get_template('accounts/account_verification_email.txt')
-                c = {
+                mail_context = RequestContext(
+                    request,
+                    {
                     'email': email_address,
                     'baseurl': group.baseurl,
                     'validationcode': validationcode,
                     'group': group,
-                    }
+                    })
+                
+                text_part = loader.get_template(
+                    'accounts/account_verification_email.txt').render(mail_context)
+                html_part = loader.get_template(
+                    'accounts/account_verification_email.html').render(mail_context)
 
-                send_mail( subject, t.render(RequestContext(request, c)), 'noreply@boostcon.com', [email_address] )
+                msg = EmailMultiAlternatives( subject, text_part,
+                                              'noreply@boostcon.com',
+                                              [email_address] )
+                msg.attach_alternative(html_part, "text/html")
+                msg.send()
+                
                 return render_to_response( 'accounts/register_emailsent.html',
                                            { 'email': email_address },
                                            context_instance = RequestContext(request) )

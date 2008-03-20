@@ -4,11 +4,11 @@ on the {{ group.get_name }} website.
 
 To continue registration, please visit the following link:
 
-http://{{ baseurl }}/accounts/create/{{ validationcode }}/
+http://{{ baseurl }}/accounts/create/{{ validationcode }}
 
 NOTE: If your mail client has split that long URL across multiple
 lines, you may need to reconstruct it by pasting those lines together
-in order to successfully register.  The complete URL ends with "===/"
+in order to successfully register.  The complete URL ends with "===="
 and contains no whitespace
 
 
