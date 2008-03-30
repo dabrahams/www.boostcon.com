@@ -117,6 +117,16 @@ urlpatterns += patterns('django.views.generic',
     (r'^(?P<base>.*)/$', 'simple.redirect_to', {'url': r'/%(base)s'}),
                         
     (r'^$', 'simple.redirect_to', {'url': r'/home'}),
+    (r'^program/schedule/preview$',
+     'simple.direct_to_template',
+     {'template':'pages/schedule.html',
+      'conference':'boostcon',
+      'presenter_base':'/program/speakers',
+      'session_base':'/program/sessions',
+      'schedule_base':'/program',
+      'year':2008
+      }
+     ),
     (r'^program/schedule$', 'simple.redirect_to', {'url': r'/program#schedule'}),
                         
     # keep the old redirects from about/shops in case people have linked there.
