@@ -148,7 +148,7 @@ class Session(models.Model):
     # Scheduling
     #
     start = models.ForeignKey(TimeBlock, verbose_name = 'Starting Session Block', null=True)
-    duration = models.SmallIntegerField('Duration in minutes', default=90)
+    duration = models.SmallIntegerField('length (min)', default=90)
 
     _presenters = None
     
@@ -175,19 +175,25 @@ class Session(models.Model):
         return ', '.join([s.last_name for s in self.presenters.all()]) \
                + ': ' + (self.short_title or self.title)
 
+    @property
+    def display_name(self):
+        return str(self)
+    
     def get_absolute_url(self):
         return '/program/sessions#%s' % self.slug()
 
     def slug(self):
         return slugify(str(self))
-        
+
     @property
     def finish(self):
         return self.start.start + timedelta(minutes=self.duration)
 
     class Admin:
-        pass
-    
+        list_display = ('display_name', 'duration', 'track', 'start')
+        search_fields = ('title', 'presenters__last_name',
+                         'presenters__first_name', 'start__start')
+        
     class Meta:
         # These constraints are imperfect but should catch many common errors
         unique_together = (
