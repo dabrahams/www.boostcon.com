@@ -7,7 +7,7 @@ Call for Sessions
 
 :order: 10
 
-.. contents:: Index
+.. Note:: The period for session submission has officially closed.
 
 Timeline
 --------
