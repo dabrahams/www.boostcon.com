@@ -2,7 +2,7 @@
 Program
 =======
 
-.. :template-name: pages/schedule.html
+:template-name: pages/schedule.html
 
 In the spirit of Boost, we have tried to encourage sessions that
 are participatory and/or collaborative in nature, and set up a
@@ -15,9 +15,7 @@ small, informal groups.
 Schedule
 --------
 
-.. include:: content/pages/program/under-construction.inc
+**Note:** Click the title of any session to visit its description in
+the `session list`__.
 
-.. **Note:** Click the title of any session to visit its description in
-   the `session list`__.
-
-   __ program/sessions
+__ program/sessions

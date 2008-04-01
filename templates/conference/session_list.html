@@ -1,4 +1,6 @@
 <div class="section">
+<p><b>Note:</b> Click the title of any session to visit its start time in
+the <a href="schedule">conference schedule</a>.</p>
 {% load code %}
 {% python _import_('conference.models').Session.objects.filter(start__start__year=params['year'], start__conference__name=params['conference']), as='sessions' %}
 {% load conference %}
