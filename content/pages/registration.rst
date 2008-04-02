@@ -3,7 +3,7 @@ Registration
 
 :order: 1000
 
-Conference Registration  fee of **$599 before April 1, 2008 (US)**
+Conference Registration  fee of **$599 before April 7, 2008 (US)**
 includes: 
 
 * Participation in all sessions 
@@ -12,7 +12,7 @@ includes:
 * Morning and afternoon refreshment breaks 
 * Thursday evening barbecue social
 
-**On or after April 1, the conference registration fee will be $699**
+**On or after April 7, the conference registration fee will be $699**
 
 .. Note:: We request that you register **as soon as possible**.
    Early collection of registration fees will allow us more
