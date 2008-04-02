@@ -69,9 +69,10 @@ Why a Boost Conference now?
 Who profits from my registration fee?
   BoostCon is a strictly *non-profit* conference.  Your
   registration fee is used to pay for the use of facilities, A/V
-  equipment, and professional `conference planning services`__.  
+  equipment, and an onsite conference administrator (handling
+  registration, making sure there's plenty of coffee, etc.)  
   If there is any money left over when the conference is over, it
-  will be rolled into a fund to pay for BoostCon'08.
+  will be rolled into a fund to pay for next years' conference.
 
 __ /about
 
