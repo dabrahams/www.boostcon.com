@@ -78,8 +78,6 @@ __ /about
 
 .. |more| replace:: *more...*
 
-__ http://www.conferences.indiana.edu
-
 .. _Aspen Institute: http://www.aspeninstitute.org/
 .. _Music Festival: http://www.aspenmusicfestival.com
 .. _Center for Physics: http://aspenphys.org
