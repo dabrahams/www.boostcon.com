@@ -72,7 +72,7 @@ Who profits from my registration fee?
   equipment, and an onsite conference administrator (handling
   registration, making sure there's plenty of coffee, etc.)  
   If there is any money left over when the conference is over, it
-  will be rolled into a fund to pay for next years' conference.
+  will be rolled into a fund to pay for next year's conference.
 
 __ /about
 
