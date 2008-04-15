@@ -60,11 +60,10 @@ class Presenter(models.Model):
         return self.first_name + ' ' + self.last_name
     
     class Meta:
-        ordering = ('last_name','first_name','email')
+        ordering = ('last_name', 'first_name', 'email')
 
     class Admin:
-        pass
-        # list_display = ('first_name', 'last_name')
+        list_display = ('last_name', 'first_name', 'email')
 
     def __str__(self):
         return self.first_name + ' ' + self.last_name
