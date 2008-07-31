@@ -1,6 +1,7 @@
  # -*- coding: utf-8 -*-
 from django.db import models
 from django.contrib.auth.models import User
+from django.contrib import admin
 import datetime
 
 class ShippingDestination(models.Model):
@@ -14,11 +15,12 @@ class ShippingDestination(models.Model):
     country = models.CharField(max_length=100)
     phone = models.CharField(max_length=50)
 
-    class Admin:
-        pass
-
     def __str__(self):
         return '%s, %s' % (self.last_name, self.first_name)
+
+class ShippingDestinationAdmin(admin.ModelAdmin):
+    pass
+admin.site.register(ShippingDestination, ShippingDestinationAdmin)
 
 class Customer(models.Model):
     user = models.ForeignKey(User, unique=True)
@@ -29,24 +31,27 @@ class Customer(models.Model):
     pdf_user = ('email', lambda x: x.user.email)
     pdf_destination = ('id number', lambda x: x.id)
                        
-    class Admin:
-        pass
 
     def __str__(self):
         return self.user.username
 
+class CustomerAdmin(admin.ModelAdmin):
+    pass
+admin.site.register(Customer, CustomerAdmin)
+
 class Product(models.Model):
     name = models.CharField(max_length=100)
-    slug = models.SlugField(prepopulate_from=('name',))
+    slug = models.SlugField()
     description = models.CharField(max_length=500)
     price = models.DecimalField(max_digits=5, decimal_places=2)
     shippable = models.BooleanField()
 
-    class Admin:
-        pass
-
     def __str__(self):
         return self.name
+
+class ProductAdmin(admin.ModelAdmin):
+    prepopulated_fields = {'slug': ('name',)}
+admin.site.register(Product, ProductAdmin)
 
 order_states = [('P','pending'), ('S','shipped'), ('D','dismissed')]
 
@@ -77,19 +82,22 @@ class Order(models.Model):
     display_destination.allow_tags = True
     display_destination.short_description = 'Destination'
 
-    class Admin:
-        fields = (
-            (None, {'fields': 
-                ('customer', 'product', 'destination', 
-                 'shipping', 'shipping_rate', 'time', 
-                 'state', 'comment')}
-            ),
-        )
-        list_display = ('id', 'display_customer', 'display_destination', 'product', 'time', 'state', 'comment')
-        list_filter = ('state',)
-
     def __str__(self):
         return '%s (%s->%s, %s)' % ( \
             self.id, self.product.name, self.destination.last_name, self.destination.first_name
         )
+
+class OrderAdmin(admin.ModelAdmin):
+    fields = ('customer', 'product', 'destination',
+            'shipping', 'shipping_rate',
+            'state', 'comment')
+
+    list_display = (
+            'id', 'display_customer', 'display_destination',
+            'product', 'time', 'state', 'comment')
+
+    list_filter = ('state',)
+
+admin.site.register(Order, OrderAdmin)
+
 

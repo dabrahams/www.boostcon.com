@@ -2,7 +2,7 @@
 # Software License, Version 1.0. (See accompanying
 # file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
 from django.http import HttpResponse, Http404, HttpResponseRedirect
-from django import newforms as forms
+from django import forms
 from django.shortcuts import render_to_response, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.template import RequestContext
@@ -15,6 +15,8 @@ from django.conf import settings
 from boost_consulting.utils.host import hostname
 
 import boost_consulting.shipping as shipping
+
+from decimal import Decimal
 
 sorted_countries = shipping.COUNTRIES.items()
 sorted_countries.sort()
@@ -180,7 +182,7 @@ def create_and_send_order(request, shipping_method='None', shipping_rate=0):
       , product = product
       , destination = destination
       , shipping = shipping_method
-      , shipping_rate = shipping_rate
+      , shipping_rate = Decimal(str(shipping_rate))
     )
 
     if 'orderform' in request.POST:
@@ -313,7 +315,7 @@ def printfields(x, suffix_rows = [], colWidths = (None,None)):
     try:
         fields = fieldnames(x)
     except AttributeError:
-        return str(x)
+        return unicode(x)
     
     rows = []
     
@@ -383,7 +385,7 @@ def order_pdf(order):
     Story.append(Spacer(1,0.2*inch))
     Story.append(Preformatted("""
     Orders
-    Boost Consulting, Inc.
+    BoostPro Computing
     45 Walnut St.
     Somerville, MA 02143
     """, style))
