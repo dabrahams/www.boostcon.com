@@ -2,6 +2,9 @@ from django.conf.urls.defaults import *
 from news.models import News
 from news.feeds import NewsFeed
 from boost_consulting import settings
+from django.contrib import admin
+
+admin.autodiscover()
 
 feeds = {
     'news': NewsFeed
@@ -9,12 +12,13 @@ feeds = {
     
 urlpatterns = patterns('',
     # Uncomment this for admin:
-    (r'^admin/', include('django.contrib.admin.urls')),
+   (r'^admin/doc/', include('django.contrib.admindocs.urls')),
+   (r'^admin/(.*)', admin.site.root),
 
-    (r'^feed/(?P<url>[-\w]+)', 'django.contrib.syndication.views.feed',
-     {'feed_dict': feeds}),
+   (r'^feed/(?P<url>[-\w]+)', 'django.contrib.syndication.views.feed',
+       {'feed_dict': feeds}),
 
-    (r'^community/photos/', include('stockphoto.urls')),
+   (r'^community/photos/', include('stockphoto.urls')),
 )
 
 if settings.serve_media:

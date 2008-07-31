@@ -25,9 +25,6 @@ class Participant(models.Model):
         self.user.save()
         models.Model.save(self)
         
-    class Admin:
-        pass
-
     def __str__(self):
         return '%s, %s' % (self.last_name, self.first_name)
 

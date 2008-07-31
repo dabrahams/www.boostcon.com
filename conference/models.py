@@ -12,8 +12,6 @@ class Conference(models.Model):
     def __str__(self):
         return '%s %s' % (self.name,self.start.year)
     
-    class Admin: pass
-
 class TimeBlock(models.Model):
     # name = models.CharField(max_length=100, primary_key=True, unique_for_date='start')
     start = models.DateTimeField()
@@ -24,10 +22,6 @@ class TimeBlock(models.Model):
         ordering = ('start',)
         unique_together = (('start',),)
     
-    class Admin:
-        save_as = True
-        list_filter = ('conference',)
-        
     @property
     def finish(self):
         return self.start + timedelta(minutes=self.duration)
@@ -41,15 +35,12 @@ class Track(models.Model):
     description = models.TextField()
     conference = models.ForeignKey(Conference)
     
-    class Admin:
-        list_display = ('name', 'description')
-
     def __str__(self):
         return self.name
 
     def __hash__(self):
         return hash(self.name)
-    
+
 class Presenter(models.Model):
     last_name = models.CharField(max_length=100)
     first_name = models.CharField(max_length=100)
@@ -62,9 +53,6 @@ class Presenter(models.Model):
     class Meta:
         ordering = ('last_name', 'first_name', 'email')
 
-    class Admin:
-        list_display = ('last_name', 'first_name', 'email')
-
     def __str__(self):
         return self.first_name + ' ' + self.last_name
 
@@ -73,14 +61,13 @@ class Presenter(models.Model):
 
     def slug(self):
         return slugify(str(self))
-    
+
 class Session(models.Model):
     title = models.CharField(max_length=200)
     
     presenters = models.ManyToManyField(
         Presenter
       , verbose_name = 'Presenters (should only be left blank for social events)'
-      , filter_interface = models.HORIZONTAL
       , related_name='sessions'
       , blank=True
         )
@@ -188,10 +175,6 @@ class Session(models.Model):
     def finish(self):
         return self.start.start + timedelta(minutes=self.duration)
 
-    class Admin:
-        list_display = ('display_name', 'duration', 'track', 'start')
-        search_fields = ('title', 'presenters__last_name',
-                         'presenters__first_name', 'start__start')
         
     class Meta:
         # These constraints are imperfect but should catch many common errors
@@ -206,4 +189,5 @@ class Session(models.Model):
             
             ('title',),                  # no two sessions can have the same title
             )
+
 

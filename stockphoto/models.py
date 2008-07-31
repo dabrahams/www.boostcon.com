@@ -30,6 +30,7 @@ import django.contrib.auth.models as auth
 from django.conf import settings
 from django.dispatch import dispatcher
 from django.db.models import signals
+from django.contrib import admin
 
 import os, os.path
 import Image
@@ -57,7 +58,7 @@ if ADMIN_URL[-1] == '/':
 # Create your models here.
 class Gallery(models.Model):
     title = models.CharField(_("title"), max_length=80)
-    slug = models.SlugField(prepopulate_from=("title",))
+    slug = models.SlugField()
     date = models.DateField(_("publication date"), auto_now_add=True)
     created = models.ForeignKey(auth.User,
                               verbose_name=_("gallery created by")
@@ -78,8 +79,6 @@ class Gallery(models.Model):
     class Meta:
         get_latest_by = 'date'
         verbose_name_plural = _("galleries")
-    class Admin:
-        ordering = ['date']
 
     def __unicode__(self):
         return self.title
@@ -102,6 +101,11 @@ class Gallery(models.Model):
             photo.create_disp()
             photo.create_thumb()
 
+class GalleryAdmin(admin.ModelAdmin):
+    ordering = ['date']
+    prepopulated_fields = {'slug': ('title',)}
+admin.site.register(Gallery, GalleryAdmin)
+
 class Photo(models.Model):
     # import os, os.path, Image
     image = models.ImageField(_("Photograph"),
@@ -116,9 +120,6 @@ class Photo(models.Model):
                            blank=True)
     class META:
         get_latest_by = 'date'
-
-    class Admin:
-        ordering = ['date']
 
     def __unicode__(self):
         return self.title
@@ -279,6 +280,10 @@ class Photo(models.Model):
                 self.create_thumb()
             if not self.disp_exists():
                 self.create_disp()
+
+class PhotoAdmin(admin.ModelAdmin):
+    ordering = ['date']
+admin.site.register(Photo, PhotoAdmin)
 
 def build_display_images(sender, instance, signal, *args, **kwargs):
     """Simple hook for save-after trigger
