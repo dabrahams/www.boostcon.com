@@ -294,7 +294,5 @@ def delete_thumbnails(sender, instance, signal, *args, **kwargs):
     """
     instance.delete_thumbnails()
 
-dispatcher.connect(build_display_images, signal=signals.post_save,
-                   sender=Photo) 
-dispatcher.connect(delete_thumbnails, signal=signals.pre_delete,
-                   sender=Photo)
+signals.post_save.connect(build_display_images, sender=Photo) 
+signals.pre_delete.connect(delete_thumbnails, sender=Photo)

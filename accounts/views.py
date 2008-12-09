@@ -1,7 +1,7 @@
 # Create your views here.
 
 
-from django import newforms as forms
+from django import forms
 from django.conf import settings
 from django.contrib.auth.models import User,Group
 from django.db.models import Q

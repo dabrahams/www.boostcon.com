@@ -2,8 +2,7 @@ from sphene.community.management import do_changelog
 from django.db.models import signals
 from django.dispatch import dispatcher
 from sphene.sphboard import models
-dispatcher.connect(do_changelog, sender=models, signal=signals.post_syncdb)
-
+signals.post_syncdb.connect(do_changelog, sender=models)
 
 # Lifted directly from Herbert Poul's Sphene Community Tools (SCT); I only
 # changed 'example' to 'boostcon' and 'Example Group' to 'Boost Conference
@@ -142,11 +141,11 @@ def do_changelog(app, created_models, verbosity, **kwargs):
         else:
             print "Not updating database. You have to do this by hand !"
 
-# dispatcher.connect(init_data, sender=models, signal=signals.post_syncdb)
-# dispatcher.connect(do_changelog, signal=signals.post_syncdb)
+signals.post_syncdb.connect(init_data, sender=models)
+signals.post_syncdb.connect(do_changelog)
 
 
-def create_permission_flags(app, created_models, verbosity):
+def create_permission_flags(app, created_models, verbosity, **kwags):
     """
     Creates permission flags by looking at the Meta class of all models.
 
@@ -198,4 +197,4 @@ def create_permission_flags(app, created_models, verbosity):
             
 
 
-# dispatcher.connect(create_permission_flags ,signal=signals.post_syncdb)
+signals.post_syncdb.connect(create_permission_flags)
