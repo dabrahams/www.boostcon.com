@@ -156,14 +156,14 @@ class Photo(models.Model):
     def thumbpath(self):
         """Path to the thumbnail
         """
-        photobase = self.image[len(STOCKPHOTO_BASE)+1:]
+        photobase = str(self.image)[len(STOCKPHOTO_BASE)+1:]
         return os.path.join( settings.MEDIA_ROOT, STOCKPHOTO_BASE,
                      "cache", "thumbs", photobase)
 
     def thumburl(self):
         """URL to the thumbnail
         """
-        photobase = self.image[len(STOCKPHOTO_BASE)+1:]
+        photobase = str(self.image)[len(STOCKPHOTO_BASE)+1:]
         # for windows -- to avoid urls with '\' in them
         if os.sep != '/':
             photobase = photobase.replace(os.sep, '/')
@@ -175,12 +175,12 @@ class Photo(models.Model):
             
 
     def disppath(self):
-        photobase = self.image[len(STOCKPHOTO_BASE)+1:]
+        photobase = str(self.image)[len(STOCKPHOTO_BASE)+1:]
         return os.path.join( settings.MEDIA_ROOT, STOCKPHOTO_BASE,
                          "cache", photobase)
 
     def dispurl(self):
-        photobase = self.image[len(STOCKPHOTO_BASE)+1:]
+        photobase = str(self.image)[len(STOCKPHOTO_BASE)+1:]
         # for windows -- to avoid urls with '\' in them
         if os.sep != '/':
             photobase = photobase.replace(os.sep, '/')
@@ -191,19 +191,19 @@ class Photo(models.Model):
             "/cache/" + photobase            
 
     def fullpath(self):
-        if self.image.startswith('/'):
-            return self.image
-        return os.path.join(settings.MEDIA_ROOT, self.image)
+        if str(self.image).startswith('/'):
+            return str(self.image)
+        return os.path.join(settings.MEDIA_ROOT, str(self.image))
 
     def fullurl(self):
-        if self.image.startswith('/'):    
+        if str(self.image).startswith('/'):    
             # Shouldn't happen anymore
             return (settings.MEDIA_URL +
-                    self.image[len(settings.MEDIA_ROOT):])
+                    str(self.image)[len(settings.MEDIA_ROOT):])
         else:
             if settings.MEDIA_URL.endswith('/'):
-                return settings.MEDIA_URL + self.image
-            return settings.MEDIA_URL + '/' + self.image
+                return settings.MEDIA_URL + str(self.image)
+            return settings.MEDIA_URL + '/' + str(self.image)
         
 
     def next(self):
