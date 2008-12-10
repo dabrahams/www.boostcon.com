@@ -45,6 +45,7 @@ class Product(models.Model):
     description = models.CharField(max_length=500)
     price = models.DecimalField(max_digits=5, decimal_places=2)
     shippable = models.BooleanField()
+    prerequisite = models.ForeignKey('self',blank=True,null=True)
 
     def __str__(self):
         return self.name

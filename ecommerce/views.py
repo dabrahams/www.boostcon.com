@@ -81,10 +81,18 @@ def step1(request, slug = None):
             for f in step1_fields:
                 initial[f] = getattr(destination,f)
 
+            if product.prerequisite != None:
+                upgrades = Order.objects.filter(customer=customer,
+                    product=product).count()
+                preorders = Order.objects.filter(customer=customer,
+                    product=product.prerequisite).count()
+                if upgrades >= preorders:
+                    return render_to_response('invalid_registration.html',RequestContext(request))
         except:
             # No customer record found, shipping destination missing, or not
             # quite completely formed.
-            pass
+            if product.prerequisite != None:
+                return render_to_response('invalid_registration.html',RequestContext(request))
 
         # Initialize the form, unbound, with as much information as we could get
         form = Step1Form(initial=initial)
