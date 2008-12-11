@@ -29,7 +29,7 @@ How to Register
   pay by credit card or via PayPal.  A BoostCon site account is
   required in order to perform the payment steps.
 
-  __ /register/boostcon08
+  __ /register/boostcon09-prereg
 
 Cancellation of Registration 
 ----------------------------
