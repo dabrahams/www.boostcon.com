@@ -19,6 +19,7 @@ if 'boost-consulting.com' in uname:
     serve_media = 'runserver' in sys.argv
     if serve_media:
         ADMIN_MEDIA_PREFIX = '/admin-media/'
+    hostname = 'boostcon.com'
     
     #
     # Add an elif case here to support your environment
@@ -32,6 +33,16 @@ elif 'daniel-desktop' in uname:
     DEBUG = True
 
     serve_media = True
+
+elif 'Jimbo' in uname:
+    DATABASE_ENGINE = 'postgresql_psycopg2'
+    DATABASE_NAME = 'boostcon.db'
+    DATABASE_USER = 'jim'
+    DATABASE_PASSWORD = 'jim'
+    serve_media = True
+    DEBUG = True
+    ADMIN_MEDIA_PREFIX = '/media/'
+    EMAIL_HOST='smtp.charter.net'
 
 else: # default settings work for my local development server
     DATABASE_ENGINE = 'postgresql_psycopg2'

@@ -1,6 +1,7 @@
  # -*- coding: utf-8 -*-
 from django.db import models
 from django.contrib.auth.models import User
+from django.contrib.localflavor.us.models import PhoneNumberField
 
 class Participant(models.Model):
     user = models.ForeignKey(User, unique=True)
@@ -12,8 +13,8 @@ class Participant(models.Model):
     country = models.CharField(max_length=100)
     affiliation = models.CharField(max_length=100)
     title = models.CharField(max_length=100)
-    phone = models.PhoneNumberField()
-    fax = models.PhoneNumberField()
+    phone = PhoneNumberField()
+    fax = PhoneNumberField()
 
     # delegate these properties to the User
     for a in 'first_name','last_name','email','groups','is_staff':

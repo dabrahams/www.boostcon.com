@@ -58,20 +58,24 @@ from stockphoto.models import Gallery, Photo
 
 # views
 
-class ImportManipulator(forms.Manipulator):
-    def __init__(self):
-        self.fields = (
-            forms.FileUploadField(field_name="zipfile",
-                            is_required=True,
-                            validator_list=[self.valid_zipfile,]),
-            forms.TextField(field_name="photographer"),
-            forms.DateField(field_name="date"),
-        )
-    def valid_zipfile(self, field_data, all_data):
-        zip_file = StringIO(field_data['content'])
-        zip = zipfile.ZipFile(zip_file)
-        return not zip.testzip()
+class ImportForm(forms.Form):
+    zipfile = forms.FileField()
+    photographer = forms.CharField(required=False)
+    date = forms.DateField(required=False)
 
+    
+    def clean_zipfile(self):
+        data = self.cleaned_data['zipfile'].read()
+        zip_file = StringIO(data)
+        try:
+            zip = zipfile.ZipFile(zip_file)
+            is_bad = zip.testzip()
+            zip.close()
+            if is_bad:
+                raise ValueError
+        except:
+            raise forms.ValidationError("The zip file you have provided is invalid.")
+        return data
 
 
 @login_required
@@ -100,17 +104,14 @@ def import_photos(request, thegallery):
     if not request.user.has_perm('gallery.add_photo'):
         return http.HttpResponseForbidden("No permission to add photos")
 
-    manipulator = ImportManipulator()
+    form = None
     if request.POST:
-        new_data = request.POST.copy()
-        new_data.update(request.FILES)
-        errors = manipulator.get_validation_errors(new_data)
-        if not errors:
+        form = ImportForm(request.POST,request.FILES)
+        if form.is_valid():
             # So now everything is okay
-            f = StringIO(new_data['zipfile']['content']) # the zip"file"
+            f = StringIO(form.cleaned_data['zipfile']) # the zip"file"
             zip = zipfile.ZipFile(f)
-            manipulator.do_html2python(new_data)
-            date = new_data['date']
+            date = form.cleaned_data['date']
             if not date:
                 date = datetime.date(datetime.now())
 
@@ -142,7 +143,7 @@ def import_photos(request, thegallery):
                 # Create the database object
                 photo = Photo(image=os.path.join(path_to_destdir,filename),
                               date=date,
-                              photographer=new_data['photographer'],
+                              photographer=form.cleaned_data['photographer'],
                               title = os.path.basename(sourcepath),
                               gallery_id = thegallery)
                 # Save it -- the thumbnails etc. get created.
@@ -154,9 +155,9 @@ def import_photos(request, thegallery):
             response['Cache-Control'] = 'no-cache'
             return response
     else:
-        errors = new_data = {}
+        form = ImportForm()
         
-    form = forms.FormWrapper(manipulator, new_data, errors)
+    #form = forms.FormWrapper(manipulator, new_data, errors)
     return render_to_response('stockphoto/import_form.html',
                               dict(form=form, gallery=gallery),
                               context_instance = RequestContext(request))
