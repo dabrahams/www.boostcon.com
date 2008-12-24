@@ -5,7 +5,7 @@ import os
 ROOT_PATH = os.path.dirname(os.path.abspath(__file__))
 
 ADMINS = (
-    ('Dave Abrahams', 'dave@boost-consulting.com'),
+    ('Dave Abrahams', 'dave@boostpro.com'),
     # ('Your Name', 'your_email@domain.com'),
 )
 
@@ -17,6 +17,9 @@ MANAGERS = ADMINS
 ADMIN_MEDIA_PREFIX = '/media/'
 
 MEDIA_URL = '/site-media/'
+
+DEFAULT_FROM_EMAIL = "admin@boostcon.com"
+SERVER_EMAIL = "webserver@boostcon.com"
 
 #
 # prepare settings that depend on where the project is being run.
