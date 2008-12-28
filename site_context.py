@@ -20,7 +20,11 @@ if 'boost-consulting.com' in uname:
     if serve_media:
         ADMIN_MEDIA_PREFIX = '/admin-media/'
     hostname = 'boostcon.com'
-    
+
+    # Needed so that Django doesn't insert explicit boostcon.fcgi
+    # elements into the URLs
+    FORCE_SCRIPT_NAME = '' 
+
     #
     # Add an elif case here to support your environment
     #
