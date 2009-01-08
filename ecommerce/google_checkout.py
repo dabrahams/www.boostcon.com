@@ -3,13 +3,15 @@
 # file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
 from django.conf import settings
 import httplib
+import re
 from boost_consulting.utils.dom import dashtag as _, xml_document
 from xml.dom import minidom
 from base64 import b64encode, b64decode
+from boost_consulting.ecommerce.models import Order
 
 # Sandbox ID and key
-MERCHANT_ID =  674749040905264
-MERCHANT_KEY = 'OzjvzinyiBiq9SWPp0-lTg'
+MERCHANT_ID =  '766162824246335' #674749040905264
+MERCHANT_KEY = 'QvnSBCdQJvB8xRKgBO52JA' #'OzjvzinyiBiq9SWPp0-lTg'
 
 API_URL = '/api/checkout/v2/merchantCheckout/Merchant/'
 if settings.DEBUG:
@@ -70,3 +72,44 @@ def checkout_url(request, order):
     response = minidom.parseString(hcon.getresponse().read())
     return response.documentElement.getElementsByTagName('redirect-url')[0].firstChild.nodeValue
 
+def notify(request):
+    # Ensure that the merchant ID and key match
+    match = re.match(r'^Basic (.*)$', request.META['HTTP_AUTHORIZATION'])
+    if match is None:
+        raise Exception('invalid HTTP Authorization')
+
+    notify_id,notify_key = b64decode( match.group(1) ).split(':')
+    if notify_id != MERCHANT_ID or notify_key != MERCHANT_KEY:
+        raise Exception('id or key does not match')
+
+    # Forward the XML onto the appropriate handler
+    notify_xml = minidom.parseString(request.raw_post_data)
+    notify_type = notify_xml.documentElement.tagName
+    if notify_type == 'new-order-notification':
+        notify_new_order(notify_xml)
+    elif notify_type == 'order-state-change-notification':
+        notify_order_state(notify_xml)
+
+# Simple helper function to get the text contents of an XML node. XPath would be nicer.
+def get_xml_text(xml_data,node_name):
+    return xml_data.documentElement.getElementsByTagName(node_name)[0].firstChild.nodeValue
+
+# Update the Google Checkout order # so that we can find the order in subsequent callbacks
+def notify_new_order(notify_xml):
+    private_data = notify_xml.documentElement.getElementsByTagName('merchant-private-data')[0]
+    order_id = int(private_data.getElementsByTagName('order-id')[0].firstChild.nodeValue)
+    google_id = int(get_xml_text(notify_xml,'google-order-number'))
+
+    order = Order.objects.get(id = order_id)
+    order.google_id = google_id
+    order.save()
+
+def notify_order_state(notify_xml):
+    google_id = get_xml_text(notify_xml,'google-order-number')
+    new_state = get_xml_text(notify_xml,'new-fulfillment-order-state')
+    old_state = get_xml_text(notify_xml,'previous-fulfillment-order-state')
+
+    if new_state == 'DELIVERED' and new_state != old_state:
+        order = Order.objects.get(google_id = google_id)
+        order.state = 'S'
+        order.save()

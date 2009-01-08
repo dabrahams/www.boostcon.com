@@ -157,6 +157,7 @@ urlpatterns += patterns(
     (r'^register/(?P<slug>[-\w]+)$', 'ecommerce.views.step1'),
     (r'^checkout-1$', 'ecommerce.views.step1'),
     (r'^checkout-2$', 'ecommerce.views.step2'),
+    (r'^google-callback$', 'ecommerce.views.google_callback'),
 
     (r'^registration-(?P<status>complete|canceled)/(?P<hashcode>[a-zA-Z0-9=]+)$',
      'ecommerce.views.order_complete'),

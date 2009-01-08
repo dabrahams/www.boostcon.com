@@ -64,6 +64,7 @@ class Order(models.Model):
     shipping_rate = models.DecimalField(max_digits=5, decimal_places=2)
     time = models.DateTimeField(auto_now_add=True)
     state = models.CharField(max_length=1, choices=order_states, default='P')
+    google_id = models.CharField(max_length=100,null=True)
     comment = models.TextField(blank=True)
 
     # More default overrides for PDF generation.
@@ -91,7 +92,7 @@ class Order(models.Model):
 class OrderAdmin(admin.ModelAdmin):
     fields = ('customer', 'product', 'destination',
             'shipping', 'shipping_rate',
-            'state', 'comment')
+            'state', 'google_id', 'comment')
 
     list_display = (
             'id', 'display_customer', 'display_destination',

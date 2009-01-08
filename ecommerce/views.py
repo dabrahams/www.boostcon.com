@@ -1,7 +1,7 @@
 # Copyright David Abrahams 2007. Distributed under the Boost
 # Software License, Version 1.0. (See accompanying
 # file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
-from django.http import HttpResponse, Http404, HttpResponseRedirect
+from django.http import HttpResponse, Http404, HttpResponseRedirect, HttpResponseServerError
 from django import forms
 from django.shortcuts import render_to_response, get_object_or_404
 from django.contrib.auth.decorators import login_required
@@ -85,7 +85,7 @@ def step1(request, slug = None):
                 upgrades = Order.objects.filter(customer=customer,
                     product=product).count()
                 preorders = Order.objects.filter(customer=customer,
-                    product=product.prerequisite).count()
+                    product=product.prerequisite,state='S').count()
                 if upgrades >= preorders:
                     return render_to_response('invalid_registration.html',RequestContext(request))
         except:
@@ -406,4 +406,12 @@ def order_pdf(order):
     return response
 
 
-
+def google_callback(request):
+    # Technically, it would be better practice to send some XML back as well,
+    # but using HTTP response codes is sufficient for the Google Checkout
+    # notification API.
+    try:
+        google_checkout.notify(request)
+        return HttpResponse()
+    except:
+        return HttpResponseServerError()
