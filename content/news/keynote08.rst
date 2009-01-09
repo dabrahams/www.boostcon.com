@@ -2,8 +2,8 @@
 .. Software License, Version 1.0. (See accompanying
 .. file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
 
-Bjarne Stroustrup to Deliver Keynote
-====================================
+Bjarne Stroustrup to Deliver 2008 Keynote
+=========================================
 
 :Date: 2008-02-01
 
