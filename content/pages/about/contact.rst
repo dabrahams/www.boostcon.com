@@ -11,7 +11,9 @@ __ /registration
 
 Conference Registrar: registrar@boostcon.com
 
-Hotel Reservations at the `Aspen Meadows Resort`__ +1.800.452.4240
+:Hotel: `Aspen Meadows Resort`__ 
+        :Phone: +1.800.452.4240
+        :Reservations: online__
 
 __ http://aspenmeadowsresort.dolce.com
-
+__ https://reservations.synxis.com/LBE/rez.aspx?Hotel=12543&Chain=5968&group=BoostCon&arrive=5/1/2009&depart=5/9/2009&adult=1&child=0

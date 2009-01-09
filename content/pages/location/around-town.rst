@@ -29,11 +29,9 @@ Aspen is a compact town, and the conference venue and hotel are
 within walking distance of downtown shops and restaurants.
 
 
-.. figure:: http://mt2.google.com/mt?n=404&v=w2.69&x=832&y=1562&zoom=5
-   :target: http://maps.google.com/maps?near=845+Meadows+Rd,+Aspen,+CO+81611+(Aspen+Meadows)+%4039.199830,-106.831126&q=aspen+center+for+physics&f=l&hl=en&dq=aspen+meadows+loc:+700+W+Gillespie+St,+Aspen,+CO+81611+(Aspen+Center+for+Physics)+%4039.197380,-106.828020&ie=UTF8&z=14&ll=39.19983,-106.831126&spn=0.05381,0.076218&om=1
-   :alt: Click for a map of Aspen showing the hotel and meeting site
-   :figwidth: 256
-   :figclass: sidebar
+.. raw:: html
+
+      <iframe width="425" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://maps.google.com/maps?near=845+Meadows+Rd,+Aspen,+CO+81611+(Aspen+Meadows)+%4039.199830,-106.831126&amp;q=aspen+center+for+physics&amp;f=l&amp;hl=en&amp;dq=aspen+meadows+loc:+700+W+Gillespie+St,+Aspen,+CO+81611+(Aspen+Center+for+Physics)+%4039.197380,-106.828020&amp;ie=UTF8&amp;om=1&amp;ll=39.19983,-106.831126&amp;spn=0.05381,0.076218&amp;output=embed&amp;s=AARTsJpsPPsZYvcjLSMZZrWCRnakPrICrA"></iframe><br /><small><a href="http://maps.google.com/maps?near=845+Meadows+Rd,+Aspen,+CO+81611+(Aspen+Meadows)+%4039.199830,-106.831126&amp;q=aspen+center+for+physics&amp;f=l&amp;hl=en&amp;dq=aspen+meadows+loc:+700+W+Gillespie+St,+Aspen,+CO+81611+(Aspen+Center+for+Physics)+%4039.197380,-106.828020&amp;ie=UTF8&amp;om=1&amp;ll=39.19983,-106.831126&amp;spn=0.05381,0.076218&amp;source=embed" style="color:#0000FF;text-align:left">View Larger Map</a></small>
 
    Click image for a map of Aspen showing the hotel and meeting
    site.
@@ -49,21 +47,25 @@ __ lodging
 Public Transportation
 ---------------------
 
+.. class:: sidebar
+
+  .. figure:: http://www.rfta.com/graphics/bikesonbus.jpg
+     :target: http://www.rfta.com
+     :alt: Roaring Fork Transportation Authority
+     :figwidth: 243
+
+     The RFTA's fleet of convenient buses run frequently on `a variety
+     of routes around town`__
+
+     __ http://www.rfta.com/spring/city.html
+
+
 Aspen is well served by the Roaring Fork Transportation Authority
 bus system, and service in town is free.  For maps and schedules,
 check the `RFTA website`__.
 
 __ http://www.rfta.com
 
-.. figure:: http://www.rfta.com/maroonbus3.jpg
-   :target: http://www.rfta.com
-   :alt: Roaring Fork Transportation Authority
-   :figwidth: 243
-
-   The RFTA's fleet of convenient buses run frequently on `a variety
-   of routes around town`__
-
-   __ http://www.rfta.com/spring/city.html
 
 Aspen Links
 -----------

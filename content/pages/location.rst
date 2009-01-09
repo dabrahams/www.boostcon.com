@@ -1,13 +1,13 @@
 Location
 ========
 
-The 2008 Boost conference will be held in Aspen, one of Colorado’s
-most beautiful year-round resort areas.  Founded as a mining camp
-in the Colorado Silver Boom and named because of the abundance of
-aspen trees in the area, the city emerged as a skiing mecca
-following World War II.  Since then, Aspen has become an
+Since its inception, the Boost conference has been held in Aspen, one
+of Colorado’s most beautiful year-round resort areas.  Founded as a
+mining camp in the Colorado Silver Boom and named because of the
+abundance of aspen trees in the area, the city emerged as a skiing
+mecca following World War II.  Since then, Aspen has become an
 international destination for recreation, arts, business, and
-intellectual discourse.  
+intellectual discourse.
 
 To acquaint you with Aspen we invite you to visit the `Aspen
 Chamber of Commerce`__ site, which describes the activities,
@@ -20,9 +20,9 @@ __ http://www.aspenchamber.org/
 Local Time Zone
 ---------------
 
-At the time of BoostCon 2008, Aspen will be on Mountain Daylight
+At the time of BoostCon 2009, Aspen will be on Mountain Daylight
 Time, the same as Denver.  Daylight Savings Time starts Sunday
-March 9, 2008 at 2:00 a.m.
+March 8, 2009 at 2:00 a.m. Mountain Standard Time. 
 
 
 Weather

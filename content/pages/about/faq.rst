@@ -34,13 +34,15 @@ Why the long lunch break?
 .. _small block:
 
 Why is the reserved room block at Aspen Meadows so small?  
-  In order to reserve any rooms, we had to agree to cover the
-  entire cost of any reserved rooms we were unable to fill.  Boost
-  simply doesn't have enough money “in the bank” to guarantee any
-  more rooms than we have, and we were unable to find anyone who
-  was willing to assume liability for more rooms.  As we collect
-  registration fees we may be able to negotiate for an enlarged
-  reserved room block.
+  In order to reserve any rooms, we had to agree to cover the entire
+  cost of any reserved rooms we were unable to fill.  Boost simply
+  doesn't have enough money “in the bank” to guarantee any more rooms
+  than we have, and we were unable to find anyone who was willing to
+  assume liability for more rooms.  As we collect registration fees we
+  may be able to negotiate for an enlarged reserved room block.  As
+  there is not a large guaranteed rooms block, BoostCon participants
+  need to make their reservations early to ensure a room at the
+  convenient host hotel.
 
 Other conferences I've been to were much bigger.  Why is this one so small__?
   It all comes down to budget and atmosphere.  In BoostCon's first

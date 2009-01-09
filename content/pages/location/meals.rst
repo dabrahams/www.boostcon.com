@@ -4,7 +4,7 @@ Meals
 Planned Events
 --------------
 
-Food related events included in your registration fee include:
+Food-related events during the conference are as follows:
 
 - Opening Reception on Sunday evening
 - Daily refreshment breaks, morning and afternoon

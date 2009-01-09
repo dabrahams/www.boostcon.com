@@ -1,5 +1,6 @@
 Speakers
 ========
 
-:template-name: pages/speakers.html
+.. :template-name: pages/speakers.html
 
+.. include:: content/pages/program/under-construction.inc
