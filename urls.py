@@ -134,8 +134,9 @@ urlpatterns += patterns('django.views.generic',
     (r'^program/schedule$', 'simple.redirect_to', {'url': r'/program#schedule'}),
                         
     # keep the old redirects from about/shops in case people have linked there.
-    (r'^(?:about|community)/shops/eu$', 'simple.redirect_to', {'url': r'http://boostcon.spreadshirt.net'}),
-    (r'^(?:about|community)/shops/usa$', 'simple.redirect_to', {'url': r'http://boostcon.spreadshirt.com'}),
+    (r'^(?:about|community)/shops(?P<rest>.*)$', 'simple.redirect_to', {'url': r'/community/schwag%(rest)s'}),
+    (r'^community/schwag/eu$', 'simple.redirect_to', {'url': r'http://boostcon.spreadshirt.net'}),
+    (r'^community/schwag/usa$', 'simple.redirect_to', {'url': r'http://boostcon.spreadshirt.com'}),
 
     (r'^(?P<url>program/previous/(?P<year>[0-9]{4}))$',
      'simple.direct_to_template',
