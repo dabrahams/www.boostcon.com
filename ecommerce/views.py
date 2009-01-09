@@ -83,7 +83,7 @@ def step1(request, slug = None):
 
             if product.prerequisite != None:
                 upgrades = Order.objects.filter(customer=customer,
-                    product=product).count()
+                    product=product).exclude(state='D').count()
                 preorders = Order.objects.filter(customer=customer,
                     product=product.prerequisite,state='S').count()
                 if upgrades >= preorders:

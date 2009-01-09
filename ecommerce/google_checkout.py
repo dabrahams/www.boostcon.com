@@ -73,6 +73,12 @@ def checkout_url(request, order):
     return response.documentElement.getElementsByTagName('redirect-url')[0].firstChild.nodeValue
 
 def notify(request):
+    file = open('/home/jim/thegooge','a')
+    file.write('Incoming data:\n---------------\n')
+    file.write(request.raw_post_data)
+    file.write('\n\n')
+    file.close()
+
     # Ensure that the merchant ID and key match
     match = re.match(r'^Basic (.*)$', request.META['HTTP_AUTHORIZATION'])
     if match is None:
@@ -109,7 +115,14 @@ def notify_order_state(notify_xml):
     new_state = get_xml_text(notify_xml,'new-fulfillment-order-state')
     old_state = get_xml_text(notify_xml,'previous-fulfillment-order-state')
 
-    if new_state == 'DELIVERED' and new_state != old_state:
+    if new_state == old_state:
+        return
+
+    if new_state == 'DELIVERED':
         order = Order.objects.get(google_id = google_id)
-        order.state = 'S'
+        order.state = 'S' # shipped
         order.save()
+    elif new_state == 'WILL_NOT_DELIVER':
+        order = Order.objects.get(google_id = google_id)
+        order.state = 'D' # dropped
+        order.save()        
