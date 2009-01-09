@@ -34,52 +34,34 @@ Reservations
 
 We are holding a `very small`__ block of guest rooms at the Aspen
 Meadows.  We request that you make your reservation **as soon as
-possible**.  Those who wait will either not get a room, or pay a
-higher rate than necessary.  Full payment, including tax, is
-required at the time you make your reservation.  All reservations
-must be guaranteed with a credit card.
+possible**.  As in years past, those who wait too long will not get a
+room.  
 
 __ /about/faq#small-block
+
+Please reserve your room using the `Aspen Meadows online reservation
+system`_
+
+.. _Aspen Meadows online reservation system: https://reservations.synxis.com/LBE/rez.aspx?Hotel=12543&Chain=5968&group=BoostCon&arrive=5/1/2009&depart=5/9/2009&adult=1&child=0
 
 .. admonition::  BoostCon Rates at Aspen Meadows
 
   $155 per night, plus tax at 9.6%  (single/double occupancy).
 
-  :Note: A resort fee of $12 per night will be added to each night's reservation
+  :Note: A resort fee of $18 per night will be added to each night's reservation
 
-Please fill out `this form`__ and send it to the Aspen Meadows
-reservations desk at reservations@aspenmeadows.com, or
-1-970-544-7810 (fax).  You can also phone the hotel directly at
-1-800-452-4240, but don't forget to inform the reservation staff that
-you are participating in BoostCon 2008 to get the conference rate.
-
-.. admonition:: Important
-
-   If you call the Aspen Meadows outside their regular business
-   hours, your call will automatically be forwarded to the Dolce
-   International corporate call center.  For reasons too
-   complicated to explain here, the corporate call center may
-   report that the BoostCon room block is sold out.  **Do Not
-   Panic**.  As of this writing, the Meadows continues to make
-   rooms available to us at the conference rate.  However, that
-   condition may not continue forever, so
-
-   a) make your reservation ASAP
-
-   b) if you have trouble reaching a reservation agent on the Meadows
-      property by phone, please fill out and fax (or email) the
-      reservations form directly to the Meadows using the contact
-      information above
-
-__ /site-media/boostcon-08-hotel-reservation.doc
+  
 
 Details
 -------
 
+Payment for one night is required at the time you make your
+reservation.  All reservations must be guaranteed with a credit card.
+
 BoostCon rates will be extended 3 days prior and 3 days after the
-conference, subject to availability.  Rates do not include
-breakfast or other meals. Cancellations prior to 14 days of arrival
-are refundable, less a $35 cancellation fee.  Cancellation of your
+conference, subject to availability.  Rates do not include breakfast
+or other meals. Cancellations prior to 14 days of arrival are
+refundable, less a $35 cancellation fee.  Cancellation of your
 reservation made inside 14 days of arrival is non-refundable.
 
 Check-in time is 4:00 pm (Mountain Time) on day of arrival;

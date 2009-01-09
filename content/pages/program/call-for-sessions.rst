@@ -7,18 +7,17 @@ Call for Sessions
 
 :order: 10
 
-.. Note:: The period for session submission has officially closed.
-
 Timeline
 --------
 
-**Proposals due** As soon as possible. Proposals will be accepted
+**Proposals due** January 20th, 2009. Proposals will be considered
 on a first-come-first-served basis. 
 
-**Proposals acceptances sent** As soon as accepted.
+**Proposals acceptances sent, tentative program available** February 10th, 2009.
 
-**Session materials due** April 15, 2008. The session material go
-on the BoostCon CD handed out to attendees. 
+**Final program available** March 1st, 2009.
+
+**Session materials due** April 1st, 2009. 
 
 Session formats
 ---------------
@@ -43,6 +42,11 @@ and experience.
 design.  In addition, we're looking to uncover the hidden design
 gems hidden in boost libraries -- see below for more.
 
+**Tools Vendor Presentations** We actively encourage tool vendors and
+ISP's to submit proposals for a special Tool Vendors Session Track
+aimed at products related to Boost and C++ (compilers, libraries,
+tools, etc.).
+
 Other formats may also be of interest. Don't hold back a proposal
 just because it doesn't fit into a pigeonhole.
 
@@ -53,32 +57,20 @@ Topics of interest include, but are not restricted to, the
 following:
 
 * General tutorial sessions introducing one or more Boost libraries
-
 * In-depth sessions on using specific libraries
-
 * Case studies on using Boost
-
 * Experts panels
-
 * Advanced sessions on implementation techniques used within Boost libraries
-
-* TR1 (and TR2)
-
-* Development workshops to extend or enhance existing Boost libraries
-
-* Workshops on design process
-
-* Infrastructure workshops
-
-  - Build tools
-  - Website
-  - Testing
-
 * C++0x and how it will change life for users and library writers
-
+* TR1 and TR2
+* Development workshops to extend or enhance existing Boost libraries
+* Workshops on design process
+* Infrastructure workshops such as Build tools, Website, Testing
 * Concepts and Generic Programming
-
-* Other topics likely to be of great interest to Boost users and developers
+* Hardware and infrastructure presentations focused on how libraries
+  can make better use of the technology
+* Other topics likely to be of great interest to Boost users and
+  Developers.
 
 Interactive and collaborative sessions are encouraged, as this is
 the nature of both the on-line Boost community and the style of
@@ -91,7 +83,12 @@ collaborative work.
 Author's corner presentations
 -----------------------------
 
-Based on user feedback from last year, we'd like to encourage Boost library authors to do short sessions (typically 30 minutes) providing an overview of their libraries, tips on usage and design.  In particular, we're looking to uncover the hidden design gems that underlie so many boost libraries.  Standard outline for a presentation is as follows -- feel free to deviate as needed.
+These were introduced at BoostCon 2008, and were a great success.  An
+authors corner takes 30 minutes and provides an overview of a library,
+tips on usage and design.  In particular, we're looking to uncover the
+hidden design gems that underlie so many boost libraries.  Standard
+outline for a presentation is as follows -- feel free to deviate as
+needed.
 
 * Library Purpose / Motivations
 * Library Genesis & History
@@ -118,23 +115,53 @@ time slots.
 Please include:
 
 * The working title.
-* Type of session:
-  presentation/panel/tutorial/workshop/lightning-talk/other
-* A paragraph or two describing the topic covered, suitable for the
+* Type of session: presentation, panel, tutorial, workshop, authors corner, 
+  vendor track, other
+* A paragraph or two describing the topic covered, suitable for the 
   conference web site
-* Proposed length: 10-20 minute lightning-talks, 45 minutes, 90
-  minutes, half-day, full day
-* Alternate lengths, if you are willing to made adjustments: 10-20
-  minute lightning-talks, 45 minutes, 90 minutes, half-day, full
-  day
-* Audience: users/developers/both
-* Level: basic/intermediate/advanced
+* Proposed length: 10-20 minute short talks, 45 minutes, 90 minutes, 
+  half-day, full day
+* Alternate lengths, if you are willing to make adjustments: 10-20 minute 
+  lightning-talks, 45 minutes, 90 minutes, half-day, full day
+* Audience: users, developers, both
+* Level: basic, intermediate, advanced
 * A biography, suitable for the conference web site
 * Your contact information (will not be made public)
 
+Submission details
+------------------
+Submissions are accepted through the EasyChair conference management 
+system: http://www.easychair.org/conferences/?conf=boostcon09. If you have 
+not already registered at EasyChair, you will need to do so in order to 
+submit your proposal.
 
-Please submit via email to program@boostcon.com,
-with a subject that begins “BoostCon Proposal:”
+All submissions will go through a peer review process.
+
+Authors are invited to submit PDF versions of full papers of up to 10
+pages in ACM conference proceedings format (see
+http://www.acm.org/sigs/publications/proceedings-templates). The full
+papers are not required unless you want them published in the
+proceedings.
+
+All accepted papers will be made available in the Association for Computing 
+Machinery (ACM) Digital Library (approval pending). Best papers, after 
+further reviews, will be considered to be book chapters or journal articles 
+in a renowned journal. 
+
+.. Note:: Submitting a paper is **optional**.
+
+The session materials go on the BoostCon CD handed out to attendees.
+
+For general information on the BoostCon 2009 paper submission or the scope 
+of technical papers solicited, please refer to the conference website at 
+www.boostcon.com. For any other questions about the submission process or 
+paper format, please contact the Program Committee at 
+boostcon09@easychair.com. If you have any technical problems with 
+EasyChair, please contact EasyChair for help.
+
+.. Note:: Presenters must agree to grant a non-exclusive perpetual
+   license to publish submitted materials, either electronically or in
+   print, in any media related to BoostCon.
 
 Financial Details
 -----------------
@@ -146,5 +173,11 @@ rolled over into the succeeding year BoostCon budget.
 BoostCon provides free admission for all 90 minute and longer
 session presenters. This year we also hope to have enough revenue
 to pay presenters of longer sessions a small honorarium. 
+
+Questions?
+----------
+
+Please contact the Program Committee Chair, Hartmut Kaiser, at
+hartmut.kaiser@gmail.com
 
 

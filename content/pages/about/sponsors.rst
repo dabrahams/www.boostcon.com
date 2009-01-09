@@ -2,15 +2,11 @@ Sponsors
 ========
 
 We are indebted to the following companies and institutions
-for their support of BoostCon 2008:
+for their support of BoostCon 2009:
 
-* `Google, Inc.`__
+* `BoostPro Computing / Boost Consulting, Inc.`__
 
-.. * `Boost Consulting, Inc.`__
-
-__ http://www.google.com
-
-.. .. __ http://www.boost-consulting.com
+__ http://www.boostpro.com
 
 A very special “thank you” goes to our nonprofit umbrella
 organization, `The Software Freedom Conservancy`__, which provided
@@ -19,6 +15,6 @@ this conference would not have been possible.
 
 __ http://conservancy.softwarefreedom.org
 
-Organizations interested in sponsoring BoostCon 2008 or future
+Organizations interested in sponsoring BoostCon 2009 or future
 conferences should contact the sponsorship coordinartor at:
 sponsorship@boostcon.com.

@@ -15,42 +15,43 @@ The conference organizing committee is responsible for all
 decisions related to BoostCon. We are very grateful for the
 participation of:
 
-* David Abrahams, `Boost Consulting, Inc.`_
+Conference Chair
+  David Abrahams, `BoostPro Computing`_ dave@boostpro.com
 
-  .. _Boost Consulting, Inc.: http://www.boost-consulting.com
+  .. _BoostPro Computing: http://www.boostpro.com
 
-* `Beman Dawes`__ 
+Program Committee Chair
+  Hartmut Kaiser, `Louisiana State University`_ hkaiser@cct.lsu.edu
 
-  __ http://www.boost.org/people/beman_dawes.html
+  .. _Louisiana State University: http://cct.lsu.edu
 
-* Jeff Garland, `CrystalClear Software`__
+Audio/Video
+  Marshall Clow
 
-  __ http://www.crystalclearsoftware.com
+Facilities
+  David Jenkins
 
-* Joel de Guzman, `Boost Consulting, Inc.`_
+Marketing
+  Jeff Garland, `CrystalClear Software`_
 
-* Eric Niebler, `Boost Consulting, Inc.`_
+  .. _CrystalClear Software: http://crystalclearsoftware.com/
 
-* Sean Parent__, `Adobe Systems`__
+Registrar
+  Kim Scheibel
 
-  __ http://blogs.adobe.com/sean.parent/
-  __ http://www.adobe.com
+Social Events
+  Elena Kolgan, Boeing_
 
-* Rene Rivera__, `Redshift Software`__
+  .. _Boeing: http://boeing.com
 
-  __ http://www.boost.org/people/rene_rivera.htm
-  __ http://redshift-software.com/
+Sponsorship
+  Jeff Flinn
 
-* `Jeremy Siek`__ , `University of Colorado`__
+Treasurer
+  Luann Abrahams, `BoostPro Computing`_
 
-  __ http://www.cs.colorado.edu/~siek/
-  __ http://www.colorado.edu/
-
-* `Matthias Troyer`__, `ETH Zürich`__
-
-  __ http://www.itp.phys.ethz.ch/staff/troyer/
-  __ http://www.itp.phys.ethz.ch
-
+Web Technologist
+  James Porter
 
 Program Committee
 -----------------
@@ -58,59 +59,18 @@ Program Committee
 The following people are also members of the program committee,
 which is responsible for accepting and scheduling sessions:
 
-* Jeff Garland, `CrystalClear Software`__ (chairman)
-
-  __ http://www.crystalclearsoftware.com
-
-* Oleg Borissov
-
+* Dan Marsden
+* Douglas Gregor, Apple_
+* Eric Niebler, `BoostPro Computing`_
+* Hartmut Kaiser, `Louisiana State University`_
+* Jeff Flinn
+* Jeff Garland, `CrystalClear Software`_
+* Joel de Guzman, `BoostPro Computing`_
 * Marshall Clow
-
-* Jerry Coffin
-
-* Greg Colvin
-
-* `Beman Dawes`__
-
-  __ http://www.boost.org/people/beman_dawes.html
-
-* Fabio Fracassi
-
-* Joel de Guzman, `Boost Consulting, Inc.`_
-
-* Danny Havenith
-
-* Pete Isensee, Microsoft_
-
-* Dave Jenkins
-
-* Hartmut Kaiser
-
-* Nevin Liber
-
-* Bob Kuehne
-
+* Michael Wong, IBM_
+* Thomas Witt, `Zephyr Associates`_
 * Zach Laine
 
-* Dan Marsden
-
-* Eric Niebler, `Boost Consulting, Inc.`_
-
-* Gennadiy Rozental
-
-* Timothy St. Clair
-
-* Tim Shead, `Sandia National Labs`_
-
-* Troy Straszheim, `Sandia National Labs`_
-
-* Christian Strømsdørfer
-
-* Tony Van Eerd, Adobe_
-
-* Vic Wagner
-
-.. _Sandia National Labs: http://sandia.gov
-.. _Adobe: http://adobe.com
-.. _Microsoft: http://microsoft.com
-
+.. _Apple: http://apple.com
+.. _IBM: http://ibm.com
+.. _Zephyr Associates: http://styleadvisor.com
