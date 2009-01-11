@@ -10,13 +10,18 @@ from base64 import b64encode, b64decode
 from boost_consulting.ecommerce.models import Order
 
 # Sandbox ID and key
-MERCHANT_ID =  '766162824246335' #674749040905264
-MERCHANT_KEY = 'QvnSBCdQJvB8xRKgBO52JA' #'OzjvzinyiBiq9SWPp0-lTg'
+MERCHANT_ID =  '674749040905264'
+MERCHANT_KEY = 'OzjvzinyiBiq9SWPp0-lTg'
 
 API_URL = '/api/checkout/v2/merchantCheckout/Merchant/'
 if settings.DEBUG:
     DOMAIN = 'sandbox.google.com'
     API_URL = '/checkout'+API_URL
+    try:
+        from settings import GOOGLE_MERCHANT_ID  as MERCHANT_ID
+        from settings import GOOGLE_MERCHANT_KEY as MERCHANT_KEY
+    except:
+        pass
 else:
     DOMAIN = 'checkout.google.com'
     try:
@@ -45,7 +50,15 @@ def checkout_url(request, order):
                         + ' [BoostCon Order ID: %d]' % order.id
                         ],
                     _.unit_price(currency='USD')[total_charge(order.product.price)],
-                    _.quantity[1]
+                    _.quantity[1],
+
+                    # Provide digital-content info for non-shippable items
+                    (not order.product.shippable) and
+                        _.digital_content[
+                            _.display_disposition['OPTIMISTIC'],
+                            _.description['Thank you for your order!']
+                            ]
+                    or None
                 ]
             ],
             _.merchant_private_data[
@@ -73,12 +86,6 @@ def checkout_url(request, order):
     return response.documentElement.getElementsByTagName('redirect-url')[0].firstChild.nodeValue
 
 def notify(request):
-    file = open('/home/jim/thegooge','a')
-    file.write('Incoming data:\n---------------\n')
-    file.write(request.raw_post_data)
-    file.write('\n\n')
-    file.close()
-
     # Ensure that the merchant ID and key match
     match = re.match(r'^Basic (.*)$', request.META['HTTP_AUTHORIZATION'])
     if match is None:

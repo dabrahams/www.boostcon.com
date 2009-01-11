@@ -47,6 +47,16 @@ class Product(models.Model):
     shippable = models.BooleanField()
     prerequisite = models.ForeignKey('self',blank=True,null=True)
 
+    def meets_prerequisite(self,customer):
+        if self.prerequisite is None:
+            return True
+        else:
+            upgrades = Order.objects.filter(customer=customer,
+                product=self).exclude(state='D').count()
+            preorders = Order.objects.filter(customer=customer,
+                product=self.prerequisite,state='S').count()
+            return upgrades < preorders
+
     def __str__(self):
         return self.name
 

@@ -81,13 +81,8 @@ def step1(request, slug = None):
             for f in step1_fields:
                 initial[f] = getattr(destination,f)
 
-            if product.prerequisite != None:
-                upgrades = Order.objects.filter(customer=customer,
-                    product=product).exclude(state='D').count()
-                preorders = Order.objects.filter(customer=customer,
-                    product=product.prerequisite,state='S').count()
-                if upgrades >= preorders:
-                    return render_to_response('invalid_registration.html',RequestContext(request))
+            if product.meets_prerequisite(customer) == False:
+                return render_to_response('invalid_registration.html',RequestContext(request))
         except:
             # No customer record found, shipping destination missing, or not
             # quite completely formed.
@@ -178,6 +173,8 @@ def create_and_send_order(request, shipping_method='None', shipping_rate=0):
     destination = ShippingDestination.objects.get(id=request.session['shipping-destination'])
 
     product = get_object_or_404(Product, id=request.session['product'])
+    if product.meets_prerequisite(customer) == False:
+        return render_to_response('invalid_registration.html',RequestContext(request))
 
     # Should we delete? Back button doesn't work very well if we do.
     #del request.session['customer']
@@ -197,11 +194,6 @@ def create_and_send_order(request, shipping_method='None', shipping_rate=0):
         return order_pdf(order)
 
     order.save()
-
-    order_hash = cryptString(settings.SECRET_KEY, str(order.id))
-    host = hostname(request)
-    completion_url = 'http://%(host)s/registration-complete/%(order_hash)s' % locals()
-    cancel_url = 'http://%(host)s/registration-canceled/%(order_hash)s' % locals()
 
     if 'google.x' in request.POST:
         url = google_checkout.checkout_url(request, order)
