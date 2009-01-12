@@ -79,9 +79,6 @@ Reservation Details
 * Check-in time is 4:00 pm (Mountain Time) on day of arrival;
   check-out time is 11:00 am on departure day.
 
-Check-in time is 4:00 pm (Mountain Time) on day of arrival;
-check-out time is 11:00 am on departure day.
-
 Questions About Lodging?
 ------------------------
 
