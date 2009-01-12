@@ -46,7 +46,7 @@ system`_
 
 .. admonition::  BoostCon Rates at Aspen Meadows
 
-  $159 per night, plus tax at 9.6%  (single/double occupancy).
+  $159 per night, plus tax at 10.6%  (single/double occupancy).
 
   :Note: A resort fee of $18 per night will be added to each night's reservation
 
