@@ -46,23 +46,38 @@ system`_
 
 .. admonition::  BoostCon Rates at Aspen Meadows
 
-  $155 per night, plus tax at 9.6%  (single/double occupancy).
+  $159 per night, plus tax at 9.6%  (single/double occupancy).
 
   :Note: A resort fee of $18 per night will be added to each night's reservation
 
   
 
-Details
--------
+Reservation Details
+-------------------
 
-Payment for one night is required at the time you make your
-reservation.  All reservations must be guaranteed with a credit card.
+* All reservations must be guaranteed with a credit card.
 
-BoostCon rates will be extended 3 days prior and 3 days after the
-conference, subject to availability.  Rates do not include breakfast
-or other meals. Cancellations prior to 14 days of arrival are
-refundable, less a $35 cancellation fee.  Cancellation of your
-reservation made inside 14 days of arrival is non-refundable.
+* Payment for one night is required at the time you make your
+  reservation.
+
+* Balance of reservation will be charged to the Credit Card on file,
+  60 days prior to arrival
+
+* Reservations within 60 days of arrival are due in full
+
+* Cancellations prior to 14 days of arrival are refundable, less a $35
+  cancellation fee.
+
+* Cancellation of your reservation made inside 14 days of arrival is
+  non-refundable.
+
+* BoostCon rates will be extended 3 days prior and 3 days after the
+  conference, subject to availability.
+
+* Rates do not include breakfast or other meals.
+
+* Check-in time is 4:00 pm (Mountain Time) on day of arrival;
+  check-out time is 11:00 am on departure day.
 
 Check-in time is 4:00 pm (Mountain Time) on day of arrival;
 check-out time is 11:00 am on departure day.
