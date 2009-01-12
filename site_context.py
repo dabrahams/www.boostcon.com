@@ -47,6 +47,8 @@ elif 'Jimbo' in uname:
     DEBUG = True
     ADMIN_MEDIA_PREFIX = '/media/'
     EMAIL_HOST='smtp.charter.net'
+    GOOGLE_MERCHANT_ID =  '766162824246335'
+    GOOGLE_MERCHANT_KEY = 'QvnSBCdQJvB8xRKgBO52JA'
 
 else: # default settings work for my local development server
     DATABASE_ENGINE = 'postgresql_psycopg2'
