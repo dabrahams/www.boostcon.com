@@ -109,6 +109,10 @@ def get_xml_text(xml_data,node_name):
 
 # Update the Google Checkout order # so that we can find the order in subsequent callbacks
 def notify_new_order(notify_xml):
+    ##### Conservancy hack: remove at first opportunity #####
+    if get_xml_text(notify_xml,'item-description').find('BoostCon') == -1:
+        return
+
     private_data = notify_xml.documentElement.getElementsByTagName('merchant-private-data')[0]
     order_id = int(private_data.getElementsByTagName('order-id')[0].firstChild.nodeValue)
     google_id = int(get_xml_text(notify_xml,'google-order-number'))
@@ -125,11 +129,15 @@ def notify_order_state(notify_xml):
     if new_state == old_state:
         return
 
-    if new_state == 'DELIVERED':
-        order = Order.objects.get(google_id = google_id)
-        order.state = 'S' # shipped
-        order.save()
-    elif new_state == 'WILL_NOT_DELIVER':
-        order = Order.objects.get(google_id = google_id)
-        order.state = 'D' # dropped
-        order.save()        
+    try:
+        if new_state == 'DELIVERED':
+            order = Order.objects.get(google_id = google_id)
+            order.state = 'S' # shipped
+            order.save()
+        elif new_state == 'WILL_NOT_DELIVER':
+            order = Order.objects.get(google_id = google_id)
+            order.state = 'D' # dropped
+            order.save()
+    ##### Conservancy hack: remove at first opportunity #####
+    except Order.DoesNotExist:
+        pass
