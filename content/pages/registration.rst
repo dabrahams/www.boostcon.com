@@ -26,30 +26,23 @@ Full conference registration fee of **$599 before April 1st, 2009
 How to Register
 ---------------
 
-.. Admonition:: Under Construction
+Click here__ to register now.  This option allows you to pay by credit
+card via PayPal or Google Checkout.  A BoostCon site account is
+required in order to perform the payment steps.
 
-   Registration will open on or before Monday, January 12.  In the
-   meantime, please make your `hotel reservation`__
+__ /register/boostcon09
 
-__ /location/lodging#reservations
+Pre-Registration
+................
 
-.. 
-   Click here__ to register now.  This option allows you to pay by credit
-   card or via PayPal.  A BoostCon site account is required in order to
-   perform the payment steps.
+Because we have not yet finalized the program, we're offering
+pre-registration for $100.  This will reserve your place at the
+conference, but an upgrade to full registration must be completed__ by
+April 1st or your place will be opened up to other registrants.  Click
+here__ to pre-register now.
 
-     __ /register/boostcon09
-
-   Pre-Registration
-   ................
-
-   Because we have not yet finalized the program, we're offering a
-   pre-registration option.  This will reserve your place at the
-   conference, but full registration must be completed by April 1st or
-   your place will be opened up to other registrants.  Click here__ to
-   preregister now.
-
-     __ /register/boostcon09-prereg
+__ /register/boostcon09-reg-upgrade
+__ /register/boostcon09-prereg
 
 
 Cancellation of Registration 

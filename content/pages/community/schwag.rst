@@ -6,13 +6,16 @@ Logo Schwag
 ===========
 
 :menu-title: cool schwag
+
+.. class:: intro
+
+  Are you a Fan Of BoostCon?  Order your BoostCon logo schwag today and
+  help support the conference!
  
-Zoltan “cad” Juhasz, the volunteer designer of the Boost and
-BoostCon logos, has set up two webshops offering stylish and
-well-made BoostCon logo merchandise.  After covering the
-substantial cost of establishing the shops himself, Zoltan has
-graciously agreed to share half of any profits with the fund for
-future editions of BoostCon.
+Zoltan “cad” Juhasz, the volunteer designer of the Boost and BoostCon
+logos, has set up two webshops offering stylish and well-made BoostCon
+logo merchandise.  Half of any profit goes to benefit future editions
+of BoostCon.
 
 U.S. residents can use the `USA shop`__; all others should use the
 `EU shop`__.
