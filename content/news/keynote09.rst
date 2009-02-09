@@ -12,5 +12,5 @@ it will be hard-core but approachable, fascinating *and* especially
 entertaining.  See `Andrei's Homepage`__ for more information about
 him and his work.
 
-__ http://erdani.org
+__ http://www.erdani.org
 

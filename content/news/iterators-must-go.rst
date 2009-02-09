@@ -10,7 +10,7 @@ about good program design and subtle C++ issues, will deliver the
 keynote to this year's BoostCon. The title of his talk is “Iterators
 Must Go.”  Sound interesting? Register__ for the conference today!
 
-__ http://erdani.org
+__ http://www.erdani.org
 
 __ /registration
 
