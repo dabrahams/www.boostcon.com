@@ -168,7 +168,7 @@ urlpatterns += patterns(
       'presenter_base':'/program/speakers',
       'session_base':'/program/sessions',
       'schedule_base':'/program',
-      'year':2008
+      'year':2009
       }
      ),
     )
