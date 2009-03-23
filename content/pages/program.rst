@@ -4,7 +4,7 @@ Program
 
 :template-name: pages/schedule.html
 
-.. include:: content/pages/program/under-construction.inc
+  .. include:: content/pages/program/under-construction.inc
 
 Schedule
 --------
@@ -16,7 +16,7 @@ evening, leaving a midday break of two hours so that attendees can get
 out and enjoy the town and its surroundings, or just to have time to
 work together in small, informal groups.
 
-Please see a `previous years' schedule`__ for a detailed example.
+  Please see a `previous years' schedule`__ for a detailed example.
 
   __ program/previous
 
