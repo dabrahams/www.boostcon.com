@@ -2,7 +2,7 @@
 Program
 =======
 
-.. :template-name: pages/schedule.html
+:template-name: pages/schedule.html
 
 .. include:: content/pages/program/under-construction.inc
 
@@ -18,9 +18,9 @@ work together in small, informal groups.
 
 Please see a `previous years' schedule`__ for a detailed example.
 
-__ program/previous
+  __ program/previous
 
-.. **Note:** Click the title of any session to visit its description in
-   the `session list`__.
+**Note:** Click the title of any session to visit its description in
+the `session list`__.
 
-   __ program/sessions
+__ program/sessions
