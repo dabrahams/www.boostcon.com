@@ -16,11 +16,8 @@ evening, leaving a midday break of two hours so that attendees can get
 out and enjoy the town and its surroundings, or just to have time to
 work together in small, informal groups.
 
-  Please see a `previous years' schedule`__ for a detailed example.
-
-  __ program/previous
-
 **Note:** Click the title of any session to visit its description in
 the `session list`__.
 
 __ program/sessions
+
