@@ -4,7 +4,8 @@ Program
 
 :template-name: pages/schedule.html
 
-  .. include:: content/pages/program/under-construction.inc
+.. commented out
+   .. include:: content/pages/program/under-construction.inc
 
 Schedule
 --------
@@ -20,4 +21,3 @@ work together in small, informal groups.
 the `session list`__.
 
 __ program/sessions
-
