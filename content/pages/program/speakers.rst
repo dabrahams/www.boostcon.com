@@ -3,4 +3,5 @@ Speakers
 
 :template-name: pages/speakers.html
 
-.. include:: content/pages/program/under-construction.inc
+.. commented out
+  .. include:: content/pages/program/under-construction.inc

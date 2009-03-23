@@ -5,6 +5,3 @@
 Schedule
 ========
 
-.. include:: content/pages/program/under-construction.inc
-
-
