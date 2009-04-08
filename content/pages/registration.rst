@@ -3,7 +3,7 @@ Registration
 
 :order: 1000
 
-Full conference registration fee of **$599 before April 1st, 2009
+Full conference registration fee of **$599 before April 26th, 2009
 (US)** includes:
 
 * Participation in all sessions 
@@ -12,7 +12,7 @@ Full conference registration fee of **$599 before April 1st, 2009
 * Morning and afternoon refreshment breaks 
 * Thursday evening barbecue social
 
-**On or after April 1st, the conference registration fee will be $699**
+**On or after April 26th, the conference registration fee will be $699**
 
 .. Note:: We request that you register **as soon as possible**.
    Early collection of registration fees will allow us more
