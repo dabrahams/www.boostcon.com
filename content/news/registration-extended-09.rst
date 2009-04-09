@@ -7,9 +7,9 @@ Early Registration Deadline Extended
 
 :Date: 2009-04-08
 
-:Summary: Early registration deadline extended 
+:Summary: You can still register for only $599!
 
 In recognition of the economic climate, and in order to make possible
-the maximum participation this year, we've from April 1st to April
-26th the date by which you can register for only $599.  Make your
-plans for Aspen now!
+the maximum participation this year, we've extended the early
+registration deadline from April 1st to April 26th.  Make your plans
+for Aspen now!
