@@ -44,9 +44,9 @@ system`_
 
 .. _Aspen Meadows online reservation system: https://reservations.synxis.com/LBE/rez.aspx?Hotel=12543&Chain=5968&group=BoostCon&arrive=5/1/2009&depart=5/9/2009&adult=1&child=0
 
-.. admonition::  BoostCon Rates at Aspen Meadows
+.. admonition::  BoostCon Room Rates at Aspen Meadows
 
-  $159 per room per night, single or double occupancy, plus tax at 10.1%.
+  $159 per night (single or double occupancy) plus tax at 10.1%.
 
   :Note: A resort fee of $18 per night will be added to each night's reservation
 
