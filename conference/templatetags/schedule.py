@@ -54,8 +54,8 @@ class ScheduleNode(template.Node):
         session_counters = dict([(t,0) for t in tracks] + [(None,0)])
         
         for d in iterate_days(values.conference.start, values.conference.finish):
-            result.append(str(self.render_day(
-                values,d,tracks,session_counters)))
+            result.append(self.render_day(
+                values,d,tracks,session_counters).toxml())
 
         return u'\n'.join(result).encode('utf-8')
 
@@ -89,37 +89,39 @@ class PublicScheduleNode(ScheduleNode):
         return self.render_schedule(v)
 
     def render_day(self, values, d, tracks, session_counters):
-        from boost_consulting.utils.dom import tag as _
+        from boost_consulting.utils.dom import tag as _, xml_snippet
 
         tracks = tracks or [Track('')]
             
-        return _.table(
-            _class="schedule",
-            summary="%s Schedule for %s" % (values.conference, d.strftime('%A, %B %d'))
-            )[
-                _.caption[ d.strftime('%A, %B %d') ]
+        return xml_snippet(
+            _.table(
+                _class="schedule",
+                summary="%s Schedule for %s" % (values.conference, d.strftime('%A, %B %d'))
+                )[
+                    _.caption[ d.strftime('%A, %B %d') ]
 
-              , _.thead[
-                    _.tr[
+                  , _.thead[
+                        _.tr[
 
-                        # time header
-                        _.th(scope="col"
-                            , width="%s%%" % (28 / len(tracks))
-                             )['time']
+                            # time header
+                            _.th(scope="col"
+                                , width="%s%%" % (28 / len(tracks))
+                                 )['time']
 
-                        # track headers
-                      , [
-                            _.th(
-                                scope="col", width="%s%%" % (86 / len(tracks))
-                            )[
-                               _.strong[t.name]
+                            # track headers
+                          , [
+                                _.th(
+                                    scope="col", width="%s%%" % (86 / len(tracks))
+                                )[
+                                   _.strong[t.name]
+                                ]
+                                for t in tracks
                             ]
-                            for t in tracks
                         ]
-                    ]
-                ] # </THEAD>
-              , self.render_day_body(values, d, tracks, session_counters)
-            ]
+                    ] # </THEAD>
+                  , self.render_day_body(values, d, tracks, session_counters)
+                ]
+            )
         
     def render_day_body(
         self, values, d, tracks, session_counters

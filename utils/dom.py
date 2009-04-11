@@ -76,6 +76,8 @@ def xml_document(t):
     d.appendChild(t._xml(d))
     return d
 
+def xml_snippet(t):
+    return t._xml(minidom.Document())
 
 if __name__ == '__main__':
     
