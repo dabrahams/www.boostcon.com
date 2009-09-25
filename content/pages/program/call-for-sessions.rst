@@ -10,14 +10,16 @@ Call for Sessions
 Timeline
 --------
 
-**Proposals due** January 20th, 2009. Proposals will be considered
+.. TODO update all these dates
+
+**Proposals due** mid-December; exact date TBA. Proposals will be considered
 on a first-come-first-served basis. 
 
-**Proposals acceptances sent, tentative program available** February 10th, 2009.
+**Proposals acceptances sent, tentative program available** mid-January; exact date TBA.
 
-**Final program available** March 1st, 2009.
+**Final program available** Early February; exact date TBA
 
-**Session materials due** April 1st, 2009. 
+**Session materials due** April 1st, 2010.
 
 Session formats
 ---------------
@@ -131,7 +133,7 @@ Please include:
 Submission details
 ------------------
 Submissions are accepted through the EasyChair conference management 
-system: http://www.easychair.org/conferences/?conf=boostcon09. If you have 
+system: http://www.easychair.org/conferences/?conf=boostcon10. If you have 
 not already registered at EasyChair, you will need to do so in order to 
 submit your proposal.
 
@@ -152,11 +154,11 @@ in a renowned journal.
 
 The session materials go on the BoostCon CD handed out to attendees.
 
-For general information on the BoostCon 2009 paper submission or the scope 
+For general information on the BoostCon 2010 paper submission or the scope 
 of technical papers solicited, please refer to the conference website at 
-www.boostcon.com. For any other questions about the submission process or 
+http://www.boostcon.com. For any other questions about the submission process or 
 paper format, please contact the Program Committee at 
-boostcon09@easychair.com. If you have any technical problems with 
+boostcon10@easychair.com. If you have any technical problems with 
 EasyChair, please contact EasyChair for help.
 
 .. Note:: Presenters must agree to grant a non-exclusive perpetual

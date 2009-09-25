@@ -20,9 +20,9 @@ __ http://www.aspenchamber.org/
 Local Time Zone
 ---------------
 
-At the time of BoostCon 2009, Aspen will be on Mountain Daylight
+At the time of BoostCon 2010, Aspen will be on Mountain Daylight
 Time, the same as Denver.  Daylight Savings Time starts Sunday
-March 8, 2009 at 2:00 a.m. Mountain Standard Time. 
+March 14, 2010 at 2:00 a.m. Mountain Standard Time. 
 
 
 Weather
