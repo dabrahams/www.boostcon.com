@@ -2,7 +2,7 @@ Sponsors
 ========
 
 We are indebted to the following companies and institutions
-for their support of BoostCon 2009:
+for their support of BoostCon 2010:
 
 * `BoostPro Computing / Boost Consulting, Inc.`__
 
@@ -15,6 +15,6 @@ this conference would not have been possible.
 
 __ http://conservancy.softwarefreedom.org
 
-Organizations interested in sponsoring BoostCon 2009 or future
-conferences should contact the sponsorship coordinartor at:
+Organizations interested in sponsoring BoostCon 2010 or future
+conferences should contact the sponsorship coordinator at:
 sponsorship@boostcon.com.
