@@ -7,7 +7,7 @@ uname = os.popen('uname -a').read()
 # For some reason checking uname is not enough to identify the server running on
 # boost-consulting.com.  It occasionally falls through and decides that I'm on
 # my local development server.
-if 'boost-consulting.com' in uname:
+if 'boostpro.com' in uname:
     # So our ReST translation code can find the source files with relative
     # paths.
     
