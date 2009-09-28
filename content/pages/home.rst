@@ -4,7 +4,7 @@ BoostCon 2010
 :menu-title: home
 :order: -100
 
-May 4-9 2010 - Aspen, Colorado
+May 10-14 2010 - Aspen, Colorado
 --------------------------------
 
 .. image:: /site-media/colorado_bells_sept22_2.jpg
