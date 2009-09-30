@@ -128,7 +128,7 @@ urlpatterns += patterns('django.views.generic',
       'presenter_base':'/program/speakers',
       'session_base':'/program/sessions',
       'schedule_base':'/program',
-      'year':2009
+      'year':2010
       }
      ),
     (r'^program/schedule$', 'simple.redirect_to', {'url': r'/program#schedule'}),
@@ -168,7 +168,7 @@ urlpatterns += patterns(
       'presenter_base':'/program/speakers',
       'session_base':'/program/sessions',
       'schedule_base':'/program',
-      'year':2009
+      'year':2010
       }
      ),
     )
