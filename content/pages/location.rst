@@ -9,7 +9,7 @@ mecca following World War II.  Since then, Aspen has become an
 international destination for recreation, arts, business, and
 intellectual discourse.
 
-to acquaint you with Aspen we invite you to visit the `Aspen
+To acquaint you with Aspen we invite you to visit the `Aspen
 Chamber of Commerce`__ site, which describes the activities,
 events, and entertainment available in town.  Aspen makes a
 wonderful family vacation spot; we encourage you to bring them and
