@@ -1,7 +1,7 @@
 Location
 ========
 
-since its inception, the Boost conference has been held in Aspen, one
+Since its inception, the Boost conference has been held in Aspen, one
 of Colorado’s most beautiful year-round resort areas.  Founded as a
 mining camp in the Colorado Silver Boom and named because of the
 abundance of aspen trees in the area, the city emerged as a skiing
@@ -9,7 +9,7 @@ mecca following World War II.  Since then, Aspen has become an
 international destination for recreation, arts, business, and
 intellectual discourse.
 
-To acquaint you with Aspen we invite you to visit the `Aspen
+to acquaint you with Aspen we invite you to visit the `Aspen
 Chamber of Commerce`__ site, which describes the activities,
 events, and entertainment available in town.  Aspen makes a
 wonderful family vacation spot; we encourage you to bring them and
