@@ -1,7 +1,7 @@
 Location
 ========
 
-Since its inception, the Boost conference has been held in Aspen, one
+since its inception, the Boost conference has been held in Aspen, one
 of Colorado’s most beautiful year-round resort areas.  Founded as a
 mining camp in the Colorado Silver Boom and named because of the
 abundance of aspen trees in the area, the city emerged as a skiing
