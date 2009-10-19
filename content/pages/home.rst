@@ -10,7 +10,7 @@ May 10-14 2010 - Aspen, Colorado
 .. image:: /site-media/colorado_bells_sept22_2.jpg
    :align: right
 
-Promising to be **the** main face-to-face event for all things
+promising to be **the** main face-to-face event for all things
 Boost_, *BoostCon 2010* opens the door to your C++ future.  From using
 the Boost libraries to writing and maintaining them, from
 evangelizing to deploying Boost within your organization, from
