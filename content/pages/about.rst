@@ -16,7 +16,7 @@ part of numerous `commercial applications`__, are packaged with
 every major Linux distribution, and are used as a `must-pass
 testbed`__ for every serious C++ compiler.  By the spring of 2006,
 it became apparent that there had been an explosion
-of interest.  Among other things:
+of interest.  Among other things:.
 
 __ http://boost.org/libs/libraries.htm#Alphabetically
 __ http://www.boost.org/doc/html/who_s_using_boost_.html
