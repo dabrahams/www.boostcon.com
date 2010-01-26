@@ -40,7 +40,8 @@ room.
 __ /about/faq#small-block
 
 .. Please reserve your room using the `Aspen Meadows online reservation system`_
-  .. _Aspen Meadows online reservation system: https://reservations.synxis.com/LBE/rez.aspx?Hotel=12543&Chain=5968&group=BoostCon&arrive=5/1/2009&depart=5/9/2009&adult=1&child=0
+
+.. _Aspen Meadows online reservation system: https://resweb.passkey.com/Resweb.do?mode=welcome_ei_new&eventID=2490238&fromResdesk=true
 
 .. admonition::  BoostCon Room Rates at Aspen Meadows
 
