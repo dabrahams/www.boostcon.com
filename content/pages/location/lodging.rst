@@ -39,7 +39,7 @@ room.
 
 __ /about/faq#small-block
 
-.. Please reserve your room using the `Aspen Meadows online reservation system`_
+Please reserve your room using the `Aspen Meadows online reservation system`_
 
 .. _Aspen Meadows online reservation system: https://resweb.passkey.com/Resweb.do?mode=welcome_ei_new&eventID=2490238&fromResdesk=true
 
