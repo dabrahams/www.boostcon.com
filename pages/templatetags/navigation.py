@@ -65,7 +65,7 @@ class NavigationNode(template.Node):
             indent = indent[:-2]
             return [indent+'<ul>'] + items + [indent+'</ul>']
 
-    open_parent = '''<a%(link_attributes)s href="%(url)s">%(menu_title)s<!--[if IE 7]><!--></a><!--<![endif]-->
+    open_parent = '''<a%(link_attributes)s href="%(url)s">%(menu_title)s<!--[if gt IE 6]><!--></a><!--<![endif]-->
 <!--[if lte IE 6]><table><tr><td><![endif]-->'''
     close_parent = '''<!--[if lte IE 6]></td></tr></table></a><![endif]-->'''
     open_leaf = '''<a href="%(url)s">%(menu_title)s</a>'''
