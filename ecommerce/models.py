@@ -90,7 +90,7 @@ class Order(models.Model):
 
     def display_destination(self):
         return '<a href="/admin/ecommerce/shippingdestination/%s/">%s</a>' % (
-            self.destination.id, str(self.destination))
+            self.destination.id, unicode(self.destination).encode('utf-8'))
     display_destination.allow_tags = True
     display_destination.short_description = 'Destination'
 
