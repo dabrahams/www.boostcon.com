@@ -225,7 +225,7 @@ class PublicScheduleNode(ScheduleNode):
                                                                         '-first_name'))
                                 ][::-1] # reverse
 
-                              , _.a(href=values.session_base+current.slug())[unicode(title).encode('utf-8')]
+                              , _.a(href=values.session_base+current.slug())[title]
 
                               , continued
                               , error_msg
