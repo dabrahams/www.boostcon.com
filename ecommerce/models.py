@@ -16,7 +16,7 @@ class ShippingDestination(models.Model):
     phone = models.CharField(max_length=50)
 
     def __str__(self):
-        return '%s, %s' % (self.last_name, self.first_name)
+        return (u'%s, %s' % (self.last_name, self.first_name)).encode('utf-8')
 
 class ShippingDestinationAdmin(admin.ModelAdmin):
     pass
@@ -33,7 +33,7 @@ class Customer(models.Model):
                        
 
     def __str__(self):
-        return self.user.username
+        return unicode(self.user.username).encode('utf-8')
 
 class CustomerAdmin(admin.ModelAdmin):
     pass
@@ -90,14 +90,14 @@ class Order(models.Model):
 
     def display_destination(self):
         return '<a href="/admin/ecommerce/shippingdestination/%s/">%s</a>' % (
-            self.destination.id, unicode(self.destination).encode('utf-8'))
+            self.destination.id, str(self.destination))
     display_destination.allow_tags = True
     display_destination.short_description = 'Destination'
 
     def __str__(self):
-        return '%s (%s->%s, %s)' % ( \
-            self.id, self.product.name, self.destination.last_name, self.destination.first_name
-        )
+        return (u'%s (%s->%s, %s)' % ( \
+            self.id, self.product.name, self.destination.last_name,
+            self.destination.first_name)).encode('utf-8')
 
 class OrderAdmin(admin.ModelAdmin):
     fields = ('customer', 'product', 'destination',
