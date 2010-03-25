@@ -65,6 +65,7 @@ which is responsible for accepting and scheduling sessions:
 * Hartmut Kaiser, `Louisiana State University`_
 * Jeff Flinn
 * Jeff Garland, `CrystalClear Software`_
+* Justin Gottschlich, `Raytheon <http://www.raytheon.com>`_
 * Joel de Guzman, `BoostPro Computing`_
 * Marshall Clow
 * Michael Wong, IBM_
