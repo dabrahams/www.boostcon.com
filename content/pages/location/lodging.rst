@@ -39,16 +39,13 @@ room.
 
 __ /about/faq#small-block
 
-Please reserve your room for 2011 using the `Aspen Meadows online reservation system`_
+Please **reserve your room for 2011** using the `Aspen Meadows online reservation system`_
 
 .. _Aspen Meadows online reservation system: https://resweb.passkey.com/Resweb.do?mode=welcome_ei_new&eventID=2547965&fromResdesk=true
  
-If all goes well, those that book now will receive $20 off per night – a $100+ value.
-Offer valid through Friday, May 21, 2010
- 
 .. admonition::  BoostCon Room Rates at Aspen Meadows
 
-  * **On or before Friday, May 21, 2010**: $139
+  * **On or before Friday, May 21, 2010**: $139 (a $100+ value)
   * After Friday, May 21, 2010: $159
 
   per night, (single or double occupancy) plus tax at 10.1%.
