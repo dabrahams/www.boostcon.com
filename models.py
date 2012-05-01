@@ -70,7 +70,7 @@ class TimeBlock(Model):
 
     @property
     def finish(self):
-        return self.start + timedelta(self.duration)
+        return self.start + timedelta(minutes=self.duration)
 
     def __str__(self):
         return self.start.strftime('%m/%d %a ') + '%s - %s' % (
