@@ -65,7 +65,7 @@ class Conference(Model):
     
 class TimeBlock(Model):
     start = datetime.now()
-    duration = 15 # in minutes
+    duration = 90 # in minutes
     conference = Conference()
 
     @property
@@ -75,6 +75,9 @@ class TimeBlock(Model):
     def __str__(self):
         return self.start.strftime('%m/%d %a ') + '%s - %s' % (
             _12hr_time(self.start), _12hr_time(self.finish))
+
+    def __repr__(self):
+        return self.__class__.__name__ + '(start=' + str(self.start) + ', duration=' + str(self.duration) + ')'
 
     def __cmp__(self,other):
         return cmp(self.start,other.start)

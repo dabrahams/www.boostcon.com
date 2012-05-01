@@ -25,7 +25,7 @@ boostcon07 = Conference(name='boostcon',
 # TimeBlock
 #
 mon = [
-    TimeBlock(start=datetime(2007,5,14,*t), conference=boostcon07)
+    TimeBlock(start=datetime(2007,5,14,*t), duration=90, conference=boostcon07)
 
     for t in ((9,00), (11,00), (12+2,30), (12+4,30))]
 
@@ -33,8 +33,12 @@ for block in mon:
     block.save()
 
     for i,name in enumerate(('tue','wed','thu','fri')):
-        copy = TimeBlock(start=block.start+timedelta(i+1),conference=block.conference)
+        copy = TimeBlock(
+            start=block.start+timedelta(days=i+1), 
+            duration=block.duration, 
+            conference=block.conference)
         copy.save()
+
         locals()[name] = locals().get(name,[]) + [copy]
 
 fri[2].delete()
@@ -942,7 +946,7 @@ drinks = Session(
     schedule_note="Travelling companions welcome.",
     short_title="Drinks",
     format='social event',
-    start=TimeBlock(start=datetime(2007,5,13,12+6,00), duration=0, conference=boostcon07) | save,
+    start=TimeBlock(start=datetime(2007,5,13,12+6,00), duration=120, conference=boostcon07) | save,
     description=u"""
 Get to know your fellow Boosters and catch up with old friends.  Bring your
 families and companions.
