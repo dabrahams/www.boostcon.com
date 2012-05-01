@@ -137,10 +137,12 @@ class Session(Model):
     #
     # Experience Level and Background
     #
-    levels = (None, 'Beginner', 'Beginner/Intermediate', 'Intermediate', 'Intermediate/Advanced', 'Advanced', 'All')
+    beginner = 1
+    intermediate = 2
+    advanced = 4
+    level = beginner|intermediate|advanced
 
-    # should be one of the above
-    level = levels[-1]
+    level_names = (None, 'Beginner', 'Intermediate', 'Beginner/Intermediate', 'Advanced', '?', '?', 'Intermediate/Advanced',  'All')
 
     def level_name(self):
         return level or ''
