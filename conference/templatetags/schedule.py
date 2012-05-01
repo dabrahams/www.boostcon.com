@@ -1,16 +1,13 @@
 # Copyright David Abrahams 2007. Distributed under the Boost
 # Software License, Version 1.0. (See accompanying
 # file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
-from django import template
 from django.template import resolve_variable
 from boost_consulting.conference.models import *
 from datetime import *
 from utils.format import _12hr_time
 
-register = template.Library()
-
 def format_time_range(t1,t2):
-    from boost_consulting.utils.dom import tag as _
+    from dom import tag as _
     if t1 == t2:
         return _12hr_time(t1)
     else:
@@ -46,7 +43,7 @@ def time_segments(conference, day):
         prev_block = block
         yield block
 
-class ScheduleNode(template.Node):
+class ScheduleNode(object):
     def render_schedule(self, values):
         result = []
 
@@ -61,8 +58,12 @@ class ScheduleNode(template.Node):
 
         
 class PublicScheduleNode(ScheduleNode):
-    def __init__(self, conference_name='params.conference', year='params.year', presenter_base='params.presenter_base', session_base='params.session_base'):
-        super(PublicScheduleNode,self).__init__()
+    def __init__(
+        self, conference_name, 
+        year, 
+        presenter_base='presenter_id_', 
+        session_base='session_id_'
+        ):
         self.conference_name = conference_name
         self.year = year
         self.presenter_base = presenter_base
@@ -89,7 +90,7 @@ class PublicScheduleNode(ScheduleNode):
         return self.render_schedule(v)
 
     def render_day(self, values, d, tracks, session_counters):
-        from boost_consulting.utils.dom import tag as _, xml_snippet
+        from dom import tag as _, xml_snippet
 
         tracks = tracks or [Track('')]
             
@@ -126,7 +127,7 @@ class PublicScheduleNode(ScheduleNode):
     def render_day_body(
         self, values, d, tracks, session_counters
         ):
-        from boost_consulting.utils.dom import tag as _
+        from dom import tag as _
         body = _.tbody
         tracks = tracks or [Track('')]
 
@@ -250,8 +251,7 @@ class PublicScheduleNode(ScheduleNode):
                     
         return body
         
-def public_schedule(parser, token):
-    args = token.split_contents()[1:]
+def public_schedule(conference_name, year, presenter_base, session_base'):
     if len(args) > 4:
         raise template.TemplateSyntaxError, (
             "%r tag requires no more than four arguments" % token.split_contents()[0])
