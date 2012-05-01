@@ -105,6 +105,12 @@ class Presenter(Model):
     def slug(self):
         return slugify(str(self))
 
+    def __cmp__(self,other):
+        return cmp(
+            (self.last_name,self.first_name),
+            (other.last_name,other.first_name)
+            )
+
 class Session(Model):
     title = '<session title>'
     
