@@ -32,11 +32,29 @@ def slugify(string):
 
 ## ---------------
 
+class metamodel(type):
+    class Objects(object):
+        def __init__(self):
+            self.__all = set()
+
+        def all(self):
+            return self.__all
+
+    def __new__(cls, name, bases, dir):
+        dir['objects'] = metamodel.Objects()
+        return type.__new__(cls, name, bases, dir)
+
 class Model(object):
+    __metaclass__ = metamodel
     def __init__(self, **kw):
         for k,v in kw.items():
             setattr(self,k,v)
 
+    def save(self):
+        self.__class__.objects.all().add(self)
+
+    def delete(self):
+        self.__class__.objects.all().remove(self)
 
 class Conference(Model):
     name = '<conference name>'
@@ -160,3 +178,9 @@ class Session(Model):
     @property
     def finish(self):
         return self.start.start + timedelta(minutes=self.duration)
+
+    def __init__(self, presenter=None, **kw):
+        if presenter:
+            kw['presenters'] = (presenter,)
+
+        super(Session,self).__init__(**kw)
