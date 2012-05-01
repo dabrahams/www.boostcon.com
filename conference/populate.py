@@ -4,11 +4,6 @@
 # Software License, Version 1.0. (See accompanying
 # file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
 
-from django.contrib.auth.models import User
-
-admin = User(username='boostcon', is_staff=True, is_active=True, is_superuser=True)
-admin.set_password('crtplib')
-admin.save()
 
 from models import *
 
