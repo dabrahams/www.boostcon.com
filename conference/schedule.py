@@ -105,13 +105,13 @@ class PublicScheduleNode(ScheduleNode):
 
                             # time header
                             _.th(scope="col"
-                                , width="%s%%" % (28 / len(tracks))
+                                , style="width:%s%%" % (28 / len(tracks))
                                  )['time']
 
                             # track headers
                           , [
                                 _.th(
-                                    scope="col", width="%s%%" % (86 / len(tracks))
+                                    scope="col", style="width:%s%%" % (86 / len(tracks))
                                 )[
                                    _.strong[t.name]
                                 ]
@@ -260,10 +260,11 @@ if __name__ == '__main__':
   <link rel="stylesheet" type="text/css" href="style.css" />
   <link rel="stylesheet" type="text/css" href="final_drop.css" />
 </head>
-<body>'''
-    print PublicScheduleNode('C++Now!', 2012).render()
+'''
+    x = PublicScheduleNode('C++Now!', 2012).render()
+    x.element.tag='body'
+    print x
     print '''
-</body>
 </html>
 '''
     
