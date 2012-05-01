@@ -76,6 +76,9 @@ class TimeBlock(Model):
         return self.start.strftime('%m/%d %a ') + '%s - %s' % (
             _12hr_time(self.start), _12hr_time(self.finish))
 
+    def __cmp__(self,other):
+        return cmp(self.start,other.start)
+
 class Track(Model):
     name = '<track name>'
     description = '<track description> (unused)'

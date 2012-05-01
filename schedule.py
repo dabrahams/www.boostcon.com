@@ -5,9 +5,9 @@ from models import *
 from datetime import *
 from format import _12hr_time
 
-def sorted(s):
+def sorted(s,f=None):
     ret = list(s)
-    ret.sort()
+    ret.sort(f)
     return ret
 
 def format_time_range(t1,t2):
@@ -26,10 +26,10 @@ def day_to_datetime(day):
 
 def day_blocks(conference, day):
     day_dt = day_to_datetime(day)
-    return set(
+    return sorted(
         t for t in TimeBlock.objects.all()
         if t.conference == conference
-        and t.start >= day_dt and t.start < day_dt+timedelta(1)
+        and t.start >= day_dt and t.start < (day_dt+timedelta(days=1))
         )
 
 class Break(object):
@@ -53,7 +53,10 @@ class ScheduleNode(object):
     def render_schedule(self, values):
         result = []
 
-        tracks = set(t for t in Track.objects.all() if t.conference == values.conference)
+        tracks = sorted(
+            [t for t in Track.objects.all() if t.conference == values.conference], 
+            lambda x,y:cmp(x.name,y.name))
+
         session_counters = dict([(t,0) for t in tracks] + [(None,0)])
         
         for d in iterate_days(values.conference.start, values.conference.finish):
