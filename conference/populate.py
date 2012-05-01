@@ -947,6 +947,7 @@ drinks = Session(
 Get to know your fellow Boosters and catch up with old friends.  Bring your
 families and companions.
     """) | save
-    
-for s in Session.objects.all():
-    print s
+
+if __name__ == '__main__':    
+    for s in Session.objects.all():
+        print s
