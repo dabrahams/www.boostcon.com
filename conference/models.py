@@ -1,12 +1,6 @@
-## ---------------
-
+# -*- coding: utf-8 -*-
 from datetime import *
-
-def _12hr_time(t):
-    return t.strftime(
-        # str(t.hour%12) +
-        '%I:%M%p')
-
+from format import _12hr_time
 
 ## ---------------
 
