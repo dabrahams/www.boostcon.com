@@ -137,10 +137,6 @@ class Session(Model):
     #
     # Experience Level and Background
     #
-    beginner = 1
-    intermediate = 2
-    advanced = 4
-
     levels = (None, 'Beginner', 'Beginner/Intermediate', 'Intermediate', 'Intermediate/Advanced', 'Advanced', 'All')
 
     # should be one of the above
