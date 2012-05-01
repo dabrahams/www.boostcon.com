@@ -65,12 +65,12 @@ class Conference(Model):
     
 class TimeBlock(Model):
     start = datetime.now()
-    duration = timedelta(minutes=15)
+    duration = 15 # in minutes
     conference = Conference()
 
     @property
     def finish(self):
-        return self.start + self.duration
+        return self.start + timedelta(self.duration)
 
     def __str__(self):
         return self.start.strftime('%m/%d %a ') + '%s - %s' % (
