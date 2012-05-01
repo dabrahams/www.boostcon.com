@@ -1,10 +1,14 @@
 # Copyright David Abrahams 2007. Distributed under the Boost
 # Software License, Version 1.0. (See accompanying
 # file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
-from django.template import resolve_variable
-from boost_consulting.conference.models import *
+from models import *
 from datetime import *
-from utils.format import _12hr_time
+from format import _12hr_time
+
+def sorted(s):
+    ret = list(s)
+    ret.sort()
+    return ret
 
 def format_time_range(t1,t2):
     from dom import tag as _
@@ -22,9 +26,11 @@ def day_to_datetime(day):
 
 def day_blocks(conference, day):
     day_dt = day_to_datetime(day)
-    return TimeBlock.objects \
-        .filter(conference = conference) \
-        .filter(start__range=(day_dt,day_dt+timedelta(1)))
+    return set(
+        t for t in TimeBlock.objects.all()
+        if t.conference == conference
+        and t.start >= day_dt and t.start < day_dt+timedelta(1)
+        )
 
 class Break(object):
     def __init__(self, start,finish):
@@ -47,14 +53,15 @@ class ScheduleNode(object):
     def render_schedule(self, values):
         result = []
 
-        tracks = Track.objects.filter(conference = values.conference).order_by('name')
+        tracks = set(t for t in Track.objects.all() if t.conference == values.conference)
         session_counters = dict([(t,0) for t in tracks] + [(None,0)])
         
         for d in iterate_days(values.conference.start, values.conference.finish):
             result.append(self.render_day(
-                values,d,tracks,session_counters).toxml())
+                values,d,tracks,session_counters))
 
-        return u'\n'.join(result).encode('utf-8')
+        from dom import tag as _
+        return _.schedule[ result ]
 
         
 class PublicScheduleNode(ScheduleNode):
@@ -69,33 +76,25 @@ class PublicScheduleNode(ScheduleNode):
         self.presenter_base = presenter_base
         self.session_base = session_base
 
-    def render(self, ctx):
+    def render(self):
         class Values(object):
             def __init__(self,**kw):
                 self.__dict__.update(kw)
 
-        try:
-            v = Values(
-            conference = Conference.objects.get(
-                name=resolve_variable(self.conference_name,ctx),
-                start__year=int(resolve_variable(self.year,ctx))),
-            presenter_base = resolve_variable(self.presenter_base,ctx) + '#',
-            session_base = resolve_variable(self.session_base,ctx) + '#',
-            )
-        except:
-            import pprint
-            pprint.pprint(ctx)
-            raise
+        v = Values(
+            conference=iter(Conference.objects.all()).next(),
+            presenter_base = self.presenter_base + '#',
+            session_base = self.session_base + '#'
+        )
         
         return self.render_schedule(v)
 
     def render_day(self, values, d, tracks, session_counters):
-        from dom import tag as _, xml_snippet
+        from dom import tag as _
 
         tracks = tracks or [Track('')]
             
-        return xml_snippet(
-            _.table(
+        return _.table(
                 _class="schedule",
                 summary="%s Schedule for %s" % (values.conference, d.strftime('%A, %B %d'))
                 )[
@@ -122,7 +121,6 @@ class PublicScheduleNode(ScheduleNode):
                     ] # </THEAD>
                   , self.render_day_body(values, d, tracks, session_counters)
                 ]
-            )
         
     def render_day_body(
         self, values, d, tracks, session_counters
@@ -134,8 +132,9 @@ class PublicScheduleNode(ScheduleNode):
         # Keeps track of active sessions in each track
         active = {}
         
-        sessions = Session.objects \
-                   .filter(start__start__gte=day_to_datetime(d))
+        sessions = set(
+            s for s in Session.objects.all() 
+            if s.start.start >=  day_to_datetime(d))
 
         for b in time_segments(values.conference,d):
 
@@ -151,7 +150,7 @@ class PublicScheduleNode(ScheduleNode):
             elif isinstance(b, TimeBlock):
                 error = {}
                 
-                for s in sessions.filter(start=b):
+                for s in [s for s in sessions if s.start == b]:
                     if s.track:
                         existing = active.get(s.track)
                         if existing:
@@ -222,8 +221,7 @@ class PublicScheduleNode(ScheduleNode):
                                    # Read the names in reverse alphabetical
                                    # order so they come out right in the end.
                                    for n, p in
-                                   enumerate(current.presenters.order_by('-last_name',
-                                                                        '-first_name'))
+                                   enumerate(sorted(current.presenters)[::-1])
                                 ][::-1] # reverse
 
                               , _.a(href=values.session_base+current.slug())[title]
@@ -250,15 +248,22 @@ class PublicScheduleNode(ScheduleNode):
                         break
                     
         return body
-        
-def public_schedule(conference_name, year, presenter_base, session_base'):
-    if len(args) > 4:
-        raise template.TemplateSyntaxError, (
-            "%r tag requires no more than four arguments" % token.split_contents()[0])
 
-    return PublicScheduleNode(
-        **dict(zip(('conference_name','year','presenter_base','session_base'),args)))
-        
-
-
-register.tag(public_schedule)
+if __name__ == '__main__':
+    import populate
+    print'''<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title>Schedule</title>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+  <link rel="stylesheet" type="text/css" href="style.css" />
+  <link rel="stylesheet" type="text/css" href="final_drop.css" />
+</head>
+<body>'''
+    print PublicScheduleNode('C++Now!', 2012).render()
+    print '''
+</body>
+</html>
+'''
+    
