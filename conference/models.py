@@ -25,7 +25,7 @@ def slugify(string):
     return re.sub(r'[-\s]+', '-',
             unicode(
                 re.sub(r'[^\w\s-]', '',
-                    unicodedata.normalize('NFKD', string)
+                    unicodedata.normalize('NFKD', unicode(string))
                     .encode('ascii', 'ignore'))
                 .strip()
                 .lower()))
